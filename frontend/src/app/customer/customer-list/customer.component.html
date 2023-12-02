@@ -1,0 +1,19 @@
+
+<div class="itens-table-detail-container">
+  <div class ="wrapper">
+
+    <!-- option crud menu -->
+    <app-crud-menu [linksListForOperations] ="pathToOperations"></app-crud-menu>
+    <!--  -->
+    <!-- <router-outlet class="roulet"></router-outlet> -->
+    <app-customer-list-table
+      [model]="title"
+      [tableHeaders]="headerForTables"
+      [fatherPathPrefix]="pathPrefix"
+      [service]="service"
+      (editObjectEmitter)="editObject($event)"
+      >
+    </app-customer-list-table>
+
+
+  </div>

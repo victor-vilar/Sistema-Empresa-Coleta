@@ -1,0 +1,78 @@
+
+<div class="wrapper mat-elevation-z8 ">
+  <button (click)="mockingFormFiller()">mockar</button>
+
+
+    <div class="detail-component-header">
+        <a (click)="canDeactivate()" class="close-button">X</a>
+    </div>
+  <mat-dialog-content>
+  <form (ngSubmit)="save()" #form="ngForm">
+
+    <div class="contract-info  ">
+
+      <p>Informações do Contrato</p>
+
+      <!-- basic contract info wrapper -->
+      <div class="contract-field-wrapper">
+
+          <!-- number field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Número</mat-label>
+              <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
+              <mat-error *ngIf="this.form.controls['contractNumber']?.value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
+              class="alert">O contrato deve possuir um número</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- begin date field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Data de Início</mat-label>
+              <input matInput [matDatepicker]="beginDatePicker" name="beginDate" ngModel required>
+              <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #beginDatePicker></mat-datepicker>
+              <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+              class="alert">O contrato deve possuir uma data de início</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- end date field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Data de Encerramento</mat-label>
+              <input matInput [matDatepicker]="endDatePicker" name="endDate" ngModel required [matDatepickerFilter]="endDateFilter">
+              <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #endDatePicker></mat-datepicker>
+              <mat-error *ngIf="this.form.controls['endDate']?.value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
+              class="alert">O contrato deve possuir uma data de encerramento</mat-error>
+              <mat-error *ngIf="isInvalidContractDates"
+              class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- contract status field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <mat-select name="contractStatus" id="contractStatus" ngModel >
+                <mat-option value="{{status}}" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+      </div>
+  </div>
+
+  <app-customer-contracts-detail-itens #itensChild
+    [itemContractList]="itemContractList"
+    [deletedSavedItensIdList]="deletedSavedItensIdList"
+  ></app-customer-contracts-detail-itens>
+
+  </form>
+
+  <input class="save-contract" type="submit" (click)="save()" value="Salvar Contrato">
+</mat-dialog-content>
+</div>
+
+

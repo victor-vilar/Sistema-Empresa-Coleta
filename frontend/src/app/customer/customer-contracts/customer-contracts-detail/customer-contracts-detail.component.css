@@ -1,0 +1,128 @@
+
+
+.wrapper{
+  padding:5px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid black; */
+}
+
+mat-form-field{
+  width: 100%;
+  /* margin-bottom: 5px; */
+}
+
+mat-error{
+  padding:0;
+}
+
+mat-expansion-panel{
+  /* margin-bottom: 20px; */
+}
+
+
+
+
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:5px;
+  text-decoration: none;
+  color:black;
+  position:absolute;
+  right: 0;
+  top:0;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.alert{
+  color:Red;
+}
+.contract-info{
+  display: grid;
+}
+.wrapper h4 {
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+.residue-item-options-item{
+  display: grid;
+}
+.residue-item-options-item label, .contract-field label {
+  font-weight: bolder;
+}
+
+
+.alert {
+  font-size: .8rem;
+}
+
+
+.residues-fields-wrapper  input[type=button],.residue-item-options input[type=submit], .wrapper input[type=submit]{
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  padding:10px;
+  width: 100%;
+}
+
+
+.save-contract{
+  margin-top: 20px;
+}
+
+
+@media screen and (min-width:1200px){
+
+  .contract-field-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap:5px;
+  }
+
+  .residues-fields-wrapper, .contract-field-wrapper{
+    padding:10px;
+    border-radius: 3px ;
+  }
+
+
+
+  .contract-field-wrapper input, .residue-item-options input[type=text], .residue-item-options select, .alert{
+    width:200px ;
+  }
+
+  .contract-field, .residue-item-options-item{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+  }
+
+  .residues-fields-wrapper input[type=button],.residues-fields-wrapper input[type=submit], .wrapper input[type=submit]{
+    width: 200px;
+  }
+
+  mat-dialog-content{
+    max-height: 100%;
+  }
+
+
+}
+

@@ -1,0 +1,23 @@
+<div class="cont">
+
+  <app-customer-info
+    [cpfCnpj]="selectedCustomer.cpfCnpj"
+    [nameCompanyName]="selectedCustomer.nameCompanyName"
+    [item]="title"
+    [itemSize]="selectedCustomer.supervisors.length"
+  ></app-customer-info>
+
+  <app-crud-menu [linksListForOperations]="pathToOperations"></app-crud-menu>
+  <!-- <router-outlet></router-outlet> -->
+
+  <app-customer-supervisors-list-table
+  [model]="title"
+  [tableHeaders]="headerForTables"
+  [fatherPathPrefix]="pathPrefix"
+  [service]="supervisorService"
+  [customerId]="selectedCustomer.cpfCnpj"
+  [mapper]="mapper"
+  (editObjectEmitter)="editObject($event)"
+  ></app-customer-supervisors-list-table>
+
+</div>

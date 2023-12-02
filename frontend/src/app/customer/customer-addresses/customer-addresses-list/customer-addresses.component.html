@@ -1,0 +1,25 @@
+<div class="cont">
+
+  <app-customer-info
+    [cpfCnpj]="selectedCustomer.cpfCnpj"
+    [nameCompanyName]="selectedCustomer.nameCompanyName"
+    [item]="title"
+    [itemSize]="selectedCustomer.addresses.length"
+  ></app-customer-info>
+
+  <app-crud-menu [linksListForOperations]="pathToOperations"></app-crud-menu>
+  <!-- <router-outlet></router-outlet> -->
+
+  <app-customer-addresses-list-table
+  [model]="title"
+  [tableHeaders]="headerForTables"
+  [fatherPathPrefix]="pathPrefix"
+  [service]="addressService"
+  [customerId]="selectedCustomer.cpfCnpj"
+  [mapper]="mapper"
+  (editObjectEmitter)="editObject($event)"
+  ></app-customer-addresses-list-table>
+
+</div>
+
+

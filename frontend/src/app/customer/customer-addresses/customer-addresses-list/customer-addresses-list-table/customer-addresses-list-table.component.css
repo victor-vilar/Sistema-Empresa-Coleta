@@ -1,0 +1,42 @@
+table{
+  width: 100%;
+}
+
+th{
+  font-weight: bolder;
+
+}
+
+.options-table-buttons{
+  display: flex;
+  gap: 5px;
+}
+
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.mat-column-Id, .mat-column-Numero,.mat-column-Estado,.mat-column-Existe-Coleta{
+  width:4%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-Complemento{
+  width:8%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.mat-column-CEP{
+  width:6%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+

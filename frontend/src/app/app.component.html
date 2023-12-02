@@ -1,0 +1,40 @@
+<ng-container *ngIf="this.loggedUser === false" class="full-screem-page">
+  <app-login></app-login>
+</ng-container>
+
+
+<div  class="container-fuild" *ngIf="this.loggedUser">
+
+
+  <div class="row g-0" >
+      <!-- menu-button -->
+      <div class="menu-button-container col position-fixed">
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 font-weight-bold">Empresa</span>
+            <button class="btn toggle-button" (click)="toggling()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </nav>
+      </div>
+
+
+      <!-- menu left -->
+      <div class= "menu-small col-12 col-sm-4 col-md-3 col-xl-2 " #menu>
+          <app-menu (closeMenuFromFatherEmitter) ="closeFromMenu($event)"
+          ></app-menu>
+      </div>
+
+      <!-- main -->
+      <div class="main col-12 col-sm-7 col-md-9 " [ngStyle]="{display:menuSmall ? 'none':'block'}">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+
+    <div class="footer" [ngStyle]="{display:menuSmall ? 'none':'block'} ">
+      <app-footer></app-footer>
+    </div>
+
+</div>
+

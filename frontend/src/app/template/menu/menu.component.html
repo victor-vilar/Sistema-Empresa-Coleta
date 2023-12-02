@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="logged-user">
+    <img [src]="this.applicationUser.profilePhotoUrl">
+    <h3>{{this.applicationUser.username}}</h3>
+    <h5>{{this.applicationUser.roles}}</h5>
+    <div class="logout-button"><button (click)="logout()">Logout</button></div>
+  </div>
+
+  <div class="division"></div>
+  <div class="navegation nav nav-pills flex-column mb-auto">
+      <div>
+        <a [routerLink]="'dashboard'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-home"></i><span>Dashboard</span></a>
+        <a [routerLink]="'clientes'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-user"></i><span>Clientes</span></a>
+        <a [routerLink]="'contratos'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-file-signature"></i><span>Contratos</span></a>
+        <a [routerLink]="'residuos'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-recycle"></i><span>Resíduos</span></a>
+        <a [routerLink]="'equipamentos'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-trash"></i><span>Equipamentos</span></a>
+        <a [routerLink]="'contas'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-file-invoice-dollar"></i><span>Contas</span></a>
+        <a [routerLink]="'veiculos'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-truck"></i><span>Veiculos</span></a>
+        <a [routerLink]="'ordem-servico'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-file-invoice"></i><span>Ordens de Serviço</span></a>
+        <a [routerLink]="'fornecedores'" [routerLinkActive]="'activated'" (click)="closeMenuFromFather()"><i class="fas fa-handshake"></i><span>Fornecedores</span></a>
+      </div>
+  </div>
+  <div class="division"></div>
+
+  <div class="developer-info">
+    Desenvolvido Por: <span><b>Victor Vilar</b></span>
+    <div class="developer-info-social-media">
+
+      <div class="developer-info-social-card">
+        <a href="https://github.com/victor-vilar"><i class="fab fa-github"></i><span>GitHub</span></a>
+      </div>
+      <div class="developer-info-social-card">
+        <a href="https://linkedin.com/in/victor-vilar01"><i class="fab fa-linkedin"></i><span>LinkedIn</span></a>
+      </div>
+
+    </div>
+  </div>
+</div>

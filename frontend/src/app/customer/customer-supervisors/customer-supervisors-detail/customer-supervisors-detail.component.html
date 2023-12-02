@@ -1,0 +1,31 @@
+<div class="wrapper">
+  <div class="detail-container">
+
+    <div class="detail-component-header" *ngIf="isSubform==false">
+      <h4 class="detail-title">{{crudOperation}} de Supervisores</h4>
+      <a (click)="destroy()" class="close-button">X</a>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="save()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" ngModel name="supervisorName" id="supervisorName" >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput PhonePipe type="phone" ngModel name="supervisorPhone" placeholder="Telefone">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" ngModel name="supervisorEmail" placeholder="Email">
+      </mat-form-field>
+
+      <input type="button" value="limpar" (click)="cleanForm()">
+      <input type="submit" value="Salvar" *ngIf=" isSubform==false">
+      <input type="button" value="Adicionar" *ngIf="isSubform">
+    </form>
+
+  </div>
+</div>

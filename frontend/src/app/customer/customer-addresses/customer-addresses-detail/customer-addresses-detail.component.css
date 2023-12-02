@@ -1,0 +1,103 @@
+.wrapper{
+  padding: 5px;
+}
+.search-zipcode-reponse-error p {
+  color: red;
+}
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+.zipcodeerror {
+  border: 1px solid red;
+}
+
+mat-form-field{
+  width: 100%;
+  /* margin-bottom: 5px; */
+}
+
+mat-error{
+  padding:0;
+}
+
+.zipcode-field, .full-address-info{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  gap:5px;
+  padding: 5px;
+}
+
+.zipcode-field input[type=button], form input[type=submit], form input[type=button]{
+  background-color: var(--cinza-escuro);
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  padding: 5px;
+
+}
+.zipcode-field label, .full-address-info label{
+  font-weight: bolder;
+}
+
+
+.full-address-info input[type=checkbox]{
+  width: 30px;
+  height: 30px;
+  padding:0px;
+}
+
+form input[type=submit], form input[type=button]{
+  padding:10px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.options{
+  display: flex;
+  align-items: center;
+  gap:5px;
+
+}
+
+@media screen and (min-width:768px){
+
+  .zipcode-field {
+    flex-direction: row;
+    align-items: center;
+  }
+  .zipcode-field input[type=text]{
+    width: 300px;
+  }
+  .zipcode-field input[type=button]{
+    width: 100px;
+  }
+  .full-address-info input{
+    width: 450px;
+  }
+  form input[type=submit]{
+    max-width: 450px;
+  }
+
+}

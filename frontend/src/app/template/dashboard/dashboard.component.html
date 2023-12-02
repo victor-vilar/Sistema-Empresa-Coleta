@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="dashboard-cards">
+
+    <div class="dashboard-cards-item totalMoney">
+      <i class="fas fa-money-bill"></i>
+      <span>{{totalValue | currency:'BRL'}}</span>
+      <h5>Total em R$ de Contratos</h5>
+    </div>
+
+    <div class="dashboard-cards-item">
+      <i class="fas fa-user"></i>
+      <span>{{customerRegisteredLength }}</span>
+      <h5>Quantidade de Clientes</h5>
+    </div>
+
+    <div class="dashboard-cards-item">
+      <i class="fas fa-file-signature"></i>
+      <span>{{contractRegisteredLength}}</span>
+      <h5>Quantidade de Contratos</h5>
+    </div>
+
+
+
+    <div class="dashboard-cards-item">
+      <i class="fas fa-recycle"></i>
+      <span>{{residueRegisteredLength}}</span>
+      <h5>Quantidade de Resíduos Cadastrados</h5>
+    </div>
+
+    <div class="dashboard-cards-item">
+      <i class="fas fa-trash"></i>
+      <span>{{equipmentRegisteredLength}}</span>
+      <h5>Quantidade de Equipamentos Cadastrados</h5>
+    </div>
+
+  </div>
+
+</div>
