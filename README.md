@@ -2,12 +2,12 @@
 # Empresa de Coleta
 
 
-Projeto que vem sendo atualizado conforme vou aprendendo novos conceitos sobre as linguagens.Esse projeto esta sendo feito com
-frontend Angular e o backend com java e spring.
-O front e o back comecaram em repositorios separados e agora eu juntei nesse para ficar mais facil o gerenciamento.
-Aqui estão o link dos outros repositorios caso voce tenha interesse em ver os commits antigos: 
- [Link para Backend API Java Spring](https://github.com/victor-vilar/api-springboot-pa).
- [Link para Frontend com Angular](https://github.com/victor-vilar/api-springboot-frontend-angular-pa).
+Projeto que vem sendo atualizado conforme vou aprendendo novos conceitos sobre as linguagens. Esse projeto esta sendo feito com
+frontend Angular e o backend com Java e Spring.
+O front e o back comecaram em repositorios separados e agora eu juntei nesse para ficar mais facil o gerenciamento.\
+Aqui estão o link dos outros repositorios caso voce tenha interesse em ver os commits antigos:\
+[Link para Backend API Java Spring](https://github.com/victor-vilar/api-springboot-pa)\
+[Link para Frontend com Angular](https://github.com/victor-vilar/api-springboot-frontend-angular-pa).
 
 
 
