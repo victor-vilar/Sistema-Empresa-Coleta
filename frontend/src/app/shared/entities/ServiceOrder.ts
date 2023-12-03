@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Address } from './Address';
 import { Customer } from './Customer';
 import { ItemContract } from "./ItemContract";
+import { Vehicle } from "./Vehicle";
 
 export interface ServiceOrder {
 
