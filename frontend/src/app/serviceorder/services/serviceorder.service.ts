@@ -10,4 +10,10 @@ export class ServiceorderService extends CrudBaseService<ServiceOrder> {
   constructor() {
     super();
   }
+
+  //getAllByCustomerId(id:string):Observable<ServiceOrder[]>{  }
+  //getAllByServiceExpectedDate(date:Date):Observable<ServiceOrder[]>{}
+
+
+
 }

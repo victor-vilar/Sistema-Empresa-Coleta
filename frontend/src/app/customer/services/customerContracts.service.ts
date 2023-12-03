@@ -28,14 +28,14 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
    * @returns the updated contract
    */
   deleteItensFromContract(itens:number[]):Observable<Contract>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/deleteitens';
+    this.route = this.BASE_URL + this.rota +'/deleteitens';
     return this.http.delete<any>(this.route,{withCredentials:true,body:itens});
   }
 
 
   //get all contracts by customer id
   getAllByCustomerId(clientCpfCnpj:string):Observable<Contract[]>{
-    this.route = CrudBaseService.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
+    this.route = this.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
     return this.http.get<Contract[]>(this.route,{withCredentials:true});
   }
 

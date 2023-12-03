@@ -17,7 +17,9 @@ export interface ServiceOrder {
   ineaManifest:string,
   serviceTime:Time,
   observation:string,
-  osFileUrl:string
+  osFileUrl:string,
+  cancelled:boolean,
+  
 
 
 }

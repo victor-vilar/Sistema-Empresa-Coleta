@@ -10,7 +10,7 @@ export abstract class CrudBaseService<T>{
 
 
   private refreshRequired = new Subject<any>();
-  private readonly BASE_URL:string = environment.LOCAL_API_URL;
+  protected readonly BASE_URL:string = environment.LOCAL_API_URL;
   list:T[] = [];
   rota:string;
   protected http:HttpClient = inject(HttpClient);
