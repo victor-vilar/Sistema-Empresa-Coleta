@@ -1,12 +1,10 @@
 package com.victorvilar.projetoempresa.domain;
 
 
-import com.victorvilar.projetoempresa.enums.VechicleType;
+import com.victorvilar.projetoempresa.enums.VehicleType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * REPRESENTAR UM VEICULO -- todo
@@ -26,7 +24,7 @@ public class Vehicle implements Serializable {
 
     //tipo de Veiculo
     @Enumerated(EnumType.STRING)
-    private VechicleType type;
+    private VehicleType type;
 
     //placa XXX-XXXX
     @Column(nullable = false)
@@ -60,11 +58,11 @@ public class Vehicle implements Serializable {
         this.id = id;
     }
 
-    public VechicleType getType() {
+    public VehicleType getType() {
         return type;
     }
 
-    public void setType(VechicleType type) {
+    public void setType(VehicleType type) {
         this.type = type;
     }
 

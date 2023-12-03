@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.enums;
 
-public enum VechicleType {
+public enum VehicleType {
 
     CAMINHAO_COMPACTADOR("Caminhão Compactador"),
     CAMINHAO_POLIGUINDASTE("Caminhão Poliguindaste"),
@@ -11,7 +11,7 @@ public enum VechicleType {
 
     private String type;
 
-    VechicleType(String type){
+    VehicleType(String type){
         this.type=type;
     }
 
