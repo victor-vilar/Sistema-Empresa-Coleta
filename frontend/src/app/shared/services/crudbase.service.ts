@@ -17,9 +17,6 @@ export abstract class CrudBaseService<T>{
   constructor(){ }
 
 
-  // refreshRequiredValue():Observable<any>{
-  //   return this.refreshRequired.asObservable();
-  // }
   refreshAllData(){
     return this.refreshRequired.asObservable();
   }
