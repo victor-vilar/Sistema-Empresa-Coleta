@@ -75,6 +75,11 @@ public class ServiceOrder implements Serializable {
      */
     private String osFileUrl;
 
+    /**
+     * if the os is canceled
+     */
+    private Boolean cancelled = false;
+
     public ServiceOrder() {
     }
 
