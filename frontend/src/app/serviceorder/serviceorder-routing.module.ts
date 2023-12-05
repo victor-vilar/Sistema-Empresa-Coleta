@@ -7,9 +7,11 @@ import { CustomerModule } from '../customer/customer.module';
 import { ResidueModule } from '../residue/residue.module';
 import { ServiceorderComponent } from './serviceorder.component';
 import { EquipamentsModule } from '../equipaments/equipaments.module';
+import { ServiceorderCreateComponent } from './create/serviceorder.create.component';
 
 const routes: Routes = [
   {path:'ordem-servico',component:ServiceorderComponent, children:[
+    {path:'novo',component:ServiceorderCreateComponent}
 
   ]},
 ]

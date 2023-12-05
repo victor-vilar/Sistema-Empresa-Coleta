@@ -6,20 +6,20 @@ import { Vehicle } from "./Vehicle";
 
 export interface ServiceOrder {
 
-  id:number,
-  emissionDate:Date,
-  serviceExpectedDate?:Date,
-  vehicle:Vehicle,
+  id?:number,
+  emissionDate?:Date,
+  serviceExpectedDate:Date,
+  vehicle?:Vehicle,
   itemContract:ItemContract,
-  customer:Customer,
+  customer?:Customer,
   address:Address,
-  ammountCollected:number,
-  ineaManifest:string,
-  serviceTime:Time,
-  observation:string,
-  osFileUrl:string,
-  cancelled:boolean,
-  
+  ammountCollected?:number,
+  ineaManifest?:string,
+  serviceTime?:Time,
+  observation?:string,
+  osFileUrl?:string,
+  cancelled?:boolean,
+
 
 
 }

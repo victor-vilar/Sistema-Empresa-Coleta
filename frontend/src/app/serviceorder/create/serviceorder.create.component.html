@@ -1,0 +1,44 @@
+
+
+<h4>Gerar ordem de Serviço</h4>
+<form (ngSubmit)="save()" #form="ngForm">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data do Serviço</mat-label>
+    <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
+    <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
+    <mat-datepicker #serviceDate></mat-datepicker>
+    <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+    class="alert">O contrato deve possuir uma data de início</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="big-information" >
+    <mat-label>Cliente</mat-label>
+    <mat-select name="customer" id="customer" ngModel required (selectionChange)="findCustomerInformation()" >
+      <mat-option value="{{customer.cpfCnpj}}" *ngFor="let customer of customers">{{customer.nameCompanyName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br><br>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Item</mat-label>
+    <mat-select name="item" id="item" ngModel required matTooltip="Escolha um item disponível">
+      <mat-option value="{{item.id}}" *ngFor="let item of itens">{{item.residue}} - ref ao Contrato: {{item.contract}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="big-information">
+    <mat-label>Endereco</mat-label>
+    <mat-select name="address" id="address" ngModel required matTooltip="Escolha um endereço disponível" >
+      <mat-option value="{{address.id}}" *ngFor="let address of addresses">{{address.addressName}}, nº{{address.addressNumber}}, compl{{address.complement}}, {{address.city}}  </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label for="">Observaçao:</mat-label>
+    <textarea matInput ngModel name="observation" id="observation"></textarea>
+  </mat-form-field>
+
+  <input type="submit" value="Criar nova Ordem">
+
+</form>

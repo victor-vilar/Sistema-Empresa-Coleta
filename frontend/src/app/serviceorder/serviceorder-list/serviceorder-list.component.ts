@@ -1,0 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
+import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+
+@Component({
+  selector: 'app-serviceorder-list',
+  templateUrl: './serviceorder-list.component.html',
+  styleUrls: ['./serviceorder-list.component.css']
+})
+export class ServiceorderListComponent extends ItensTableComponent {
+
+  constructor(router:Router,dialogService:DialogServiceService){
+    super(router,dialogService)
+  }
+
+
+}
