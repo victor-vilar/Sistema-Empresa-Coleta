@@ -4,7 +4,7 @@ import { CustomerAddressService } from 'src/app/customer/services/customerAddres
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Customer } from 'src/app/shared/entities/Customer';
-import { CustomerAddressesDetailComponent } from '../customer-addresses-detail/customer-addresses-detail.component';
+import { CustomerAddressesDetailComponent } from './customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerAddressListTableComponentMapperService } from './customer-address-list-table-component-mapper-service.service';
 
 @Component({

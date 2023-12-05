@@ -1,4 +1,4 @@
-import { ResidueComponent } from './residue-list/residue.component';
+import { ResidueComponent } from './residue.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResidueDetailComponent } from './residue-detail/residue-detail.component';

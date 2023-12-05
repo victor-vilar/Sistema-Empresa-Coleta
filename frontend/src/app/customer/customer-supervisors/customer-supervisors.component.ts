@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
-import { CustomerSupervisorsDetailComponent } from '../customer-supervisors-detail/customer-supervisors-detail.component';
+import { CustomerSupervisorsDetailComponent } from './customer-supervisors-detail/customer-supervisors-detail.component';
 import { CustomerSupervisorsListTableComponentMapperService } from './customer-supervisors-list-table-component-mapper.service';
 
 @Component({

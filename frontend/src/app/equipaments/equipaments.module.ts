@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EquipmentsComponent } from './equipment-list/equipaments.component';
+import { EquipmentsComponent } from './equipaments.component';
 import { EquipmentDetailComponent } from './equipment-detail/equipament-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

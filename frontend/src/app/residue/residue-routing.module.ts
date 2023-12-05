@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from '../template/dashboard/dashboard.component';
 import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
-import { ResidueComponent } from './residue-list/residue.component';
+import { ResidueComponent } from './residue.component';
 
 
 

@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { CustomerContractsDetailComponent } from '../customer-contracts-detail/customer-contracts-detail.component';
+import { CustomerContractsDetailComponent } from './customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Component, OnInit, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';

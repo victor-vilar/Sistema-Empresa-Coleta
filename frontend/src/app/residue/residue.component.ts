@@ -7,7 +7,7 @@ import { CrudBaseComponent } from 'src/app/shared/interfaces/crudbase.interface'
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ResidueDetailComponent } from '../residue-detail/residue-detail.component';
+import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
 
 @Component({
   selector: 'app-residue',

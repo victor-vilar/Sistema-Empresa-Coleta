@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomerAddressesListComponent } from './customer-addresses/customer-addresses-list/customer-addresses.component';
+import { CustomerAddressesListComponent } from './customer-addresses/customer-addresses.component';
 import { CustomerAddressesDetailComponent } from './customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
 import { CustomerContractsDetailComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerSupervisorsListComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
+import { CustomerSupervisorsListComponent } from './customer-supervisors/customer-supervisors.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
 
 
@@ -23,15 +23,15 @@ import { CustomerListTableComponent } from './customer-list/customer-list-table/
 import { ItemContractListTableComponent } from './customer-util/itemContract-list-table/itemContract-list-table.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { MaterialModuleModule } from '../shared/material-module.module';
-import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list/customer-addresses-list-table/customer-addresses-list-table.component';
+import { CustomerAddressesListTableComponent } from './customer-addresses/customer-addresses-list-table/customer-addresses-list-table.component';
 
-import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors-list-table/customer-supervisors-list-table.component';
+import { CustomerSupervisorsListTableComponent } from './customer-supervisors/customer-supervisors-list-table/customer-supervisors-list-table.component';
 import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
 import { CustomerContractsDetailItensComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 
 import { ContractRoutingModule } from '../contracts/contract-routing.module';
-import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-by-customer-list.component';
-import { CustomerContractsByCustomerListTableComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-list-per-customer-table/customer-contracts-list-per-customer-table.component';
+import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list.component';
+import { CustomerContractsByCustomerListTableComponent } from './customer-contracts/customer-contracts-list-per-customer-table/customer-contracts-list-per-customer-table.component';
 
 @NgModule({
   declarations: [

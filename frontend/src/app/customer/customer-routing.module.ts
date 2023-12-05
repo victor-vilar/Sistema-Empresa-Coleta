@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from '../template/dashboard/dashboard.component';
 import { CustomerAddressesDetailComponent } from './customer-addresses/customer-addresses-detail/customer-addresses-detail.component';
-import { CustomerAddressesListComponent } from './customer-addresses/customer-addresses-list/customer-addresses.component';
+import { CustomerAddressesListComponent } from './customer-addresses/customer-addresses.component';
 import { CustomerContractsDetailComponent } from './customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListComponent } from './customer-list/customer.component';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors/customer-supervisors-detail/customer-supervisors-detail.component';
-import { CustomerSupervisorsListComponent } from './customer-supervisors/customer-supervisors-list/customer-supervisors.component';
+import { CustomerSupervisorsListComponent } from './customer-supervisors/customer-supervisors.component';
 import { CustomerDetailInfoComponent } from './customer-detail/customer-detail-info/customer-detail-info.component';
-import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list/customer-contracts-by-customer-list.component';
+import { CustomerContractsByCustomerListComponent } from './customer-contracts/customer-contracts-by-customer-list.component';
 
 
 const routes: Routes = [

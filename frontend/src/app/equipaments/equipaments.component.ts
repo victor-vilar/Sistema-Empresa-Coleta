@@ -1,4 +1,4 @@
-import { EquipmentDetailComponent } from '../equipment-detail/equipament-detail.component';
+import { EquipmentDetailComponent } from './equipment-detail/equipament-detail.component';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
