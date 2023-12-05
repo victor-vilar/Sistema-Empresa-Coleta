@@ -31,6 +31,12 @@ public class ItemContractResponseDto {
         this.description =description;
     }
 
+    public String getContract() {
+        return contract;
+    }
+    public void setContract(String contract) {
+        this.contract = contract;
+    }
 
     public Long getId() {
         return id;
