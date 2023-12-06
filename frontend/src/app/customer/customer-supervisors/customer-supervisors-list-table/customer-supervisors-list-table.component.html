@@ -40,8 +40,10 @@
             <ng-container matColumnDef="Opções">
               <th mat-header-cell *matHeaderCellDef>Opções</th>
               <td mat-cell *matCellDef="let supervisor" >
-                <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(supervisor)" [routerLink]="['./'+fatherPathPrefix, supervisor.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
-                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(supervisor)"><i class="fas fa-times"></i></button>
+                <div class="flex-display">
+                  <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(supervisor)" [routerLink]="['./'+fatherPathPrefix, supervisor.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
+                  <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(supervisor)"><i class="fas fa-times"></i></button>
+                </div>
               </td>
             </ng-container>
 

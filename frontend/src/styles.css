@@ -34,3 +34,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   justify-content: space-between;
 }
 
+
+.bt:hover{
+  background-color: var(--verde);
+}
+
+.flex-display{
+  display: flex;
+  gap: 3px;
+}
+

@@ -6,7 +6,7 @@
 
   <ng-container *ngIf="tableData.length !== 0">
       <div class="header-wrapper">
-        
+
 
         <mat-form-field>
           <mat-label>Pesquisar</mat-label>
@@ -35,8 +35,10 @@
             <ng-container matColumnDef="Opções">
               <th mat-header-cell *matHeaderCellDef>Opções</th>
               <td mat-cell *matCellDef="let equipment" >
-                <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(equipment)" [routerLink]="['./'+fatherPathPrefix, equipment.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
-                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(equipment)"><i class="fas fa-times"></i></button>
+                <div class="flex-display">
+                  <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(equipment)" [routerLink]="['./'+fatherPathPrefix, equipment.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
+                  <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(equipment)"><i class="fas fa-times"></i></button>
+                </div>
               </td>
             </ng-container>
 
