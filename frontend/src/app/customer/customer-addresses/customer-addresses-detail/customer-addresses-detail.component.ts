@@ -72,7 +72,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
     }
   }
 
-  save(object: any): void {
+  save(): void {
     this.checkIfHasErros();
     this.dialogService.openProgressDialog();
 
