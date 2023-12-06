@@ -7,3 +7,26 @@ form{
 .big-information{
   /* width: 640px; */
 }
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+

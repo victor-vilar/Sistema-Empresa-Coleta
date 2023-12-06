@@ -8,6 +8,7 @@ import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { NgForm } from '@angular/forms';
 import { Address } from 'src/app/shared/entities/Address';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create',
@@ -25,7 +26,8 @@ export class ServiceorderCreateComponent implements OnInit {
 
   constructor(private serviceOrderService:ServiceorderService,
               private customerService:CustomerService,
-              private dialogService:DialogServiceService) { }
+              private dialogService:DialogServiceService,
+              public dialogRef: MatDialogRef<ServiceorderCreateComponent>) { }
 
   ngOnInit(): void {
 
@@ -65,11 +67,16 @@ export class ServiceorderCreateComponent implements OnInit {
     this.addresses = customer.addresses.filter(a => a.requiresCollection);
   }
 
+  destroy(): void {
+    this.dialogRef.close();
+  }
+
   serviceOrderSaveObserver(){
     return{
       next: (response)=>{
         this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSuccessDialogWithoutRedirect('Ordem salva com sucesso');
+        this.serviceOrderService.getAll();
       },
       error: (error) =>{
         this.dialogService.closeProgressSpinnerDialog();
