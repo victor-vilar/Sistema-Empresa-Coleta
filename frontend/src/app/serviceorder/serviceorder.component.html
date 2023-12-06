@@ -1,8 +1,18 @@
 <p>serviceorder works!</p>
-<a [routerLink]="'./novo'">Nova Ordem</a>
-<router-outlet
-></router-outlet>
+<a [routerLink]="'./novo'" (click)="openAddNew()">Nova Ordem</a>
+<!-- <router-outlet
+></router-outlet> -->
 
 <app-serviceorder-list
-
+[tableHeaders]="headerForTables"
+[service]="serviceOrderService"
+[mapper]="mapper"
+(editObjectEmitter)="editObject($event)"
 ></app-serviceorder-list>
+<!-- [model]="title"
+[tableHeaders]="headerForTables"
+[fatherPathPrefix]="pathPrefix"
+[service]="addressService"
+[customerId]="selectedCustomer.cpfCnpj"
+[mapper]="mapper"
+(editObjectEmitter)="editObject($event)" -->

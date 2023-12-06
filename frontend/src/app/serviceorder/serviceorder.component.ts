@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceorderService } from './services/serviceorder.service';
+import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { DialogServiceService } from '../shared/services/dialog-service.service';
+import { ServiceorderCreateComponent } from './create/serviceorder.create.component';
 
 @Component({
   selector: 'app-serviceorder',
@@ -8,12 +12,25 @@ import { ServiceorderService } from './services/serviceorder.service';
 })
 export class ServiceorderComponent implements OnInit {
 
-  constructor(private serviceOrderService:ServiceorderService) { }
+  headerForTables =['Id','Data do Serviço','Cliente','Quantidade','Opções']
+  constructor(
+    public serviceOrderService:ServiceorderService,
+    public mapper:ServiceOrderListTableComponentMapperService,
+    public dialogService:DialogServiceService
+    ) { }
 
   ngOnInit(): void {
 
-    
 
+
+  }
+
+  editObject(object:any){
+
+  }
+
+  openAddNew(){
+    this.dialogService.openDialog(ServiceorderCreateComponent,null,"/service-order")
   }
 
 }
