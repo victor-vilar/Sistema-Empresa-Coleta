@@ -59,10 +59,12 @@ export class CustomerSupervisorsListComponent implements OnInit {
 
   openDialog(){
 
+    let rota = '/cliente/' + this.selectedCustomer.cpfCnpj+ '/'+ this.title.toLowerCase();
+
     this.dialogService.openDialogPassingCustomerId(CustomerSupervisorsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      this.pathPrefix);
+      rota);
 
     this.objectToEdit = null;
   }

@@ -47,7 +47,6 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
 
   ngOnInit(): void {
 
-    console.log('iniciei')
     this.headerForTables = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))
@@ -73,10 +72,12 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
 
   openDialog(){
 
+    let rota = '/cliente/' + this.selectedCustomer.cpfCnpj+ '/'+ this.title.toLowerCase();
+
     this.dialogService.openDialogPassingCustomerId(CustomerContractsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      '/dashboard',
+      rota,
       "100%",
       "100%");
     this.objectToEdit = null;

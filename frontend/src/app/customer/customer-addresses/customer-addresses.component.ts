@@ -60,10 +60,12 @@ export class CustomerAddressesListComponent implements OnInit {
 
   openDialog(){
 
+    let rota = '/cliente/' + this.selectedCustomer.cpfCnpj+ '/'+ this.title.toLowerCase();
+
     this.dialogService.openDialogPassingCustomerId(CustomerAddressesDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      this.pathPrefix);
+      rota);
 
     this.objectToEdit = null;
   }
