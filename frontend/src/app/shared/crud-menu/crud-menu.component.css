@@ -5,25 +5,6 @@
   margin-bottom: 10px;
 }
 
-.options-buttons a {
-  text-align:center;
-  background-color: var(--cinza-escuro);
-  font-weight: bold;
-  border-radius: 3px ;
-  color: white;
-  padding:10px;
-  text-align: center;
-  font-size: 1.2em;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 1px 1px 3px black;
-}
-
-.options-buttons a:hover {
-  cursor: pointer;
-  color: var(--azul-claro);
-}
 
 @media screen and (min-width:576px){
   .options-buttons{

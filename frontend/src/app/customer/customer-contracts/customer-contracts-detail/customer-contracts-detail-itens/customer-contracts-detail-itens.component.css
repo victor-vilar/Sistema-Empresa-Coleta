@@ -5,13 +5,10 @@ form{
 
 .bt{
 
-  width:204px;
-  /* height:59px; */
   border:none;
   background-color:var(--cinza-escuro);
   color:white;
   text-align: center;
-  line-height: 59px;
   font-weight: bold;
   border-radius: 3px;
   box-shadow: 1px 1px 3px black;

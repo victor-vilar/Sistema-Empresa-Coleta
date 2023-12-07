@@ -62,13 +62,7 @@ mat-error{
   width: 100%;
 } */
 
-.equipment-detail-form button{
-  background-color: var(--cinza-escuro);
-  color: white;
-  font-weight: bold;
-  border: none;
-  box-shadow: 1px 1px 3px black;
-}
+
 
 
 

@@ -47,15 +47,7 @@ mat-error{
   padding: 5px;
 }
 
-.zipcode-field input[type=button], form input[type=submit], form input[type=button]{
-  background-color: var(--cinza-escuro);
-  color: white;
-  font-weight: bold;
-  border: none;
-  box-shadow: 1px 1px 3px black;
-  padding: 5px;
 
-}
 .zipcode-field label, .full-address-info label{
   font-weight: bolder;
 }

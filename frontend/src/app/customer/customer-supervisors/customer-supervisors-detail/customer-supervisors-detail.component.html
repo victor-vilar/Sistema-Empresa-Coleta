@@ -22,9 +22,8 @@
         <input matInput type="email" ngModel name="supervisorEmail" placeholder="Email">
       </mat-form-field>
 
-      <input type="button" value="limpar" (click)="cleanForm()">
-      <input type="submit" value="Salvar" *ngIf=" isSubform==false">
-      <input type="button" value="Adicionar" *ngIf="isSubform">
+      <input type="submit" class="app-button" value="Salvar" *ngIf=" isSubform==false">
+      <input type="button" class="app-button" value="Adicionar" *ngIf="isSubform">
     </form>
 
   </div>

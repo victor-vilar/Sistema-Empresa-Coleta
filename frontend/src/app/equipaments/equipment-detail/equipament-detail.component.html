@@ -15,8 +15,8 @@
         <input [formControl]="volumeFormControl" [errorStateMatcher]="volumeErrorMatcher" matInput  type="text" required name="equipmentSize" ngModel>
         <mat-error  *ngIf="isInvalidVolume" class="alert">{{isInvalidVolumeMessage}}</mat-error>
       </mat-form-field>
-      <button type="submit">Salvar</button>
-      <button type="button" (click)="cleanForm()">Limpar Campos</button>
+      <button type="submit" class="app-button">Salvar</button>
+      <button type="button" class="app-button" (click)="cleanForm()">Limpar Campos</button>
     </form>
   </mat-dialog-content>
 </div>
