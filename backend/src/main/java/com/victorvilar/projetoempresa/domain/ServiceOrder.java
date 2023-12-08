@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.domain;
 
+import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -76,9 +77,9 @@ public class ServiceOrder implements Serializable {
     private String osFileUrl;
 
     /**
-     * if the os is canceled
+     * service order status
      */
-    private Boolean cancelled = false;
+    private ServiceOrderStatus serviceOrderStatus = ServiceOrderStatus.UNDONE;
 
     public ServiceOrder() {
     }
@@ -190,6 +191,13 @@ public class ServiceOrder implements Serializable {
         this.amountCollected = amountCollected;
     }
 
+    public ServiceOrderStatus getServiceOrderStatus() {
+        return serviceOrderStatus;
+    }
+    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+        this.serviceOrderStatus = serviceOrderStatus;
+    }
+
     public static ServiceOrderBuilder builder(){
         return new ServiceOrderBuilder();
     }
@@ -208,6 +216,7 @@ public class ServiceOrder implements Serializable {
         private String osFileUrl;
         private Address address;
         private Long amountCollected;
+
 
         public ServiceOrderBuilder id(Long id){
             this.id = id;

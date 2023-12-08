@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.dto.serviceorder;
 
 import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -26,8 +27,15 @@ public class ServiceOrderUpdateDto  {
     private String observation;
     private String osFileUrl;
     private Long amountCollected;
+    private ServiceOrderStatus serviceOrderStatus;
 
+    public ServiceOrderStatus getServiceOrderStatus() {
+        return serviceOrderStatus;
+    }
 
+    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+        this.serviceOrderStatus = serviceOrderStatus;
+    }
 
     public Long getAddress() {
         return address;

@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
+import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import com.victorvilar.projetoempresa.repository.ServiceOrderRepository;
@@ -43,6 +44,7 @@ public class ServiceOrderMapper {
     public ServiceOrder toServiceOrder(ServiceOrderCreateDto createDto){
         ServiceOrder serviceOrder = this.mapper.map(createDto,ServiceOrder.class);
         this.setBasicProperties(serviceOrder, createDto.getItemContract(),createDto.getAddress());
+
         return serviceOrder;
     }
 
@@ -110,6 +112,7 @@ public class ServiceOrderMapper {
         order.setObservation(updateDto.getObservation());
         order.setOsFileUrl(updateDto.getOsFileUrl());
         order.setAmountCollected(updateDto.getAmountCollected());
+        order.setServiceOrderStatus(updateDto.getServiceOrderStatus());
 
         return order;
 

@@ -5,6 +5,7 @@ import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -26,6 +27,15 @@ public class ServiceOrderResponseDto {
     private String osFileUrl;
     private AddressResponseDto address;
     private Long amountCollected;
+    private ServiceOrderStatus serviceOrderStatus;
+
+    public ServiceOrderStatus getServiceOrderStatus() {
+        return serviceOrderStatus;
+    }
+
+    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+        this.serviceOrderStatus = serviceOrderStatus;
+    }
 
 
 
