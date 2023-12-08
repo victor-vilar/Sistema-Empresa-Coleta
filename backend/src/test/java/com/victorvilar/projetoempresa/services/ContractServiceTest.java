@@ -341,7 +341,7 @@ class ContractServiceTest {
                  .beginDate(LocalDate.of(2023,11,11))
                  .endDate(LocalDate.of(2024,11,11))
                  .customer(customer.getCpfCnpj())
-                .contractStatus(ContractStatus.ATIVO)
+                .contractStatus(1)
                  .build();
 
         contractCreateDto1.setItens(
@@ -355,7 +355,7 @@ class ContractServiceTest {
                  .beginDate(LocalDate.of(2023,11,11))
                  .endDate(LocalDate.of(2024,11,11))
                  .customer(customer.getCpfCnpj())
-                 .contractStatus(ContractStatus.ATIVO)
+                 .contractStatus(1)
                  .build();
 
         contractCreateDto2.setItens(

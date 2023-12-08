@@ -34,7 +34,7 @@ public class ContractCreateDto {
     private String customerId;
 
     //each new contract has an 'ATIVO' status
-    private ContractStatus contractStatus = ContractStatus.ATIVO;
+    private int contractStatus = 1;
 
     public ContractCreateDto() {
     }
@@ -85,10 +85,10 @@ public class ContractCreateDto {
     }
 
     //getters and setters - status
-    public void setContractStatus(ContractStatus contractStatus){
+    public void setContractStatus(int contractStatus){
         this.contractStatus = contractStatus;
     }
-    public ContractStatus getContractStatus(){
+    public int getContractStatus(){
         return this.contractStatus;
     }
     //--------------
@@ -104,7 +104,7 @@ public class ContractCreateDto {
         private LocalDate endDate;
         private List<ItemContractCreateDto> itens = new ArrayList<ItemContractCreateDto>();
         private String customerId;
-        private ContractStatus contractStatus;
+        private int contractStatus;
 
         public ContractCreateDtoBuilder number(String number){
             this.number = number;
@@ -125,7 +125,7 @@ public class ContractCreateDto {
             this.customerId = customer;
             return this;
         }
-        public ContractCreateDtoBuilder contractStatus(ContractStatus contractStatus){
+        public ContractCreateDtoBuilder contractStatus(int contractStatus){
             this.contractStatus = contractStatus;
             return this;
         }
