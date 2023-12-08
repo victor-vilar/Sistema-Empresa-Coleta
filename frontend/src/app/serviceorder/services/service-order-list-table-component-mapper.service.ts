@@ -11,11 +11,13 @@ export class ServiceOrderListTableComponentMapperService implements Mapper {
 
   mapItens(list: any[]): any[] {
     return list.map(order => {
+      console.log(order);
       return {
           id:order.id,
           serviceDate:order.serviceExpectedDate,
           customer: this.customerService.list.find(customer => customer.cpfCnpj === order.customerId),
-          quantity:order.amountCollected
+          quantity:order.amountCollected,
+          status:order.serviceOrderStatus
       }
 
     })
