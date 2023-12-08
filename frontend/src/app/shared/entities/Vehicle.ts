@@ -1,8 +1,8 @@
-import { VehicleType } from "../enums/VehicleType";
+import { VehicleTypeType } from "../enums/VehicleType";
 
 export interface Vehicle {
   id: number;
-  vehicleType: VehicleType;
+  vehicleType: VehicleTypeType;
   plate: string;
   renavam: string;
   validCrlvUrl: string;
