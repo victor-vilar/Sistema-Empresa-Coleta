@@ -1,13 +1,15 @@
+import { ContractStatus } from 'src/app/shared/enums/ContractStatus';
+import { ContractStatusType } from './../enums/ContractStatus';
 import { ItemContract, itemContractListForTests } from "./ItemContract";
 import { Customer } from "./Customer";
-import { ContractStatus } from "../enums/ContractStatus";
+
 
 export interface Contract{
   id?:number;
   number:string;
   beginDate:Date;
   endDate:Date;
-  contractStatus:ContractStatus;
+  contractStatus:ContractStatusType;
   itens?:ItemContract[];
   customer?:Customer;
   customerId:string;

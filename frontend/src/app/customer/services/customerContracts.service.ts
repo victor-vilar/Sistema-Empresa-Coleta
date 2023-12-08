@@ -1,4 +1,4 @@
-import { ContractStatus } from '../../shared/enums/ContractStatus';
+import { ContractStatus, ContractStatusType } from '../../shared/enums/ContractStatus';
 import { ItemContract } from '../../shared/entities/ItemContract';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -43,7 +43,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
 
 
   // get all contracts that have a contractStatus equals to given param
-  getAllContractsThatHaveContractStatusType(contractStatus:ContractStatus):Contract[]{
+  getAllContractsThatHaveContractStatusType(contractStatus:ContractStatusType):Contract[]{
     return this.list.filter(contract => contract.contractStatus === contractStatus);
   }
 

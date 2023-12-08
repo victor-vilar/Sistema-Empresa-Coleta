@@ -122,13 +122,13 @@ export class CustomerContractsDetailComponent implements OnInit {
           number:this.form.value.contractNumber,
           beginDate:this.form.value.beginDate,
           endDate:this.form.value.endDate,
-          contractStatus:this.form.value.contractStatus
+          contractStatus:ContractStatus[this.form.value.contractStatus]
         }
       }
 
   //fast filler to form(tests)
   mockingFormFiller(){
-    console.log(this.contractStatusEnumValues);
+    
     this.form.setValue({
       contractNumber:'1000',
       beginDate:new Date('2022-02-01'),

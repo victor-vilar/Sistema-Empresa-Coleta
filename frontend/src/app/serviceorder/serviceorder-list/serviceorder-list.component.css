@@ -21,3 +21,9 @@ th{
 td, th {
   width: 25%;
 }
+
+.mat-column-id, .mat-column-data-servico {
+  width:10%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

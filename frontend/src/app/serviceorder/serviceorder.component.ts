@@ -12,7 +12,7 @@ import { ServiceorderCreateComponent } from './create/serviceorder.create.compon
 })
 export class ServiceorderComponent implements OnInit {
 
-  headerForTables =['Id','Data do Serviço','Cliente','Quantidade','Opções']
+  headerForTables =['id','data-servico','cliente','quantidade','status','opcoes']
   constructor(
     public serviceOrderService:ServiceorderService,
     public mapper:ServiceOrderListTableComponentMapperService,
