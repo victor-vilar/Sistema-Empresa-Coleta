@@ -13,7 +13,7 @@ export class ContractsListTableComponentMapperService implements Mapper {
 
   mapItens(list: any[]): any[] {
     return list.map(e => {
-         e.customer = this.customerService.findCustomersByIdInList(e.customerId);
+         e.customer = this.customerService.findCustomersByIdInList(e.customerId).nameCompanyName;
          let total = 0;
          e.itens.forEach(item=>total += item.itemValue * item.qtdOfResidue);
          e.totalEmRs=total

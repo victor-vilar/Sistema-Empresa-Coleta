@@ -1,5 +1,5 @@
 import { CommunicationService } from './../../../shared/services/communication.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/customer/services/customer.service';
@@ -15,6 +15,8 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
   styleUrls: ['./contracts-list-table.component.css']
 })
 export class ContractsListTableComponent extends ItensTableComponent {
+
+  @ViewChild('search') search:HTMLSelectElement;
 
   constructor(
     router:Router,
@@ -40,8 +42,6 @@ export class ContractsListTableComponent extends ItensTableComponent {
     if(contract.contractStatus.toString() === "RENOVACAO_PENDENTE"){
       object = {backgroundColor:'#ffff99',color:'#ff9900',textAlign:'center',padding:'10px',borderRadius:'3px'};
     }
-
-
 
 
     return object;
@@ -70,6 +70,17 @@ export class ContractsListTableComponent extends ItensTableComponent {
 
     })
 
+  }
+
+  filterStatus(){
+    console.log(this.search.value);
+    if(this.search.value !== "TODOS"){
+
+      this.dataSource.filter = this.search.value
+
+    }
+
+    this.updateDataSource();
   }
 
 }
