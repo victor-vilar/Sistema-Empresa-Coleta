@@ -5,6 +5,7 @@ import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.enums.ContractStatus;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
@@ -178,6 +179,7 @@ public class ContractService {
         contract.setNumber(contractUpdateDto.getNumber());
         contract.setBeginDate(contractUpdateDto.getBeginDate());
         contract.setEndDate(contractUpdateDto.getEndDate());
+        contract.setContractStatus(ContractStatus.getById(contractUpdateDto.getContractStatus()));
 
         //transform itemContractCreateList into a ItemContractList and add to contract
         List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());

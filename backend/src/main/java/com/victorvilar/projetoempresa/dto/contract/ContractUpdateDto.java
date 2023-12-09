@@ -33,16 +33,17 @@ public class ContractUpdateDto {
     @NotEmpty(message = "A contract must have at least one item")
     private List<ItemContractUpdateDto> itens  = new ArrayList<>();
 
-    //each new contract has an 'ATIVO' status
-    private ContractStatus contractStatus = ContractStatus.ATIVO;
 
-    public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, String customerId, List<ItemContractUpdateDto> itens) {
+    private int contractStatus;
+
+    public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, String customerId, List<ItemContractUpdateDto> itens, int contractStatus) {
         this.id = id;
         this.number = number;
         this.beginDate = beginDate;
         this.endDate = endDate;
         this.customerId = customerId;
         this.itens = itens;
+        this.contractStatus = contractStatus;
     }
 
     public ContractUpdateDto() {
@@ -96,10 +97,10 @@ public class ContractUpdateDto {
     }
 
     //getters and setters - status
-    public void setContractStatus(ContractStatus contractStatus){
+    public void setContractStatus(int contractStatus){
         this.contractStatus = contractStatus;
     }
-    public ContractStatus getContractStatus(){
+    public int getContractStatus(){
         return this.contractStatus;
     }
     //--------------
@@ -111,7 +112,7 @@ public class ContractUpdateDto {
         private LocalDate endDate;
         private List<ItemContractUpdateDto> itens = new ArrayList<ItemContractUpdateDto>();
         private String customerId;
-        private ContractStatus contractStatus;
+        private int contractStatus;
 
         public ContractUpdateDtoBuilder number(String number){
             this.number = number;
@@ -133,7 +134,7 @@ public class ContractUpdateDto {
             return this;
         }
 
-        public ContractUpdateDtoBuilder contractStatus(ContractStatus contractStatus){
+        public ContractUpdateDtoBuilder contractStatus(int contractStatus){
             this.contractStatus = contractStatus;
             return this;
         }
