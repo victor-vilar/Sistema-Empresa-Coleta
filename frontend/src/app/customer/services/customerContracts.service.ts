@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Contract } from '../../shared/entities/Contract';
 import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 import { Mapper } from '../../shared/interfaces/mapper.mapper';
-import { Schedule } from 'src/app/shared/enums/Schedule';
+import { Schedule, ScheduleType } from 'src/app/shared/enums/Schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,7 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
   }
 
   //return from service list, contracts that have itens that have collection frequency equals to given param
-  getAllItemContractThatHasScheduleType(schedule:Schedule):ItemContract[]{
+  getAllItemContractThatHasScheduleType(schedule:ScheduleType):ItemContract[]{
       let listOfItens:ItemContract[] = [];
 
       this.list.forEach(contract => {

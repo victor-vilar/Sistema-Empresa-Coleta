@@ -1,9 +1,9 @@
-import { Schedule } from '../enums/Schedule';
-import { Weekday } from "../enums/Weekday";
+import { ScheduleType } from '../enums/Schedule';
+import { WeekdayType } from "../enums/Weekday";
 
 export interface CollectionFrequency {
 
-  days:Weekday[];
-  schedule:Schedule;
+  days:WeekdayType[];
+  schedule:ScheduleType;
 
 }

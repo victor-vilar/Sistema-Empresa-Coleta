@@ -10,8 +10,8 @@ import { ResiduesService } from 'src/app/residue/services/residues.service';
 import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { Residue } from 'src/app/shared/entities/Residue';
-import { getScheduleValues } from 'src/app/shared/enums/Schedule';
-import { Weekday, getWeekdayValues } from 'src/app/shared/enums/Weekday';
+import { Schedule, getScheduleValues } from 'src/app/shared/enums/Schedule';
+import { Weekday, WeekdayType, getWeekdayValues } from 'src/app/shared/enums/Weekday';
 import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
 
 @Component({
@@ -40,7 +40,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     headerForTables:string[];
 
 
-    weekdaysListToAddToItemContract:Weekday[] = [];
+    weekdaysListToAddToItemContract:WeekdayType[] = [];
 
 
     //sum of itens of contract
@@ -100,7 +100,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         itemValue:Number(this.form.value.itemValue),
         description:this.form.value.description,
         collectionFrequency:this.createCollectionFrequency(),
-        measurementUnit:this.form.value.measurementUnit
+        measurementUnit:MeasurementUnit[this.form.value.measurementUnit]
       }
     }
 
@@ -108,7 +108,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     createCollectionFrequency():CollectionFrequency{
       return {
         days:this.weekdaysListToAddToItemContract,
-        schedule:this.form.value.schedule
+        schedule:Schedule[this.form.value.schedule]
       }
     }
 
@@ -320,7 +320,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
      */
     addNewWeekday(){
 
-      if(!this.weekdaysListToAddToItemContract.find(e => e === this.form.value.days) && this.form.value.days !== ""){
+      if(!this.weekdaysListToAddToItemContract.find(e => e === Number(this.form.value.days)) && this.form.value.days !== ""){
 
         this.weekdaysListToAddToItemContract.push(this.form.value.days);
         this.openSnackBar("Dia inserido com sucesso a lista","Dia inserido");
@@ -335,7 +335,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
   /**
    * remove a weekday from list
    */
-    removeWeekday(day:Weekday){
+    removeWeekday(day:WeekdayType){
       this.weekdaysListToAddToItemContract = this.weekdaysListToAddToItemContract.filter(e => e !== day);
     }
 

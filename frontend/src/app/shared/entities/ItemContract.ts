@@ -1,3 +1,4 @@
+import { MeasurementUnitType } from './../enums/MeasurementUnit';
 import { Residue } from "./Residue";
 import { Equipment } from "./Equipment";
 import { Contract } from "./Contract";
@@ -16,7 +17,7 @@ export interface ItemContract{
   description?:string;
   contract?:Contract;
   collectionFrequency?:CollectionFrequency;
-  measurementUnit:MeasurementUnit;
+  measurementUnit:MeasurementUnitType;
 }
 
 let equipment1:Equipment= {id:1,equipmentName:'Container 1,2m',sizeInMeterCubic:1.2};
