@@ -7,7 +7,7 @@ public enum ServiceOrderStatus {
 
     UNDONE(0),
     DONE(1),
-    CANCELED(2);
+    CANCELLED(2);
 
     private final int status;
 
@@ -15,7 +15,7 @@ public enum ServiceOrderStatus {
         this.status = status;
     }
 
-    int getStatus(){
+    public int getStatus(){
         return this.status;
     }
 
