@@ -60,6 +60,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
 
 
   createObject():Address {
+    let requireCollection: boolean = this.form.value.requiresCollection === 'sim'? true : false;
     return {
       addressName:this.form.value.addressName,
       addressNumber:this.form.value.addressNumber,
@@ -67,7 +68,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
       zipCode:this.form.value.zipCode,
       city:this.form.value.city,
       state:this.form.value.state,
-      requiresCollection:this.form.value.requiresCollection,
+      requiresCollection:requireCollection,
       customerId:this.clientCpfCnpj,
     }
   }
