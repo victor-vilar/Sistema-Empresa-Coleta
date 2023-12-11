@@ -27,13 +27,13 @@ public class ServiceOrderUpdateDto  {
     private String observation;
     private String osFileUrl;
     private Long amountCollected;
-    private ServiceOrderStatus serviceOrderStatus;
+    private Integer serviceOrderStatus;
 
-    public ServiceOrderStatus getServiceOrderStatus() {
+    public Integer getServiceOrderStatus() {
         return serviceOrderStatus;
     }
 
-    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+    public void setServiceOrderStatus(Integer serviceOrderStatus) {
         this.serviceOrderStatus = serviceOrderStatus;
     }
 
@@ -44,8 +44,6 @@ public class ServiceOrderUpdateDto  {
     public void setAddress(Long address) {
         this.address = address;
     }
-
-
 
     public Long getId() {
         return id;

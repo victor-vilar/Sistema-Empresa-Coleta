@@ -79,7 +79,7 @@ public class ServiceOrder implements Serializable {
     /**
      * service order status
      */
-    private ServiceOrderStatus serviceOrderStatus = ServiceOrderStatus.UNDONE;
+    private Integer serviceOrderStatus = ServiceOrderStatus.UNDONE.getStatus();
 
     public ServiceOrder() {
     }
@@ -191,10 +191,10 @@ public class ServiceOrder implements Serializable {
         this.amountCollected = amountCollected;
     }
 
-    public ServiceOrderStatus getServiceOrderStatus() {
+    public Integer getServiceOrderStatus() {
         return serviceOrderStatus;
     }
-    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+    public void setServiceOrderStatus(Integer serviceOrderStatus) {
         this.serviceOrderStatus = serviceOrderStatus;
     }
 

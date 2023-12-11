@@ -27,13 +27,13 @@ public class ServiceOrderResponseDto {
     private String osFileUrl;
     private AddressResponseDto address;
     private Long amountCollected;
-    private ServiceOrderStatus serviceOrderStatus;
+    private int serviceOrderStatus;
 
-    public ServiceOrderStatus getServiceOrderStatus() {
+    public int getServiceOrderStatus() {
         return serviceOrderStatus;
     }
 
-    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+    public void setServiceOrderStatus(int serviceOrderStatus) {
         this.serviceOrderStatus = serviceOrderStatus;
     }
 
