@@ -34,12 +34,12 @@ export class ContractsListTableComponent extends ItensTableComponent {
     let object:any;
 
     //if contract status it is 'ATIVO'
-    if(contract.contractStatus.toString() === "ATIVO"){
+    if(contract.contractStatus.toString() === ContractStatus.ATIVO.toString()){
       object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center',padding:'10px',borderRadius:'3px'};
     }
 
     //if contract status is 'PENDENTE_RENOVAÇÃO'
-    if(contract.contractStatus.toString() === "RENOVACAO_PENDENTE"){
+    if(contract.contractStatus.toString() === ContractStatus.RENOVACAO_PENDENTE.toString()){
       object = {backgroundColor:'#ffff99',color:'#ff9900',textAlign:'center',padding:'10px',borderRadius:'3px'};
     }
 
