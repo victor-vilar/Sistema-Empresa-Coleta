@@ -52,33 +52,23 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
   router:Router
 
-  private subscription$:Subscription;
-  private refreshUnsubscribe:Subscription;
+  private subscriptions:Subscription[] = []
 
   constructor(router:Router,
     private dialogService:DialogServiceService,) {this.router = router }
 
   ngOnDestroy(): void {
-
-    //unsubscribe to
-    if(this.subscription$ !== undefined){
-      this.subscription$.unsubscribe();
-    }
-
-    if(this.refreshUnsubscribe !== undefined){
-      this.refreshUnsubscribe.unsubscribe();
-    }
+    this.subscriptions.forEach(s => s.unsubscribe());
 
   }
 
 
   ngOnInit(): void {
-
     //subscribing to service list updating
     let observable$ = this.service.refreshAllData();
 
     //add observable to a subscription object, and adding the overserver
-    this.refreshUnsubscribe = observable$.subscribe(this.afterReturnListObserver())
+    this.subscriptions.push(observable$.subscribe(this.afterReturnListObserver()))
 
     this.getAll();
   }
@@ -102,10 +92,10 @@ export class ItensTableComponent implements OnInit, OnDestroy{
       observable$ = this.service.delete(event.id)
     }
 
-    observable$.subscribe(value =>{
+    this.subscriptions.push(observable$.subscribe(value =>{
       this.dialogService.closeProgressSpinnerDialog();
       this.getAll();
-    })
+    }))
 
 
   }
@@ -121,8 +111,8 @@ export class ItensTableComponent implements OnInit, OnDestroy{
       this.tableData = [];
 
       //get all the T object from service by customer id
-      this.subscription$ = this.service.getAllByCustomerId(this.customerId)
-      .subscribe(this.afterReturnListObserver());
+      this.subscriptions.push(this.service.getAllByCustomerId(this.customerId)
+      .subscribe(this.afterReturnListObserver()));
 
     //if the customerId is null, so it is searching by all T object
     }else{
@@ -174,11 +164,11 @@ export class ItensTableComponent implements OnInit, OnDestroy{
   openDialog(object:any){
 
     let observable$ = this.dialogService.openConfirmationDialog();
-    observable$.subscribe(response =>{
+    this.subscriptions.push(observable$.subscribe(response =>{
       if(response){
         this.deleteItem(object);
       }
-    })
+    }))
 
   }
 
