@@ -179,7 +179,7 @@ public class ContractService {
         contract.setNumber(contractUpdateDto.getNumber());
         contract.setBeginDate(contractUpdateDto.getBeginDate());
         contract.setEndDate(contractUpdateDto.getEndDate());
-        contract.setContractStatus(ContractStatus.getById(contractUpdateDto.getContractStatus()));
+        contract.setContractStatus(contractUpdateDto.getContractStatus());
 
         //transform itemContractCreateList into a ItemContractList and add to contract
         List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
