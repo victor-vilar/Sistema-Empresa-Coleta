@@ -17,14 +17,16 @@
             <p>Não foi possivel encontrar esse endereço, por favor tente novamente</p>
           </mat-error>
         </mat-form-field>
-        <input type="button" class="app-button" value="Buscar CEP" (click)="searchFullAddressInfo()">
+        <div>
+          <input type="button" class="app-button" value="Buscar CEP" (click)="searchFullAddressInfo()">
+        </div>
       </div>
 
       <div class="full-address-info">
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" >
           <mat-label for="addressName">Logradouro</mat-label>
-          <input matInput type="text" placeholder="Logradouro" id='addressName' name="addressName" ngModel>
+          <input matInput type="text" placeholder="Logradouro" id='addressName' name="addressName" ngModel readonly>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -39,12 +41,12 @@
 
         <mat-form-field appearance="outline">
           <mat-label for="city">Cidade</mat-label>
-          <input matInput type="text" placeholder="Cidade" id='city' name="city" ngModel>
+          <input matInput type="text" placeholder="Cidade" id='city' name="city" ngModel readonly>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label for="state">Estado</mat-label>
-          <input matInput type="text" placeholder="Estado" id='state' name="state" ngModel>
+          <input matInput type="text" placeholder="Estado" id='state' name="state" ngModel readonly>
         </mat-form-field>
 
         <div class="options">

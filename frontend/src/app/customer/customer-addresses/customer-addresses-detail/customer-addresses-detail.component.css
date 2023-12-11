@@ -44,7 +44,10 @@ mat-error{
   flex-direction: column;
   margin-bottom: 5px;
   gap:5px;
-  padding: 5px;
+
+}
+.zipcode-field input[type=button] {
+  /* height: 100px; */
 }
 
 
@@ -60,7 +63,6 @@ mat-error{
 }
 
 form input[type=submit], form input[type=button]{
-  padding:10px;
   width: 100%;
   height: 50px;
   margin-bottom: 5px;
@@ -79,12 +81,12 @@ form input[type=submit], form input[type=button]{
     flex-direction: row;
     align-items: center;
   }
-  .zipcode-field input[type=text]{
+  /* .zipcode-field input[type=text]{
     width: 300px;
   }
   .zipcode-field input[type=button]{
     width: 100px;
-  }
+  } */
   .full-address-info input{
     width: 450px;
   }
