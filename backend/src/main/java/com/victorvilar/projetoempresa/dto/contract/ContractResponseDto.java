@@ -23,7 +23,7 @@ public class ContractResponseDto {
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
     //each new contract has an 'ATIVO' status
-    private ContractStatus contractStatus = ContractStatus.ATIVO;
+    private ContractStatus contractStatus;
 
     public ContractResponseDto() {
     }
