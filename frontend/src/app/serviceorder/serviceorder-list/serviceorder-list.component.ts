@@ -17,24 +17,35 @@ export class ServiceorderListComponent extends ItensTableComponent {
   }
 
   statusStyle(order: ServiceOrder) {
+
     let object: any;
     console.log(order);
-    console.log(ServiceOrderStatus.UNDONE);
-    console.log(order.serviceOrderStatus === ServiceOrderStatus.DONE);
+    object = {
+      textAlign: 'center',
+      padding: '10px',
+      borderRadius: '3px'
+    }
+
     //if contract status it is 'DONE'
     if (order.serviceOrderStatus === ServiceOrderStatus.DONE) {
-      object = { backgroundColor: '#D5F5E3', color: '#28dcb8', textAlign: 'center', padding: '10px', borderRadius: '3px' };
+      object.backgroundColor = '#D5F5E3';
+      object.width="100%"
+      object.color = '#28dcb8';
+
     }
 
     //if contract status is 'UNDONE'
     if (order.serviceOrderStatus === ServiceOrderStatus.UNDONE) {
-      object = { backgroundColor: '#ffff99', color: '#ff9900', textAlign: 'center', padding: '10px', borderRadius: '3px' };
-      console.log('tttttt')
+      object.backgroundColor = '#ff99';
+      object.width="100%"
+      object.color = '#black';
     }
 
     //if contract status is 'PENDENTE_RENOVAÇÃO'
     if (order.serviceOrderStatus === ServiceOrderStatus.CANCELLED) {
-      object = { backgroundColor: '#ffff99', color: '#ff9900', textAlign: 'center', padding: '10px', borderRadius: '3px' };
+      object.backgroundColor = '#ffff99';
+      object.width="100%"
+      object.color = '#black';
     }
 
 

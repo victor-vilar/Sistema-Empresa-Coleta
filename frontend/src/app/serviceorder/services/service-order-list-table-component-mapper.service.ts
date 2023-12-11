@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
+import { ServiceOrderStatus } from 'src/app/shared/enums/ServiceOrderStatus';
 import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class ServiceOrderListTableComponentMapperService implements Mapper {
 
   mapItens(list: any[]): any[] {
     return list.map(order => {
-      console.log(order);
+
       return {
           id:order.id,
           serviceDate:order.serviceExpectedDate,
