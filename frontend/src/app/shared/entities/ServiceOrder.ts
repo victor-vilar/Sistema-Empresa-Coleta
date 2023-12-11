@@ -3,6 +3,7 @@ import { Address } from './Address';
 import { Customer } from './Customer';
 import { ItemContract } from "./ItemContract";
 import { Vehicle } from "./Vehicle";
+import { ServiceOrderStatusType } from '../enums/ServiceOrderStatus';
 
 export interface ServiceOrder {
 
@@ -18,7 +19,7 @@ export interface ServiceOrder {
   serviceTime?:Time,
   observation?:string,
   osFileUrl?:string,
-  cancelled?:boolean,
+  serviceOrderStatus?:ServiceOrderStatusType,
 
 
 
