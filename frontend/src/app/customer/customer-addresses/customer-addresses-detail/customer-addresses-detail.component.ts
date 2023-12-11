@@ -84,7 +84,6 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
       observable$ = this.addressService.save(address);
     }else{
       address.id = this.objectToEdit.id;
-      console.log(address);
       observable$ = this.addressService.update(address);
     }
 
@@ -102,6 +101,7 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
       error:(response) =>{
         this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
+        console.log(response);
       }
     }
   }
@@ -164,14 +164,16 @@ export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, F
 
   checkIfHasErros(){
     let errorMessage;
-    if(this.searchedZipCodeErrorResponse || this.searchedZipCode ===""){
+
+
+    if((this.searchedZipCodeErrorResponse || this.searchedZipCode ==="") && this.objectToEdit === undefined){
       errorMessage ='Não foi possivel encontrar esse endereço, insira um endereço valido !'
       this.dialogService.openErrorDialog(errorMessage);
       this.cleanFormFields();
       throw Error(errorMessage);
     }
 
-    if(this.form.value.zipCode !== this.searchedZipCode){
+    if((this.form.value.zipCode !== this.searchedZipCode) && this.objectToEdit === undefined ){
       errorMessage ='O cep digitado é diferente do cep anteriormente pesquisado'
       this.dialogService.openErrorDialog(errorMessage);
       this.cleanFormFields();
