@@ -13,6 +13,6 @@ export type WeekdayType = typeof Weekday[keyof typeof Weekday]
 
 
 export function getWeekdayValues(){
-  return Object.keys(Weekday).map(value =>value);
+  return Object.values(Weekday).map(value =>value);
 }
 

@@ -9,5 +9,5 @@ export type MeasurementUnitType = typeof MeasurementUnit[keyof typeof Measuremen
 
 
 export function getMeasurementUnitValues(){
-  return Object.keys(MeasurementUnit).filter(value => value);
+  return Object.values(MeasurementUnit).filter(value => value);
 }

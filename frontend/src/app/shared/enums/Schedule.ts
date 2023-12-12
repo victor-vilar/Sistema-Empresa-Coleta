@@ -12,5 +12,5 @@ export const Schedule = {
 export type ScheduleType = typeof Schedule[keyof typeof  Schedule];
 
 export function getScheduleValues(){
-  return Object.keys(Schedule).map(value => value);
+  return Object.values(Schedule).map(value => value);
 }

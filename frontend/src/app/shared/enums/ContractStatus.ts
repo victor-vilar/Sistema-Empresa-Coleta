@@ -9,5 +9,5 @@ export type ContractStatusType = typeof ContractStatus[keyof typeof ContractStat
 
 
 export function getContractStatusValues(){
-  return Object.keys(ContractStatus).map(value => value);
+  return Object.values(ContractStatus).map(value => value);
 }

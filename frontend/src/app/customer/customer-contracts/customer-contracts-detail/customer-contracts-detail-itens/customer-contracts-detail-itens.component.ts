@@ -320,7 +320,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
      */
     addNewWeekday(){
 
-      if(!this.weekdaysListToAddToItemContract.find(e => e === Number(this.form.value.days)) && this.form.value.days !== ""){
+      if(!this.weekdaysListToAddToItemContract.find(e => e ===this.form.value.days) && this.form.value.days !== ""){
 
         this.weekdaysListToAddToItemContract.push(this.form.value.days);
         this.openSnackBar("Dia inserido com sucesso a lista","Dia inserido");
