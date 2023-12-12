@@ -35,10 +35,10 @@ public class CollectionFrequency implements Serializable {
     public CollectionFrequency() {
     }
 
-    public CollectionFrequency(Long id, Set<Integer> days, Integer schedule) {
+    public CollectionFrequency(Long id, Set<Weekday> days, Schedule schedule) {
         this.id = id;
-        this.days = days;
-        this.schedule = schedule;
+        this.setDays(days);
+        this.setSchedule(schedule);
     }
 
     public Long getId() {

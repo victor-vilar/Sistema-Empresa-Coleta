@@ -9,14 +9,23 @@ public enum ServiceOrderStatus {
     DONE(1),
     CANCELLED(2);
 
-    private final int status;
+    private final int id;
 
     ServiceOrderStatus(int status){
-        this.status = status;
+        this.id = status;
     }
 
-    public int getStatus(){
-        return this.status;
+    public int getId(){
+        return this.id;
+    }
+
+    public static ServiceOrderStatus getById(Integer id){
+        for(ServiceOrderStatus status : values()){
+            if(status.getId() == id){
+                return status;
+            }
+        }
+        return null;
     }
 
 }

@@ -79,7 +79,7 @@ public class ServiceOrder implements Serializable {
     /**
      * service order status
      */
-    private Integer serviceOrderStatus = ServiceOrderStatus.UNDONE.getStatus();
+    private Integer serviceOrderStatus = ServiceOrderStatus.UNDONE.getId();
 
     public ServiceOrder() {
     }
@@ -191,11 +191,11 @@ public class ServiceOrder implements Serializable {
         this.amountCollected = amountCollected;
     }
 
-    public Integer getServiceOrderStatus() {
-        return serviceOrderStatus;
+    public ServiceOrderStatus getServiceOrderStatus() {
+        return ServiceOrderStatus.getById(this.serviceOrderStatus);
     }
-    public void setServiceOrderStatus(Integer serviceOrderStatus) {
-        this.serviceOrderStatus = serviceOrderStatus;
+    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
+        this.serviceOrderStatus = serviceOrderStatus.getId();
     }
 
     public static ServiceOrderBuilder builder(){
