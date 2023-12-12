@@ -1,8 +1,8 @@
 export const  MeasurementUnit = {
-  METRO_CUBICO : 1,
-  QUILOS       : 2,
-  LITROS       : 3,
-  EQUIPAMENTO  : 4
+  METRO_CUBICO : 'METRO CÚBICO',
+  QUILOS       : 'QUILOS',
+  LITROS       : 'LITROS',
+  EQUIPAMENTO  : 'EQUIPAMENTO'
 }
 
 export type MeasurementUnitType = typeof MeasurementUnit[keyof typeof MeasurementUnit]

@@ -1,8 +1,8 @@
 export const ContractStatus = {
-  ATIVO:1,
-  CANCELADO:2,
-  RENOVACAO_PENDENTE:3,
-  ENCERRADO:4
+  ATIVO: 'ATIVO',
+  CANCELADO: 'CANCELADO',
+  RENOVACAO_PENDENTE:'RENOVAÇÃO PENDENTE',
+  ENCERRADO:'ENCERRADO'
 }as const;
 
 export type ContractStatusType = typeof ContractStatus[keyof typeof ContractStatus]

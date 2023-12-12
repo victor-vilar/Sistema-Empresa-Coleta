@@ -1,12 +1,12 @@
 export const Weekday = {
 
-  DOMINGO : 1,
-  SEGUNDA : 2,
-  TERCA   : 3,
-  QUARTA  : 4,
-  QUINTA  : 5,
-  SEXTA   : 6,
-  SABADO  : 7
+  DOMINGO : 'DOMINGO',
+  SEGUNDA : 'SEGUNDA-FEIRA',
+  TERCA   : 'TERÇA-FEIRA',
+  QUARTA  : 'QUARTA-FEIRA',
+  QUINTA  : 'QUINTA-FEIRA',
+  SEXTA   : 'SEXTA-FEIRA',
+  SABADO  : 'SÁBADO'
 } as const;
 
 export type WeekdayType = typeof Weekday[keyof typeof Weekday]
