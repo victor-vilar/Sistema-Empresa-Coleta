@@ -8,7 +8,7 @@ public enum ContractStatus {
     ATIVO(1,"ATIVO"),
     CANCELADO(2,"CANCELADO"),
     RENOVACAO_PENDENTE(3,"RENOVAÇÃO PENDENTE"),
-    ENCERRADO(4,"PENDENTE");
+    ENCERRADO(4,"ENCERRADO");
 
     private final int id;
     private final String name;

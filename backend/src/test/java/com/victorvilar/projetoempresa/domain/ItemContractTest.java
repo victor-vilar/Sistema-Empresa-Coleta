@@ -23,11 +23,11 @@ class ItemContractTest {
     private void setUp(){
 
         collectionFrequency1.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA,Weekday.SEXTA));
-        collectionFrequency1.setSchedule(Schedule.SEMANAL);
+        collectionFrequency1.setSchedule("SEMANAL");
 
 
         collectionFrequency2.setDays(Set.of(Weekday.TERCA,Weekday.QUINTA,Weekday.SABADO));
-        collectionFrequency2.setSchedule(Schedule.MENSAL);
+        collectionFrequency2.setSchedule("SEMANAL");
 
 
         itemContract1.setCollectionFrequency(collectionFrequency1);

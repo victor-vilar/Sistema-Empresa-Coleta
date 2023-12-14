@@ -96,7 +96,7 @@ class ContractServiceTest {
         this.setUpContractUpdate();
         this.setUpContractResponse();
         this.setUpItemContract();
-        collectionFrequency.setSchedule(Schedule.SEMANAL);
+        collectionFrequency.setSchedule("SEMANAL");
         collectionFrequency.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
 
     }

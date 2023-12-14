@@ -34,17 +34,14 @@ public class CollectionFrequency implements Serializable {
 
     public CollectionFrequency() {
     }
-
-    public CollectionFrequency(Long id, Set<Weekday> days, Schedule schedule) {
+    public CollectionFrequency(Long id, Set<Weekday> days, String schedule) {
         this.id = id;
         this.setDays(days);
         this.setSchedule(schedule);
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -61,8 +58,8 @@ public class CollectionFrequency implements Serializable {
      * get a Schedule constant and transform in an int id;
      * @param schedule
      */
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule.getId();
+    public void setSchedule(String schedule) {
+        this.schedule = Schedule.valueOf(schedule).getId();
     }
 
     /**

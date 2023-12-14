@@ -17,7 +17,7 @@ public class ItemContractResponseDto {
     private String contract;
     private String description;
     private CollectionFrequency collectionFrequency;
-    private MeasurementUnit measurementUnit;
+    private String measurementUnit;
 
     public ItemContractResponseDto() {
     }
@@ -94,11 +94,11 @@ public class ItemContractResponseDto {
     //-----------
 
     //getters and setter - measurement unit
-    public MeasurementUnit getMeasurementUnit() {
+    public String getMeasurementUnit() {
         return measurementUnit;
     }
-    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
-        this.measurementUnit = measurementUnit;
+    public void setMeasurementUnit(String measurementUnit) {
+        this.measurementUnit = MeasurementUnit.valueOf(measurementUnit).getName();
     }
     //-----------
 

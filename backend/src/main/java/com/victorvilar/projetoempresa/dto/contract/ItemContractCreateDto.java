@@ -101,8 +101,8 @@ public class ItemContractCreateDto {
     public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;
     }
-    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
-        this.measurementUnit = measurementUnit;
+    public void setMeasurementUnit(String measurementUnit) {
+        this.measurementUnit = MeasurementUnit.getByName(measurementUnit);
     }
     //-----------
 }
