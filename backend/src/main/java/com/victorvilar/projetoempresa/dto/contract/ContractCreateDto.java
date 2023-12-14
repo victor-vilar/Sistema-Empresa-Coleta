@@ -27,14 +27,13 @@ public class ContractCreateDto {
     @NotNull(message = "the contract must have a end date")
     private LocalDate endDate;
 
-    @NotEmpty(message = "A contract must have at least one item")
+    //@NotEmpty(message = "A contract must have at least one item")
     private List<ItemContractCreateDto> itens = new ArrayList<>();
 
     @NotNull(message = "the contract must have a customer")
     private String customerId;
 
-    //each new contract has an 'ATIVO' status
-    private ContractStatus contractStatus = ContractStatus.ATIVO;
+    private ContractStatus contractStatus;
 
     public ContractCreateDto() {
     }
@@ -85,8 +84,8 @@ public class ContractCreateDto {
     }
 
     //getters and setters - status
-    public void setContractStatus(ContractStatus contractStatus){
-        this.contractStatus = contractStatus;
+    public void setContractStatus(String contractStatus){
+        this.contractStatus = ContractStatus.getByName(contractStatus);
     }
     public ContractStatus getContractStatus(){
         return this.contractStatus;
@@ -104,7 +103,7 @@ public class ContractCreateDto {
         private LocalDate endDate;
         private List<ItemContractCreateDto> itens = new ArrayList<ItemContractCreateDto>();
         private String customerId;
-        private ContractStatus contractStatus;
+        private String contractStatus;
 
         public ContractCreateDtoBuilder number(String number){
             this.number = number;
@@ -125,7 +124,7 @@ public class ContractCreateDto {
             this.customerId = customer;
             return this;
         }
-        public ContractCreateDtoBuilder contractStatus(ContractStatus contractStatus){
+        public ContractCreateDtoBuilder contractStatus(String contractStatus){
             this.contractStatus = contractStatus;
             return this;
         }

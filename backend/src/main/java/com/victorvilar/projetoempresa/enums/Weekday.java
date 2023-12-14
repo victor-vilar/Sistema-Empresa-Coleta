@@ -6,13 +6,13 @@ package com.victorvilar.projetoempresa.enums;
  */
 public enum Weekday {
 
-    DOMINGO(1,"domingo"),
-    SEGUNDA(2,"segunda-feira"),
-    TERCA(3,"terça-feira"),
-    QUARTA(4,"quarta-feira"),
-    QUINTA(5,"quinta-feira"),
-    SEXTA(6,"sexta-feira"),
-    SABADO(7,"sábado");
+    DOMINGO(1,"DOMINGO"),
+    SEGUNDA(2,"SEGUNDA-FEIRA"),
+    TERCA(3,"TERÇA-FEIRA"),
+    QUARTA(4,"QUARTA-FEIRA"),
+    QUINTA(5,"QUINTA-FEIRA"),
+    SEXTA(6,"SEXTA-FEIRA"),
+    SABADO(7,"SÁBADO");
 
     private final int id;
     private final String dayName;

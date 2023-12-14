@@ -23,7 +23,7 @@ public class ContractResponseDto {
     private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
 
     //each new contract has an 'ATIVO' status
-    private ContractStatus contractStatus;
+    private String contractStatus;
 
     public ContractResponseDto() {
     }
@@ -91,10 +91,10 @@ public class ContractResponseDto {
     }
 
     //getters and setters - status
-    public void setContractStatus(ContractStatus contractStatus){
-        this.contractStatus = contractStatus;
+    public void setContractStatus(String contractStatus){
+        this.contractStatus = ContractStatus.valueOf(contractStatus).getName();
     }
-    public ContractStatus getContractStatus(){
+    public String getContractStatus(){
         return this.contractStatus;
     }
     //--------------
@@ -107,7 +107,7 @@ public class ContractResponseDto {
         private LocalDate beginDate;
         private LocalDate endDate;
         private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
-        private ContractStatus contractStatus;
+        private String contractStatus;
 
         private ContractResponseDtoBuilder id(Long id){
             this.id = id;
@@ -134,7 +134,7 @@ public class ContractResponseDto {
             return this;
         }
 
-        public ContractResponseDtoBuilder contractStatus(ContractStatus contractStatus){
+        public ContractResponseDtoBuilder contractStatus(String contractStatus){
             this.contractStatus = contractStatus;
             return this;
         }

@@ -5,11 +5,11 @@ package com.victorvilar.projetoempresa.enums;
  * @author Victor Vilar
  */
 public enum Schedule {
-    DIARIO(1,"diário"),
-    SEMANAL(2,"semanal"),
-    QUINZENAL(3,"quinzenal"),
-    MENSAL(4,"mensal"),
-    SOB_SOLICITACAO(5,"sob-solicitação");
+    DIARIO(1,"DIÁRIO"),
+    SEMANAL(2,"SEMANAL"),
+    QUINZENAL(3,"QUINZENAL"),
+    MENSAL(4,"MENSAL"),
+    SOB_SOLICITACAO(5,"SOB SOLICITAÇÃO");
 
     private final int id;
     private final String schedule;
