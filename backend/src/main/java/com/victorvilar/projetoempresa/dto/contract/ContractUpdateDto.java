@@ -85,8 +85,8 @@ public class ContractUpdateDto {
     }
 
     //getters and setters - status
-    public void setContractStatus(ContractStatus contractStatus){
-        this.contractStatus = contractStatus;
+    public void setContractStatus(String contractStatus){
+        this.contractStatus = ContractStatus.getByName(contractStatus);
     }
     public ContractStatus getContractStatus(){
         return this.contractStatus;
@@ -100,7 +100,7 @@ public class ContractUpdateDto {
         private LocalDate endDate;
         private List<ItemContractUpdateDto> itens = new ArrayList<ItemContractUpdateDto>();
         private String customerId;
-        private ContractStatus contractStatus;
+        private String contractStatus;
 
         public ContractUpdateDtoBuilder number(String number){
             this.number = number;
@@ -122,7 +122,7 @@ public class ContractUpdateDto {
             return this;
         }
 
-        public ContractUpdateDtoBuilder contractStatus(ContractStatus contractStatus){
+        public ContractUpdateDtoBuilder contractStatus(String contractStatus){
             this.contractStatus = contractStatus;
             return this;
         }
