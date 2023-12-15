@@ -33,8 +33,8 @@ public class ServiceOrderUpdateDto  {
         return serviceOrderStatus;
     }
 
-    public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
-        this.serviceOrderStatus = serviceOrderStatus;
+    public void setServiceOrderStatus(String serviceOrderStatus) {
+        this.serviceOrderStatus = ServiceOrderStatus.getByName(serviceOrderStatus);
     }
 
     public Long getAddress() {

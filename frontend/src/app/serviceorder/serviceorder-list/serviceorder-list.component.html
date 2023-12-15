@@ -13,7 +13,7 @@
           <input matInput (keyup)="filteredTableData($event)" #input>
         </mat-form-field>
 
-        <div class="mat-elevation-z8">
+        <div class="mat-elevation-z1">
           <table mat-table [dataSource]="dataSource" matSort>
 
             <ng-container matColumnDef="id">
@@ -38,7 +38,12 @@
 
             <ng-container matColumnDef="status">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-              <td mat-cell *matCellDef="let order"><span [ngStyle]="statusStyle(order)"></span> {{order.serviceOrderStatus}} </td>
+              <td mat-cell *matCellDef="let order" ><span class="situation-tag"
+                 [ngClass]="
+                  {'attention': order.serviceOrderStatus==='EM ABERTO' ,
+                   'warning': order.serviceOrderStatus === 'CANCELADO',
+                   'ok': order.serviceOrderStatus === 'FINALIZADO'}"
+                  >{{order.serviceOrderStatus}}</span></td>
             </ng-container>
 
 

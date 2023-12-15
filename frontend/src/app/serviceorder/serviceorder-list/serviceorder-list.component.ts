@@ -16,41 +16,6 @@ export class ServiceorderListComponent extends ItensTableComponent {
     super(router, dialogService)
   }
 
-  statusStyle(order: ServiceOrder) {
-
-    let object: any;
-    console.log(order);
-    object = {
-      textAlign: 'center',
-      padding: '10px',
-      borderRadius: '3px'
-    }
-
-    //if contract status it is 'DONE'
-    if (order.serviceOrderStatus === ServiceOrderStatus.DONE) {
-      object.backgroundColor = '#D5F5E3';
-      object.width="100%"
-      object.color = '#28dcb8';
-
-    }
-
-    //if contract status is 'UNDONE'
-    if (order.serviceOrderStatus === ServiceOrderStatus.UNDONE) {
-      object.backgroundColor = '#ff99';
-      object.width="100%"
-      object.color = '#black';
-    }
-
-    //if contract status is 'PENDENTE_RENOVAÇÃO'
-    if (order.serviceOrderStatus === ServiceOrderStatus.CANCELLED) {
-      object.backgroundColor = '#ffff99';
-      object.width="100%"
-      object.color = '#black';
-    }
-
-
-    return object;
-  }
 
 
 }

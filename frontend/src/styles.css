@@ -16,14 +16,17 @@
 :root
 {
   --cinza:rgb(48, 57, 62);
-  --cinza-escuro:rgb(38, 41, 39);
   --azul:#0341AB;
   --azul-claro:#1BC9DE;
   --rosa:#E6866C;
   --vermelho:#ab0f03;
-  --verde:#28dcb8;
+
+
+
   --principal: var(--cinza-escuro);
   --secundaria:var(--verde);
+  --cinza-escuro:rgb(38, 41, 39);
+  --verde:#28dcb8;
 }
 
 html, body { height: 100%; }
@@ -70,3 +73,28 @@ body {
   gap: 3px;
 }
 
+/* SITUATION FOR OBJECT ON TABLES */
+.situation-tag {
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: bolder;
+  width: 100%;
+}
+
+.attention{
+  color:black;
+  background-color: yellow;
+
+}
+
+.warning{
+  color: #E6866C;
+  background-color:#ab0f03 ;
+}
+
+.ok{
+  color:chartreuse ;
+  background-color: green;
+}
+/* ============================== */
