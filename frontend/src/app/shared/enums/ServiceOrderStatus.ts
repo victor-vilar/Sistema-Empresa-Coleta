@@ -1,7 +1,7 @@
 export const ServiceOrderStatus = {
 
-    UNDONE :  'EM ABERTO',
-    DONE : 'FINALIZADO',
+    UNDONE    : 'EM ABERTO',
+    DONE      : 'FINALIZADO',
     CANCELLED : 'CANCELADO'
 
 
