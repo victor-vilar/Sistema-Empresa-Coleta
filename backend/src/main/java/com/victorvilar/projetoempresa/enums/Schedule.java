@@ -12,19 +12,19 @@ public enum Schedule {
     SOB_SOLICITACAO(5,"SOB SOLICITAÇÃO");
 
     private final int id;
-    private final String schedule;
+    private final String name;
 
-    Schedule(int id, String schedule){
+    Schedule(int id, String name){
         this.id = id;
-        this.schedule = schedule;
+        this.name = name;
     }
 
 
     public int getId() {
         return id;
     }
-    public String getSchedule() {
-        return schedule;
+    public String getName() {
+        return name;
     }
 
 
@@ -39,7 +39,7 @@ public enum Schedule {
 
     public static Schedule getByName(String name){
         for(Schedule s : Schedule.values()){
-            if(s.getSchedule().equals(name)){
+            if(s.getName().equals(name)){
                 return s;
             }
         }

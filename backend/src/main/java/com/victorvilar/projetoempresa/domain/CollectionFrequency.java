@@ -59,15 +59,15 @@ public class CollectionFrequency implements Serializable {
      * @param schedule
      */
     public void setSchedule(String schedule) {
-        this.schedule = Schedule.valueOf(schedule).getId();
+        this.schedule = Schedule.getByName(schedule).getId();
     }
 
     /**
      * The class store the 'ids'of the schedule, so when return transform the integer in schedule enumerator
      * @return
      */
-    public Schedule getSchedule() {
-        return Schedule.getById(schedule);
+    public String getSchedule() {
+        return Schedule.getById(schedule).getName();
     }
 
     /**
