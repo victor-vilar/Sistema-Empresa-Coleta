@@ -100,7 +100,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         itemValue:Number(this.form.value.itemValue),
         description:this.form.value.description,
         collectionFrequency:this.createCollectionFrequency(),
-        measurementUnit:MeasurementUnit[this.form.value.measurementUnit]
+        measurementUnit:this.form.value.measurementUnit
       }
     }
 
@@ -108,7 +108,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     createCollectionFrequency():CollectionFrequency{
       return {
         days:this.weekdaysListToAddToItemContract,
-        schedule:Schedule[this.form.value.schedule]
+        schedule:this.form.value.schedule
       }
     }
 
@@ -321,6 +321,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     addNewWeekday(){
 
       if(!this.weekdaysListToAddToItemContract.find(e => e ===this.form.value.days) && this.form.value.days !== ""){
+
 
         this.weekdaysListToAddToItemContract.push(this.form.value.days);
         this.openSnackBar("Dia inserido com sucesso a lista","Dia inserido");
