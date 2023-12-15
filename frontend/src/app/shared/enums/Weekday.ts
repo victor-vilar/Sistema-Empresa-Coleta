@@ -1,18 +1,18 @@
 export const Weekday = {
 
-  DOMINGO : 'DOMINGO',
-  SEGUNDA : 'SEGUNDA-FEIRA',
-  TERCA   : 'TERÇA-FEIRA',
-  QUARTA  : 'QUARTA-FEIRA',
-  QUINTA  : 'QUINTA-FEIRA',
-  SEXTA   : 'SEXTA-FEIRA',
-  SABADO  : 'SÁBADO'
+  DOMINGO : 1,
+  SEGUNDA : 2,
+  TERCA   : 3,
+  QUARTA  : 4,
+  QUINTA  : 5,
+  SEXTA   : 6,
+  SABADO  : 7
 } as const;
 
 export type WeekdayType = typeof Weekday[keyof typeof Weekday]
 
 
 export function getWeekdayValues(){
-  return Object.values(Weekday).map(value =>value);
+  return Object.keys(Weekday).map(value =>value);
 }
 
