@@ -30,22 +30,7 @@ export class ContractsListTableComponent extends ItensTableComponent {
 
     contractStatusEnumValues = getContractStatusValues();
 
-  statusStyle(contract:Contract){
-    let object:any;
-    console.log(contract.contractStatus);
-    //if contract status it is 'ATIVO'
-    if(contract.contractStatus === ContractStatus.ATIVO){
-      object = {backgroundColor:'#D5F5E3',color:'#28dcb8',textAlign:'center',padding:'10px',borderRadius:'3px'};
-    }
 
-    //if contract status is 'PENDENTE_RENOVAÇÃO'
-    if(contract.contractStatus.toString() === ContractStatus.RENOVACAO_PENDENTE.toString()){
-      object = {backgroundColor:'#ffff99',color:'#ff9900',textAlign:'center',padding:'10px',borderRadius:'3px'};
-    }
-
-
-    return object;
-  }
 
   //the contract list  and the contract detail component don't have an relationship
   //so to send an object to edit, it need to be done programatically

@@ -79,22 +79,32 @@ body {
   padding: 10px;
   border-radius: 3px;
   font-weight: bolder;
+  display: block;
   width: 100%;
+
 }
 
 .attention{
   color:black;
   background-color: yellow;
 
+
 }
 
 .warning{
   color: #E6866C;
   background-color:#ab0f03 ;
+
 }
 
 .ok{
   color:chartreuse ;
   background-color: green;
+
+}
+
+.finished{
+  color:white ;
+  background-color: var(--azul);
 }
 /* ============================== */

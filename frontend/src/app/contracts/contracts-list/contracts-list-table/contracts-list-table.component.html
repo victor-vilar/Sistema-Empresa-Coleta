@@ -56,7 +56,16 @@
 
             <ng-container matColumnDef="Status">
               <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}">Status</th>
-              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}"><span [ngStyle]="statusStyle(contract)"> {{contract.contractStatus}}</span></td>
+              <td mat-cell *matCellDef="let contract" [ngStyle]="{textAlign:'center'}">
+                <span class="situation-tag"
+                [ngClass]="
+                {'attention': contract.contractStatus ==='RENOVAÇÃO PENDENTE' ,
+                 'warning': contract.contractStatus === 'CANCELADO',
+                 'ok': contract.contractStatus === 'ATIVO',
+                 'finished': contract.contractStatus === 'ENCERRADO'}">
+
+                {{contract.contractStatus}}</span>
+              </td>
             </ng-container>
 
 
