@@ -9,7 +9,7 @@ export class ServiceorderService extends CrudBaseService<ServiceOrder> {
 
   constructor() {
     super();
-    this.rota ="service-order/"
+    this.rota ="service-order"
   }
 
   //getAllByCustomerId(id:string):Observable<ServiceOrder[]>{  }

@@ -30,7 +30,7 @@ export class ServiceorderComponent implements OnInit {
   }
 
   openAddNew(){
-    this.dialogService.openDialog(ServiceorderCreateComponent,null,"/service-order")
+    this.dialogService.openDialog(ServiceorderCreateComponent,null,"/ordem-servico")
   }
 
 }

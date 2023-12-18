@@ -30,7 +30,7 @@ export class DialogServiceService {
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
   //@rota = local para onde será redirecionado após o dialog ser fechado.
   openDialog(component:any, objectToEdit:any, rota:string): void {
-    const dialogRef = this.dialog.open(component,{data:{objectToEdit: objectToEdit}});
+    const dialogRef = this.dialog.open(component,{ disableClose: true,data:{objectToEdit: objectToEdit}});
     this.afterCloseDialog(dialogRef,rota);
   }
 

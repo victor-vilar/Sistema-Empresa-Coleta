@@ -32,8 +32,6 @@ export class ServiceorderCreateComponent implements OnInit {
   ngOnInit(): void {
 
     this.customers = this.customerService.list;
-    console.log(this.customerService)
-    console.log(this.customers)
 
   }
 

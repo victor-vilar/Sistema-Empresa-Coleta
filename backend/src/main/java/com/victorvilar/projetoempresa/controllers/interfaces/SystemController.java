@@ -17,13 +17,13 @@ import java.util.List;
 public interface SystemController<C,U,R> {
 
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<R>> getAll();
 
     @GetMapping("/{id}")
     public ResponseEntity<R> getById(@PathVariable Long id);
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<R> save(@Valid @RequestBody C createDto);
 
     @DeleteMapping("/{id}")
