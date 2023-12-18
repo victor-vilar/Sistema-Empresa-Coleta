@@ -26,7 +26,7 @@ export class ServiceorderComponent implements OnInit {
   }
 
   editObject(object:any){
-
+  
   }
 
   openAddNew(){

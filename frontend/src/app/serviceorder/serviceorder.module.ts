@@ -7,6 +7,7 @@ import { MaterialModuleModule } from '../shared/material-module.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ServiceorderListComponent } from './serviceorder-list/serviceorder-list.component';
+import { jsPDF } from "jspdf";
 
 
 
@@ -21,7 +22,8 @@ import { ServiceorderListComponent } from './serviceorder-list/serviceorder-list
     ServiceorderRoutingModule,
     SharedModule,
     MaterialModuleModule,
-    FormsModule
+    FormsModule,
+    
   ]
 })
 export class ServiceorderModule { }
