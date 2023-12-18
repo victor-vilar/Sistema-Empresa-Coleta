@@ -19,6 +19,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -43,6 +44,7 @@ import { MatDialogModule} from '@angular/material/dialog';
     MatListModule,
     MatIconModule,
     MatDialogModule,
+    MatSlideToggleModule
 
 
   ],
