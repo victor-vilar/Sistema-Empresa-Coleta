@@ -1,12 +1,12 @@
 
-<a class="app-button" [routerLink]="'./novo'" (click)="openAddNew()">Nova Ordem</a>
-<!-- <router-outlet
-></router-outlet> -->
+  <a class="app-button" [routerLink]="'./novo'" (click)="openAddNew()">Nova Ordem</a>
 
-<app-serviceorder-list
-[tableHeaders]="headerForTables"
-[service]="serviceOrderService"
-[mapper]="mapper"
-(editObjectEmitter)="editObject($event)"
-></app-serviceorder-list>
+  <app-serviceorder-list
+  [tableHeaders]="headerForTables"
+  [service]="serviceOrderService"
+  [mapper]="mapper"
+  (editObjectEmitter)="editObject($event)">
+</app-serviceorder-list>
+
+<router-outlet></router-outlet>
 

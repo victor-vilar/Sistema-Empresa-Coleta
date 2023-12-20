@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ServiceorderListComponent } from './serviceorder-list/serviceorder-list.component';
 import { jsPDF } from "jspdf";
+import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
+
 
 
 
@@ -15,7 +17,9 @@ import { jsPDF } from "jspdf";
   declarations: [
     ServiceorderComponent,
     ServiceorderCreateComponent,
-    ServiceorderListComponent
+    ServiceorderListComponent,
+    PdfTemplateComponent,
+
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,7 @@ import { jsPDF } from "jspdf";
     SharedModule,
     MaterialModuleModule,
     FormsModule,
-    
+
   ]
 })
 export class ServiceorderModule { }

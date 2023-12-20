@@ -1,0 +1,22 @@
+.pdf {
+  width:20cm
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.header-info{
+  display: flex;
+  width: 50%
+}
+
+.pdf-label{
+
+}
+
+.pdf-order-info{
+  font-size: 11px
+}

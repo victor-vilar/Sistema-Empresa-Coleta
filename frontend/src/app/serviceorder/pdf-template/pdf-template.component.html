@@ -1,0 +1,48 @@
+<div class="pdf" #html style="width: 20cm">
+
+  <div class="header">
+    <div class="header-info" >
+      <img class ='' src="../../../assets/chiquinha-profile.jpg" width="50" height="60" />
+      <h6 class ='pdf-label'>Ordem de Serviço</h6>
+    </div>
+    <div class="header-info">
+      <span class ='pdf-order-info'>Número: {{ order.id }}</span>
+      <span class ='pdf-order-info'>Data do Serviço:
+        {{ order.serviceExpectedDate | date : "dd/MM/yyyy" }}
+      </span>
+    </div>
+  </div>
+
+  <div class="customer-info">
+    <div
+      class="header-info"
+      style="display: flex; flex-direction: column; width: 100%"
+    >
+      <p>Dados do cliente</p>
+      <span class ='pdf-order-info'>Nome: {{ order.customerId }}</span>
+      <span class ='pdf-order-info'>Endereço do Serviço:</span>
+
+      <span class ='pdf-order-info'>
+        Logradouro: {{order.address.addressName}}
+      </span>
+
+      <div class ='pdf-order-info'class="logradouro" style="display: flex; gap: .15cm">
+        <span style="font-size: 11px">
+          Nº: {{ order.address.addressNumber }}
+        </span>
+
+        <span style="font-size: 11px">
+          Cpl: {{ order.address.complement }}
+        </span>
+      </div>
+      <div class="logradouro" style="display: flex; gap: .15cm">
+      <span style="font-size: 11px">
+        Cidade: {{ order.address.city }}
+      </span>
+      <span style="font-size: 11px">
+        Estado: {{ order.address.state }}
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

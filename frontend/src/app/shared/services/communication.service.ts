@@ -15,7 +15,6 @@ export class CommunicationService {
 
   sendData(object:any){
     this.dataEmitter.next(object);
-    console.log('emiti no service')
   }
 
 
