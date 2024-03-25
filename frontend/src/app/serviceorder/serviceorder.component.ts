@@ -16,6 +16,8 @@ import jsPDF from 'jspdf';
 export class ServiceorderComponent implements OnInit {
 
   headerForTables =['id','data-servico','cliente','quantidade','status','opcoes']
+  showRouterOutlet:boolean = false;
+
   constructor(
     public serviceOrderService:ServiceorderService,
     public mapper:ServiceOrderListTableComponentMapperService,
@@ -29,23 +31,22 @@ export class ServiceorderComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
   }
 
   editObject(object:any){
 
+    this.showRouterOutlet = true;
     let serviceOrder = this.serviceOrderService.list.find(o => o.id === object.id);
     console.log(serviceOrder);
     this.router.navigate(["ordem-servico","pdf"]).then(() =>{
 
       setTimeout(() => {
         this.communicationService.sendData(serviceOrder);
+        //this.showRouterOutlet=false;
       },10)
 
     })
 
-    //this.pdfBuilder.buildServiceOrderPdf(object);
   }
 
   openAddNew(){

@@ -8,5 +8,6 @@
   (editObjectEmitter)="editObject($event)">
 </app-serviceorder-list>
 
-<router-outlet></router-outlet>
-
+<ng-container *ngIf="showRouterOutlet">
+  <router-outlet></router-outlet>
+</ng-container>
