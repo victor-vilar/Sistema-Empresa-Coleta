@@ -36,10 +36,24 @@ export class ServiceorderCreateComponent implements OnInit {
   }
 
   save():void{
+    this.checkFilledFields();
     this.dialogService.openProgressDialog()
     let serviceOrder = this.createObject();
     this.serviceOrderService.save(serviceOrder)
     .subscribe(this.serviceOrderSaveObserver());
+  }
+
+  //check if fields are not empty
+  checkFilledFields(){
+    if(
+      this.form.value.serviceDate === "" ||
+      this.form.value.customer === "" ||
+      this.form.value.item === "" ||
+      this.form.value.address === ""
+    ){
+      this.dialogService.openErrorDialog("Todos os campos devem ser preenchidos.");
+      throw Error("Todos os campos devem ser preenchidos");
+    }
   }
 
   createObject():any{
@@ -47,7 +61,6 @@ export class ServiceorderCreateComponent implements OnInit {
         serviceExpectedDate:this.form.value.serviceDate,
         itemContract: Number(this.form.value.item),
         address: Number(this.form.value.address),
-
     }
 
   }
@@ -79,6 +92,7 @@ export class ServiceorderCreateComponent implements OnInit {
       error: (error) =>{
         this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog(error.message);
+        console.log(error);
       }
     }
   }
