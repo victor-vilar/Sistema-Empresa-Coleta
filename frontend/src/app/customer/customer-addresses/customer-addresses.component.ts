@@ -17,7 +17,6 @@ export class CustomerAddressesListComponent implements OnInit {
   selectedCustomer:Customer;
   title='Enderecos'
   pathPrefix='endereco';
-  headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo Endereço", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   addressService:CustomerAddressService;
@@ -49,7 +48,7 @@ export class CustomerAddressesListComponent implements OnInit {
     });
 
 
-    this.headerForTables =['Id','Logradouro','Numero','Complemento','CEP','Cidade','Estado','Existe-Coleta','Opções']
+
 
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));

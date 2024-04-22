@@ -13,7 +13,6 @@ export interface CrudBaseComponent extends OnInit {
    pathPrefix:string;
   // am i gonna need it ?
    pathToOperations:any;
-  //headers for the iten-table  table view
-   headerForTables:any;
+
 
 }

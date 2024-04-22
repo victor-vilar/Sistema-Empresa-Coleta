@@ -16,7 +16,8 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 export class ResidueListTableComponent extends ItensTableComponent{
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
-      super(router,dialogService)
+      super(router,dialogService);
+      this.tableHeaders = ['Id','Resíduo','Classe','Opções'];
   }
 
 

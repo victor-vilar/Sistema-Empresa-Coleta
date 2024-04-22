@@ -13,13 +13,12 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerListComponent implements OnInit, CrudBaseComponent {
+export class CustomerListComponent implements OnInit {
 
 
   title: string;
   pathPrefix: string;
   pathToOperations: any;
-  headerForTables: any;
   service:CustomerService;
   objectToEdit:any;
 
@@ -36,7 +35,6 @@ export class CustomerListComponent implements OnInit, CrudBaseComponent {
       }
     });
 
-    this.headerForTables =['CPF-CNPJ','Nome/Razão Social','Contratos','Enderecos','Fiscais','Opções']
 
     this.title='Clientes';
     this.pathPrefix='cliente';

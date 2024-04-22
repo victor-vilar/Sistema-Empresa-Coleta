@@ -16,8 +16,7 @@ import { ResidueDetailComponent } from './residue-detail/residue-detail.componen
 })
 export class ResidueComponent implements OnInit, CrudBaseComponent{
 
-  //Default Methods
-  headerForTables;
+
   title;
   pathPrefix;
   pathToOperations;
@@ -39,7 +38,6 @@ export class ResidueComponent implements OnInit, CrudBaseComponent{
       }
     });
 
-    this.headerForTables = ['Id','Resíduo','Classe','Opções']
 
 
 

@@ -14,7 +14,9 @@ export class CustomerAddressesListTableComponent extends ItensTableComponent {
 
   constructor(router:Router,mapper:CustomerAddressListTableComponentMapperService,dialogService:DialogServiceService){
     super(router,dialogService)
+    this.tableHeaders = ['Id','Logradouro','Numero','Complemento','CEP','Cidade','Estado','Existe-Coleta','Opções'];
   }
+
 
 
 

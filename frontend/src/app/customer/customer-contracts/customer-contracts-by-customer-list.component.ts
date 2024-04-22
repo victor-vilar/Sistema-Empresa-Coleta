@@ -36,7 +36,6 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
   selectedCustomer:Customer;
   title='Contratos'
   pathPrefix='contrato';
-  headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   contractService:CustomerContractsService;
@@ -47,7 +46,6 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
 
   ngOnInit(): void {
 
-    this.headerForTables = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))
     })

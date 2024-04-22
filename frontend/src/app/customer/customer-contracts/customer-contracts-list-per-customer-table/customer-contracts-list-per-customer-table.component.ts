@@ -15,6 +15,7 @@ export class CustomerContractsByCustomerListTableComponent extends ItensTableCom
   constructor(router:Router,
     dialogService:DialogServiceService){
     super(router,dialogService)
+    this.tableHeaders = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
 }
 
 

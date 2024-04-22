@@ -13,6 +13,7 @@ export class CustomerSupervisorsListTableComponent extends ItensTableComponent {
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
     super(router,dialogService)
+    this.tableHeaders = ['Id','Nome','Telefone','Email','Opções'];
 }
 
 

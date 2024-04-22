@@ -15,11 +15,9 @@ import { CustomerSupervisorsListTableComponentMapperService } from './customer-s
 export class CustomerSupervisorsListComponent implements OnInit {
 
 
-
   selectedCustomer:Customer;
   title='Fiscais'
   pathPrefix='fiscal';
-  headerForTables:any;
   pathToOperations = [{name:"Cadastrar novo fiscal", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
   customerService:CustomerService;
   supervisorService:CustomerSupervisorService;
@@ -46,9 +44,6 @@ export class CustomerSupervisorsListComponent implements OnInit {
       }
     });
 
-
-
-    this.headerForTables =['Id','Nome','Telefone','Email','Opções'];
 
     this.route.paramMap.subscribe(param =>{
       this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));

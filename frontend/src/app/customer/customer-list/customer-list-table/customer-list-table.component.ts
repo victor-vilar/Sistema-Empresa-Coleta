@@ -16,6 +16,7 @@ export class CustomerListTableComponent extends ItensTableComponent {
 
   constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
     super(router,dialogService)
+    this.tableHeaders =['CPF-CNPJ','Nome/Razão Social','Contratos','Enderecos','Fiscais','Opções']
   }
 
 

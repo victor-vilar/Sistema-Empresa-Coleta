@@ -15,7 +15,6 @@ import jsPDF from 'jspdf';
 })
 export class ServiceorderComponent implements OnInit {
 
-  headerForTables =['id','data-servico','cliente','quantidade','status','opcoes']
   showRouterOutlet:boolean = false;
 
   constructor(

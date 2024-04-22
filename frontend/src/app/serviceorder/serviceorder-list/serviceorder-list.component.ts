@@ -13,7 +13,8 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 export class ServiceorderListComponent extends ItensTableComponent {
 
   constructor(router: Router, dialogService: DialogServiceService) {
-    super(router, dialogService)
+    super(router, dialogService);
+    this.tableHeaders = ['id','data-servico','cliente','quantidade','status','opcoes'];
   }
 
 

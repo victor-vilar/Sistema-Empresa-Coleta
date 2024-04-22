@@ -13,8 +13,7 @@ import { CrudBaseComponent } from 'src/app/shared/interfaces/crudbase.interface'
 })
 export class EquipmentsComponent implements OnInit, CrudBaseComponent {
 
-  //Default Methods
-  headerForTables;
+
   title;
   pathPrefix;
   pathToOperations;
@@ -36,7 +35,7 @@ export class EquipmentsComponent implements OnInit, CrudBaseComponent {
     });
 
 
-    this.headerForTables =['Id','Equipamento','Volume em M³','Opções'];
+
 
     this.title='Equipamentos';
     this.pathPrefix='equipamento';
