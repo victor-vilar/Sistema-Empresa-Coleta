@@ -10,6 +10,7 @@ import { CustomerContractsService } from 'src/app/customer/services/customerCont
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { CustomerContractsDetailItensComponent } from './customer-contracts-detail-itens/customer-contracts-detail-itens.component';
+import { FormDetail } from 'src/app/shared/entities/FormDetail';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { CustomerContractsDetailItensComponent } from './customer-contracts-deta
   templateUrl: './customer-contracts-detail.component.html',
   styleUrls: ['./customer-contracts-detail.component.css']
 })
-export class CustomerContractsDetailComponent implements OnInit {
+export class CustomerContractsDetailComponent extends FormDetail implements OnInit {
 
   //form
   @ViewChild('form') form:NgForm;
@@ -25,55 +26,34 @@ export class CustomerContractsDetailComponent implements OnInit {
 
 
   //services
-
   contractService:CustomerContractsService;
 
 
 
   //list of itens of a contract
   itemContractList:ItemContract[] = [];
-
   //saves temporaly deleted itens from contract list to delete later
   deletedSavedItensIdList:number[] =[]
-  //---
-
-  //CpfCnpj of selected client
-  clientCpfCnpj:string;
-  //form is on edit mode, here store the id of the item
-  idOfEditedItem: string | number = "0";
-
-  //
-  crudOperation: string = "Cadastro";
   objectToEdit:Contract;
-
-  //headers for itemCOntract itens list
-  headerForTables;
-
-
   //errors
   isInvalidContractDates:boolean = false;
   allFieldsMustBeFilledError:boolean = false;
-  //---
   contractStatusEnumValues;
 
 
 
 
-  constructor(
-              contractService:CustomerContractsService,
-              private activatedRoute:ActivatedRoute,
-              private dialogService:DialogServiceService,
-              private router:Router,
+  constructor(contractService:CustomerContractsService,
               public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
               ) {
-
+                super();
                 this.contractService = contractService;
                }
 
 
 
   ngOnInit(): void {
+    this.crudOperation = "Cadastro";
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
 

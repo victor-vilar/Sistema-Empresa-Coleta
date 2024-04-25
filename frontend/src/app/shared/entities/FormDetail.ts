@@ -1,33 +1,51 @@
-import { NgForm } from "@angular/forms";
+import { Subscription } from 'rxjs';
+import { Inject, inject } from "@angular/core";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DialogServiceService } from "../services/dialog-service.service";
 
-export interface FormDetail{
+/**
+ * Form detail class to be used in all the forms that make operations in the objects of the application.
+ * Each form that make CRUD operations in the objects in the applicaiton, must inherance this class
+ */
+export abstract class FormDetail{
 
-  //form that gonna be used on view
-  form:NgForm;
 
-
+  protected subscriptionsList:Subscription[];
+  protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
+  protected router:Router = inject(Router);
+  protected dialogService = inject(DialogServiceService);
+  protected clientCpfCnpj:string;
   //id of the item that gonna be edited if the form is on edit mode
-  idOfEditedItem:number | string;
+  protected idOfEditedItem:number | string;
+  protected crudOperation:string;
+  @Inject(MAT_DIALOG_DATA) protected data:any
 
-  //operation that gonna be executed.
-  //save new = post
-  //save edit = put
-  crudOperation:string;
+  constructor(){ }
 
 
-  //methods
+
 
   //creates object that this detail form going to manipulate
-  createObject():any;
+  abstract createObject():any;
 
   //save method,
-  save(object:any):void;
+  abstract save(object:any):void;
 
   //method to configure the view if is on edit mode or not
-  onLoad():void;
+  abstract onLoad():void;
 
   //close detail component
-  destroy():void;
+  abstract destroy():void;
+
+
+  //TODO
+    // method to unsubscribe the observablese of the form
+  //abstract unsubscribeToObservables()
+    // creates the observer of the cration
+  //abstract sucess
+
+
 
 
 

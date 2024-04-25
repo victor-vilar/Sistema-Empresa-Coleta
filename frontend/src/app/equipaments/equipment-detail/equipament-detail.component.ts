@@ -28,13 +28,12 @@ export class volumeErrorMatcher implements ErrorStateMatcher {
   templateUrl: './equipament-detail.component.html',
   styleUrls: ['./equipament-detail.component.css']
 })
-export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDetail {
+export class EquipmentDetailComponent extends FormDetail implements OnInit, AfterViewInit {
 
   @ViewChild('singInForm') form:NgForm;
   //id of the item that gonna be edited if the form is on edit mode
-  idOfEditedItem:number;
   //operation that gonna be executed,
-  crudOperation:string = "Cadastro";
+
   isInvalidEquipmentName:boolean = false;
   isInvalidEquipmentNameMessage:string;
   isInvalidVolume:boolean = false;
@@ -46,12 +45,12 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
 
 
 
-  constructor(private service:EquipmentsService,
-     private activeroute:ActivatedRoute,
-      private router:Router,
-      public dialogRef: MatDialogRef<EquipmentDetailComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any,
-      private dialogService:DialogServiceService) {
+  constructor(
+    private service:EquipmentsService,
+    public dialogRef: MatDialogRef<EquipmentDetailComponent>,
+    )
+    {
+      super();
     }
 
   createObject(): any {
@@ -63,6 +62,7 @@ export class EquipmentDetailComponent implements OnInit, AfterViewInit, FormDeta
   }
 
   ngOnInit(): void {
+    this.crudOperation = "Cadastro";
     this.onLoad();
   }
 

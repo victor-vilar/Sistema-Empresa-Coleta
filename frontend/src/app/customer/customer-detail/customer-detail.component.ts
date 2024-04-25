@@ -20,21 +20,10 @@ import { Address } from 'src/app/shared/entities/Address';
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.css']
 })
-export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetail {
-
-  constructor(private service:CustomerService,
-      private addressService:CustomerAddressService,
-      private supervisorService:CustomerSupervisorService,
-      private activeroute:ActivatedRoute,
-      private router:Router,
-      public dialogRef: MatDialogRef<ResidueDetailComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any,
-      private dialogService:DialogServiceService) { }
+export class CustomerDetailComponent extends FormDetail implements OnInit, AfterViewInit  {
 
   @ViewChild('singInForm')form: NgForm;
   rota: string = 'customer';
-  idOfEditedItem: number | string;
-  crudOperation: string = "Cadastro";
   objectToEdit:Customer;
 
   //error handlers
@@ -47,7 +36,16 @@ export class CustomerDetailComponent implements OnInit, AfterViewInit, FormDetai
   addressList:Address[] = [];
   supervisorList:Supervisor[] = [];
 
+  constructor(private service:CustomerService,
+      private addressService:CustomerAddressService,
+      private supervisorService:CustomerSupervisorService,
+      public dialogRef: MatDialogRef<ResidueDetailComponent>,
+    ) {super(); }
+
+
+
   ngOnInit(): void {
+    this.crudOperation= "Cadastro";
     this.onLoad();
   }
 

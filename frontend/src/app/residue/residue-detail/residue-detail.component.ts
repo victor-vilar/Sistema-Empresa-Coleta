@@ -13,28 +13,26 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
   templateUrl: './residue-detail.component.html',
   styleUrls: ['./residue-detail.component.css']
 })
-export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail {
+export class ResidueDetailComponent extends FormDetail implements OnInit,AfterViewInit  {
 
 
   @ViewChild('singInForm') form: NgForm;
-  idOfEditedItem: number;
-  crudOperation = 'Cadastro';
-  constructor(private service:ResiduesService,
-              private activeroute:ActivatedRoute,
-              private router:Router,
-              public dialogRef: MatDialogRef<ResidueDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private dialogService:DialogServiceService) { }
-
-
   isInvalidType = false;
   isInvalidTypeMessage = '';
   isInvalidDescription = false;
   isInvalidDescriptionMessage = '';
   objectToEdit:Residue;
 
+  constructor(
+    private service:ResiduesService,
+    public dialogRef: MatDialogRef<ResidueDetailComponent>,
+  ) { super();}
 
-  createObject():Residue {
+
+
+
+
+  createObject():any {
     return {
       id:this.idOfEditedItem,
       type:this.form.value.type,
@@ -43,6 +41,7 @@ export class ResidueDetailComponent implements OnInit,AfterViewInit, FormDetail 
   }
 
   ngOnInit(){
+    this.crudOperation = 'Cadastro';
     this.onLoad();
   }
 

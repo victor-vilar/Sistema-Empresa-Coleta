@@ -14,33 +14,31 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './customer-addresses-detail.component.html',
   styleUrls: ['./customer-addresses-detail.component.css']
 })
-export class CustomerAddressesDetailComponent implements OnInit,AfterViewInit, FormDetail {
+export class CustomerAddressesDetailComponent extends FormDetail implements OnInit,AfterViewInit {
 
 
   @ViewChild('form') form: NgForm;
-  idOfEditedItem: string | number;
-  crudOperation='Cadastro';
   objectToEdit:Address;
-  clientCpfCnpj:string;
+ 
   searchedZipCodeErrorResponse:boolean = false;
   searchedZipCode="";
 
 
   @Input() isSubform:boolean=false;
 
-  constructor(private findFullAddress:FullAddressFinderService,
+  constructor(
+    private findFullAddress:FullAddressFinderService,
     private addressService:CustomerAddressService,
-    private activatedRoute:ActivatedRoute,
-    private router:Router,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogService:DialogServiceService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar) {
+      super();
+    }
 
 
 
   ngOnInit(): void {
     this.onLoad();
+    this.crudOperation='Cadastro';
   }
 
   ngAfterViewInit(): void {

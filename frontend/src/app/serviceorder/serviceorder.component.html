@@ -2,7 +2,6 @@
   <a class="app-button" [routerLink]="'./novo'" (click)="openAddNew()">Nova Ordem</a>
 
   <app-serviceorder-list
-  [tableHeaders]="headerForTables"
   [service]="serviceOrderService"
   [mapper]="mapper"
   (editObjectEmitter)="editObject($event)">
