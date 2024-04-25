@@ -1,12 +1,10 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
-import { Component, OnInit, ViewChild, Inject, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/customer/services/find-full-address.service';
 import { Address } from 'src/app/shared/entities/Address';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -19,7 +17,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
   @ViewChild('form') form: NgForm;
   objectToEdit:Address;
- 
+
   searchedZipCodeErrorResponse:boolean = false;
   searchedZipCode="";
 
@@ -116,6 +114,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   }
 
   destroy(): void {
+    this.unsubscribeToObservables();
     this.dialogRef.close();
   }
 

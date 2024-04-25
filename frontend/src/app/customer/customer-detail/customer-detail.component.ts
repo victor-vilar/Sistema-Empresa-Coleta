@@ -3,14 +3,10 @@ import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CustomerAddressService } from '../services/customerAddress.service';
-import { CustomerSupervisorService } from '../services/customerSupervisor.service';
-import { Supervisor } from 'src/app/shared/entities/Supervisor';
-import { Address } from 'src/app/shared/entities/Address';
+import { MatDialogRef } from '@angular/material/dialog';
+
 
 
 
@@ -32,14 +28,11 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
   invalidCustomerName = false;
   invalidCustomerNameMessage:string;
 
-  //list of address and supervisor to save to customer
-  addressList:Address[] = [];
-  supervisorList:Supervisor[] = [];
 
-  constructor(private service:CustomerService,
-      private addressService:CustomerAddressService,
-      private supervisorService:CustomerSupervisorService,
-      public dialogRef: MatDialogRef<ResidueDetailComponent>,
+
+  constructor(
+    private service:CustomerService,
+    public dialogRef: MatDialogRef<ResidueDetailComponent>,
     ) {super(); }
 
 
@@ -108,6 +101,7 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
   }
   destroy(): void {
+    this.unsubscribeToObservables();
     this.dialogRef.close();
   }
 

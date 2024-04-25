@@ -98,6 +98,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
 
 
   destroy(): void {
+    this.unsubscribeToObservables();
     this.dialogRef.close();
 
   }

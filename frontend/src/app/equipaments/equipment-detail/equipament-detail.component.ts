@@ -132,6 +132,7 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
 
   destroy(){
     this.objectToEdit = null
+    this.unsubscribeToObservables();
     this.dialogRef.close();
 
   }

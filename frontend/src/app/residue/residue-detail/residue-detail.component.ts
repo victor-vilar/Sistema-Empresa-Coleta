@@ -112,8 +112,8 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
 
   destroy(): void {
     this.objectToEdit =null
+    this.unsubscribeToObservables();
     this.dialogRef.close();
-    //this.router.navigate(['residuos']);
   }
 
   cleanForm(){

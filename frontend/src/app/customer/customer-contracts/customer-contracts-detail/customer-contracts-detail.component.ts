@@ -249,6 +249,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
   //navigates to another page
   destroy(): void {
+    this.unsubscribeToObservables();
     this.dialogRef.close();
 
   }
