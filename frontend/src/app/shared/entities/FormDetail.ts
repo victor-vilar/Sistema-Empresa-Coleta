@@ -3,6 +3,7 @@ import { Inject, inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DialogServiceService } from "../services/dialog-service.service";
+import { FormDetailHelperService } from '../services/form-detail-helper.service';
 
 /**
  * Form detail class to be used in all the forms that make operations in the objects of the application.
@@ -15,6 +16,7 @@ export abstract class FormDetail{
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   protected router:Router = inject(Router);
   protected dialogService = inject(DialogServiceService);
+  protected formDetailHelper = inject(FormDetailHelperService);
   protected clientCpfCnpj:string;
   //id of the item that gonna be edited if the form is on edit mode
   protected idOfEditedItem:number | string;
