@@ -1,5 +1,6 @@
+import { Customer } from './../../../shared/entities/Customer';
 import { CommunicationService } from './../../../shared/services/communication.service';
-import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/customer/services/customer.service';
@@ -17,19 +18,13 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 export class ContractsListTableComponent extends ItensTableComponent {
 
   @ViewChild('search') search:HTMLSelectElement;
-
-  constructor(
-    router:Router,
-    mapper:MapperService,
-    dialogService:DialogServiceService,
-    private communicationService:CommunicationService,
-    private customerService:CustomerService){
-      super(router,dialogService);
-
-    }
-
-    contractStatusEnumValues = getContractStatusValues();
-
+  communicationService = inject(CommunicationService);
+  customerService = inject(CustomerService);
+  contractStatusEnumValues = getContractStatusValues();
+  constructor(){
+    super();
+    this.tableHeaders = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-em-R$','Status','Opções'];
+  };
 
 
   //the contract list  and the contract detail component don't have an relationship

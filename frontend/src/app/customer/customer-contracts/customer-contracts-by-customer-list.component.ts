@@ -17,6 +17,14 @@ import { CommunicationService } from 'src/app/shared/services/communication.serv
 export class CustomerContractsByCustomerListComponent implements OnInit, OnDestroy {
 
   subscriptions:Subscription[] = [];
+  selectedCustomer:Customer;
+  title='Contratos'
+  pathPrefix='contrato';
+  pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
+  customerService:CustomerService;
+  contractService:CustomerContractsService;
+  objectToEdit;
+  mapper:CustomerContractsByCustomerTableMapperService;
 
   constructor(
     customerService:CustomerService,
@@ -33,14 +41,7 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
     this.subscriptions.forEach(e => e.unsubscribe());
   }
 
-  selectedCustomer:Customer;
-  title='Contratos'
-  pathPrefix='contrato';
-  pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
-  customerService:CustomerService;
-  contractService:CustomerContractsService;
-  objectToEdit;
-  mapper:CustomerContractsByCustomerTableMapperService;
+
 
 
 

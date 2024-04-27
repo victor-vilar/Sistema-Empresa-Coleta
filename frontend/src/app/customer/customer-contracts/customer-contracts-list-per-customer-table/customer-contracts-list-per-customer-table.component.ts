@@ -12,9 +12,8 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 })
 export class CustomerContractsByCustomerListTableComponent extends ItensTableComponent{
 
-  constructor(router:Router,
-    dialogService:DialogServiceService){
-    super(router,dialogService)
+  constructor(){
+    super()
     this.tableHeaders = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
 }
 

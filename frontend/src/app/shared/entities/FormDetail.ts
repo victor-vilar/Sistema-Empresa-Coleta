@@ -36,24 +36,40 @@ export abstract class FormDetail{
   abstract destroy():void;
 
 
-  //method to configure the view if is on edit mode or not
+  /**
+   * Se for passado algum dado para o dialog, o formuário entrara em modo
+   * edição, será salvo então o id para que seja chamado o metodo correto no service
+   * Post = item sem id
+   * Put  = item com id
+  */
   protected onLoad(data:any):void{
 
+    //checado para saber se existe dados
     if(data.objectToEdit !== undefined && data.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.objectToEdit = data.objectToEdit;
-      this.idOfEditedItem = this.objectToEdit.id;
+
+      //se existir dados, vai ser checado se o objeto passado possui um cpf/cnpj, que é o id
+      //do objeto cliente. Se caso ele não tenha, simplesmente ira pegar o id do objeto passado
+      //ja que todas as outras entidades possuem esse atributo
+      if(data.objectToEdit.cpfCnpj !== undefined){
+        this.idOfEditedItem = data.objectToEdit.cpfCnpj;
+      }else{
+        this.idOfEditedItem = this.objectToEdit.id;
+      }
+
     }
   };
 
 
-  // method to unsubscribe the observablese of the form
+  /**
+   * Metodo para desinscrever todos os observables do formulário
+   */
   protected unsubscribeToObservables():void {
     this.subscriptionsList.forEach(s => s.unsubscribe());
   }
-  //TODO
-    // creates the observer of the cration
-  //abstract sucess
+
+
 
 
 

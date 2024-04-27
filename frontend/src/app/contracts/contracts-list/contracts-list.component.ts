@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CustomerService } from '../../customer/services/customer.service';
 import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
@@ -13,20 +13,13 @@ import { ContractsListTableComponentMapperService } from './contracts-list-table
 export class ContractsListComponent implements OnInit {
 
   headerForTables:string[] = [];
-  contractService:CustomerContractsService;
   title = "Contratos"
   objectToEdit:any;
-  mapper:ContractsListTableComponentMapperService;
+  contractService:CustomerContractsService = inject(CustomerContractsService);
+  mapper:ContractsListTableComponentMapperService = inject(ContractsListTableComponentMapperService);
 
-  constructor(customerService:CustomerService,
-    contractService:CustomerContractsService,
-    private route:ActivatedRoute,
-    private dialogService:DialogServiceService,
-    mapper:ContractsListTableComponentMapperService) {
-      this.contractService = contractService
-      this.mapper = mapper;
-    }
 
+  constructor(){}
   ngOnInit(): void {
     this.headerForTables = ['Id','Cliente','Numero','Data-Inicio', 'Data-Fim', 'Total-em-R$','Status','Opções'];
   }

@@ -14,8 +14,8 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 })
 export class CustomerListTableComponent extends ItensTableComponent {
 
-  constructor(router:Router,mapper:MapperService,dialogService:DialogServiceService){
-    super(router,dialogService)
+  constructor(){
+    super()
     this.tableHeaders =['CPF-CNPJ','Nome/Razão Social','Contratos','Enderecos','Fiscais','Opções']
   }
 

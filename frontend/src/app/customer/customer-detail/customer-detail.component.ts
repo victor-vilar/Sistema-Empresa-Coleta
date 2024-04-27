@@ -37,7 +37,7 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
 
   ngOnInit(): void {
-    this.onLoad();
+    this.onLoad(this.data);
   }
 
   ngAfterViewInit(): void {
@@ -90,14 +90,7 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
   }
 
-  override onLoad(): void {
-    this.objectToEdit = this.data.objectToEdit;
-    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
-      this.crudOperation="Atualização";
-      this.idOfEditedItem = this.objectToEdit.cpfCnpj;
-    }
 
-  }
   destroy(): void {
     this.unsubscribeToObservables();
     this.dialogRef.close();

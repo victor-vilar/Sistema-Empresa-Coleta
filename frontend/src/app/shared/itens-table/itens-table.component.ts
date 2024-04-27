@@ -1,6 +1,6 @@
 import { Customer } from 'src/app/shared/entities/Customer';
 
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, ViewChild, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapperService } from 'src/app/shared/services/mapper.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,12 +50,11 @@ export class ItensTableComponent implements OnInit, OnDestroy{
   @Input()
   mapper:Mapper;
 
-  router:Router
-
+  router:Router = inject(Router);
+  dialogService:DialogServiceService = inject(DialogServiceService);
   private subscriptions:Subscription[] = []
 
-  constructor(router:Router,
-    private dialogService:DialogServiceService,) {this.router = router }
+  constructor() {}
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
