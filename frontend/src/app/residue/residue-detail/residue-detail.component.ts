@@ -21,15 +21,13 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
   isInvalidTypeMessage = '';
   isInvalidDescription = false;
   isInvalidDescriptionMessage = '';
-  objectToEdit:Residue;
+
 
   constructor(
     private service:ResiduesService,
     public dialogRef: MatDialogRef<ResidueDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
   ) { super();}
-
-
-
 
 
   createObject():any {
@@ -41,8 +39,7 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
   }
 
   ngOnInit(){
-    this.crudOperation = 'Cadastro';
-    this.onLoad();
+    this.onLoad(this.data);
   }
 
   ngAfterViewInit(): void {
@@ -55,19 +52,6 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
     },100);
 
   }
-
-  onLoad(): void {
-
-    this.objectToEdit = this.data.objectToEdit;
-    console.log(this.objectToEdit);
-    if(this.objectToEdit !== undefined && this.objectToEdit !== null){
-      console.log('estou aqui');
-      this.crudOperation="Atualização";
-      this.idOfEditedItem = this.objectToEdit.id;
-    }
-  }
-
-
 
 
   save(): void {

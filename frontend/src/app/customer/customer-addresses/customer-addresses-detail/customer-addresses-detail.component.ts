@@ -1,10 +1,10 @@
 import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
-import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/customer/services/find-full-address.service';
 import { Address } from 'src/app/shared/entities/Address';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -16,7 +16,6 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
 
   @ViewChild('form') form: NgForm;
-  objectToEdit:Address;
 
   searchedZipCodeErrorResponse:boolean = false;
   searchedZipCode="";
@@ -28,6 +27,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
     private findFullAddress:FullAddressFinderService,
     private addressService:CustomerAddressService,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
     private _snackBar: MatSnackBar) {
       super();
     }
@@ -35,8 +35,8 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
 
   ngOnInit(): void {
-    this.onLoad();
-    this.crudOperation='Cadastro';
+    this.onLoad(this.data);
+
   }
 
   ngAfterViewInit(): void {
@@ -103,15 +103,6 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
     }
   }
 
-  onLoad(): void {
-
-    this.clientCpfCnpj = this.data.clientCpfCnpj;
-
-    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
-      this.crudOperation="Atualização";
-      this.objectToEdit = this.data.objectToEdit;
-    }
-  }
 
   destroy(): void {
     this.unsubscribeToObservables();

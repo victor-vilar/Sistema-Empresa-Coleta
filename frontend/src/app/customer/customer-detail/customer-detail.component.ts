@@ -1,11 +1,10 @@
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -20,7 +19,6 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
   @ViewChild('singInForm')form: NgForm;
   rota: string = 'customer';
-  objectToEdit:Customer;
 
   //error handlers
   invalidCpfCnpj = false;
@@ -33,12 +31,12 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
   constructor(
     private service:CustomerService,
     public dialogRef: MatDialogRef<ResidueDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
     ) {super(); }
 
 
 
   ngOnInit(): void {
-    this.crudOperation= "Cadastro";
     this.onLoad();
   }
 
@@ -92,7 +90,7 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
   }
 
-  onLoad(): void {
+  override onLoad(): void {
     this.objectToEdit = this.data.objectToEdit;
     if(this.objectToEdit !== undefined && this.objectToEdit !== null){
       this.crudOperation="Atualização";

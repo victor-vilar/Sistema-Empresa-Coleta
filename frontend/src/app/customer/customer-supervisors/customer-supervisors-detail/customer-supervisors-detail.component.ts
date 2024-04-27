@@ -1,9 +1,9 @@
 import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
-import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Supervisor } from 'src/app/shared/entities/Supervisor';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -15,20 +15,18 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
 
   constructor(
     private supervisorService:CustomerSupervisorService,
-    private dialogRef: MatDialogRef<CustomerSupervisorsDetailComponent>)
+    private dialogRef: MatDialogRef<CustomerSupervisorsDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,)
   {
     super();
   }
 
   @Input() isSubform:boolean=false;
   @ViewChild('form')form: NgForm;
-  objectToEdit:Supervisor;
-
-
 
 
   ngOnInit(): void {
-    this.onLoad();
+    this.onLoad(this.data);
     this.crudOperation= 'Cadastro';
   }
 
@@ -83,16 +81,6 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
-    }
-  }
-
-
-  onLoad(): void {
-    this.clientCpfCnpj = this.data.clientCpfCnpj;
-    if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
-      this.crudOperation="Atualização";
-      this.objectToEdit = this.data.objectToEdit;
-      this.idOfEditedItem = this.objectToEdit.id;
     }
   }
 

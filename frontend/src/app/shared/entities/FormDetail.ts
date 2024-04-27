@@ -12,20 +12,18 @@ import { FormDetailHelperService } from '../services/form-detail-helper.service'
 export abstract class FormDetail{
 
 
-  protected subscriptionsList:Subscription[];
+  protected subscriptionsList:Subscription[] = [];
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   protected router:Router = inject(Router);
   protected dialogService = inject(DialogServiceService);
   protected formDetailHelper = inject(FormDetailHelperService);
   protected clientCpfCnpj:string;
-  //id of the item that gonna be edited if the form is on edit mode
+  protected objectToEdit:any;
   protected idOfEditedItem:number | string;
-  protected crudOperation:string;
-  @Inject(MAT_DIALOG_DATA) protected data:any
+  protected crudOperation:string = "Cadastro";
+
 
   constructor(){ }
-
-
 
 
   //creates object that this detail form going to manipulate
@@ -34,12 +32,19 @@ export abstract class FormDetail{
   //save method,
   abstract save(object:any):void;
 
-  //method to configure the view if is on edit mode or not
-  abstract onLoad():void;
-
   //close detail component
   abstract destroy():void;
 
+
+  //method to configure the view if is on edit mode or not
+  protected onLoad(data:any):void{
+
+    if(data.objectToEdit !== undefined && data.objectToEdit !== null){
+      this.crudOperation="Atualização";
+      this.objectToEdit = data.objectToEdit;
+      this.idOfEditedItem = this.objectToEdit.id;
+    }
+  };
 
 
   // method to unsubscribe the observablese of the form

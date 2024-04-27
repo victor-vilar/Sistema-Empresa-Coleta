@@ -38,7 +38,7 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
   isInvalidEquipmentNameMessage:string;
   isInvalidVolume:boolean = false;
   isInvalidVolumeMessage:string;
-  objectToEdit:Equipment;
+
 
   volumeFormControl = new FormControl('',[Validators.pattern(/^\d+$/)]);
   volumeErrorMatcher = new volumeErrorMatcher();
@@ -48,6 +48,7 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
   constructor(
     private service:EquipmentsService,
     public dialogRef: MatDialogRef<EquipmentDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
     )
     {
       super();
@@ -62,8 +63,7 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
   }
 
   ngOnInit(): void {
-    this.crudOperation = "Cadastro";
-    this.onLoad();
+    this.onLoad(this.data);
   }
 
   ngAfterViewInit(): void {
@@ -74,14 +74,6 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
       this.volumeFormControl.setValue(this.objectToEdit.sizeInMeterCubic.toString());
     },100);
 
-  }
-
-  onLoad(): void {
-      this.objectToEdit = this.data.objectToEdit;
-      if(this.objectToEdit !== undefined && this.objectToEdit !== null){
-        this.crudOperation="Atualização";
-        this.idOfEditedItem = this.objectToEdit.id;
-      }
   }
 
   checkIfVolumeInputIsNumber(){

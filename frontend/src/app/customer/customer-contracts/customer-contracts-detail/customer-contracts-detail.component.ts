@@ -34,7 +34,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   itemContractList:ItemContract[] = [];
   //saves temporaly deleted itens from contract list to delete later
   deletedSavedItensIdList:number[] =[]
-  objectToEdit:Contract;
   //errors
   isInvalidContractDates:boolean = false;
   allFieldsMustBeFilledError:boolean = false;
@@ -45,6 +44,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
   constructor(contractService:CustomerContractsService,
               public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
+              @Inject(MAT_DIALOG_DATA) public data:any,
               ) {
                 super();
                 this.contractService = contractService;
@@ -53,7 +53,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
   ngOnInit(): void {
-    this.crudOperation = "Cadastro";
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
 
@@ -61,7 +60,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   }
 
   //onload method to know if form going to be on 'edit' mode or 'new' mode
-  onLoad(): void {
+  override onLoad(): void {
 
     //getting cpf/cnpj(id) from customer
     this.clientCpfCnpj = this.data.clientCpfCnpj;
