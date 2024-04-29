@@ -1,45 +1,26 @@
 import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
-import { Customer } from 'src/app/shared/entities/Customer';
-import { CustomerService } from 'src/app/customer/services/customer.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CrudBaseComponent } from 'src/app/shared/interfaces/crudbase.interface';
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { Component } from '@angular/core';
+import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
 
 @Component({
   selector: 'app-client',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerListComponent implements OnInit {
+export class CustomerListComponent extends MainComponentEntityOfCustomer {
 
 
-  title: string;
-  pathPrefix: string;
-  pathToOperations: any;
-  service:CustomerService;
-  objectToEdit:any;
-
-  constructor(service:CustomerService,
-    private dialogService:DialogServiceService,
-    private route: ActivatedRoute,){
-    this.service = service;
+  constructor(){
+    super();
   }
-  ngOnInit(): void {
 
-    this.route.queryParams.subscribe(params => {
-      if (params['dialog']) {
-        this.openDialog();
-      }
-    });
-
+  override ngOnInit(): void {
 
     this.title='Clientes';
-    this.pathPrefix='cliente';
+    this.path='cliente';
     this.pathToOperations = [
-        {name:"Cadastrar novo Cliente ", path: this.pathPrefix + '/novo'},
+        {name:"Cadastrar novo Cliente ",
+         path: this.path + '/novo'},
       ];
   }
 
@@ -48,10 +29,5 @@ export class CustomerListComponent implements OnInit {
     this.dialogService.openDialog(CustomerDetailComponent, this.objectToEdit, this.title.toLowerCase());
     this.objectToEdit = null;
   }
-
-  editObject(object:any){
-    this.objectToEdit = object;
-  }
-
 
 }

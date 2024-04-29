@@ -58,7 +58,6 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(s => s.unsubscribe());
-
   }
 
 

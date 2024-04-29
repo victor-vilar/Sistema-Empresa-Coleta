@@ -8,8 +8,8 @@
     <!-- <router-outlet class="roulet"></router-outlet> -->
     <app-equipment-list-table
       [model]="title"
-      [fatherPathPrefix]="pathPrefix"
-      [service]="service"
+      [fatherPathPrefix]="path"
+      [service]="equipmentService"
       (editObjectEmitter)="editObject($event)"
       >
     </app-equipment-list-table>

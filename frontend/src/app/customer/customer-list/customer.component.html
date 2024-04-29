@@ -8,8 +8,8 @@
     <!-- <router-outlet class="roulet"></router-outlet> -->
     <app-customer-list-table
       [model]="title"
-      [fatherPathPrefix]="pathPrefix"
-      [service]="service"
+      [fatherPathPrefix]="path"
+      [service]="customerService"
       (editObjectEmitter)="editObject($event)"
       >
     </app-customer-list-table>

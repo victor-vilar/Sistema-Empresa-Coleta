@@ -8,8 +8,8 @@
     <!-- <router-outlet class="roulet"></router-outlet> -->
     <app-residue-list-table
       [model]="title"
-      [fatherPathPrefix]="pathPrefix"
-      [service]="service"
+      [fatherPathPrefix]="path"
+      [service]="residueService"
       [columnCount]="4"
       (editObjectEmitter)="editObject($event)"
       >

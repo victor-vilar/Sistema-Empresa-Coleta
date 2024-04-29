@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 
+
+/**
+ * Converte os dados da API para um formato que eu quero que a tabela exiba.
+ *
+ */
 @Injectable({
   providedIn: 'root'
 })

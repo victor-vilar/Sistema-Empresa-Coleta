@@ -1,57 +1,46 @@
-import { Subscription } from 'rxjs';
 import { CustomerContractsDetailComponent } from './customer-contracts-detail/customer-contracts-detail.component';
-import { CustomerService } from 'src/app/customer/services/customer.service';
-import { Component, OnInit, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
-import { ActivationEnd, ActivatedRoute } from '@angular/router';
-import { Customer } from 'src/app/shared/entities/Customer';
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { CustomerContractsByCustomerTableMapperService } from './customer-contracts-by-customer-table-mapper.service';
 import { CommunicationService } from 'src/app/shared/services/communication.service';
+import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
 
 @Component({
   selector: 'app-customer-contracts-by-customer-list',
   templateUrl: './customer-contracts-by-customer-list.component.html',
   styleUrls: ['./customer-contracts-by-customer-list.component.css']
 })
-export class CustomerContractsByCustomerListComponent implements OnInit, OnDestroy {
+export class CustomerContractsByCustomerListComponent extends MainComponentEntityOfCustomer {
 
-  subscriptions:Subscription[] = [];
-  selectedCustomer:Customer;
-  title='Contratos'
-  pathPrefix='contrato';
-  pathToOperations = [{name:"Cadastrar novo Contrato", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
-  customerService:CustomerService;
-  contractService:CustomerContractsService;
-  objectToEdit;
-  mapper:CustomerContractsByCustomerTableMapperService;
 
-  constructor(
-    customerService:CustomerService,
-    contractService:CustomerContractsService,
-    mapper:CustomerContractsByCustomerTableMapperService,
-    private route:ActivatedRoute,
-    private communicationService:CommunicationService,
-    private dialogService:DialogServiceService) {
-      this.contractService = contractService;
-      this.customerService = customerService;
-      this.mapper = mapper;
-     }
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(e => e.unsubscribe());
+  contractService:CustomerContractsService = inject(CustomerContractsService);
+  communicationService:CommunicationService = inject(CommunicationService);
+
+  constructor(){
+    super();
+    this.mapper = inject(CustomerContractsByCustomerTableMapperService);
+
   }
 
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.title = 'Contratos';
+    this.path = 'contrato';
+    this.pathToOperations.push(
+      {name:"Cadastrar novo Contrato",
+       path: this.path + '/novo',
+       title:"Novo " + this.path}
+    )
 
-
-
-
-  ngOnInit(): void {
-
-    this.route.paramMap.subscribe(param =>{
-      this.selectedCustomer = this.customerService.list.find(obj =>obj.cpfCnpj === param.get('cpfCnpj'))
-    })
-
-
+    /**
+     * Esse subscrição é para o serviço de communicação do applicação, para que eu consiga acessar o
+     * contrato que foi clicado no componente de de contratos{ContractListComponent}.
+     * Esse componente atual exibe somente os contratos de um cliente especifico, o componente ContractListComponent,
+     * exibe o contratos de todos os clientes. Caso eu queira editar um contrato que foi visualizado no
+     * ContractListComponent tenho que enviar para esse componente pois ele que contem o componente detail
+     * de contratos no router.
+     * E como foi feito tudo com dialog, precisei fazer dessa maneira.
+     */
     this.subscriptions.push(
       this.communicationService.dataEmitter.subscribe(value => {
         this.objectToEdit = value
@@ -59,21 +48,14 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
       })
     );
 
-
-    this.route.queryParams.subscribe(params => {
-      if (params['dialog']) {
-        this.openDialog();
-      }
-    });
-
-
   }
 
   openDialog(){
 
     let rota = '/cliente/' + this.selectedCustomer.cpfCnpj+ '/'+ this.title.toLowerCase();
 
-    this.dialogService.openDialogPassingCustomerId(CustomerContractsDetailComponent,
+    this.dialogService.openDialogPassingCustomerId(
+      CustomerContractsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
       rota,
@@ -82,9 +64,6 @@ export class CustomerContractsByCustomerListComponent implements OnInit, OnDestr
     this.objectToEdit = null;
   }
 
-  editObject(object:any){
-    this.objectToEdit = object;
-  }
 
 
 

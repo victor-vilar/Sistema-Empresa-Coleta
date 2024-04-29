@@ -6,8 +6,8 @@ import { DialogServiceService } from "../services/dialog-service.service";
 import { FormDetailHelperService } from '../services/form-detail-helper.service';
 
 /**
- * Form detail class to be used in all the forms that make operations in the objects of the application.
- * Each form that make CRUD operations in the objects in the applicaiton, must inherance this class
+ * Classe que sera utilizada pelos formulários de 'detalhes' (cadastro), formulários esse que
+ * realizam operações do cadastro e atualização das entidades.
  */
 export abstract class FormDetail{
 

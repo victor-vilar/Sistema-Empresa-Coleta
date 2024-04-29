@@ -18,7 +18,8 @@ export class LoginService {
   private BASE_LOGOUT = "http://localhost:8080/logout";
   private APPLICATION_USER_NOT_FOUND_ERROR = "Application User not found !";
 
-  constructor(private http:HttpClient,
+  constructor(
+     private http:HttpClient,
      private router:Router,
      private dialogService:DialogServiceService ) { }
 

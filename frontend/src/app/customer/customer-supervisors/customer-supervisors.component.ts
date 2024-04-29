@@ -1,55 +1,33 @@
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Customer } from 'src/app/shared/entities/Customer';
+import { Component, inject } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
 import { CustomerSupervisorsDetailComponent } from './customer-supervisors-detail/customer-supervisors-detail.component';
 import { CustomerSupervisorsListTableComponentMapperService } from './customer-supervisors-list-table-component-mapper.service';
+import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
 
 @Component({
   selector: 'app-customer-supervisors',
   templateUrl: './customer-supervisors.component.html',
   styleUrls: ['./customer-supervisors.component.css']
 })
-export class CustomerSupervisorsListComponent implements OnInit {
+export class CustomerSupervisorsListComponent extends MainComponentEntityOfCustomer {
 
+  supervisorService:CustomerSupervisorService = inject(CustomerSupervisorService);
 
-  selectedCustomer:Customer;
-  title='Fiscais'
-  pathPrefix='fiscal';
-  pathToOperations = [{name:"Cadastrar novo fiscal", path: this.pathPrefix + '/novo', title:"Novo " + this.pathPrefix}];
-  customerService:CustomerService;
-  supervisorService:CustomerSupervisorService;
-  objectToEdit;
-  mapper:CustomerSupervisorsListTableComponentMapperService;
+  constructor(){
+  super();
+  this.mapper = inject(CustomerSupervisorsListTableComponentMapperService);
+  }
 
-
-  constructor(
-    customerService:CustomerService,
-    supervisorService:CustomerSupervisorService,
-    mapper:CustomerSupervisorsListTableComponentMapperService,
-    private route:ActivatedRoute,
-    private dialogService:DialogServiceService) {
-      this.supervisorService = supervisorService;
-      this.customerService = customerService;
-      this.mapper = mapper
-     }
-
-  ngOnInit(): void {
-
-    this.route.queryParams.subscribe(params => {
-      if (params['dialog']) {
-        this.openDialog();
-      }
-    });
-
-
-    this.route.paramMap.subscribe(param =>{
-      this.selectedCustomer = this.customerService.list.find(obj => obj.cpfCnpj === param.get('cpfCnpj'));
-    })
-
-
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.title='Fiscais';
+    this.path='fiscal';;
+    this.pathToOperations.push(
+      {name:"Cadastrar novo fiscal",
+       path: this.path + '/novo',
+      title:"Novo " + this.path}
+    )
   }
 
   openDialog(){
@@ -64,9 +42,6 @@ export class CustomerSupervisorsListComponent implements OnInit {
     this.objectToEdit = null;
   }
 
-  editObject(object:any){
-    this.objectToEdit = object;
-  }
 
 
 
