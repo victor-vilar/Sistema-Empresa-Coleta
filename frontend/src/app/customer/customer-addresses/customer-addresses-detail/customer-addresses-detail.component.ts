@@ -139,7 +139,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
     })
   }
 
-  cleanFormFields(){
+  clearForm(){
     this.form.setValue({
       zipCode:'',
       addressName: '',
@@ -158,14 +158,14 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
     if((this.searchedZipCodeErrorResponse || this.searchedZipCode ==="") && this.objectToEdit === undefined){
       errorMessage ='Não foi possivel encontrar esse endereço, insira um endereço valido !'
       this.dialogService.openErrorDialog(errorMessage);
-      this.cleanFormFields();
+      this.clearForm();
       throw Error(errorMessage);
     }
 
     if((this.form.value.zipCode !== this.searchedZipCode) && this.objectToEdit === undefined ){
       errorMessage ='O cep digitado é diferente do cep anteriormente pesquisado'
       this.dialogService.openErrorDialog(errorMessage);
-      this.cleanFormFields();
+      this.clearForm();
       throw Error(errorMessage);
     }
 

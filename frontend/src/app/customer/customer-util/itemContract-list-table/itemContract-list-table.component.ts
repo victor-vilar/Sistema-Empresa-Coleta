@@ -19,7 +19,6 @@ export class ItemContractListTableComponent implements OnInit, DoCheck {
   dataSource:MatTableDataSource<any>;
   @Input()
   tableData = [];
-  @Input()
   tableHeaders = []
 
   savedListLength:number = 0;
@@ -33,6 +32,7 @@ export class ItemContractListTableComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.tableData);
+    this.tableHeaders=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções'];
   }
 
 

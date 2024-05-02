@@ -2,7 +2,7 @@ import { MeasurementUnit } from '../../../../shared/enums/MeasurementUnit';
 import { CollectionFrequency } from '../../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
 import { DialogServiceService } from '../../../../shared/services/dialog-service.service';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
@@ -13,6 +13,7 @@ import { Residue } from 'src/app/shared/entities/Residue';
 import { Schedule, getScheduleValues } from 'src/app/shared/enums/Schedule';
 import { Weekday, WeekdayType, getWeekdayValues } from 'src/app/shared/enums/Weekday';
 import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
+import { CustomerContractsDetailItensErrorsHelperService } from './customer-contracts-detail-itens-errors-helper.service';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -26,39 +27,30 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     @ViewChild('daysInput') daysInput:HTMLSelectElement
 
     weekdayButtonDisabled:boolean = true;
-
-
-
     @Input()itemContractList:any[];
     @Input()deletedSavedItensIdList:number[];
 
 
-    residuesService:ResiduesService;
-    equipmentsService:EquipmentsService;
+    residuesService:ResiduesService = inject(ResiduesService);
+    equipmentsService:EquipmentsService = inject(EquipmentsService);;
+    dialogService:DialogServiceService = inject(DialogServiceService);
+    errorsHelper:CustomerContractsDetailItensErrorsHelperService = inject (CustomerContractsDetailItensErrorsHelperService);
     residuesList:Residue[];
     equipmentsList:Equipment[];
-    headerForTables:string[];
-
-
     weekdaysListToAddToItemContract:WeekdayType[] = [];
-
-
     //sum of itens of contract
     totalValueOfContract:number = 0;
-
-    //enum values to fill the select components
+    //enum values to fill the select options components
     scheduleEnumValues = getScheduleValues();
     weekDaysEnumValues = getWeekdayValues();
     measurementUnitList = getMeasurementUnitValues();
 
+    //constantes para as mensagens de salvamento
+    private readonly SAVE_MESSAGE = {header:"Cadastro",message:"Resíduo inserido com sucesso"};
+    private readonly NEW_WEEKDAY_MESSAGE = {header:"Dia Adicionado",message:"Dia inserido com sucesso"};
 
-  constructor(residuesService:ResiduesService,
-    equipmentsService:EquipmentsService,
-    private _snackBar: MatSnackBar,
-    private dialogService:DialogServiceService) {
-      this.residuesService = residuesService;
-      this.equipmentsService = equipmentsService;
-     }
+
+  constructor(private _snackBar: MatSnackBar) {}
 
 
   ngOnInit(): void {
@@ -71,9 +63,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         this.residuesService.refreshAllData().subscribe(e => {
           this.residuesList = e;
         })
-
-        //initialize headers from child compoente- itens table
-      this.headerForTables=['No','descricao','Residuo','Equipamento','Quantidade Equipamento','Quantidade','Valor','Opções']
 
 
   }
@@ -112,20 +101,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       }
     }
 
-
-    //check if the form imputs are filled
-    //cant create itens with some data empty
-    checkIfItemContractFromInputsAreFilled(){
-      Object.values(this.form.controls).forEach(e =>{
-        if((e.value === '' || e.value === null) && (e !== this.form.controls['days'])){
-            let errorMessage = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
-            this.dialogService.openErrorDialog(errorMessage);
-            throw Error(errorMessage);
-        }
-      })
-    }
-
-
     /**
      * update the list of the services
      */
@@ -138,25 +113,10 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     //add an item to contract
     addItemToContract(){
 
-      //check if all fields of add item its filled.
-      this.checkIfItemContractFromInputsAreFilled();
-
-      //check if the fields from qtd and value are numbers()
-      this.checkIfItemContractInputsAreNumbers();
-
-      //creating new item contract object
       let itemContract = this.createItemContractObject();
-
-
-      //check if a item with the sames keys values exist, if is true, return a error
-      let itemAlreadyExist = this.itemContractList.some(e => this.itemContractCompare(e, itemContract));
-
-      if(itemAlreadyExist){
-        throw Error('Já existe um item com os mesmos dados');
-      }
+      this.errorsHelper.checkErrorsOnAddNewItemContract(this.form,this.itemContractList,itemContract);
 
       //push item to list
-      console.log(itemContract);
       this.itemContractList.push(itemContract);
 
       //updating view of total value
@@ -167,7 +127,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       this.clearWeekdayList();
 
       //angular material snack bar message
-      this.openSnackBar("Resíduo inserido com sucesso","Cadastro");
+      this.openSnackBar(this.SAVE_MESSAGE.message,this.SAVE_MESSAGE.header);
     }
 
     //clear add itens to contract fields
@@ -211,7 +171,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
           measurementUnit:e.measurementUnit
         }
       })
-
     }
 
     //transform list of itens from api to itemContract of front
@@ -234,19 +193,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
             measurementUnit:e.measurementUnit
           }
         })
-
-
-    }
-
-
-
-    //check if the item contract item value and quantity are numbers
-    checkIfItemContractInputsAreNumbers(){
-        if(isNaN(this.form.value.equipmentQuantity) || isNaN(this.form.value.quantity) || isNaN(this.form.value.itemValue) || this.form.value.quantity <= 0 || this.form.value.itemValue <=0){
-          let errorMessage = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
-          this.dialogService.openErrorDialog(errorMessage);
-          throw Error(errorMessage);
-        }
     }
 
     //open snackbar angular material after added a new item
@@ -262,43 +208,12 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
     }
 
-    //needed to compare the itens. If the item comes from databse, it return with its id number,
-    //and if try to save a new item it will be without id. i need to compare itens with and without id
-    itemContractCompare(item1:ItemContract,item2:ItemContract){
-
-      if(item1.id !== item2.id){
-        return false;
-      }
-
-      if(item1.equipment !== item2.equipment){
-        return false;
-      }
-
-      if(item1.residue !== item2.residue){
-        return false;
-      }
-
-      if(item1.qtdOfResidue !== item2.qtdOfResidue){
-        return false;
-      }
-
-      if(item1.itemValue !== item2.itemValue){
-        return false;
-      }
-
-      if(item1.description !== item2.description){
-        return false;
-      }
-
-      return true
-    }
-
 
     //delete item from contract and recalulate the total value
     deleteItemFromList(item:ItemContract){
 
       //deletes a item from item contract list
-      this.itemContractList = this.itemContractList.filter(e =>!this.itemContractCompare(e, item));
+      this.itemContractList = this.itemContractList.filter(e =>!this.errorsHelper.itemContractCompare(e, item));
 
 
       //if the item has an id, it was saved before, and need to be deleted from api.
@@ -316,7 +231,9 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     }
 
     /**
-     * add new weekday to itemContract weekday list
+     * Ao adicionar um item, deve ser escolhido um dia da semana em que o serviço será executado pelo menos.
+     * Esse metodo serve somente para impedir que dois dias da semana iguais sejam inseridos na lista de dias.
+     * Exemplo: [SEGUNDA, SEGUNDA] < -- ERRADO.
      */
     addNewWeekday(){
 
@@ -324,7 +241,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
 
         this.weekdaysListToAddToItemContract.push(this.form.value.days);
-        this.openSnackBar("Dia inserido com sucesso a lista","Dia inserido");
+        this.openSnackBar(this.NEW_WEEKDAY_MESSAGE.message,this.NEW_WEEKDAY_MESSAGE.header);
+
       }
 
       this.daysInput.value = "";

@@ -4,7 +4,7 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 import { Router, ActivatedRoute, UrlTree, RouterStateSnapshot } from '@angular/router';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ItemContract, itemContractListForTests } from 'src/app/shared/entities/ItemContract';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -26,10 +26,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
   //services
-  contractService:CustomerContractsService;
-
-
-
+  contractService:CustomerContractsService = inject(CustomerContractsService);
   //list of itens of a contract
   itemContractList:ItemContract[] = [];
   //saves temporaly deleted itens from contract list to delete later
@@ -42,13 +39,11 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
 
-  constructor(contractService:CustomerContractsService,
-              public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
-              @Inject(MAT_DIALOG_DATA) public data:any,
-              ) {
+  constructor(public dialogRef: MatDialogRef<CustomerContractsDetailComponent>,
+              @Inject(MAT_DIALOG_DATA) public data:any)
+              {
                 super();
-                this.contractService = contractService;
-               }
+              }
 
 
 
@@ -105,20 +100,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
         }
       }
 
-  //fast filler to form(tests)
-  mockingFormFiller(){
-
-    this.form.setValue({
-      contractNumber:'1000',
-      beginDate:new Date('2022-02-01'),
-      endDate:new Date('2022-02-28'),
-      contractStatus:ContractStatus.ATIVO
-    })
-
-    this.itemContractList = itemContractListForTests;
-
-
-  }
 
   //saves contract at database
   save(){
