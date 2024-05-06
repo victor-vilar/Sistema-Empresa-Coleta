@@ -10,7 +10,7 @@
             <div class="residue-data">
                 <mat-form-field appearance="outline">
                   <mat-label for="residue">Resíduo:</mat-label>
-                  <mat-select name="residue" id="residue" ngModel  >
+                  <mat-select name="residue" id="residue" ngModel required >
                     <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -20,7 +20,7 @@
             <div class="residue-data">
                 <mat-form-field appearance="outline">
                   <mat-label>Quantidade Contratada:</mat-label>
-                  <input matInput type="text" name="quantity" ngModel >
+                  <input matInput type="number" name="quantity" ngModel required>
                 </mat-form-field>
             </div>
 
@@ -29,7 +29,7 @@
             <div class="residue-data">
               <mat-form-field appearance="outline">
                   <mat-label for="measurementUnit">Unidade de Medida</mat-label>
-                  <mat-select name="measurementUnit" id="measurementUnit" ngModel >
+                  <mat-select name="measurementUnit" id="measurementUnit" ngModel required>
                     <mat-option value="{{measurementUnit}}" *ngFor="let measurementUnit of measurementUnitList">{{measurementUnit}}</mat-option>
                   </mat-select>
               </mat-form-field>
@@ -44,7 +44,7 @@
             <div class="residue-data">
                 <mat-form-field appearance="outline">
                   <mat-label for="equipment">Equipamento:</mat-label>
-                    <mat-select name="equipment" id="equipment"  ngModel >
+                    <mat-select name="equipment" id="equipment"  ngModel required>
                       <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -54,7 +54,7 @@
             <div class="residue-data" >
                 <mat-form-field appearance="outline">
                   <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
-                  <input matInput type="text" name="equipmentQuantity" ngModel matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
+                  <input matInput type="number" name="equipmentQuantity" ngModel required matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
                   </mat-form-field>
             </div>
 
@@ -62,7 +62,7 @@
             <div class="residue-data">
               <mat-form-field appearance="outline">
                   <mat-label>R$:</mat-label>
-                  <input matInput type="currency" name="itemValue" ngModel >
+                  <input matInput type="number" name="itemValue" ngModel required>
               </mat-form-field>
           </div>
 
@@ -74,7 +74,7 @@
           <div class="residue-data">
               <mat-form-field appearance="outline">
                 <mat-label for="schedule">Frequência:</mat-label>
-                  <mat-select name="schedule" id="schedule"  ngModel matTooltip="Frequência em que o serviço será executado" >
+                  <mat-select name="schedule" id="schedule"  ngModel required matTooltip="Frequência em que o serviço será executado" >
                     <mat-option value="{{schedule}}" *ngFor="let schedule of scheduleEnumValues">{{schedule}}</mat-option>
                   </mat-select>
                 </mat-form-field>
