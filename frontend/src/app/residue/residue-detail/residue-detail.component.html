@@ -5,15 +5,15 @@
     <a (click)="destroy()" class="close-button">X</a>
   </div>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" required>
       <mat-label>Resíduo</mat-label>
-      <input  matInput type="text" required  name="type" ngModel>
-      <mat-error *ngIf="isInvalidType" class="alert">{{isInvalidTypeMessage}}</mat-error>
+      <input  matInput type="text" required  name="type" ngModel required>
+      <!-- <mat-error *ngIf="isInvalidType" class="alert">{{isInvalidTypeMessage}}</mat-error> -->
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" required>
       <mat-label>Classe</mat-label>
-      <input  matInput type="text" required  name="description" ngModel>
-      <mat-error *ngIf="isInvalidDescription" class="alert">{{isInvalidDescriptionMessage}}</mat-error>
+      <input  matInput type="text" required  name="description" ngModel required>
+      <!-- <mat-error *ngIf="isInvalidDescription" class="alert">{{isInvalidDescriptionMessage}}</mat-error> -->
     </mat-form-field>
     <button type="submit">Salvar</button>
     <button type="button" (click)="cleanForm()">Limpar Campos</button>

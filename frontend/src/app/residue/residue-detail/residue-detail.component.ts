@@ -75,17 +75,17 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
   }
 
   checkIfInputFieldsAreFilled(){
-    if(!this.form.value.type.trim().length){
-      this.isInvalidType = true;
-      this.isInvalidTypeMessage = 'O tipo do residuo não pode ser vazio!'
-      throw Error('O tipo do residuo não pode ser vazio!');
-    }
+    // if(!this.form.value.type.trim().length){
+    //   this.isInvalidType = true;
+    //   this.isInvalidTypeMessage = 'O tipo do residuo não pode ser vazio!'
+    //   throw Error('O tipo do residuo não pode ser vazio!');
+    // }
 
-    if(!this.form.value.description.trim().length){
-      this.isInvalidDescription = true;
-      this.isInvalidDescriptionMessage = 'A classe do residuo não pode ser vazio!'
-      throw Error('A classe do residuo não pode ser vazio!');
-    }
+    // if(!this.form.value.description.trim().length){
+    //   this.isInvalidDescription = true;
+    //   this.isInvalidDescriptionMessage = 'A classe do residuo não pode ser vazio!'
+    //   throw Error('A classe do residuo não pode ser vazio!');
+    // }
   }
 
   resetInvalidProperties(){

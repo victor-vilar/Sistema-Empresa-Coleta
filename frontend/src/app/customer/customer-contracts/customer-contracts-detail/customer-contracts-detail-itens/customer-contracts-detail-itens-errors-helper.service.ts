@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { ErrosHelperService } from 'src/app/shared/services/erros-helper.service';
 
 /**
  * Serviço helper para o componente CustomerContracsDetailItens, que é o componente de detalhes(cadastro) dos
@@ -11,20 +12,37 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerContractsDetailItensErrorsHelperService {
+export class CustomerContractsDetailItensErrorsHelperService extends ErrosHelperService {
 
-
-  dialogService:DialogServiceService = inject(DialogServiceService);
+  private readonly EMPTY_FIELDS_MESSAGE = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
+  private readonly NOT_NUMBERS_MESSAGE = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'
   private readonly ITEM_ALREADY_EXIST_MESSAGE = 'Um item com os mesmo atributos já existe dentro da lista !'
+  constructor() {super(); }
 
-  constructor() { }
 
+  public checkErrors(...vargs:any[]):void{
+    this.checkErrorsOnAddNewItemContract(vargs[0],vargs[1],vargs[2]);
+  }
   /**
    * checa erros ao adicionar novos itens
    * @param itemContractList lista de itens de contrato
    * @param item item que sera adicionado.
    */
   public checkErrorsOnAddNewItemContract(form:NgForm, itemContractList:ItemContract[], item:ItemContract):void {
+
+    //checa se todos os campos do resíduo estão preenchidos
+    Object.values(form.controls).forEach(e =>{
+      if((e.value === '' || e.value === null) && (e !== form.controls['days'])){
+          this.dialogService.openErrorDialog(this.EMPTY_FIELDS_MESSAGE);
+          throw Error(this.EMPTY_FIELDS_MESSAGE);
+      }
+    })
+
+    //checa se os campos são numeros
+    if(isNaN(form.value.equipmentQuantity) || isNaN(form.value.quantity) || isNaN(form.value.itemValue) || form.value.quantity <= 0 || form.value.itemValue <=0){
+      this.dialogService.openErrorDialog(this.NOT_NUMBERS_MESSAGE);
+      throw Error(this.NOT_NUMBERS_MESSAGE);
+    }
 
     //checa se há algum item igual ja salvo na lista de itens
     let itemAlreadyExist = itemContractList.some(e => this.itemContractCompare(e, item));

@@ -14,6 +14,7 @@ import { Schedule, getScheduleValues } from 'src/app/shared/enums/Schedule';
 import { Weekday, WeekdayType, getWeekdayValues } from 'src/app/shared/enums/Weekday';
 import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
 import { CustomerContractsDetailItensErrorsHelperService } from './customer-contracts-detail-itens-errors-helper.service';
+import { ErrosHelperService } from 'src/app/shared/services/erros-helper.service';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -114,7 +115,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     addItemToContract(){
 
       let itemContract = this.createItemContractObject();
-      this.errorsHelper.checkErrorsOnAddNewItemContract(this.form,this.itemContractList,itemContract);
+      this.errorsHelper.checkErrors(this.form,this.itemContractList,itemContract);
 
       //push item to list
       this.itemContractList.push(itemContract);
@@ -202,9 +203,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         verticalPosition: 'bottom',
         duration: 1000
       });
-
-
-
 
     }
 
