@@ -14,7 +14,7 @@ import { Schedule, getScheduleValues } from 'src/app/shared/enums/Schedule';
 import { Weekday, WeekdayType, getWeekdayValues } from 'src/app/shared/enums/Weekday';
 import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
 import { CustomerContractsDetailItensErrorsHelperService } from './customer-contracts-detail-itens-errors-helper.service';
-import { ErrosHelperService } from 'src/app/shared/services/erros-helper.service';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',

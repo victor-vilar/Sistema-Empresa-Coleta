@@ -4,7 +4,7 @@ import { DialogServiceService } from './dialog-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export abstract class ErrosHelperService {
+export abstract class ErrorsHelperService {
 
   dialogService:DialogServiceService = inject(DialogServiceService);
   constructor() { }

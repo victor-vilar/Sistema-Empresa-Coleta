@@ -1,11 +1,13 @@
 import { ResiduesService } from 'src/app/residue/services/residues.service';
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Residue } from 'src/app/shared/entities/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { ResidueDetailErrosHelperService } from '../services/residue-detail-erros-helper.service';
 
 
 @Component({
@@ -18,13 +20,13 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
 
   @ViewChild('singInForm') form: NgForm;
   isInvalidType = false;
-  isInvalidTypeMessage = '';
   isInvalidDescription = false;
-  isInvalidDescriptionMessage = '';
 
+
+  private service:ResiduesService = inject(ResiduesService);
+  private errorHelper:ErrorsHelperService = inject(ResidueDetailErrosHelperService);
 
   constructor(
-    private service:ResiduesService,
     public dialogRef: MatDialogRef<ResidueDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
   ) { super();}
@@ -58,7 +60,7 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
 
 
     this.resetInvalidProperties();
-    this.checkIfInputFieldsAreFilled();
+    this.errorHelper.checkErrors(this.form,this.isInvalidType,this.isInvalidDescription);
     this.dialogService.openProgressDialog();
     //criando um novo objeto
     let observable$;
@@ -74,19 +76,6 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
 
   }
 
-  checkIfInputFieldsAreFilled(){
-    // if(!this.form.value.type.trim().length){
-    //   this.isInvalidType = true;
-    //   this.isInvalidTypeMessage = 'O tipo do residuo não pode ser vazio!'
-    //   throw Error('O tipo do residuo não pode ser vazio!');
-    // }
-
-    // if(!this.form.value.description.trim().length){
-    //   this.isInvalidDescription = true;
-    //   this.isInvalidDescriptionMessage = 'A classe do residuo não pode ser vazio!'
-    //   throw Error('A classe do residuo não pode ser vazio!');
-    // }
-  }
 
   resetInvalidProperties(){
     this.isInvalidType = false;

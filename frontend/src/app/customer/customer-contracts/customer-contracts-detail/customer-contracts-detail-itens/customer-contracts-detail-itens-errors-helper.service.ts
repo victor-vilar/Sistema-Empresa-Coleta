@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { ErrosHelperService } from 'src/app/shared/services/erros-helper.service';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 
 /**
  * Serviço helper para o componente CustomerContracsDetailItens, que é o componente de detalhes(cadastro) dos
@@ -12,7 +12,7 @@ import { ErrosHelperService } from 'src/app/shared/services/erros-helper.service
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerContractsDetailItensErrorsHelperService extends ErrosHelperService {
+export class CustomerContractsDetailItensErrorsHelperService extends ErrorsHelperService {
 
   private readonly EMPTY_FIELDS_MESSAGE = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
   private readonly NOT_NUMBERS_MESSAGE = 'Os campos de quantidade e valor, dos campos do cadastro de resíduos, devem ser do tipo número e serem maiores do que zero'

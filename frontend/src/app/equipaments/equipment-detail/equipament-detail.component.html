@@ -8,12 +8,10 @@
       <mat-form-field appearance="outline">
         <mat-label>Equipamento</mat-label>
         <input matInput  type="text" required name="equipmentName" ngModel>
-        <mat-error *ngIf="isInvalidEquipmentName" class="alert">{{isInvalidEquipmentNameMessage}}</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Volume</mat-label>
-        <input [formControl]="volumeFormControl" [errorStateMatcher]="volumeErrorMatcher" matInput  type="text" required name="equipmentSize" ngModel>
-        <mat-error  *ngIf="isInvalidVolume" class="alert">{{isInvalidVolumeMessage}}</mat-error>
+        <input matInput  type="number" required name="equipmentSize" ngModel>
       </mat-form-field>
       <button type="submit" class="app-button">Salvar</button>
       <button type="button" class="app-button" (click)="cleanForm()">Limpar Campos</button>

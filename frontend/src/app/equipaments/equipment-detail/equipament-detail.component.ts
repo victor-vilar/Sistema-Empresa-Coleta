@@ -1,26 +1,28 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Equipment } from 'src/app/shared/entities/Equipment';
-import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit, inject } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { EquipmentDetailErrorsHelperService } from './equipment-detail-errors-helper.service';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 
 
 
 
-//myerror class to volumeSize input display error messages
-export class volumeErrorMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    if((isNaN(control.value) || control.value <= 0 || control.value === '') && (control.dirty || control.touched || isSubmitted) ){
-      return true;
-    }
-    return false;
-  }
-}
+// //myerror class to volumeSize input display error messages
+// export class volumeErrorMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     const isSubmitted = form && form.submitted;
+//     if((isNaN(control.value) || control.value <= 0 || control.value === '') && (control.dirty || control.touched || isSubmitted) ){
+//       return true;
+//     }
+//     return false;
+//   }
+// }
 
 
 @Component({
@@ -31,25 +33,17 @@ export class volumeErrorMatcher implements ErrorStateMatcher {
 export class EquipmentDetailComponent extends FormDetail implements OnInit, AfterViewInit {
 
   @ViewChild('singInForm') form:NgForm;
-  //id of the item that gonna be edited if the form is on edit mode
-  //operation that gonna be executed,
+
 
   isInvalidEquipmentName:boolean = false;
-  isInvalidEquipmentNameMessage:string;
   isInvalidVolume:boolean = false;
-  isInvalidVolumeMessage:string;
 
-
-  volumeFormControl = new FormControl('',[Validators.pattern(/^\d+$/)]);
-  volumeErrorMatcher = new volumeErrorMatcher();
-
-
+  private service:EquipmentsService = inject(EquipmentsService);
+  private errorsHelper:ErrorsHelperService = inject(EquipmentDetailErrorsHelperService);
 
   constructor(
-    private service:EquipmentsService,
     public dialogRef: MatDialogRef<EquipmentDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any,
-    )
+    @Inject(MAT_DIALOG_DATA) public data:any)
     {
       super();
     }
@@ -58,7 +52,7 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
     return {
       id:this.idOfEditedItem,
       equipmentName:this.form.value.equipmentName,
-      sizeInMeterCubic:Number(this.volumeFormControl.value)
+      sizeInMeterCubic:this.form.value.equipmentSize
     }
   }
 
@@ -70,29 +64,10 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
     setTimeout(() =>{
       this.form.setValue({
         equipmentName:this.objectToEdit.equipmentName,
-      })
-      this.volumeFormControl.setValue(this.objectToEdit.sizeInMeterCubic.toString());
+        equipmentSize:this.objectToEdit.sizeInMeterCubic
+      });
     },100);
 
-  }
-
-  checkIfVolumeInputIsNumber(){
-    if(isNaN(Number(this.volumeFormControl.value)) || Number(this.volumeFormControl.value) <= 0 || this.volumeFormControl.value === '' ){
-      console.log(this.form.value.equipmentSize)
-      this.isInvalidVolume=true;
-      this.isInvalidVolumeMessage = 'O valor do volume do equipamento deve ser do tipo número e ser maior que zero';
-      throw Error('O valor do volume do equipamento deve ser do tipo número  número e ser maior que zero');
-    }
-  }
-
-
-
-  checkIfEquipmentNameAreFilled(){
-    if(!this.form.value.equipmentName.trim().length){
-      this.isInvalidEquipmentName = true;
-      this.isInvalidEquipmentNameMessage = 'O nome do não pode ser vazio!'
-      throw Error('O nome do equipamento não pode ser vazio!');
-    }
   }
 
   resetInvalidProperties(){
@@ -103,13 +78,12 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
   save(){
 
     this.resetInvalidProperties();
-    this.checkIfEquipmentNameAreFilled();
-    this.checkIfVolumeInputIsNumber();
-
+    this.errorsHelper.checkErrors(this.form,this.isInvalidEquipmentName,this.isInvalidVolume);
 
     this.dialogService.openProgressDialog();
     let observable$;
     let object = this.createObject();
+    console.log(object)
     //se null object it is a new object
     //else it is a already exist one and it is a update
     if(object.id === undefined){
@@ -149,7 +123,5 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
     }
   }
 
-
-  //
 
 }
