@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { CommunicationService } from './../../shared/services/communication.service';
+import { CommunicationService } from '../../../shared/services/communication.service';
 import { AfterViewInit, Component, DoCheck, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

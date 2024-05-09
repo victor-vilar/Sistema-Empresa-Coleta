@@ -20,7 +20,7 @@ import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter'
 import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilter';
 import { ContractModule } from './contracts/contract.module';
 import { MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
-import { ServiceorderModule } from './serviceorder/serviceorder.module';
+import { ServiceorderModule } from './customer/customer-service-order/serviceorder.module';
 
 
 

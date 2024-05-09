@@ -1,4 +1,4 @@
-import { ServiceOrder } from './../../shared/entities/ServiceOrder';
+import { ServiceOrder } from '../../../shared/entities/ServiceOrder';
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 
@@ -50,7 +50,7 @@ export class PdfBuilderService {
   private address(pdf:jsPDF, serviceOrder:ServiceOrder):void{
     let initialY = 41;
     let currentY = 41
-    
+
     pdf.text('Local do Serviço:',2,currentY + 6);
     pdf.text('Logradouro:',2,currentY + 6);
     pdf.text(`${serviceOrder.address.addressName}`,45,41)

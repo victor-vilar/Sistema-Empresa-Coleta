@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../template/dashboard/dashboard.component';
-import { ContractModule } from '../contracts/contract.module';
-import { CustomerModule } from '../customer/customer.module';
-import { ResidueModule } from '../residue/residue.module';
+import { DashboardComponent } from '../../template/dashboard/dashboard.component';
+import { ContractModule } from '../../contracts/contract.module';
+import { CustomerModule } from '../customer.module';
+import { ResidueModule } from '../../residue/residue.module';
 import { ServiceorderComponent } from './serviceorder.component';
-import { EquipamentsModule } from '../equipaments/equipaments.module';
-import { ServiceorderCreateComponent } from './create/serviceorder.create.component';
+import { EquipamentsModule } from '../../equipaments/equipaments.module';
+import { ServiceorderCreateComponent } from './customer-service-order-detail/serviceorder.detail.component';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
 
 

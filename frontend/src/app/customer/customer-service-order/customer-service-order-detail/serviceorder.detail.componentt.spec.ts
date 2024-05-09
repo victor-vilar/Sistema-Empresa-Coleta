@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ServiceorderCreateComponent } from './serviceorder.create.component';
+import { ServiceorderCreateComponent } from './serviceorder.detail.component';
 
 describe('CreateComponent', () => {
   let component: ServiceorderCreateComponent;

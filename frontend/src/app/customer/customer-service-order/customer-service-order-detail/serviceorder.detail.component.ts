@@ -1,7 +1,7 @@
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
-import { ServiceorderService } from './../services/serviceorder.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ServiceorderService } from '../services/serviceorder.service';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
@@ -9,25 +9,33 @@ import { NgForm } from '@angular/forms';
 import { Address } from 'src/app/shared/entities/Address';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { ServiceorderDetailComponentErrorsHelperService } from '../services/serviceorder-detail-component-errors-helper.service';
+import { FormDetail } from 'src/app/shared/entities/FormDetail';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './serviceorder.create.component.html',
-  styleUrls: ['./serviceorder.create.component.css']
+  templateUrl: './serviceorder.detail.component.html',
+  styleUrls: ['./serviceorder.detail.component.css']
 })
-export class ServiceorderCreateComponent implements OnInit {
+export class ServiceorderDetailComponent extends FormDetail implements OnInit {
+
+  @ViewChild('form') form!:NgForm;
 
   customers:  Customer      [] = [];
   contracts:  Contract      [] = [];
   itens:      ItemContract  [] = [];
   addresses:  Address       [] = [];
 
-  @ViewChild('form') form!:NgForm;
+  private serviceOrderService:ServiceorderService = inject(ServiceorderService);
+  private customerService:CustomerService = inject(CustomerService);
+  private errorsHelper:ErrorsHelperService = inject(ServiceorderDetailComponentErrorsHelperService);
 
-  constructor(private serviceOrderService:ServiceorderService,
-              private customerService:CustomerService,
-              private dialogService:DialogServiceService,
-              public dialogRef: MatDialogRef<ServiceorderCreateComponent>) { }
+
+
+  constructor(
+              public dialogRef: MatDialogRef<ServiceorderDetailComponent>
+            ) { super();}
 
   ngOnInit(): void {
 
