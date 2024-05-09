@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.dto.supervisor;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,7 +15,7 @@ public class SupervisorUpdateDto {
 
     @NotBlank(message = "The phonenumer of supervisor is required")
     private String phoneNumber;
-    @NotBlank(message = "the email of supervisor is required")
+    @NotBlank @Email(message = "the email of supervisor is required")
     private String email;
 
     @NotBlank(message= "The customer of supervisor is required")

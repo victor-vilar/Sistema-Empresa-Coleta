@@ -58,7 +58,7 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
     }
 
     @Override
-    public ResponseEntity<ServiceOrderResponseDto> update(ServiceOrderUpdateDto updateDto) {
+    public ResponseEntity<ServiceOrderResponseDto> update(@Valid ServiceOrderUpdateDto updateDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDto));
     }
 
