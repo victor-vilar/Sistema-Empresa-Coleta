@@ -14,9 +14,9 @@ export class EquipmentDetailErrorsHelperService extends ErrorsHelperService {
     super();
   }
 
-  public override checkErrors(...vargs: any[]): void {
-    this.checkIfEquipmentNameAreFilled(vargs[0],vargs[1]);
-    this.checkIfVolumeInputIsNumber(vargs[0],vargs[2])
+  public checkErrors(form:NgForm,...vargs: any[]): void {
+    this.checkIfEquipmentNameAreFilled(form,vargs[0]);
+    this.checkIfVolumeInputIsNumber(form,vargs[1])
   }
 
   private checkIfEquipmentNameAreFilled(form:NgForm, isInvalidEquipmentName:boolean){

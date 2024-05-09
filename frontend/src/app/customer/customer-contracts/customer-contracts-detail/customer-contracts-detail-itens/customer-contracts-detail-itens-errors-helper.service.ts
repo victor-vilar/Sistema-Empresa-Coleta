@@ -20,8 +20,8 @@ export class CustomerContractsDetailItensErrorsHelperService extends ErrorsHelpe
   constructor() {super(); }
 
 
-  public checkErrors(...vargs:any[]):void{
-    this.checkErrorsOnAddNewItemContract(vargs[0],vargs[1],vargs[2]);
+  public checkErrors(form:NgForm,...vargs:any[]):void{
+    this.checkErrorsOnAddNewItemContract(form,vargs[0],vargs[1]);
   }
   /**
    * checa erros ao adicionar novos itens

@@ -14,8 +14,8 @@ export class ResidueDetailErrosHelperService extends ErrorsHelperService {
     super();
   }
 
-  public override checkErrors(...vargs: any[]): void {
-    this.checkIfInputFieldsAreFilled(vargs[0],vargs[1],vargs[2]);
+  public checkErrors(form:NgForm,...vargs: any[]): void {
+    this.checkIfInputFieldsAreFilled(form,vargs[0],vargs[1]);
   }
 
   checkIfInputFieldsAreFilled(form:NgForm,isInvalidType:boolean,isInvalidDescription:boolean){

@@ -11,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { CustomerContractsDetailItensComponent } from './customer-contracts-detail-itens/customer-contracts-detail-itens.component';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { CustomerContractsDetailErrorsHelperService } from './customer-contracts-detail-errors-helper.service';
 
 
 @Component({
@@ -23,18 +25,19 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   //form
   @ViewChild('form') form:NgForm;
   @ViewChild('itensChild') child:CustomerContractsDetailItensComponent;
+  contractStatusEnumValues;
 
 
   //services
   contractService:CustomerContractsService = inject(CustomerContractsService);
+  errorsHelper:ErrorsHelperService = inject(CustomerContractsDetailErrorsHelperService);
   //list of itens of a contract
   itemContractList:ItemContract[] = [];
   //saves temporaly deleted itens from contract list to delete later
   deletedSavedItensIdList:number[] =[]
   //errors
-  isInvalidContractDates:boolean = false;
   allFieldsMustBeFilledError:boolean = false;
-  contractStatusEnumValues;
+
 
 
 
@@ -50,8 +53,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   ngOnInit(): void {
     this.onLoad();
     this.contractStatusEnumValues = getContractStatusValues();
-
-
   }
 
   //onload method to know if form going to be on 'edit' mode or 'new' mode
@@ -105,12 +106,15 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   save(){
 
 
+    this.errorsHelper.checkErrors(this.form,this.itemContractList,this.allFieldsMustBeFilledError)
+
+
     this.dialogService.openProgressDialog();
     //check if contract has at least one item
 
 
     //check if end date is bigger than begin date
-    this.checkContractDatesBeforeSave();
+    //this.checkContractDatesBeforeSave();
 
     //do not save empty contracts
     this.checkIfContractHasItens();
@@ -121,9 +125,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     //adding list of itens to contract, that have been transformed;
     contract.itens = this.child.itemContractListMapper();
     contract.customerId = this.clientCpfCnpj;
-
-    console.log(contract);
-
 
     //creates a contractObserver
     let contractObserver;
@@ -156,20 +157,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     this.destroy();
   }
 
-  //check if begin date is small or equals to end date
-  //end date must be bigger than begin date
-  checkContractDates(){
-    let beginDate = new Date(this.form.value.beginDate);
-    let endDate = new Date(this.form.value.endDate);
-    if(beginDate.getTime() >= endDate.getTime()){
-      this.isInvalidContractDates = true;
-      return true;
-    }else{
-      this.isInvalidContractDates = false;
-      return false;
-    }
-
-  }
 
   //function to check if endDate is bigger than beginDate in matDatepickerFilter
   endDateFilter = (date: Date | null): boolean => {
@@ -180,14 +167,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   }
 
 
-  //show dialog error if contract dates are wrong
-  checkContractDatesBeforeSave(){
-    if(this.isInvalidContractDates){
-      let errorMessage = 'A data de encerramento não pode ser igual ou anterior a data de inicio !'
-      this.dialogService.openErrorDialog(errorMessage);
-      throw Error(errorMessage);
-    }
-  }
 
     //check if the contract have at least one item
   //don't creates empty contracts

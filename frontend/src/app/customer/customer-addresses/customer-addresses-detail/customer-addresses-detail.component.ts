@@ -1,11 +1,13 @@
 import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
-import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FullAddressFinderService } from 'src/app/customer/services/find-full-address.service';
 import { Address } from 'src/app/shared/entities/Address';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomerAddressesDetailErrorsHelperService } from './customer-addresses-detail-errors-helper.service';
+import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 
 @Component({
   selector: 'app-customer-addresses-detail',
@@ -20,12 +22,13 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   searchedZipCodeErrorResponse:boolean = false;
   searchedZipCode="";
 
+  private findFullAddress:FullAddressFinderService = inject(FullAddressFinderService);
+  private addressService:CustomerAddressService = inject(CustomerAddressService);
+  private errorsHelper:ErrorsHelperService = inject(CustomerAddressesDetailErrorsHelperService)
 
   @Input() isSubform:boolean=false;
 
   constructor(
-    private findFullAddress:FullAddressFinderService,
-    private addressService:CustomerAddressService,
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private _snackBar: MatSnackBar) {
@@ -70,7 +73,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   }
 
   save(): void {
-    this.checkIfHasErros();
+    this.errorsHelper.checkErrors(this.form,this.searchedZipCodeErrorResponse,this.searchedZipCode,this.objectToEdit);
     this.dialogService.openProgressDialog();
 
     let observable$;

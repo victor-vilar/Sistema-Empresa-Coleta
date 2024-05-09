@@ -45,8 +45,6 @@
               <mat-datepicker #endDatePicker></mat-datepicker>
               <mat-error *ngIf="this.form.controls['endDate']?.value === '' && (this.form.controls['endDate'].dirty || this.form.controls['endDate'].touched)"
               class="alert">O contrato deve possuir uma data de encerramento</mat-error>
-              <mat-error *ngIf="isInvalidContractDates"
-              class="alert">A data de encerramento não pode ser igual ou anterior a data de início</mat-error>
             </mat-form-field>
           </div>
 
