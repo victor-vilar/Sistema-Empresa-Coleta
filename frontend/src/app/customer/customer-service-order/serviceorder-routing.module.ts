@@ -7,13 +7,13 @@ import { CustomerModule } from '../customer.module';
 import { ResidueModule } from '../../residue/residue.module';
 import { ServiceorderComponent } from './serviceorder.component';
 import { EquipamentsModule } from '../../equipaments/equipaments.module';
-import { ServiceorderCreateComponent } from './customer-service-order-detail/serviceorder.detail.component';
+import { ServiceorderDetailComponent } from './customer-service-order-detail/serviceorder.detail.component';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
 
 
 const routes: Routes = [
   {path:'ordem-servico',component:ServiceorderComponent, children:[
-    {path:'novo',component:ServiceorderCreateComponent},
+    {path:'novo',component:ServiceorderDetailComponent},
     {path:'pdf',component:PdfTemplateComponent},
 
 

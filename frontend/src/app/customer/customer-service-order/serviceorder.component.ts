@@ -4,7 +4,7 @@ import { ServiceorderService } from './services/serviceorder.service';
 import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { DialogServiceService } from '../../shared/services/dialog-service.service';
-import { ServiceorderCreateComponent } from './customer-service-order-detail/serviceorder.detail.component';
+import { ServiceorderDetailComponent } from './customer-service-order-detail/serviceorder.detail.component';
 import { PdfBuilderService } from './services/pdf-builder.service';
 import jsPDF from 'jspdf';
 
@@ -49,7 +49,7 @@ export class ServiceorderComponent implements OnInit {
   }
 
   openAddNew(){
-    this.dialogService.openDialog(ServiceorderCreateComponent,null,"/ordem-servico")
+    this.dialogService.openDialog(ServiceorderDetailComponent,null,"/ordem-servico")
   }
 
 }
