@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 })
 export abstract class ErrorsHelperService {
 
-  dialogService:DialogServiceService = inject(DialogServiceService);
+  protected dialogService:DialogServiceService = inject(DialogServiceService);
   constructor() { }
 
   public abstract checkErrors(form:NgForm,...vargs:any[]):void;

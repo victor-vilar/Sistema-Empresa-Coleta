@@ -1,12 +1,13 @@
 import { CommunicationService } from '../../shared/services/communication.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { ServiceorderService } from './services/serviceorder.service';
 import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogServiceService } from '../../shared/services/dialog-service.service';
 import { ServiceorderDetailComponent } from './customer-service-order-detail/serviceorder.detail.component';
 import { PdfBuilderService } from './services/pdf-builder.service';
-import jsPDF from 'jspdf';
+
+import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 
 @Component({
   selector: 'app-serviceorder',
@@ -16,17 +17,14 @@ import jsPDF from 'jspdf';
 export class ServiceorderComponent implements OnInit {
 
   showRouterOutlet:boolean = false;
+  serviceOrderService:ServiceorderService = inject(ServiceorderService);
+  mapper:Mapper = inject(ServiceOrderListTableComponentMapperService);
+  private dialogService:DialogServiceService = inject(DialogServiceService);
+  private communicationService:CommunicationService = inject(CommunicationService);
+  private router:Router = inject(Router)
+  private pdfBuilder:PdfBuilderService;
 
-  constructor(
-    public serviceOrderService:ServiceorderService,
-    public mapper:ServiceOrderListTableComponentMapperService,
-    public dialogService:DialogServiceService,
-    public pdfBuilder:PdfBuilderService,
-    private communicationService:CommunicationService,
-    private router:Router
-    ) { }
-
-
+  constructor() { }
 
   ngOnInit(): void {
 

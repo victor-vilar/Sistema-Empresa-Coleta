@@ -44,25 +44,13 @@ export class ServiceorderDetailComponent extends FormDetail implements OnInit {
   }
 
   save():void{
-    this.checkFilledFields();
+    this.errorsHelper.checkErrors(this.form);
     this.dialogService.openProgressDialog()
     let serviceOrder = this.createObject();
     this.serviceOrderService.save(serviceOrder)
     .subscribe(this.serviceOrderSaveObserver());
   }
 
-  //check if fields are not empty
-  checkFilledFields(){
-    if(
-      this.form.value.serviceDate === "" ||
-      this.form.value.customer === "" ||
-      this.form.value.item === "" ||
-      this.form.value.address === ""
-    ){
-      this.dialogService.openErrorDialog("Todos os campos devem ser preenchidos.");
-      throw Error("Todos os campos devem ser preenchidos");
-    }
-  }
 
   createObject():any{
     return {
