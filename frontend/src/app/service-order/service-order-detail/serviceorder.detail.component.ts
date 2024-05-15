@@ -1,7 +1,7 @@
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
 import { ServiceorderService } from '../services/serviceorder.service';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';
@@ -33,8 +33,7 @@ export class ServiceorderDetailComponent extends FormDetail implements OnInit {
 
 
 
-  constructor(
-              public dialogRef: MatDialogRef<ServiceorderDetailComponent>
+  constructor(public dialogRef: MatDialogRef<ServiceorderDetailComponent>
             ) { super();}
 
   ngOnInit(): void {
@@ -50,6 +49,8 @@ export class ServiceorderDetailComponent extends FormDetail implements OnInit {
     this.serviceOrderService.save(serviceOrder)
     .subscribe(this.serviceOrderSaveObserver());
   }
+
+
 
 
   createObject():any{

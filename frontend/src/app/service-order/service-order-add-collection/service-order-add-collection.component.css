@@ -1,0 +1,45 @@
+.os-info ul {
+  text-decoration: none;
+  margin-left: none;
+  padding: 0;
+}
+
+.os-info ul li {
+  padding:0;
+  margin: 0;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+}
+mat-error{
+  padding:0;
+}
+.alert{
+  color:red;
+}
+
+
+.detail-component-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}

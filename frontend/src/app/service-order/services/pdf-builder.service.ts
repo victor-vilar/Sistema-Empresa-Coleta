@@ -1,4 +1,4 @@
-import { ServiceOrder } from '../../../shared/entities/ServiceOrder';
+import { ServiceOrder } from '../../shared/entities/ServiceOrder';
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 

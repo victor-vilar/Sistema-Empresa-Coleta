@@ -21,7 +21,7 @@ export class ResidueComponent extends MainComponentEntity {
 
   override ngOnInit(): void {
     super.ngOnInit()
-    this.title='Resíduos';
+    this.title='Residuos';
     this.path='residuo';
     this.pathToOperations.push(
         {name:"Cadastrar novo Resíduo",

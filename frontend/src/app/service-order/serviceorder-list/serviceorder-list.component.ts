@@ -1,4 +1,4 @@
-import { ServiceOrderStatus } from '../../../shared/enums/ServiceOrderStatus';
+import { ServiceOrderStatus } from '../../shared/enums/ServiceOrderStatus';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceOrder } from 'src/app/shared/entities/ServiceOrder';

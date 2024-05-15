@@ -13,7 +13,7 @@
     <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
     <mat-datepicker #serviceDate></mat-datepicker>
     <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-    class="alert">O contrato deve possuir uma data de início</mat-error>
+    class="alert">A coleta deve possuir um dia que será executada</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="big-information" >
