@@ -41,9 +41,9 @@ export class ServiceorderComponent extends MainComponentEntityOfCustomer {
 
   openDialog(): void {
     if(this.activatedRoute.snapshot.queryParams['edit']){
-      this.dialogService.openDialog(ServiceOrderAddCollectionComponent,this.objectToEdit,"/ordem-servico")
+      this.dialogService.openDialog(ServiceOrderAddCollectionComponent,this.objectToEdit,"/ordem-servico","800px","400px")
     }else{
-       this.dialogService.openDialog(ServiceorderDetailComponent,this.objectToEdit,"/ordem-servico")
+       this.dialogService.openDialog(ServiceorderDetailComponent,this.objectToEdit,"/ordem-servico","800px","800px")
      }
 
 

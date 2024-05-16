@@ -104,9 +104,11 @@ public class ServiceOrderMapper {
         //set the basic properties, in this case it will update
         this.setBasicProperties(order, updateDto.getItemContract(), updateDto.getAddress());
 
-        Vehicle vehicle = this.vehicleRepository.findById(updateDto.getVehicle()).get();
+        if(updateDto.getVehicle() != null){
+            Vehicle vehicle = this.vehicleRepository.findById(updateDto.getVehicle()).get();
+            order.setVehicle(vehicle);
+        }
 
-        order.setVehicle(vehicle);
         order.setIneaManifest(updateDto.getIneaManifest());
         order.setServiceTime(updateDto.getServiceTime());
         order.setObservation(updateDto.getObservation());

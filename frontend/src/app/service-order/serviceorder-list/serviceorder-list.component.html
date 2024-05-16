@@ -51,7 +51,7 @@
               <th mat-header-cell *matHeaderCellDef [ngStyle]="{textAlign:'center'}">Opções</th>
               <td mat-cell *matCellDef="let order" >
                 <div class="flex-display">
-                  <button mat-stroked-button type="button" matTooltip ="Dar Baixa" name="detalhes" id="detalhe" class="bt" (click)="sendObjectToEdit(order)" [routerLink]="['./','detalhes', order.id]" [queryParams]="{dialog:true,edit:true}"><i class="fas fa-search"></i></button>
+                  <button mat-stroked-button type="button" matTooltip ="Dar Baixa" name="detalhes" id="detalhe" class="bt" (click)="sendObjectToEdit(order)" [routerLink]="['./','detalhes', order.id]" [queryParams]="{dialog:true,edit:true}"><i class="fas fa-file-invoice"></i></button>
                   <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(order)"><i class="fas fa-times"></i></button>
                 </div>
               </td>

@@ -14,7 +14,7 @@ export interface ServiceOrder {
   itemContract:ItemContract,
   customer?:Customer,
   address:Address,
-  ammountCollected?:number,
+  amountCollected?:number,
   ineaManifest?:string,
   serviceTime?:Time,
   observation?:string,

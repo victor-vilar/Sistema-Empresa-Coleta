@@ -19,7 +19,8 @@ export class ServiceOrderListTableComponentMapperService implements Mapper {
           customer: this.customerService.list.find(customer => customer.cpfCnpj === order.customerId),
           quantity:order.amountCollected,
           serviceOrderStatus:order.serviceOrderStatus,
-          address:order.address
+          address:order.address,
+          
       }
 
     })

@@ -1,35 +1,45 @@
- <div class="detail-component-header">
-  <h4 class="detail-title">Dar baixa OS</h4>
-  <a (click)="destroy()" class="close-button">X</a>
-</div>
+ <div class="container">
 
-<div class="os-info">
-  <ul>
-    <li>Nº: {{this.objectToEdit.id}}</li>
-    <li>CPF/CNPJ: {{this.objectToEdit.customer.cpfCnpj | cpfCnpj}}</li>
-    <li>Cliente: {{this.objectToEdit.customer.nameCompanyName}}</li>
-  </ul>
-
-</div>
-
-<form (ngSubmit)="save('teste')" #form="ngForm" class="form">
-
-  <div class="os-fields">
-    <mat-form-field appearance="outline">
-      <mat-label>Data do Serviço</mat-label>
-      <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
-      <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
-      <mat-datepicker #serviceDate></mat-datepicker>
-      <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-      class="alert">O contrato deve possuir uma data de início</mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Quantidade Coletada</mat-label>
-      <input matInput name="quantity" ngModel required type="number">
-      <mat-error *ngIf="this.form.controls['quantity']?.value === ''&& (this.form.controls['quantity'].dirty || this.form.controls['quantity'].touched)"
-      class="alert">Deve ser informada a quantidade coletada</mat-error>
-    </mat-form-field>
+  <div class="detail-component-header">
+    <h4 class="detail-title">Dar baixa OS</h4>
+    <a (click)="destroy()" class="close-button">X</a>
   </div>
-  <button (click)= "destroy()" type="button" class="app-button">Salvar</button>
-</form>
+
+  <div class="os-info">
+
+    <span class="os-id"><b>Nº:</b> {{this.selectedServiceOrder.id}}</span>
+    <mat-divider></mat-divider>
+    <ul>
+      <li><b>Data de Emissão: </b>{{this.selectedServiceOrder.emissionDate | date: 'dd/MM/yyyy'}}</li>
+      <li><b>Data Prevista: </b>{{this.selectedServiceOrder.serviceExpectedDate | date: 'dd/MM/yyyy'}}</li>
+      <li><b>Equipamento:</b> {{this.selectedServiceOrder.itemContract.equipment}}</li>
+      <li><b>Unidade de Medida: </b> {{this.selectedServiceOrder.itemContract.measurementUnit}}</li>
+      <li><b>Referente ao Contrato: </b> {{this.selectedServiceOrder.itemContract.contract}}</li>
+    </ul>
+
+  </div>
+
+  <form (ngSubmit)="save('teste')" #form="ngForm" class="form">
+
+    <div class="os-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Data do Serviço</mat-label>
+        <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
+        <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
+        <mat-datepicker #serviceDate></mat-datepicker>
+        <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+        class="alert">O contrato deve possuir uma data de início</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Quantidade Coletada</mat-label>
+        <input matInput name="quantity" ngModel required type="number">
+        <mat-error *ngIf="this.form.controls['quantity']?.value === ''&& (this.form.controls['quantity'].dirty || this.form.controls['quantity'].touched)"
+        class="alert">Deve ser informada a quantidade coletada</mat-error>
+      </mat-form-field>
+    </div>
+    <button class="app-button">Salvar</button>
+  </form>
+
+
+</div>

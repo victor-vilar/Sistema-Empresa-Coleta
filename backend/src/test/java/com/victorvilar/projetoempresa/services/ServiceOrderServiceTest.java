@@ -35,7 +35,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Service order service tests class")
-@ActiveProfiles("test")
 class ServiceOrderServiceTest {
 
     @InjectMocks

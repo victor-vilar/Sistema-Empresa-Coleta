@@ -47,8 +47,6 @@ export abstract class FormDetail{
   protected onLoad(data:any):void{
 
     //checado para saber se existe dados
-    console.log('passei aqui');
-    console.log(data.objectToEdit);
     if(data.objectToEdit !== undefined && data.objectToEdit !== null){
       this.crudOperation="Atualização";
       this.objectToEdit = data.objectToEdit;
