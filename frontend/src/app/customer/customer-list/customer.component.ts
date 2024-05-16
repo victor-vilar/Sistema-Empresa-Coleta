@@ -15,7 +15,7 @@ export class CustomerListComponent extends MainComponentEntityOfCustomer {
   }
 
   override ngOnInit(): void {
-
+    super.ngOnInit();
     this.title='Clientes';
     this.path='cliente';
     this.pathToOperations = [
