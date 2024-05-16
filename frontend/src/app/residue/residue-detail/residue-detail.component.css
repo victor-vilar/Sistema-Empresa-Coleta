@@ -52,14 +52,7 @@ mat-error{
   margin-top: 5px;
 }
 
-.detail-form button{
-  background-color: var(--cinza-escuro);
-  color: white;
-  font-weight: bold;
-  border: none;
-  box-shadow: 1px 1px 3px black;
-  padding: 10px;
-}
+
 
 
 
@@ -94,9 +87,5 @@ mat-error{
   position: relative;
   }
 
-  .close-button{
-    position: absolute;
-    right: 0;
-    top:0;
-  }
+
 }

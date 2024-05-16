@@ -96,9 +96,5 @@ mat-error{
   position: relative;
   }
 
-  .close-button{
-    position: absolute;
-    right: 0;
-    top:0;
-  }
+
 }

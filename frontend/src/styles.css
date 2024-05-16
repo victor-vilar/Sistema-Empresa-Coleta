@@ -51,7 +51,7 @@ body {
   text-align:center;
   background-color: var(--cinza-escuro);
   font-weight: bold;
-  border-radius: 3px ;
+  border:none;
   color: white;
   padding:10px;
   text-align: center;
@@ -60,7 +60,9 @@ body {
   text-decoration: none;
   box-shadow: 1px 1px 3px black;
   cursor: pointer;
+
 }
+
 
 .app-button:hover {
   cursor: pointer;

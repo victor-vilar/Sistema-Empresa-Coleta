@@ -1,9 +1,10 @@
 <div class="detail-container">
-  <mat-dialog-content>
-  <div mat-dialog-content class="detail-component-header">
+  <div class="detail-component-header">
     <h4 class="detail-title">{{crudOperation}} de Resíduos</h4>
     <a (click)="destroy()" class="close-button">X</a>
   </div>
+  <mat-divider></mat-divider>
+  <mat-dialog-content>
   <form (ngSubmit)="save()" #singInForm = "ngForm" class="detail-form">
     <mat-form-field appearance="outline" required>
       <mat-label>Resíduo</mat-label>
@@ -13,8 +14,8 @@
       <mat-label>Classe</mat-label>
       <input  matInput type="text" required  name="description" ngModel required>
     </mat-form-field>
-    <button type="submit">Salvar</button>
-    <button type="button" (click)="cleanForm()">Limpar Campos</button>
+    <button class="app-button" type="submit">Salvar</button>
+    <button class="app-button" type="button" (click)="cleanForm()">Limpar Campos</button>
   </form>
 </mat-dialog-content>
 </div>

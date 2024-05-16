@@ -4,11 +4,12 @@
     <h4 class="detail-title">Dar baixa OS</h4>
     <a (click)="destroy()" class="close-button">X</a>
   </div>
-
+  <mat-divider></mat-divider>
+  <mat-dialog-content>
   <div class="os-info">
 
     <span class="os-id"><b>Nº:</b> {{this.selectedServiceOrder.id}}</span>
-    <mat-divider></mat-divider>
+
     <ul>
       <li><b>Data de Emissão: </b>{{this.selectedServiceOrder.emissionDate | date: 'dd/MM/yyyy'}}</li>
       <li><b>Data Prevista: </b>{{this.selectedServiceOrder.serviceExpectedDate | date: 'dd/MM/yyyy'}}</li>
@@ -41,5 +42,5 @@
     <button class="app-button">Salvar</button>
   </form>
 
-
+</mat-dialog-content>
 </div>
