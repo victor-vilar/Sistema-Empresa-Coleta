@@ -65,6 +65,7 @@ export class ServiceOrderAddCollectionComponent extends FormDetail implements On
         this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSuccessDialogWithoutRedirect('Ordem salva com sucesso !');
         this.serviceorderService.getAll();
+        this.destroy();
       },
       error:(error) => {
         this.dialogService.closeProgressSpinnerDialog();
