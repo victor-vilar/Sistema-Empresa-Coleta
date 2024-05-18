@@ -1,0 +1,31 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}
+
+.container h4{
+  font-weight: bold;
+}
+
+.close-button{
+  cursor: pointer;
+  transition: all 0.3s ;
+  padding:0px 10px;
+  text-decoration: none;
+  color:black;
+  text-align: right;
+}
+
+.close-button:hover{
+  background-color: var(--cinza-escuro);
+  color: white;
+}
+
+mat-divider{
+  margin-bottom: 5px;
+}

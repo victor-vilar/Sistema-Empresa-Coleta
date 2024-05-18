@@ -14,6 +14,7 @@ import { PhonePipe } from './pipes/phone.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module.module';
+import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-window-header.component';
 
 
 
@@ -26,7 +27,8 @@ import { MaterialModuleModule } from './material-module.module';
     ProgressComponent,
     SuccessDialogComponent,
     CpfCnpjPipePipe,
-    PhonePipe
+    PhonePipe,
+    DialogWindowHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { MaterialModuleModule } from './material-module.module';
     SuccessDialogComponent,
     PhonePipe,
     CpfCnpjPipePipe,
+    DialogWindowHeaderComponent
 
   ]
 })
