@@ -38,7 +38,8 @@ export class CustomerSupervisorsListComponent extends MainComponentEntityOfCusto
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
       rota,
-    "800px");
+    "800px",
+  );
 
     this.objectToEdit = null;
   }

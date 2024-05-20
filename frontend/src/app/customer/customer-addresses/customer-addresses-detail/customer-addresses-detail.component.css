@@ -1,5 +1,6 @@
 .wrapper{
   padding: 5px;
+  height: 100%;
 }
 .search-zipcode-reponse-error p {
   color: red;
@@ -34,7 +35,9 @@ mat-form-field{
   width: 100%;
   /* margin-bottom: 5px; */
 }
-
+mat-dialog-content{
+  overflow: visible;
+}
 mat-error{
   padding:0;
 }

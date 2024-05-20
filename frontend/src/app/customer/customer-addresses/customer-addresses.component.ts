@@ -38,7 +38,7 @@ export class CustomerAddressesListComponent extends MainComponentEntityOfCustome
       CustomerAddressesDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      rota,"800px","800px");
+      rota,"800px","100%");
 
     this.objectToEdit = null;
   }
