@@ -37,7 +37,8 @@ export class CustomerSupervisorsListComponent extends MainComponentEntityOfCusto
     this.dialogService.openDialogPassingCustomerId(CustomerSupervisorsDetailComponent,
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
-      rota);
+      rota,
+    "800px");
 
     this.objectToEdit = null;
   }

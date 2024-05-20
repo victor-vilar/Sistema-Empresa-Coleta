@@ -1,6 +1,5 @@
 
-  <a class="app-button" [routerLink]="'./novo'" [queryParams]="{dialog:true}">Nova Ordem</a>
-
+  <app-crud-menu [linksListForOperations] = "pathToOperations"></app-crud-menu>
   <app-serviceorder-list
   [service]="serviceOrderService"
   [mapper]="mapper"

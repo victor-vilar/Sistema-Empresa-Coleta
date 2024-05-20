@@ -33,7 +33,7 @@ export class ServiceorderComponent extends MainComponentEntityOfCustomer {
     this.path = 'ordem-servico';
     this.pathToOperations.push(
       {name:"Cadastrar nova Ordem",
-       path: this.path + '/novo',
+       path: './novo',
        title:"Novo " + this.path
       });
   }

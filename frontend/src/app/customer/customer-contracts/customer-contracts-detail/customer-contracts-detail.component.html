@@ -1,11 +1,12 @@
 
 <div class="wrapper mat-elevation-z8 ">
-
-    <div class="detail-component-header">
-        <a (click)="canDeactivate()" class="close-button">X</a>
-    </div>
-    <mat-divider></mat-divider>
   <mat-dialog-content>
+
+    <app-dialog-window-header
+    [title]="crudOperation + ' de Contratos'"
+    (closeDialogEmitter)="this.destroy()">
+    </app-dialog-window-header>
+
   <form (ngSubmit)="save()" #form="ngForm">
 
     <div class="contract-info  ">
