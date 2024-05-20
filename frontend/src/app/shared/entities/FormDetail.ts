@@ -46,6 +46,10 @@ export abstract class FormDetail{
   */
   protected onLoad(data:any):void{
 
+    if(data.clientCpfCnpj !== undefined && data.clientCpfCnpj !== null){
+      this.clientCpfCnpj = data.clientCpfCnpj;
+    }
+
     //checado para saber se existe dados
     if(data.objectToEdit !== undefined && data.objectToEdit !== null){
       this.crudOperation="Atualização";

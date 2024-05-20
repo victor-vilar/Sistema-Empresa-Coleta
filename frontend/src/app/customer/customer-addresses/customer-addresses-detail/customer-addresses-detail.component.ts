@@ -39,6 +39,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
   ngOnInit(): void {
     this.onLoad(this.data);
+    console.log(this.activatedRoute.snapshot);
 
   }
 
