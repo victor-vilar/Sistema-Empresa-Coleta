@@ -1,5 +1,5 @@
 
-<div class="wrapper mat-elevation-z8 ">
+<div class=" wrapper">
   <mat-dialog-content>
 
     <app-dialog-window-header
@@ -10,8 +10,11 @@
   <form (ngSubmit)="save()" #form="ngForm">
 
     <div class="contract-info  ">
+      <div class="contract-info-header">
+        <h6>Informações do Contrato</h6>
+        <a><mat-icon matBadge="{{itemContractList.length}}" matBadgeColor="primary">home</mat-icon></a>
+      </div>
 
-      <p>Informações do Contrato</p>
 
       <!-- basic contract info wrapper -->
       <div class="contract-field-wrapper">
@@ -23,6 +26,16 @@
               <input matInput type="text"  placeholder="Número" id="contractNumber" name="contractNumber" ngModel required>
               <mat-error *ngIf="this.form.controls['contractNumber']?.value === '' && (this.form.controls['contractNumber'].dirty || this.form.controls['contractNumber'].touched)"
               class="alert">O contrato deve possuir um número</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- contract status field -->
+          <div class="contract-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <mat-select name="contractStatus" id="contractStatus" ngModel >
+                <mat-option value="{{status}}" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
 
@@ -50,18 +63,10 @@
             </mat-form-field>
           </div>
 
-          <!-- contract status field -->
-          <div class="contract-field">
-            <mat-form-field appearance="outline">
-              <mat-label>Status</mat-label>
-              <mat-select name="contractStatus" id="contractStatus" ngModel >
-                <mat-option value="{{status}}" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+
       </div>
   </div>
-
+  <mat-divider></mat-divider>
   <app-customer-contracts-detail-itens #itensChild
     [itemContractList]="itemContractList"
     [deletedSavedItensIdList]="deletedSavedItensIdList"

@@ -5,49 +5,24 @@
   position: relative;
   width: 100%;
   height: 100%;
-  /* border: 1px solid black; */
 }
 
 mat-form-field{
   width: 100%;
-  /* margin-bottom: 5px; */
+
 }
 
 mat-error{
   padding:0;
 }
 
-mat-expansion-panel{
-  /* margin-bottom: 20px; */
+.contract-info-header{
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 
 
-
-.close-button{
-  cursor: pointer;
-  transition: all 0.3s ;
-  padding:5px;
-  text-decoration: none;
-  color:black;
-  position:absolute;
-  right: 0;
-  top:0;
-}
-
-.close-button:hover{
-  background-color: var(--cinza-escuro);
-  color: white;
-}
-
-.detail-component-header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 20px;
-  font-size: 1.5em;
-  font-weight: bold;
-}
 .alert{
   color:Red;
 }
@@ -78,9 +53,8 @@ mat-expansion-panel{
 @media screen and (min-width:1200px){
 
   .contract-field-wrapper{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns:50% 50%  ;
     gap:5px;
   }
 

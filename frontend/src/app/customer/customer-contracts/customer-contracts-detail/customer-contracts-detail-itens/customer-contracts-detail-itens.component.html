@@ -1,7 +1,7 @@
 
 
       <form (ngSubmit)="addItemToContract()" #form="ngForm">
-        <p>Adicionar resíduos</p>
+        <h6>Adicionar Resíduos</h6>
       <!-- residue field wrapper display flex -->
       <div class="residue-item-data-grid">
 
@@ -127,10 +127,10 @@
       <!-- add new item to contract button -->
       <input type="submit" class="app-button" value="Adicionar residuo"><br><br>
 
-      <!-- added itens list expansion panel -->
-      <mat-expansion-panel>
 
-        <!-- expansion panel header -->
+      <!-- <mat-expansion-panel>
+
+
         <mat-expansion-panel-header class="expansion">
 
           <mat-panel-title>
@@ -145,12 +145,13 @@
 
         </mat-expansion-panel-header>
 
-        <!-- itens contract list table in the expasion panel -->
+
         <app-itemContract-list-table
           [tableData]="itemContractList"
           (deleteResidueFromList)= "deleteItemFromList($event)">
         </app-itemContract-list-table>
-      </mat-expansion-panel>
+
+      </mat-expansion-panel> -->
 
       </form>
 

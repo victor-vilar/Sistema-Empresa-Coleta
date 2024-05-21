@@ -40,7 +40,7 @@ export class ContractsListTableComponent extends ItensTableComponent {
         contract,
         contract.customerId,
         '/contratos',
-        "100%",
+        "800px",
         "100%");
 
 
