@@ -3,6 +3,7 @@ import { CommunicationService } from './../../../shared/services/communication.s
 import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CustomerContractsDetailComponent } from 'src/app/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ContractStatus, getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
@@ -27,28 +28,38 @@ export class ContractsListTableComponent extends ItensTableComponent {
   };
 
 
-  //the contract list  and the contract detail component don't have an relationship
-  //so to send an object to edit, it need to be done programatically
-  //So this code first open the contract list by customer and after the
-  //component is fully opened and subscribed to the communication service subject,
-  //it will send the contract to update and send the query params
-  //to open the matdialog.
-  override sendObjectToEdit(contract){
-    //navigation to the route that has an list of contract
-    //this component has a objectToEdit attribute that store some contract
-    this.router.navigate(['/cliente',contract.customerId,'contratos']).
-    then(response =>{
 
-        //after wait for the component initialize and send the contract to object to edit
-        //will navigate to the page of contract detail and send the query params to open as a dialog
-        //
-        setTimeout(() =>{
-          this.communicationService.sendData(contract);
-          this.router.navigate(['./','contrato',contract.id],
-          {queryParams: {edit: true, dialog: true }})
-        },10);
+  override sendObjectToEdit(contract){
+
+
+    this.router.navigate(['/cliente',contract.customerId,'contratos','contrato',contract.id],
+    {queryParams: {edit: true, dialog: true }})
+    .then( response => {
+      this.dialogService.openDialogPassingCustomerId(
+        CustomerContractsDetailComponent,
+        contract,
+        contract.customerId,
+        '/contratos',
+        "100%",
+        "100%");
+
 
     })
+
+
+    // this.router.navigate(['/cliente',contract.customerId,'contratos']).
+    // then(response =>{
+
+    //     //after wait for the component initialize and send the contract to object to edit
+    //     //will navigate to the page of contract detail and send the query params to open as a dialog
+    //     //
+    //     setTimeout(() =>{
+    //       this.communicationService.sendData(contract);
+    //       this.router.navigate(['./','contrato',contract.id],
+    //       {queryParams: {edit: true, dialog: true }})
+    //     },10);
+
+    // })
 
   }
 
