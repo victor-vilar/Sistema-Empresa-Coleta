@@ -53,11 +53,8 @@ export class ContractsListTableComponent extends ItensTableComponent {
   }
 
   filterStatus(){
-    console.log(this.search.value);
     if(this.search.value !== "TODOS"){
-
       this.dataSource.filter = this.search.value
-
     }
 
     this.updateDataSource();
