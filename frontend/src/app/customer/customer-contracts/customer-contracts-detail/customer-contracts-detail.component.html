@@ -12,7 +12,9 @@
     <div class="contract-info  ">
       <div class="contract-info-header">
         <h6>Informações do Contrato</h6>
-        <a><mat-icon matBadge="{{itemContractList.length}}" matBadgeColor="primary">home</mat-icon></a>
+        <a [routerLink]="'dashboard'">
+          <app-list-svg-icon [badgeSize]="listSize" matTooltip="Quantidade de Itens">
+          </app-list-svg-icon></a>
       </div>
 
 
@@ -70,6 +72,7 @@
   <app-customer-contracts-detail-itens #itensChild
     [itemContractList]="itemContractList"
     [deletedSavedItensIdList]="deletedSavedItensIdList"
+    (listSizeUpdateEmitter) = "updateListSize($event)"
   ></app-customer-contracts-detail-itens>
 
   </form>

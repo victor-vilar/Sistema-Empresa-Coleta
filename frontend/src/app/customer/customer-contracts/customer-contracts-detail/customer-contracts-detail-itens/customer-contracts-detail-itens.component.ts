@@ -2,7 +2,7 @@ import { MeasurementUnit } from '../../../../shared/enums/MeasurementUnit';
 import { CollectionFrequency } from '../../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
 import { DialogServiceService } from '../../../../shared/services/dialog-service.service';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
@@ -30,7 +30,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     weekdayButtonDisabled:boolean = true;
     @Input()itemContractList:any[];
     @Input()deletedSavedItensIdList:number[];
-
+    @Output() listSizeUpdateEmitter:EventEmitter<number> = new EventEmitter<number>();
 
     residuesService:ResiduesService = inject(ResiduesService);
     equipmentsService:EquipmentsService = inject(EquipmentsService);;
@@ -129,7 +129,15 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
 
       //angular material snack bar message
       this.openSnackBar(this.SAVE_MESSAGE.message,this.SAVE_MESSAGE.header);
+
+      this.sendItemListSize();
+
     }
+
+    sendItemListSize(){
+      this.listSizeUpdateEmitter.emit(this.itemContractList.length);
+    }
+
 
     //clear add itens to contract fields
     clearAddItensInputFieldsAfterAdd(){
@@ -276,3 +284,5 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       }
     }
 }
+
+

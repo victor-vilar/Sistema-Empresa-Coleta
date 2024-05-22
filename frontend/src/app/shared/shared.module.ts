@@ -15,6 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module.module';
 import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-window-header.component';
+import { ListSvgIconComponent } from './list-svg-icon/list-svg-icon.component';
 
 
 
@@ -28,7 +29,8 @@ import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-windo
     SuccessDialogComponent,
     CpfCnpjPipePipe,
     PhonePipe,
-    DialogWindowHeaderComponent
+    DialogWindowHeaderComponent,
+    ListSvgIconComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-windo
     SuccessDialogComponent,
     PhonePipe,
     CpfCnpjPipePipe,
-    DialogWindowHeaderComponent
+    DialogWindowHeaderComponent,
+    ListSvgIconComponent
 
   ]
 })
