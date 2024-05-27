@@ -26,7 +26,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   @ViewChild('form') form:NgForm;
   @ViewChild('itensChild') child:CustomerContractsDetailItensComponent;
   contractStatusEnumValues;
-  listSize:number;
+
 
 
   //services
@@ -83,7 +83,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
           contractStatus:this.objectToEdit.contractStatus,
         })
         this.itemContractList = this.objectToEdit.itens;
-        this.listSize = this.itemContractList.length;
+
 
       }
     },200);
@@ -214,11 +214,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     this.dialogRef.close();
 
   }
-
-  updateListSize(size:number){
-    this.listSize = size;
-  }
-
 
   //observer to manipulate observable subscription
   //creates contract

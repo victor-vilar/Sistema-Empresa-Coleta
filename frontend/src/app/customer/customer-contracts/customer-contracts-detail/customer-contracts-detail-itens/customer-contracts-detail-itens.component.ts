@@ -2,7 +2,7 @@ import { MeasurementUnit } from '../../../../shared/enums/MeasurementUnit';
 import { CollectionFrequency } from '../../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
 import { DialogServiceService } from '../../../../shared/services/dialog-service.service';
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
@@ -21,7 +21,7 @@ import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.servic
   templateUrl: './customer-contracts-detail-itens.component.html',
   styleUrls: ['./customer-contracts-detail-itens.component.css']
 })
-export class CustomerContractsDetailItensComponent implements OnInit, OnChanges {
+export class CustomerContractsDetailItensComponent implements OnInit, OnChanges, AfterViewInit {
 
     //form
     @ViewChild('form') form:NgForm;
@@ -30,7 +30,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     weekdayButtonDisabled:boolean = true;
     @Input()itemContractList:any[];
     @Input()deletedSavedItensIdList:number[];
-    @Output() listSizeUpdateEmitter:EventEmitter<number> = new EventEmitter<number>();
+
 
     residuesService:ResiduesService = inject(ResiduesService);
     equipmentsService:EquipmentsService = inject(EquipmentsService);;
@@ -41,6 +41,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
     weekdaysListToAddToItemContract:WeekdayType[] = [];
     //sum of itens of contract
     totalValueOfContract:number = 0;
+    listSize:number;
     //enum values to fill the select options components
     scheduleEnumValues = getScheduleValues();
     weekDaysEnumValues = getWeekdayValues();
@@ -54,6 +55,13 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
   constructor(private _snackBar: MatSnackBar) {}
 
 
+  ngAfterViewInit(): void {
+    setTimeout(() =>{
+      this.listSize = this.itemContractList.length;
+    },250)
+  }
+
+
   ngOnInit(): void {
 
         //subscribing to equipament service and residue service
@@ -64,6 +72,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
         this.residuesService.refreshAllData().subscribe(e => {
           this.residuesList = e;
         })
+
+        this.listSize = this.itemContractList.length;
 
 
   }
@@ -124,35 +134,18 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges 
       this.sumTotalOfContract();
 
       //clearing fields to add new itens
-      this.clearAddItensInputFieldsAfterAdd();
+      this.form.reset()
       this.clearWeekdayList();
+
 
       //angular material snack bar message
       this.openSnackBar(this.SAVE_MESSAGE.message,this.SAVE_MESSAGE.header);
 
-      this.sendItemListSize();
+      this.listSize = this.itemContractList.length;
 
     }
 
-    sendItemListSize(){
-      this.listSizeUpdateEmitter.emit(this.itemContractList.length);
-    }
 
-
-    //clear add itens to contract fields
-    clearAddItensInputFieldsAfterAdd(){
-      this.form.setValue({
-        residue:'',
-        equipment:'',
-        equipmentQuantity:'',
-        quantity:'',
-        itemValue:'',
-        description:'',
-        schedule:"",
-        days:"",
-        measurementUnit:""
-      })
-    }
 
     /**
      * display the total contract price

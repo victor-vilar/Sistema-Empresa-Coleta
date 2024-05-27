@@ -18,6 +18,7 @@ import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-windo
 import { ListSvgIconComponent } from './svg-list-icon/list-svg-icon.component';
 import { DaysChipComponent } from './days-chip/days-chip.component';
 import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
+import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
 
 
 
@@ -35,7 +36,8 @@ import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
     DialogWindowHeaderComponent,
     ListSvgIconComponent,
     DaysChipComponent,
-    SvgSaveIconComponent
+    SvgSaveIconComponent,
+    SvgAddIconComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
     ListSvgIconComponent,
     ReactiveFormsModule,
     DaysChipComponent,
-    SvgSaveIconComponent
+    SvgSaveIconComponent,
+    SvgAddIconComponent
 
   ]
 })

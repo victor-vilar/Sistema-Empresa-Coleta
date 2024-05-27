@@ -1,7 +1,16 @@
 
 
       <form (ngSubmit)="addItemToContract()" #form="ngForm">
-        <h6>Adicionar Resíduos</h6>
+
+        <div class="contract-info">
+          <div class="residues-header">
+            <h6>Resíduos</h6>
+            <div class="options">
+              <a [routerLink]="'dashboard'"><app-list-svg-icon [badgeSize]="listSize" matTooltip="Quantidade de Itens"></app-list-svg-icon></a>
+              <a type="button" (click)="addItemToContract()" matTooltip="Adicionar"><app-svg-add-icon></app-svg-add-icon></a>
+            </div>
+          </div>
+        </div>
       <!-- residue field wrapper display flex -->
       <div class="residue-item-data-grid">
 
@@ -125,12 +134,6 @@
         </div>
       </div>
 
-
-      <mat-divider></mat-divider>
-
-
-      <!-- add new item to contract button -->
-      <input type="submit" class="app-button" value="Adicionar residuo"><br><br>
 
 
       </form>

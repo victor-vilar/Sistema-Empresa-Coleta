@@ -2,13 +2,33 @@
   padding-bottom: 0px;
 }
 
+.residues-header{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.options{
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+}
+
+.options a {
+  border-radius: 5px;
+
+}
+.options a:hover {
+  background-color: #f1eeee;
+}
+
+
 mat-divider{
   margin-bottom: 15px;
 }
 
 .days-title{
   text-align:center;
-  background-color: #CCCCCC;
+  background-color: var(--cinza);
+  color:white;
 }
 .mat-list{
   height: 195px;
@@ -64,6 +84,9 @@ height: 59px;
 
 
 }
+
+
+
 
 
 .description-grid-item{
