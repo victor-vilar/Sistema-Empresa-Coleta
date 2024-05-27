@@ -6,8 +6,8 @@
           <div class="residues-header">
             <h6>Resíduos</h6>
             <div class="options">
-              <a [routerLink]="'dashboard'"><app-list-svg-icon [badgeSize]="listSize" matTooltip="Quantidade de Itens"></app-list-svg-icon></a>
-              <a type="button" (click)="addItemToContract()" matTooltip="Adicionar"><app-svg-add-icon></app-svg-add-icon></a>
+              <a mat-stroked-button [routerLink]="'dashboard'" matBadgeColor="warn" matBadge={{listSize}}><app-list-svg-icon matTooltip="Quantidade de Itens"></app-list-svg-icon></a>
+              <a mat-stroked-button type="button" (click)="addItemToContract()" matTooltip="Adicionar"><app-svg-add-icon></app-svg-add-icon></a>
             </div>
           </div>
         </div>
@@ -121,14 +121,14 @@
               <ng-container *ngFor="let day of weekdaysListToAddToItemContract">
                 <mat-list-item>
                   <mat-icon>wb_sunny</mat-icon>
-                  <span>{{day}}</span>
-                  <button type="button" matTooltip="Remover dia" class="mat-list-button"  mat-button color="warn" (click)="removeWeekday(day)">X</button>
+                  <span class="day-name">{{day}}</span>
+                  <button type="button" matTooltip="Remover dia" class="bt-remove-day"  (click)="removeWeekday(day)">X</button>
                 </mat-list-item>
-                <mat-divider></mat-divider>
+                <!-- <mat-divider></mat-divider> -->
               </ng-container>
             </mat-list>
           </div>
-        <button type="button" class="bt app-button" (click)="addNewWeekday()" [disabled]="weekdayButtonDisabled" >Adicionar Dia</button>
+        <button type="button" class="bt app-button add-day" (click)="addNewWeekday()" [disabled]="weekdayButtonDisabled" >Adicionar Dia</button>
 
 
         </div>

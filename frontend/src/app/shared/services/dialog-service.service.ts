@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +27,11 @@ export class DialogServiceService {
   ){}
 
 
-  //Abre um snabar do angular material
-  openSnackBar(message: string, action: string, horizontalPosition?:string, verticalPosition?:string) {
+  //Abre um snacbar do angular material
+  openSnackBar(message: string, action: string, horizontalPosition?:MatSnackBarHorizontalPosition, verticalPosition?:MatSnackBarVerticalPosition) {
 
-    let hPosition;
-    let vPosition;
-    hPosition ? horizontalPosition : 'center';
-    vPosition ? verticalPosition : 'bottom';
+    let hPosition = horizontalPosition ? horizontalPosition : 'center';
+    let vPosition = verticalPosition ? verticalPosition : 'bottom';
 
     this._snackBar.open(message, action,{
       horizontalPosition: hPosition,
