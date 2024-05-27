@@ -15,6 +15,7 @@ import { Weekday, WeekdayType, getWeekdayValues } from 'src/app/shared/enums/Wee
 import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
 import { CustomerContractsDetailItensErrorsHelperService } from './customer-contracts-detail-itens-errors-helper.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -39,6 +40,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
     residuesList:Residue[];
     equipmentsList:Equipment[];
     weekdaysListToAddToItemContract:WeekdayType[] = [];
+    subscriptions:Subscription = new Subscription();
     //sum of itens of contract
     totalValueOfContract:number = 0;
     listSize:number;
@@ -54,6 +56,10 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
 
   constructor() {}
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
 
 
   ngAfterViewInit(): void {
@@ -66,16 +72,13 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
   ngOnInit(): void {
 
         //subscribing to equipament service and residue service
-        this.equipmentsService.refreshAllData().subscribe(e =>{
+        this.subscriptions.add(this.equipmentsService.refreshAllData().subscribe(e =>{
           this.equipmentsList = e;
-        })
+        }))
 
-        this.residuesService.refreshAllData().subscribe(e => {
+        this.subscriptions.add(this.residuesService.refreshAllData().subscribe(e => {
           this.residuesList = e;
-        })
-
-        this.listSize = this.itemContractList.length;
-
+        }))
 
   }
 
@@ -140,7 +143,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
 
 
       //angular material snack bar message
-      this.openSnackBar(this.SAVE_MESSAGE.message,this.SAVE_MESSAGE.header);
+      this.dialogService.openSnackBar(this.SAVE_MESSAGE.message,this.SAVE_MESSAGE.header);
 
       this.listSize = this.itemContractList.length;
 
@@ -231,7 +234,7 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
 
 
         this.weekdaysListToAddToItemContract.push(this.form.value.days);
-        this.openSnackBar(this.NEW_WEEKDAY_MESSAGE.message,this.NEW_WEEKDAY_MESSAGE.header);
+        this.dialogService.openSnackBar(this.NEW_WEEKDAY_MESSAGE.message,this.NEW_WEEKDAY_MESSAGE.header);
 
       }
 

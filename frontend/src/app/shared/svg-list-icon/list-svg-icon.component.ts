@@ -23,13 +23,9 @@ export class ListSvgIconComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.badgeSize = changes['badgeSize'].currentValue;
-    console.log(changes['badgeSize'].currentValue);
   }
 
   ngOnInit(): void {
   }
 
-  showBadgeSize(){
-    console.log(this.badgeSize);
-  }
 }
