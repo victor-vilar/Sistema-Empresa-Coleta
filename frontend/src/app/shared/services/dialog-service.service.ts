@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,24 @@ export class DialogServiceService {
     private dialog:MatDialog,
     private route: ActivatedRoute,
     private router: Router,
+    private _snackBar: MatSnackBar
   ){}
 
+
+  //Abre um snabar do angular material
+  openSnackBar(message: string, action: string, horizontalPosition?:string, verticalPosition?:string) {
+
+    let hPosition;
+    let vPosition;
+    hPosition ? horizontalPosition : 'center';
+    vPosition ? verticalPosition : 'bottom';
+
+    this._snackBar.open(message, action,{
+      horizontalPosition: hPosition,
+      verticalPosition: vPosition,
+      duration: 1000
+    })
+  };
 
   //Metodo utilizado para abrir um dialog, passando o componente que deseja utilizar no dialog.
   //@compoent = componente que será aberto no dialog.

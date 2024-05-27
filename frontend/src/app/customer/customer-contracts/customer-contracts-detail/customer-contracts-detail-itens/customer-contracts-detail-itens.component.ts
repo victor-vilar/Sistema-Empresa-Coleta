@@ -2,7 +2,7 @@ import { MeasurementUnit } from '../../../../shared/enums/MeasurementUnit';
 import { CollectionFrequency } from '../../../../shared/entities/CollectionFrequency';
 import { WeekDay } from '@angular/common';
 import { DialogServiceService } from '../../../../shared/services/dialog-service.service';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
@@ -21,7 +21,7 @@ import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.servic
   templateUrl: './customer-contracts-detail-itens.component.html',
   styleUrls: ['./customer-contracts-detail-itens.component.css']
 })
-export class CustomerContractsDetailItensComponent implements OnInit, OnChanges, AfterViewInit {
+export class CustomerContractsDetailItensComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
     //form
     @ViewChild('form') form:NgForm;
@@ -52,7 +52,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
     private readonly NEW_WEEKDAY_MESSAGE = {header:"Dia Adicionado",message:"Dia inserido com sucesso"};
 
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor() {}
+
 
 
   ngAfterViewInit(): void {
@@ -195,16 +196,6 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
             measurementUnit:e.measurementUnit
           }
         })
-    }
-
-    //open snackbar angular material after added a new item
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action,{
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-        duration: 1000
-      });
-
     }
 
 
