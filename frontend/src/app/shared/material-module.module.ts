@@ -21,6 +21,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -46,7 +48,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatIconModule,
     MatDialogModule,
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatChipsModule,
+    MatAutocompleteModule
 
 
   ],
@@ -69,7 +73,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatDividerModule,
     MatListModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModuleModule { }

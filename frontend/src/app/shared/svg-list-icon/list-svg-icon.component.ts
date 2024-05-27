@@ -9,6 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ListSvgIconComponent implements OnInit, OnChanges {
 
+
+
   @Input()
   badgeSize:number;
 

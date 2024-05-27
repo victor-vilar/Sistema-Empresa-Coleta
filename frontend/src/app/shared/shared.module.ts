@@ -7,7 +7,7 @@ import { ErrorDialogComponent } from './dialogs/error-dialog/error-dialog.compon
 import { ItensTableComponent } from './itens-table/itens-table.component';
 import { ProgressComponent } from './dialogs/progress/progress.component';
 import { SuccessDialogComponent } from './dialogs/success-dialog/success-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { CpfCnpjPipePipe } from './pipes/cpf-cnpj-pipe.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
@@ -15,7 +15,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module.module';
 import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-window-header.component';
-import { ListSvgIconComponent } from './list-svg-icon/list-svg-icon.component';
+import { ListSvgIconComponent } from './svg-list-icon/list-svg-icon.component';
+import { DaysChipComponent } from './days-chip/days-chip.component';
+import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
+
 
 
 
@@ -30,7 +33,9 @@ import { ListSvgIconComponent } from './list-svg-icon/list-svg-icon.component';
     CpfCnpjPipePipe,
     PhonePipe,
     DialogWindowHeaderComponent,
-    ListSvgIconComponent
+    ListSvgIconComponent,
+    DaysChipComponent,
+    SvgSaveIconComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +43,8 @@ import { ListSvgIconComponent } from './list-svg-icon/list-svg-icon.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    ReactiveFormsModule
 
 
   ],
@@ -52,7 +58,10 @@ import { ListSvgIconComponent } from './list-svg-icon/list-svg-icon.component';
     PhonePipe,
     CpfCnpjPipePipe,
     DialogWindowHeaderComponent,
-    ListSvgIconComponent
+    ListSvgIconComponent,
+    ReactiveFormsModule,
+    DaysChipComponent,
+    SvgSaveIconComponent
 
   ]
 })

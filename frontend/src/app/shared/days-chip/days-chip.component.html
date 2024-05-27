@@ -1,0 +1,25 @@
+<mat-form-field class="example-chip-list" appearance="fill">
+  <mat-label>Dias</mat-label>
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let day of days"
+      (removed)="remove(day)">
+      {{day}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+    <input
+      placeholder="New fruit..."
+      #dayInput
+      [formControl]="daysCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let day of filteredDays | async" [value]="day">
+      {{day}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

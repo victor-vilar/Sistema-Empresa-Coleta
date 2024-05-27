@@ -12,9 +12,10 @@
     <div class="contract-info  ">
       <div class="contract-info-header">
         <h6>Informações do Contrato</h6>
-        <a [routerLink]="'dashboard'">
-          <app-list-svg-icon [badgeSize]="listSize" matTooltip="Quantidade de Itens">
-          </app-list-svg-icon></a>
+        <div class="options">
+          <a [routerLink]="'dashboard'"><app-list-svg-icon [badgeSize]="listSize" matTooltip="Quantidade de Itens"></app-list-svg-icon></a>
+          <a [routerLink]="'dashboard'" (click)="save()"><app-svg-save-icon matTooltip="Salvar Contrato"></app-svg-save-icon></a>
+        </div>
       </div>
 
 
@@ -77,7 +78,7 @@
 
   </form>
 
-  <input class="save-contract app-button" type="submit" (click)="save()" value="Salvar Contrato">
+
 </mat-dialog-content>
 </div>
 

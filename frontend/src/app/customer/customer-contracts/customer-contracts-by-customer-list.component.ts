@@ -59,8 +59,8 @@ export class CustomerContractsByCustomerListComponent extends MainComponentEntit
       this.objectToEdit,
       this.selectedCustomer.cpfCnpj,
       rota,
-      "800px",
-      "100%");
+      "800px"
+      );
     this.objectToEdit = null;
   }
 

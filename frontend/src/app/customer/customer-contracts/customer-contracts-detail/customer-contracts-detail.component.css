@@ -6,6 +6,20 @@
   width: 100%;
   height: 100%;
 }
+.options{
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+}
+
+.options a {
+  border-radius: 5px;
+
+}
+.options a:hover {
+  background-color: #f1eeee;
+}
+
 
 mat-form-field{
   width: 100%;
@@ -15,8 +29,10 @@ mat-form-field{
 mat-error{
   padding:0;
 }
-mat-icon{
-  color:black;
+
+
+mat-divider{
+  margin-bottom: 15px;
 }
 
 .contract-info-header{
@@ -48,9 +64,6 @@ mat-icon{
   font-size: .8rem;
 }
 
-.save-contract{
-  margin-top: 20px;
-}
 
 
 @media screen and (min-width:1200px){

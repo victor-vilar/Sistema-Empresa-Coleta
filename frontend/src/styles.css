@@ -8,6 +8,11 @@
   /* font-family: 'Roboto', sans-serif; */
   list-style: none;
 }
+
+.mat-form-field-wrapper{
+  padding-bottom: 0px;
+}
+
 .mat-dialog-content{
   overflow: none;
 }
@@ -18,7 +23,7 @@
 
 :root
 {
-  --cinza:rgb(48, 57, 62);
+  --cinza:#30393e;
   --azul:#0341AB;
   --azul-claro:#1BC9DE;
   --rosa:#E6866C;
@@ -37,6 +42,9 @@ body {
   margin: 0;
    /* font-family: Roboto, "Helvetica Neue", sans-serif; */
 }
+
+/* MAT DIALOG */
+
 
 .mat-list-item-content{
   padding: 0;
