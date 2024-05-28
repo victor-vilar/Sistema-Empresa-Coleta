@@ -15,7 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModuleModule } from './material-module.module';
 import { DialogWindowHeaderComponent } from './dialog-window-header/dialog-window-header.component';
-import { ListSvgIconComponent } from './svg-list-icon/list-svg-icon.component';
+import { SvgListIconComponent } from './svg-list-icon/svg-list-icon.component';
 import { DaysChipComponent } from './days-chip/days-chip.component';
 import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
 import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
@@ -34,7 +34,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     CpfCnpjPipePipe,
     PhonePipe,
     DialogWindowHeaderComponent,
-    ListSvgIconComponent,
+    SvgListIconComponent,
     DaysChipComponent,
     SvgSaveIconComponent,
     SvgAddIconComponent
@@ -60,7 +60,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     PhonePipe,
     CpfCnpjPipePipe,
     DialogWindowHeaderComponent,
-    ListSvgIconComponent,
+    SvgListIconComponent,
     ReactiveFormsModule,
     DaysChipComponent,
     SvgSaveIconComponent,

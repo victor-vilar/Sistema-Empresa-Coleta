@@ -3,11 +3,11 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-list-svg-icon',
-  templateUrl: './list-svg-icon.component.html',
-  styleUrls: ['./list-svg-icon.component.css']
+  selector: 'app-svg-list-icon',
+  templateUrl: './svg-list-icon.component.html',
+  styleUrls: ['./svg-list-icon.component.css']
 })
-export class ListSvgIconComponent implements OnInit, OnChanges {
+export class SvgListIconComponent implements OnInit, OnChanges {
 
 
 
