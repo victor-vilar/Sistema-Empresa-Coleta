@@ -4,6 +4,13 @@ form{
   gap:5px;
 }
 
+.select-options span{
+  font-weight: bolder;
+  color:var(--cinza-escuro);
+
+}
+
+
 .big-information{
   /* width: 640px; */
 }

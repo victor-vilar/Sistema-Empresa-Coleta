@@ -27,14 +27,14 @@
   <mat-form-field appearance="outline">
     <mat-label>Item</mat-label>
     <mat-select name="item" id="item" ngModel required matTooltip="Escolha um item disponível">
-      <mat-option value="{{item.id}}" *ngFor="let item of itens">{{item.residue}} - ref ao Contrato: {{item.contract}}</mat-option>
+      <mat-option class="select-options" value="{{item.id}}" *ngFor="let item of itens"><span>Resíduo: </span>{{item.residue}} <span>- Ref ao Contrato: </span> {{item.contract}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="big-information">
     <mat-label>Endereco</mat-label>
     <mat-select name="address" id="address" ngModel required matTooltip="Escolha um endereço disponível" >
-      <mat-option value="{{address.id}}" *ngFor="let address of addresses">{{address.addressName}}, nº{{address.addressNumber}}, compl{{address.complement}}, {{address.city}}  </mat-option>
+      <mat-option class="select-options" value="{{address.id}}" *ngFor="let address of addresses"><span>Logradouro: </span>{{address.addressName}}, <span>Nº: </span>{{address.addressNumber}}, <span>COMPL: </span>{{address.complement}} <span> - </span> {{address.city}}  </mat-option>
     </mat-select>
   </mat-form-field>
 

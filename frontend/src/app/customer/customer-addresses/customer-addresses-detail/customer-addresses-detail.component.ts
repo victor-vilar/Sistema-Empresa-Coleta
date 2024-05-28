@@ -31,7 +31,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   constructor(
     public dialogRef: MatDialogRef<CustomerAddressesDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
-    private _snackBar: MatSnackBar) {
+    ) {
       super();
     }
 
@@ -45,6 +45,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
   ngAfterViewInit(): void {
     setTimeout(() =>{
+      let requireCollection: boolean = this.objectToEdit.requiresCollection === 'sim'? true : false;
       this.form.setValue({
         zipCode:this.objectToEdit.zipCode,
         addressName: this.objectToEdit.addressName,
@@ -52,7 +53,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
         complement :this.objectToEdit.complement,
         city : this.objectToEdit.city,
         state : this.objectToEdit.state,
-        requiresCollection:this.objectToEdit.requiresCollection
+        requiresCollection:requireCollection
         })
     },100);
   }
@@ -60,7 +61,6 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
 
 
   createObject():Address {
-    let requireCollection: boolean = this.form.value.requiresCollection === 'sim'? true : false;
     return {
       addressName:this.form.value.addressName,
       addressNumber:this.form.value.addressNumber,
@@ -68,7 +68,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
       zipCode:this.form.value.zipCode,
       city:this.form.value.city,
       state:this.form.value.state,
-      requiresCollection:requireCollection,
+      requiresCollection:this.form.value.requiresCollection,
       customerId:this.clientCpfCnpj,
     }
   }
@@ -123,7 +123,7 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
       this.searchedZipCodeErrorResponse = false;
       this.searchedZipCode = address.cep;
       this.searchedZipCode = this.searchedZipCode.replace("-","");
-      this.openSnackBar("Endereço encontrado com sucesso","Encontrado");
+      this.dialogService.openSnackBar("Endereço encontrado com sucesso","Encontrado");
 
     }).catch(error => {
       this.searchedZipCodeErrorResponse = true;
@@ -144,46 +144,8 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   }
 
   clearForm(){
-    this.form.setValue({
-      zipCode:'',
-      addressName: '',
-      addressNumber :'',
-      complement :'',
-      city : '',
-      state : '',
-      requiresCollection:false
-      })
+    this.form.reset();
   }
-
-  checkIfHasErros(){
-    let errorMessage;
-
-
-    if((this.searchedZipCodeErrorResponse || this.searchedZipCode ==="") && this.objectToEdit === undefined){
-      errorMessage ='Não foi possivel encontrar esse endereço, insira um endereço valido !'
-      this.dialogService.openErrorDialog(errorMessage);
-      this.clearForm();
-      throw Error(errorMessage);
-    }
-
-    if((this.form.value.zipCode !== this.searchedZipCode) && this.objectToEdit === undefined ){
-      errorMessage ='O cep digitado é diferente do cep anteriormente pesquisado'
-      this.dialogService.openErrorDialog(errorMessage);
-      this.clearForm();
-      throw Error(errorMessage);
-    }
-
-
-  }
-
-    //open snackbar angular material
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action,{
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-        duration: 1000
-      });
-    }
 
 
 }
