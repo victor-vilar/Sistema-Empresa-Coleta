@@ -1,7 +1,13 @@
 <div class="itens-table-container">
+  <mat-dialog-content>
+
+    <app-dialog-window-header
+    [title]="'Itens'"
+    (closeDialogEmitter)="this.destroy()">
+    </app-dialog-window-header>
 
   <div class="empty-records" *ngIf="tableData.length === 0">
-    <h1>Ainda não há resíduos cadastrados</h1>
+    <h6>Ainda não há resíduos cadastrados</h6>
   </div>
 
   <ng-container *ngIf="tableData.length !== 0">
@@ -15,7 +21,7 @@
               <td mat-cell *matCellDef="let i = index;"> {{i+1}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="descricao">
+            <ng-container matColumnDef="Descricao">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Descricao</th>
               <td mat-cell *matCellDef="let item;"> {{item.description}} </td>
             </ng-container>
@@ -49,7 +55,7 @@
               <th mat-header-cell *matHeaderCellDef>Opções</th>
               <td mat-cell *matCellDef="let item">
                   <div class="flex-display">
-                    <button mat-stroked-button type="button" matTooltip="Deletar Cliente" name="delete" id="delete" class="bt bt-delete " (click)="deleteItemFromList(item)"><i class="fas fa-times"></i></button>
+                    <button mat-stroked-button type="button" matTooltip="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="deleteItemFromList(item)"><i class="fas fa-times"></i></button>
                   </div>
 
                 </td>
@@ -58,15 +64,12 @@
 
               <tr mat-header-row *matHeaderRowDef="tableHeaders"></tr>
               <tr mat-row *matRowDef="let myRowData; columns: tableHeaders"></tr>
-
-
           </table>
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
 
       </div>
     </ng-container>
-
+  </mat-dialog-content>
 </div>
 
 

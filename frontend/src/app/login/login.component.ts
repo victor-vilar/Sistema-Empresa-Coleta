@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   @ViewChild('meuForm') formulario:NgForm;
 
 
-  constructor(private loginService:LoginService,
+  constructor(
+     private loginService:LoginService,
      private router:Router,
      private dialogService:DialogServiceService) { }
 

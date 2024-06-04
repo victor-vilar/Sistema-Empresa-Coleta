@@ -14,7 +14,6 @@ export class CustomerContractsByCustomerListComponent extends MainComponentEntit
 
 
   contractService:CustomerContractsService = inject(CustomerContractsService);
-  communicationService:CommunicationService = inject(CommunicationService);
 
   constructor(){
     super();
@@ -32,21 +31,6 @@ export class CustomerContractsByCustomerListComponent extends MainComponentEntit
        title:"Novo " + this.path}
     )
 
-    /**
-     * Esse subscrição é para o serviço de communicação do applicação, para que eu consiga acessar o
-     * contrato que foi clicado no componente de de contratos{ContractListComponent}.
-     * Esse componente atual exibe somente os contratos de um cliente especifico, o componente ContractListComponent,
-     * exibe o contratos de todos os clientes. Caso eu queira editar um contrato que foi visualizado no
-     * ContractListComponent tenho que enviar para esse componente pois ele que contem o componente detail
-     * de contratos no router.
-     * E como foi feito tudo com dialog, precisei fazer dessa maneira.
-     */
-    this.subscriptions.push(
-      this.communicationService.dataEmitter.subscribe(value => {
-        this.objectToEdit = value
-        this.openDialog();
-      })
-    );
 
   }
 

@@ -16,6 +16,8 @@ import { getMeasurementUnitValues } from 'src/app/shared/enums/MeasurementUnit';
 import { CustomerContractsDetailItensErrorsHelperService } from './customer-contracts-detail-itens-errors-helper.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 import { Subscription } from 'rxjs';
+import { ItemContractListTableComponent } from 'src/app/customer/customer-util/itemContract-list-table/itemContract-list-table.component';
+import { CommunicationService } from 'src/app/shared/services/communication.service';
 
 @Component({
   selector: 'app-customer-contracts-detail-itens',
@@ -37,6 +39,8 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
     equipmentsService:EquipmentsService = inject(EquipmentsService);;
     dialogService:DialogServiceService = inject(DialogServiceService);
     errorsHelper:CustomerContractsDetailItensErrorsHelperService = inject (CustomerContractsDetailItensErrorsHelperService);
+    communicationService:CommunicationService = inject(CommunicationService);
+
     residuesList:Residue[];
     equipmentsList:Equipment[];
     weekdaysListToAddToItemContract:WeekdayType[] = [];
@@ -78,6 +82,11 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
 
         this.subscriptions.add(this.residuesService.refreshAllData().subscribe(e => {
           this.residuesList = e;
+        }))
+
+        //subscription when an item is deleted from the itemContractList in the itemContractListTable component
+        this.subscriptions.add(this.communicationService.dataEmitter.subscribe(obj => {
+          this.updateItensList(obj);
         }))
 
   }
@@ -202,24 +211,22 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
     }
 
 
-    //delete item from contract and recalulate the total value
-    deleteItemFromList(item:ItemContract){
+    //Update the itens list of this component, getting the list that comes from the itemContract table dialog component.
+    //
+    updateItensList(listsHolder:any){
 
-      //deletes a item from item contract list
-      this.itemContractList = this.itemContractList.filter(e =>!this.errorsHelper.itemContractCompare(e, item));
+      this.itemContractList = listsHolder.listOfItens;
 
-
-      //if the item has an id, it was saved before, and need to be deleted from api.
-      //this is necessary because sometimes an item it is added to the contractList and it is excluded before
-      //the contract is saved in backend, so the item won't have and id.
-      if(item.id !== null && item.id !== undefined){
-
-        //saving item in a list to delete from backend.
-        this.deletedSavedItensIdList.push(item.id);
-
+      if(listsHolder.deletedItens.length > 0){
+        listsHolder.deletedItens.forEach(e => {
+          this.deletedSavedItensIdList.push(e);
+        })
       }
 
+
+
       //refresh total value
+      this.listSize = this.itemContractList.length;
       this.sumTotalOfContract();
     }
 
@@ -270,6 +277,15 @@ export class CustomerContractsDetailItensComponent implements OnInit, OnChanges,
 
       }
     }
+
+    /**
+     * Open the dialog view of the itens of the added to itemContractList
+     */
+    openItensView(){
+      this.dialogService.openDialog(ItemContractListTableComponent,this.itemContractList,null,"800px");
+    }
+
+
 }
 
 

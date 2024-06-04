@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, inject } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { Subject } from 'rxjs';
 
 /**
@@ -11,13 +12,15 @@ import { Subject } from 'rxjs';
 })
 export class CommunicationService {
 
-  dataEmitter = new Subject<any>();
+  dataEmitter:Subject<any> = new Subject<any>();
 
   sendData(object:any){
+
+    console.log('Sending Object:');
+    console.log(object);
     this.dataEmitter.next(object);
+
   }
-
-
 
   constructor() { }
 }

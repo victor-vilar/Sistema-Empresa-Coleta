@@ -41,7 +41,7 @@ export class DialogServiceService {
   };
 
   //Metodo utilizado para abrir um dialog, passando o componente que deseja utilizar no dialog.
-  //@compoent = componente que será aberto no dialog.
+  //@component = componente que será aberto no dialog.
   //@ObjectToEdit = objeto que sera passado (caso exista) para o formulário
   //@rota = local para onde será redirecionado após o dialog ser fechado.
   openDialog(component:any, objectToEdit:any, rota:string,width?:string, height?:string): void {
@@ -109,17 +109,23 @@ export class DialogServiceService {
    * @param rota
    */
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
-    dialogRef.afterClosed().subscribe(result => {
-      this.router.navigate([rota], { queryParams: {  }});
-    });
+
+    if(rota != null){
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate([rota], { queryParams: {  }});
+      });
+    }
+
 
   }
 
   //metodo para realizar alguma ação antes do dialog fechar
   private beforCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
-    dialogRef.beforeClosed().subscribe(result => {
-      this.router.navigate([rota], { queryParams: {  }});
-    })
+    if(rota != null){
+      dialogRef.beforeClosed().subscribe(result => {
+        this.router.navigate([rota], { queryParams: {  }});
+      })
+    }
   }
 
 

@@ -19,7 +19,6 @@ import { MapperService } from 'src/app/shared/services/mapper.service';
 export class ContractsListTableComponent extends ItensTableComponent {
 
   @ViewChild('search') search:HTMLSelectElement;
-  communicationService = inject(CommunicationService);
   customerService = inject(CustomerService);
   contractStatusEnumValues = getContractStatusValues();
   constructor(){
@@ -46,20 +45,6 @@ export class ContractsListTableComponent extends ItensTableComponent {
 
     })
 
-
-    // this.router.navigate(['/cliente',contract.customerId,'contratos']).
-    // then(response =>{
-
-    //     //after wait for the component initialize and send the contract to object to edit
-    //     //will navigate to the page of contract detail and send the query params to open as a dialog
-    //     //
-    //     setTimeout(() =>{
-    //       this.communicationService.sendData(contract);
-    //       this.router.navigate(['./','contrato',contract.id],
-    //       {queryParams: {edit: true, dialog: true }})
-    //     },10);
-
-    // })
 
   }
 

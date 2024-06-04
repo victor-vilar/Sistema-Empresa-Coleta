@@ -30,7 +30,7 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
   constructor(
     private service:CustomerService,
-    public dialogRef: MatDialogRef<ResidueDetailComponent>,
+    public dialogRef: MatDialogRef<CustomerDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     ) {super(); }
 

@@ -64,7 +64,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     //if the object (contract) is not null
     if(this.data.objectToEdit !== undefined && this.data.objectToEdit !== null){
 
-      //getting contract data
+      //getting contract
       this.objectToEdit = this.contractService.list.find(c =>c.id === this.data.objectToEdit.id);
 
     }
@@ -108,18 +108,10 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   save(){
 
 
-    this.errorsHelper.checkErrors(this.form,this.itemContractList,this.allFieldsMustBeFilledError)
-
+    this.errorsHelper.checkErrors(this.form,this.child.itemContractList)
 
     this.dialogService.openProgressDialog();
-    //check if contract has at least one item
 
-
-    //check if end date is bigger than begin date
-    //this.checkContractDatesBeforeSave();
-
-    //do not save empty contracts
-    this.checkIfContractHasItens();
 
     //create a contract object
     let contract = this.createObject();
@@ -170,42 +162,13 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
 
-    //check if the contract have at least one item
-  //don't creates empty contracts
-  checkIfContractHasItens(){
-    if(this.itemContractList.length === 0 ){
-      let errorMessage = 'O contrato deve possuir pelo menos um item!!'
-      this.dialogService.openErrorDialog(errorMessage);
-      throw Error(errorMessage);
-    }
-
-  }
-
-
-  //check if the form imputs are filled
-  //cant create itens with some data empty
-  checkIfItemContractFromInputsAreFilled(){
-    Object.values(this.form.controls).forEach(e =>{
-      if(e.value === '' || e.value === null){
-          let errorMessage = 'É necessario prencher todos os campos para adicionar um resíduo !!!'
-          this.dialogService.openErrorDialog(errorMessage);
-          throw Error(errorMessage);
-      }
-    })
-  }
-
   /**
    * if some itens are deleted from the contract frontend list, it will be deleted from backend list
    */
   deleteItemsFromApi(){
 
-    //if the list has itens, so the will be deleted from backend.
-    if(this.deletedSavedItensIdList.length > 0){
       this.contractService.deleteItensFromContract(this.deletedSavedItensIdList)
       .subscribe(this.deleteItemFromContractObserver());
-    }
-
-
   }
 
   //navigates to another page
@@ -241,12 +204,15 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   contractUpdateObserver():any{
     return{
       next:(response) =>{
-        //close progress dialog
-        this.dialogService.closeProgressSpinnerDialog();
 
-        this.deleteItemsFromApi();
-        //update contract list
-        this.contractService.getAll();
+        if(this.deletedSavedItensIdList.length > 0){
+          this.deleteItemsFromApi();
+        }else{
+
+          this.dialogService.closeProgressSpinnerDialog();
+          this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
+          this.contractService.getAll();
+        }
 
       },
       error:(error)=>{
@@ -281,11 +247,11 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
   deleteItemFromContractObserver():any{
     return{
       next:(response) =>{
-        //close progress spinner dialog
-        console.log(response);
+
         //show success message
-        this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
         this.dialogService.closeProgressSpinnerDialog();
+        this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
+        this.contractService.getAll();
 
       },
       error:(error)=>{
@@ -316,6 +282,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
   }
+
 }
 
 
