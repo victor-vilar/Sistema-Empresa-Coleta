@@ -3,7 +3,8 @@
   <app-serviceorder-list
   [service]="serviceOrderService"
   [mapper]="mapper"
-  (editObjectEmitter)="editObject($event)">
+  (editObjectEmitter)="editObject($event)"
+  (pdfEmitter)="generatePdf($event)">
 </app-serviceorder-list>
 
 

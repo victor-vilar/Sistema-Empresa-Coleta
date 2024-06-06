@@ -10,6 +10,8 @@ import { PdfBuilderService } from './services/pdf-builder.service';
 import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
 import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
+import { ServiceOrder } from '../shared/entities/ServiceOrder';
+import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
 
 @Component({
   selector: 'app-serviceorder',
@@ -19,8 +21,6 @@ import { ServiceOrderAddCollectionComponent } from './service-order-add-collecti
 export class ServiceorderComponent extends MainComponentEntityOfCustomer {
 
   serviceOrderService:ServiceorderService = inject(ServiceorderService);
-  private communicationService:CommunicationService = inject(CommunicationService);
-
 
   constructor() {
     super();
@@ -46,8 +46,17 @@ export class ServiceorderComponent extends MainComponentEntityOfCustomer {
        this.dialogService.openDialog(ServiceorderDetailComponent,this.objectToEdit,"/ordem-servico","800px","800px")
      }
 
-
     this.objectToEdit = null;
+  }
+
+
+  generatePdf(order:any){
+    this.dialogService.openDialog(PdfTemplateComponent,order,null,"0px","0px");
+    this.dialogService.openProgressDialog();
+    setTimeout(() =>{
+      this.dialogService.closeProgressSpinnerDialog();
+    },10);
+
   }
 
 }
