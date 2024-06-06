@@ -28,6 +28,7 @@ mat-divider{
   display: grid;
   grid-template-columns: 50% 50%;
 }
+
 .options{
   display: flex;
   flex-direction: row;

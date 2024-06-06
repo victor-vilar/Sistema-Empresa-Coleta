@@ -33,7 +33,7 @@
 
   --principal: var(--cinza-escuro);
   --secundaria:var(--verde);
-  --cinza-escuro:rgb(38, 41, 39);
+  --cinza-escuro:#262927;
   --verde:#28dcb8;
 }
 

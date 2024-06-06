@@ -23,6 +23,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
 
 
 
+
 @NgModule({
   declarations: [
     ConfirmationDialogComponent,
@@ -37,7 +38,8 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     SvgListIconComponent,
     DaysChipComponent,
     SvgSaveIconComponent,
-    SvgAddIconComponent
+    SvgAddIconComponent,
+
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     ReactiveFormsModule,
     DaysChipComponent,
     SvgSaveIconComponent,
-    SvgAddIconComponent
+    SvgAddIconComponent,
 
   ]
 })
