@@ -12,6 +12,7 @@ import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainCompo
 import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
 import { ServiceOrder } from '../shared/entities/ServiceOrder';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
+import { Customer } from '../shared/entities/Customer';
 
 @Component({
   selector: 'app-serviceorder',
@@ -58,6 +59,10 @@ export class ServiceorderComponent extends MainComponentEntityOfCustomer {
     },10);
 
   }
+
+
+
+
 
 }
 

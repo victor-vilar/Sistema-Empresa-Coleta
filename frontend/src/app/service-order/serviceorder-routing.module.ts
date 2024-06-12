@@ -17,10 +17,8 @@ const routes: Routes = [
     {path:'novo',component:ServiceorderDetailComponent},
     {path:':id',component:ServiceorderDetailComponent},
     {path:'detalhes/:id',component:ServiceOrderAddCollectionComponent},
-
     {path:'pdf',component:PdfTemplateComponent},
-
-
+    {path:'pdf/:id',component:PdfTemplateComponent}
   ]},
 ]
 

@@ -1,48 +1,48 @@
-<div class="pdf" #html style="width: 20cm">
-
+<div class="pdf" #html>
   <div class="header">
-    <div class="header-info" >
-      <img class ='' src="../../../assets/chiquinha-profile.jpg" width="50" height="60" />
-      <h6 class ='pdf-label'>Ordem de Serviço</h6>
-    </div>
+    <img class ='' src="../../../assets/chiquinha-profile.jpg" width="60" height="60" />
+    <h6 class ='pdf-label'>Ordem de Serviço de Coleta de Resíduos</h6>
     <div class="header-info">
-      <span class ='pdf-order-info'>Número: {{ order.id }}</span>
-      <span class ='pdf-order-info'>Data do Serviço:
-        {{ order.serviceExpectedDate | date : "dd/MM/yyyy" }}
-      </span>
+      <div class="header-info-data"><b>Número:</b><span> {{ order.id }}</span></div>
+      <div class="header-info-data"><b>Emissão:</b><span>{{ order.emissionDate | date : "dd/MM/yyyy" }}</span></div>
+      <div class="header-info-data"><b>Data Agendada:</b><span>{{ order.serviceExpectedDate | date : "dd/MM/yyyy" }}</span></div>
+      <div class="header-info-data"><b>Situação:</b><span>{{order.serviceOrderStatus}}</span></div>
     </div>
   </div>
-
-  <div class="customer-info">
-    <div
-      class="header-info"
-      style="display: flex; flex-direction: column; width: 100%"
-    >
-      <p>Dados do cliente</p>
-      <span class ='pdf-order-info'>Nome: {{ order.customerId }}</span>
-      <span class ='pdf-order-info'>Endereço do Serviço:</span>
-
-      <span class ='pdf-order-info'>
-        Logradouro: {{order.address.addressName}}
-      </span>
-
-      <div class ='pdf-order-info'class="logradouro" style="display: flex; gap: .15cm">
-        <span style="font-size: 11px">
-          Nº: {{ order.address.addressNumber }}
-        </span>
-
-        <span style="font-size: 11px">
-          Cpl: {{ order.address.complement }}
-        </span>
+  <div class="services-info">
+      <h6 class="os-data-header">Cliente</h6>
+      <div class="">
+          <div class="data-block-item"><b>CPF /CNPJ</b>{{order.customerId | cpfCnpj }}</div>
+          <div class="data-block-item"><b>Cliente</b>{{customer.nameCompanyName}}</div>
+          <div class="data-block-item"><b>Endereco</b>{{order.address.addressName}}</div>
+        <div class="data-block-small">
+          <div class="data-block-item"><b>Nº</b>{{order.address.addressNumber}}</div>
+          <div class="data-block-item"><b>Complemento</b>{{order.address.complement}}</div>
+          <div class="data-block-item"><b>Cidade</b>{{order.address.city}}</div>
+          <div class="data-block-item"><b>Estado</b>{{order.address.state}}</div>
+        </div>
       </div>
-      <div class="logradouro" style="display: flex; gap: .15cm">
-      <span style="font-size: 11px">
-        Cidade: {{ order.address.city }}
-      </span>
-      <span style="font-size: 11px">
-        Estado: {{ order.address.state }}
-      </span>
-      </div>
+        <h6 class="os-data-header">Informações do Serviço</h6>
+        <div class="services-item-data data-block">
+          <div class = 'data-block-item'><b>Equipamento  </b> {{order.itemContract.equipment}}</div>
+          <div class = 'data-block-item'><b>Resíduo  </b> {{order.itemContract.residue}}</div>
+          <div class = 'data-block-item'><b>Unidade Medida  </b> {{order.itemContract.measurementUnit}}</div>
+          <div class = 'data-block-item'><b>Data de Execução </b> {{order.itemContract.vehicle}}</div>
+          <div class = 'data-block-item'><b>Hora  </b> {{order.itemContract.serviceTime}}</div>
+          <div class = 'data-block-item'><b>Qtd Coletada  </b> {{order.itemContract.amountCollected}}</div>
+          <div class="long-data data-block-item"><b>Nº Manifesto INEA</b>{{order.itemContract.ineaManifest}}</div>
+          <div class="observation-data long-data data-block-item"><b>Observação </b>{{order.observation}}</div>
+        </div>
+  </div>
+  <div class="footer">
+    <div class="signature-employee signature-area">
+        <span class="signature-item">______________________________</span>
+        <span class="signature-item">Assinatura Motorista</span>
+    </div>
+    <div class="signature-customer signature-area">
+        <span class="signature-item">______________________________</span>
+        <span class="signature-item">Assinatura Cliente</span>
     </div>
   </div>
 </div>
+

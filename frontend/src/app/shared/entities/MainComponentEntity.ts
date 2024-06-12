@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Mapper } from "../interfaces/mapper.mapper";
 import { DialogServiceService } from "../services/dialog-service.service";
 import { Subscription } from "rxjs";
@@ -25,6 +25,7 @@ export abstract class MainComponentEntity implements OnInit, OnDestroy{
   protected mapper:Mapper;
   protected dialogService:DialogServiceService = inject(DialogServiceService);
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
+  protected router:Router = inject(Router);
 
 
   ngOnInit(): void {

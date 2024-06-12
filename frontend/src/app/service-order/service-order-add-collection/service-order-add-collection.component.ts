@@ -28,8 +28,10 @@ export class ServiceOrderAddCollectionComponent extends FormDetail implements On
 
   ngOnInit(): void {
     this.onLoad(this.data);
+    console.log(this.data);
     this.selectedServiceOrder = this.serviceorderService.list.find(os => os.id === this.idOfEditedItem);
-    
+    console.log(this.selectedServiceOrder);
+
   }
 
 
