@@ -24,14 +24,23 @@
   <form (ngSubmit)="save('teste')" #form="ngForm" class="form">
 
     <div class="os-fields">
+
+
       <mat-form-field appearance="outline">
         <mat-label>Data do Serviço</mat-label>
         <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
         <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
         <mat-datepicker #serviceDate></mat-datepicker>
         <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-        class="alert">O contrato deve possuir uma data de início</mat-error>
+        class="alert">O serviço deve ter uma data de execução</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hora do Seriço</mat-label>
+        <input matInput name="serviceTime" ngModel required type="time">
+        <mat-error *ngIf="this.form.controls['serviceTime']?.value === ''" class='alert' >O serviço deve possuir uma hora de execução</mat-error>
+      </mat-form-field>
+
 
       <mat-form-field appearance="outline">
         <mat-label>Quantidade Coletada</mat-label>
@@ -39,6 +48,12 @@
         <mat-error *ngIf="this.form.controls['quantity']?.value === ''&& (this.form.controls['quantity'].dirty || this.form.controls['quantity'].touched)"
         class="alert">Deve ser informada a quantidade coletada</mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nº Manifesto</mat-label>
+        <input matInput name="quantity" ngModel required type="text">
+      </mat-form-field>
+
     </div>
     <button class="app-button">Salvar</button>
   </form>

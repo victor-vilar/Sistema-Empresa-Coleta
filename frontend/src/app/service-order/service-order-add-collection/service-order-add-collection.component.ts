@@ -19,19 +19,15 @@ export class ServiceOrderAddCollectionComponent extends FormDetail implements On
   selectedServiceOrder:ServiceOrder;
   @ViewChild('form') form:NgForm;
 
-  constructor(
-    public dialogRef: MatDialogRef<ServiceOrderAddCollectionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any
-  ) { super();}
+  constructor(public dialogRef: MatDialogRef<ServiceOrderAddCollectionComponent>, @Inject(MAT_DIALOG_DATA) public data:any) {
+      super();
+    }
 
 
 
   ngOnInit(): void {
     this.onLoad(this.data);
-    console.log(this.data);
     this.selectedServiceOrder = this.serviceorderService.list.find(os => os.id === this.idOfEditedItem);
-    console.log(this.selectedServiceOrder);
-
   }
 
 

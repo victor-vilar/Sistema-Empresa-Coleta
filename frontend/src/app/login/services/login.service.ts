@@ -142,6 +142,8 @@ export class LoginService {
         //http failure response
         }else if(error.status===200){
           this.dialogService.openErrorDialog("Não foi possível estabelecer um conexão com o servidor !");
+        }else{
+          this.dialogService.openErrorDialog("Não foi possivel realizar login.")
         }
 
 

@@ -1,18 +1,12 @@
-import { CommunicationService } from '../shared/services/communication.service';
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+
+import { Component, inject } from '@angular/core';
 import { ServiceorderService } from './services/serviceorder.service';
 import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
-import { Router } from '@angular/router';
-import { DialogServiceService } from '../shared/services/dialog-service.service';
 import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';
-import { PdfBuilderService } from './services/pdf-builder.service';
-
-import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
 import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
-import { ServiceOrder } from '../shared/entities/ServiceOrder';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
-import { Customer } from '../shared/entities/Customer';
+
 
 @Component({
   selector: 'app-serviceorder',
@@ -44,7 +38,7 @@ export class ServiceorderComponent extends MainComponentEntityOfCustomer {
     if(this.activatedRoute.snapshot.queryParams['edit']){
       this.dialogService.openDialog(ServiceOrderAddCollectionComponent,this.objectToEdit,"/ordem-servico","800px","400px")
     }else{
-       this.dialogService.openDialog(ServiceorderDetailComponent,this.objectToEdit,"/ordem-servico","800px","800px")
+       this.dialogService.openDialog(ServiceorderDetailComponent,this.objectToEdit,"/ordem-servico","800px","400px")
      }
 
     this.objectToEdit = null;
