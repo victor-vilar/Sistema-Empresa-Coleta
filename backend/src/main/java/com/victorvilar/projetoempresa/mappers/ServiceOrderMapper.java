@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderFinishDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
@@ -50,6 +51,21 @@ public class ServiceOrderMapper {
 
     public ServiceOrder toServiceOrder(ServiceOrderUpdateDto updateDto){
         return this.setPropertiesAndUpdate(updateDto);
+    }
+
+    public ServiceOrder toServiceOrder(ServiceOrderFinishDto finishDto){
+        ServiceOrder so = this.serviceOrderRepository.findById(finishDto.getId()).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order not Found"));
+        so.setIneaManifest(finishDto.getIneaManifest());
+        so.setServiceTime(finishDto.getServiceTime());
+        so.setOsFileUrl(finishDto.getOsFileUrl());
+        so.setAmountCollected(finishDto.getAmountCollected());
+        so.setServiceOrderStatus(ServiceOrderStatus.DONE);
+        if(finishDto.getVehicle() != null){
+            Vehicle vehicle = this.vehicleRepository.findById(finishDto.getVehicle()).get();
+            so.setVehicle(vehicle);
+        }
+
+        return so;
     }
 
     public List<ServiceOrder> toServiceOrderListFromServiceOrderCreateDtoList(List<ServiceOrderCreateDto> list){

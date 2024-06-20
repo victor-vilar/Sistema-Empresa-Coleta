@@ -5,6 +5,7 @@ import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.ServiceOrder;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderFinishDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
@@ -130,6 +131,11 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
     @Override
     public ServiceOrderResponseDto update(ServiceOrderUpdateDto updateDto) {
         ServiceOrder order = this.mapper.toServiceOrder(updateDto);
+        return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(order));
+    }
+
+    public ServiceOrderResponseDto serviceOrderCompleted(ServiceOrderFinishDto finishDto){
+        ServiceOrder order = this.mapper.toServiceOrder(finishDto);
         return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(order));
     }
 

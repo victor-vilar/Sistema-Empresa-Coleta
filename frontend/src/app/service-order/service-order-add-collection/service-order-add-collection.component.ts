@@ -35,12 +35,12 @@ export class ServiceOrderAddCollectionComponent extends FormDetail implements On
     let os = this.serviceorderService.list.find(os => os.id === this.idOfEditedItem);
     return {
       id:os.id,
-      emissionDate:os.emissionDate,
-      itemContract:os.itemContract.id,
-      address:os.address.id,
-      serviceExpectedDate:os.serviceExpectedDate,
       amountCollected:Number(this.form.value.quantity),
-      serviceOrderStatus:ServiceOrderStatus.DONE
+      ineaManifest:'',
+      osFileUrl:'',
+      serviceTime:'',
+      vechile:'teste',
+
     }
 
   }

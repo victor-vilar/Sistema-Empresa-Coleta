@@ -34,6 +34,11 @@ public class ServiceOrder implements Serializable {
      */
     private LocalDate serviceExpectedDate;
 
+    /**
+     * date that the service was executed
+     */
+    private LocalDate serviceExecutedDate;
+
     @ManyToOne
     private Vehicle vehicle;
 
@@ -72,7 +77,7 @@ public class ServiceOrder implements Serializable {
 
     /**
      * place in the filesystem where the scan of the physical copy is stored.
-     * This url file must have the already made and filled service order.
+     * This url file must have the already executed and filled service order.
      */
     private String osFileUrl;
 
@@ -84,19 +89,22 @@ public class ServiceOrder implements Serializable {
     public ServiceOrder() {
     }
 
-    public ServiceOrder(Long id, LocalDate serviceExpectedDate, Vehicle vehicle, ItemContract itemContract, Customer customer, String ineaManifest, LocalTime serviceTime, String observation, String osFileUrl,Long amountCollected) {
+    public ServiceOrder(Long id, LocalDate emissionDate, LocalDate serviceExpectedDate, LocalDate serviceExecutedDate, Vehicle vehicle, ItemContract itemContract, Customer customer, Address address, Long amountCollected, String ineaManifest, LocalTime serviceTime, String observation, String osFileUrl, Integer serviceOrderStatus) {
         this.id = id;
+        this.emissionDate = emissionDate;
         this.serviceExpectedDate = serviceExpectedDate;
+        this.serviceExecutedDate = serviceExecutedDate;
         this.vehicle = vehicle;
         this.itemContract = itemContract;
         this.customer = customer;
+        this.address = address;
+        this.amountCollected = amountCollected;
         this.ineaManifest = ineaManifest;
         this.serviceTime = serviceTime;
         this.observation = observation;
         this.osFileUrl = osFileUrl;
-        this.amountCollected = amountCollected;
+        this.serviceOrderStatus = serviceOrderStatus;
     }
-
 
     public Long getId() {
         return id;
@@ -125,6 +133,14 @@ public class ServiceOrder implements Serializable {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public LocalDate getServiceExecutedDate() {
+        return serviceExecutedDate;
+    }
+
+    public void setServiceExecutedDate(LocalDate serviceExecutedDate) {
+        this.serviceExecutedDate = serviceExecutedDate;
     }
 
     public ItemContract getItemContract() {
@@ -207,6 +223,7 @@ public class ServiceOrder implements Serializable {
         private Long id;
         private LocalDate emissionDate;
         private LocalDate serviceExpectedDate;
+        private LocalDate serviceExecutedDate;
         private Vehicle vehicle;
         private ItemContract itemContract;
         private Customer customer;
@@ -231,6 +248,12 @@ public class ServiceOrder implements Serializable {
             this.serviceExpectedDate=date;
             return this;
         }
+
+        public ServiceOrderBuilder serviceExecutedDate(LocalDate date){
+            this.serviceExecutedDate = date;
+            return this;
+        }
+
         public ServiceOrderBuilder vehicle(Vehicle vehicle){
             this.vehicle = vehicle;
             return this;
@@ -273,6 +296,7 @@ public class ServiceOrder implements Serializable {
             order.setId(this.id);
             order.setEmissionDate(this.emissionDate);
             order.setServiceExpectedDate(this.serviceExpectedDate);
+            order.setServiceExecutedDate(this.serviceExecutedDate);
             order.setVehicle(this.vehicle);
             order.setItemContract(this.itemContract);
             order.setCustomer(this.customer);

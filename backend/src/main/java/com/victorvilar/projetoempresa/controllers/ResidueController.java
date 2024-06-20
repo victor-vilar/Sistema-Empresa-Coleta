@@ -50,7 +50,7 @@ public class ResidueController {
      * @param residue
      */
     @PostMapping("")
-    public ResponseEntity<ResidueResponseDto> save(@RequestBody ResidueCreateDto residue){
+    public ResponseEntity<ResidueResponseDto> save(@Valid @RequestBody ResidueCreateDto residue){
         return ResponseEntity.ok(this.residueService.save(residue));
 
     }

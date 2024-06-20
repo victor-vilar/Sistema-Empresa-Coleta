@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.controllers.interfaces.EntityOfCustomerCon
 import com.victorvilar.projetoempresa.controllers.interfaces.SystemController;
 import com.victorvilar.projetoempresa.domain.ServiceOrder;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderFinishDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.services.ServiceOrderService;
@@ -60,6 +61,11 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
     @Override
     public ResponseEntity<ServiceOrderResponseDto> update(@Valid ServiceOrderUpdateDto updateDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDto));
+    }
+
+    @PutMapping("/finish")
+    public ResponseEntity<ServiceOrderResponseDto> serviceOrderCompleted(@Valid @RequestBody ServiceOrderFinishDto serviceOrderFinishDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.serviceOrderCompleted(serviceOrderFinishDto));
     }
 
     @PutMapping("/all")
