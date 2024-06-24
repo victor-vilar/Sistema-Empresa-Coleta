@@ -17,7 +17,9 @@ export class ServiceorderDetailComponentErrorsHelperService extends ErrorsHelper
   private checkFilledFields(form:NgForm){
 
     Object.values(form.controls).forEach(e =>{
-      if(e.value === ""){
+      console.log(Object.values(e));
+
+      if(e.value === "" ){
         this.dialogService.openErrorDialog(this.EMPTY_FIELD);
         throw new Error(this.EMPTY_FIELD);
       }

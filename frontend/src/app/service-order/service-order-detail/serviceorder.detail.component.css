@@ -1,7 +1,9 @@
+
+
 form{
-  display: flex;
-  flex-direction: column;
-  gap:5px;
+  display:grid;
+  grid-template-columns: 50% 50%;
+  gap: 5px;
 }
 
 .select-options span{
@@ -10,30 +12,17 @@ form{
 
 }
 
-
-.big-information{
-  /* width: 640px; */
-}
-.detail-component-header{
+.create-order-fields{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  margin-top: 20px;
-  font-size: 1.5em;
-  font-weight: bold;
 
 }
 
-.close-button{
-  cursor: pointer;
-  transition: all 0.3s ;
-  padding:0px 10px;
-  text-decoration: none;
-  color:black;
+.os-after-executed-fields{
+  display: flex;
+  flex-direction: column;
 }
 
-.close-button:hover{
-  background-color: var(--cinza-escuro);
-  color: white;
-}
+
 

@@ -1,33 +1,9 @@
- <div class="container">
 
-  <mat-dialog-content>
-
-    <app-dialog-window-header
-    [title]="crudOperation + ' de Ordem de Serviço'"
-    (closeDialogEmitter)="this.destroy()">
-    </app-dialog-window-header>
-
-  <div class="os-info">
-
-    <span class="os-id"><b>Nº:</b> {{this.selectedServiceOrder.id}}</span>
-
-    <ul>
-      <li><b>Data de Emissão: </b>{{this.selectedServiceOrder.emissionDate | date: 'dd/MM/yyyy'}}</li>
-      <li><b>Data Prevista: </b>{{this.selectedServiceOrder.serviceExpectedDate | date: 'dd/MM/yyyy'}}</li>
-      <li><b>Equipamento:</b> {{this.selectedServiceOrder.itemContract.equipment}}</li>
-      <li><b>Unidade de Medida: </b> {{this.selectedServiceOrder.itemContract.measurementUnit}}</li>
-      <li><b>Referente ao Contrato: </b> {{this.selectedServiceOrder.itemContract.contract}}</li>
-    </ul>
-
-  </div>
-
-  <form (ngSubmit)="save('teste')" #form="ngForm" class="form">
+  <form #form="ngForm" class="form">
 
     <div class="os-fields">
-
-
       <mat-form-field appearance="outline">
-        <mat-label>Data do Serviço</mat-label>
+        <mat-label>Data da Execução</mat-label>
         <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
         <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
         <mat-datepicker #serviceDate></mat-datepicker>
@@ -36,8 +12,8 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Hora do Seriço</mat-label>
-        <input matInput name="serviceTime" ngModel required type="time">
+        <mat-label>Hora do Serviço</mat-label>
+        <input matInput name="serviceTime" ngModel type="text">
         <mat-error *ngIf="this.form.controls['serviceTime']?.value === ''" class='alert' >O serviço deve possuir uma hora de execução</mat-error>
       </mat-form-field>
 
@@ -51,12 +27,10 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Nº Manifesto</mat-label>
-        <input matInput name="quantity" ngModel required type="text">
+        <input matInput name="quantity" ngModel type="text">
       </mat-form-field>
 
     </div>
-    <button class="app-button">Salvar</button>
+
   </form>
 
-</mat-dialog-content>
-</div>

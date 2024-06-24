@@ -1,49 +1,88 @@
-<mat-dialog-content>
-  <app-dialog-window-header
-  [title]="crudOperation + ' de Ordem de Serviço'"
-  (closeDialogEmitter)="this.destroy()">
-  </app-dialog-window-header>
+<app-dialog-window-header
+[title]="crudOperation + ' de Ordem de Serviço'"
+(closeDialogEmitter)="this.destroy()">
+</app-dialog-window-header>
 
+<div class="container">
+<mat-dialog-content>
 
 
 <form (ngSubmit)="save()" #form="ngForm">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Data do Serviço</mat-label>
-    <input matInput [matDatepicker]="serviceDate" name="serviceDate" ngModel required>
-    <mat-datepicker-toggle matSuffix [for]="serviceDate"></mat-datepicker-toggle>
-    <mat-datepicker #serviceDate></mat-datepicker>
-    <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
-    class="alert">A coleta deve possuir um dia que será executada</mat-error>
-  </mat-form-field>
+  <div class="create-order-fields">
+    <mat-form-field appearance="outline" matTooltip="A data que será programada a coleta">
+      <mat-label>Data Programada</mat-label>
+      <input matInput [matDatepicker]="serviceExpectedDate" name="serviceExpectedDate" ngModel required >
+      <mat-datepicker-toggle matSuffix [for]="serviceExpectedDate"></mat-datepicker-toggle>
+      <mat-datepicker #serviceExpectedDate></mat-datepicker>
+      <mat-error *ngIf="this.form.controls['beginDate']?.value === '' && (this.form.controls['beginDate'].dirty || this.form.controls['beginDate'].touched)"
+      class="alert">A coleta deve possuir um dia que será executada</mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="big-information" >
-    <mat-label>Cliente</mat-label>
-    <mat-select name="customer" id="customer" ngModel required (selectionChange)="findCustomerInformation()" >
-      <mat-option value="{{customer.cpfCnpj}}" *ngFor="let customer of customers">{{customer.nameCompanyName}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline" matTooltip="Cliente do serviço" >
+      <mat-label>Cliente</mat-label>
+      <mat-select name="customer" id="customer" ngModel required (selectionChange)="findCustomerInformation()" >
+        <mat-option value="{{customer.cpfCnpj}}" *ngFor="let customer of customers">{{customer.nameCompanyName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Item</mat-label>
-    <mat-select name="item" id="item" ngModel required matTooltip="Escolha um item disponível">
-      <mat-option class="select-options" value="{{item.id}}" *ngFor="let item of itens"><span>Resíduo: </span>{{item.residue}} <span>- Ref ao Contrato: </span> {{item.contract}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline" matTooltip="Escolha um item disponível">
+      <mat-label>Item</mat-label>
+      <mat-select name="item" id="item" ngModel required >
+        <mat-option class="select-options" value="{{item.id}}" *ngFor="let item of itens"><span>Resíduo: </span>{{item.residue}} <span>- Ref ao Contrato: </span> {{item.contract}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="big-information">
-    <mat-label>Endereco</mat-label>
-    <mat-select name="address" id="address" ngModel required matTooltip="Escolha um endereço disponível" >
-      <mat-option class="select-options" value="{{address.id}}" *ngFor="let address of addresses"><span>Logradouro: </span>{{address.addressName}}, <span>Nº: </span>{{address.addressNumber}}, <span>COMPL: </span>{{address.complement}} <span> - </span> {{address.city}}  </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline"  matTooltip="Escolha um endereço disponível" >
+      <mat-label>Endereco</mat-label>
+      <mat-select name="address" id="address" ngModel required >
+        <mat-option class="select-options" value="{{address.id}}" *ngFor="let address of addresses"><span>Logradouro: </span>{{address.addressName}}, <span>Nº: </span>{{address.addressNumber}}, <span>COMPL: </span>{{address.complement}} <span> - </span> {{address.city}}  </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label for="">Observaçao:</mat-label>
-    <textarea matInput ngModel name="observation" id="observation"></textarea>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="">Observaçao:</mat-label>
+      <textarea matInput ngModel name="observation" id="observation"></textarea>
+    </mat-form-field>
 
-  <input type="submit" class="app-button" value="Criar nova Ordem">
+    <div class="menu-field">
+      <input type="submit" class="app-button" value="{{operation}}">
+    </div>
+  </div>
+
+  <div class="os-after-executed-fields">
+    <mat-form-field appearance="outline">
+      <mat-label>Data da Execução</mat-label>
+      <input matInput [matDatepicker]="serviceExecutedDate" name="serviceExecutedDate" ngModel >
+      <mat-datepicker-toggle matSuffix [for]="serviceExecutedDate"></mat-datepicker-toggle>
+      <mat-datepicker #serviceExecutedDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Hora do Serviço</mat-label>
+      <input matInput name="serviceTime" ngModel type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Quantidade Coletada</mat-label>
+      <input matInput name="amountCollected" ngModel  type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nº Manifesto</mat-label>
+      <input matInput name="ineaManifest" ngModel type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Local da Cópia Física</mat-label>
+      <input matInput name="osFileUrl" ngModel type="text">
+    </mat-form-field>
+
+
+
+  </div>
 
 </form>
 </mat-dialog-content>
+
+</div>
