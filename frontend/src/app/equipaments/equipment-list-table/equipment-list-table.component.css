@@ -2,11 +2,6 @@ table{
   width: 100%;
 }
 
-th{
-  font-weight: bolder;
-
-}
-
 .options-table-buttons{
   display: flex;
   gap: 5px;
@@ -20,4 +15,12 @@ th{
 
 td, th {
   width: 25%;
+}
+
+
+.mat-column-equipamento, .mat-column-volume-m3, .mat-column-opcoes
+{
+  width:33%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

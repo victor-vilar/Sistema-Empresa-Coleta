@@ -4,7 +4,6 @@ import { ServiceorderService } from './services/serviceorder.service';
 import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
 import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
-import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
 
 

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ServiceorderListComponent } from './serviceorder-list/serviceorder-list.component';
 import { jsPDF } from "jspdf";
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
-import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
+
 
 
 
@@ -20,7 +20,7 @@ import { ServiceOrderAddCollectionComponent } from './service-order-add-collecti
     ServiceorderDetailComponent,
     ServiceorderListComponent,
     PdfTemplateComponent,
-    ServiceOrderAddCollectionComponent,
+
 
   ],
   imports: [

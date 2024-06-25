@@ -17,7 +17,7 @@ export class ResidueListTableComponent extends ItensTableComponent{
 
   constructor(){
       super();
-      this.tableHeaders = ['Id','Resíduo','Classe','Opções'];
+      this.tableHeaders = ['residuo','classe','opcoes'];
   }
 
 

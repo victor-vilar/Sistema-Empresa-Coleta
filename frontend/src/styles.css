@@ -82,10 +82,21 @@ body {
 }
 /* ============================================= */
 
+
 .flex-display{
   display: flex;
   gap: 3px;
+  justify-content: center;
 }
+
+
+/*ALL LIST TABLES*/
+.app-table  th {
+  font-weight: bolder;
+  color:var(--cinza-escuro);
+  font-size: 14px;
+}
+
 
 /* SITUATION FOR OBJECT ON TABLES */
 .situation-tag {

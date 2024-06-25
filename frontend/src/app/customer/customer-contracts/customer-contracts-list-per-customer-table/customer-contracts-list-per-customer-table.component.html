@@ -14,12 +14,7 @@
         </mat-form-field>
 
         <div class="mat-elevation-z1">
-          <table mat-table [dataSource]="dataSource" matSort>
-
-            <ng-container matColumnDef="Id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-              <td mat-cell *matCellDef="let contract"> {{contract.id}} </td>
-            </ng-container>
+          <table mat-table [dataSource]="dataSource" matSort class="app-table">
 
             <ng-container matColumnDef="Numero">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Número </th>

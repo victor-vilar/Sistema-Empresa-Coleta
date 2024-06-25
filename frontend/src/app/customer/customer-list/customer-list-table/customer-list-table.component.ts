@@ -16,7 +16,7 @@ export class CustomerListTableComponent extends ItensTableComponent {
 
   constructor(){
     super()
-    this.tableHeaders =['CPF-CNPJ','Nome/Razão Social','Contratos','Enderecos','Fiscais','Opções']
+    this.tableHeaders =['CPF-CNPJ','Nome/Razão Social','Opções']
   }
 
 

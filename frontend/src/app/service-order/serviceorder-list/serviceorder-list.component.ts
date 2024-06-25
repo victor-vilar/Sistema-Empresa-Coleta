@@ -17,7 +17,7 @@ export class ServiceorderListComponent extends ItensTableComponent {
 
   constructor() {
     super();
-    this.tableHeaders = ['id','data-servico','cliente','quantidade','status','opcoes'];
+    this.tableHeaders = ['n','cliente','data-prevista','data-executada','status','opcoes'];
   }
 
 

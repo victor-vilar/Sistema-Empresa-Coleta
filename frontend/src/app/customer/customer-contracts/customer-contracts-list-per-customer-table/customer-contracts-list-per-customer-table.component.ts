@@ -14,7 +14,7 @@ export class CustomerContractsByCustomerListTableComponent extends ItensTableCom
 
   constructor(){
     super()
-    this.tableHeaders = ['Id','Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
+    this.tableHeaders = ['Numero','Data-Inicio', 'Data-Fim', 'Total-de-Itens', 'Total-em-R$','Opções'];
 }
 
 

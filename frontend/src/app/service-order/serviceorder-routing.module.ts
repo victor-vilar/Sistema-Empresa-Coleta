@@ -9,14 +9,13 @@ import { ServiceorderComponent } from './serviceorder.component';
 import { EquipamentsModule } from '../equipaments/equipaments.module';
 import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
-import { ServiceOrderAddCollectionComponent } from './service-order-add-collection/service-order-add-collection.component';
+
 
 
 const routes: Routes = [
   {path:'ordem-servico',component:ServiceorderComponent, children:[
     {path:'novo',component:ServiceorderDetailComponent},
     {path:':id',component:ServiceorderDetailComponent},
-    {path:'detalhes/:id',component:ServiceOrderAddCollectionComponent},
     {path:'pdf',component:PdfTemplateComponent},
     {path:'pdf/:id',component:PdfTemplateComponent}
   ]},

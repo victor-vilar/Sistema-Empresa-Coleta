@@ -14,31 +14,26 @@
         </mat-form-field>
 
         <div class="mat-elevation-z1">
-          <table mat-table [dataSource]="dataSource" matSort>
-
-            <ng-container matColumnDef="Id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-              <td mat-cell *matCellDef="let supervisor"> {{supervisor.id}} </td>
-            </ng-container>
+          <table mat-table [dataSource]="dataSource" matSort class="app-table">
 
             <ng-container matColumnDef="Nome">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-              <td mat-cell *matCellDef="let supervisor"> {{supervisor.name}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Nome </th>
+              <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="Telefone">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefone </th>
-              <td mat-cell *matCellDef="let supervisor"> {{supervisor.phoneNumber | phone}}  </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Telefone </th>
+              <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.phoneNumber | phone}}  </td>
             </ng-container>
 
             <ng-container matColumnDef="Email">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-              <td mat-cell *matCellDef="let supervisor"> {{supervisor.email}} </td>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Email </th>
+              <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.email}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="Opções">
-              <th mat-header-cell *matHeaderCellDef>Opções</th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{textAlign:'center'}">Opções</th>
               <td mat-cell *matCellDef="let supervisor" >
                 <div class="flex-display">
                   <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(supervisor)" [routerLink]="['./'+fatherPathPrefix, supervisor.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>

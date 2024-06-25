@@ -1,5 +1,7 @@
 package com.victorvilar.projetoempresa.dto.serviceorder;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
@@ -13,7 +15,9 @@ public class ServiceOrderUpdateDto  {
 
     @NotNull(message="A service order to update must have an id")
     private Long id;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate serviceExpectedDate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate serviceExecutedDate;
     private LocalTime serviceTime;
     @NotNull(message="A service order must have an item")

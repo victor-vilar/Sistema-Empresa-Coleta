@@ -15,12 +15,13 @@ export class ServiceOrderListTableComponentMapperService implements Mapper {
 
       return {
           id:order.id,
-          serviceDate:order.serviceExpectedDate,
+          serviceExpectedDate:order.serviceExpectedDate,
+          serviceExecutedDate:order.serviceExecutedDate,
           customer: this.customerService.list.find(customer => customer.cpfCnpj === order.customerId),
           quantity:order.amountCollected,
           serviceOrderStatus:order.serviceOrderStatus,
           address:order.address,
-          
+
       }
 
     })

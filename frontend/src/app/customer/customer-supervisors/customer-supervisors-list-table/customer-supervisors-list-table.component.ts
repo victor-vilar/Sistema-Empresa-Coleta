@@ -13,7 +13,7 @@ export class CustomerSupervisorsListTableComponent extends ItensTableComponent {
 
   constructor(){
     super()
-    this.tableHeaders = ['Id','Nome','Telefone','Email','Opções'];
+    this.tableHeaders = ['Nome','Telefone','Email','Opções'];
 }
 
 

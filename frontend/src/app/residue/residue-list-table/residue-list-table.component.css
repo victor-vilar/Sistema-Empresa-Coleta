@@ -2,10 +2,6 @@ table{
   width: 100%;
 }
 
-th{
-  font-weight: bolder;
-
-}
 
 .options-table-buttons{
   display: flex;
@@ -19,5 +15,12 @@ th{
 }
 
 td, th {
-  width: 25%;
+  width: 33%;
+}
+
+.mat-column-residuo, .mat-column-classe, .mat-column-opcoes
+{
+  width:33%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }

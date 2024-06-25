@@ -13,7 +13,7 @@ export class EquipmentListTableComponent extends ItensTableComponent {
 
   constructor(){
     super();
-    this.tableHeaders = ['Id','Equipamento','Volume em M³','Opções'];
+    this.tableHeaders = ['equipamento','volume-m3','opcoes'];
 }
 
 

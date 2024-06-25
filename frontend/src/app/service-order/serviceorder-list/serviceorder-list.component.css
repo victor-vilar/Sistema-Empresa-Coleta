@@ -2,15 +2,6 @@ table{
   width: 100%;
 }
 
-th{
-  font-weight: bolder;
-
-}
-
-.options-table-buttons{
-  display: flex;
-  gap: 5px;
-}
 
 
 .mat-mdc-form-field {
@@ -22,8 +13,9 @@ td, th {
   width: 25%;
 }
 
-.mat-column-id, .mat-column-data-servico {
-  width:10%;
+.mat-column-n, .mat-column-data-prevista, .mat-column-data-executada, .mat-column-status {
+  width:17%;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
+
