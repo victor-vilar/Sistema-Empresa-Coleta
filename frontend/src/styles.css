@@ -86,6 +86,11 @@ body {
   color:white
 }
 
+.bt-add{
+  background-color: #097432;
+  color:#ffffff
+}
+
 .bt-gerar-pdf{
   color:white;
   background-color: #1477d3;
@@ -112,11 +117,12 @@ body {
 /* SITUATION FOR OBJECT ON TABLES */
 .situation-tag {
   text-align: center;
-  padding: 10px;
+  padding: 2px;
   border-radius: 3px;
   font-weight: bolder;
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: 70%;
+
 
 }
 
@@ -125,17 +131,20 @@ body {
   background-color: yellow;
 
 
+
 }
 
 .warning{
   color: #E6866C;
   background-color:#ab0f03 ;
 
+
 }
 
 .ok{
   color:chartreuse ;
   background-color: green;
+
 
 }
 
