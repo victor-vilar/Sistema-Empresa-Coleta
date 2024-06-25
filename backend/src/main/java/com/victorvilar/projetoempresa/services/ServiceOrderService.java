@@ -1,18 +1,12 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.domain.Address;
-import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.ServiceOrder;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderFinishDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ServiceOrderMapper;
-import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import com.victorvilar.projetoempresa.repository.ServiceOrderRepository;
-import com.victorvilar.projetoempresa.repository.VehicleRepository;
 import com.victorvilar.projetoempresa.services.interfaces.EntityOfCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -134,10 +128,6 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(order));
     }
 
-    public ServiceOrderResponseDto serviceOrderCompleted(ServiceOrderFinishDto finishDto){
-        ServiceOrder order = this.mapper.toServiceOrder(finishDto);
-        return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(order));
-    }
 
     /**
      * update a list of itens

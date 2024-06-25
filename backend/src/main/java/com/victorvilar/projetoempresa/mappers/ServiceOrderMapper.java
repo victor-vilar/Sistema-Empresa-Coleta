@@ -2,7 +2,6 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderFinishDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
@@ -53,20 +52,6 @@ public class ServiceOrderMapper {
         return this.setPropertiesAndUpdate(updateDto);
     }
 
-    public ServiceOrder toServiceOrder(ServiceOrderFinishDto finishDto){
-        ServiceOrder so = this.serviceOrderRepository.findById(finishDto.getId()).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order not Found"));
-        so.setIneaManifest(finishDto.getIneaManifest());
-        so.setServiceTime(finishDto.getServiceTime());
-        so.setOsFileUrl(finishDto.getOsFileUrl());
-        so.setAmountCollected(finishDto.getAmountCollected());
-        so.setServiceOrderStatus(ServiceOrderStatus.DONE);
-        if(finishDto.getVehicle() != null){
-            Vehicle vehicle = this.vehicleRepository.findById(finishDto.getVehicle()).get();
-            so.setVehicle(vehicle);
-        }
-
-        return so;
-    }
 
     public List<ServiceOrder> toServiceOrderListFromServiceOrderCreateDtoList(List<ServiceOrderCreateDto> list){
         return list.stream().map(order -> this.toServiceOrder(order)).toList();
@@ -125,12 +110,20 @@ public class ServiceOrderMapper {
             order.setVehicle(vehicle);
         }
 
+        if(updateDto.getAmountCollected() != null && updateDto.getServiceExecutedDate() != null){
+            order.setServiceOrderStatus(ServiceOrderStatus.DONE);
+        }else{
+            order.setServiceOrderStatus(ServiceOrderStatus.UNDONE);
+        }
+
         order.setIneaManifest(updateDto.getIneaManifest());
         order.setServiceTime(updateDto.getServiceTime());
         order.setObservation(updateDto.getObservation());
         order.setOsFileUrl(updateDto.getOsFileUrl());
         order.setAmountCollected(updateDto.getAmountCollected());
-        order.setServiceOrderStatus(updateDto.getServiceOrderStatus());
+        order.setServiceExecutedDate(updateDto.getServiceExecutedDate());
+
+
 
         return order;
 

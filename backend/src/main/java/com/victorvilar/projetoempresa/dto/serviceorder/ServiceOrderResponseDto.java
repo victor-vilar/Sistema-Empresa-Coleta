@@ -18,6 +18,7 @@ public class ServiceOrderResponseDto {
     private Long id;
     private LocalDate emissionDate;
     private LocalDate serviceExpectedDate;
+    private LocalDate serviceExecutedDate;
     private Vehicle vehicle;
     private ItemContractResponseDto itemContract;
     private String customerId;
@@ -133,5 +134,13 @@ public class ServiceOrderResponseDto {
 
     public void setAmountCollected(Long amountCollected) {
         this.amountCollected = amountCollected;
+    }
+
+    public LocalDate getServiceExecutedDate() {
+        return serviceExecutedDate;
+    }
+
+    public void setServiceExecutedDate(LocalDate serviceExecutedDate) {
+        this.serviceExecutedDate = serviceExecutedDate;
     }
 }

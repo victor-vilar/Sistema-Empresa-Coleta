@@ -22,6 +22,8 @@ public class ServiceOrderCreateDto {
     @NotNull(message="The order must have an address")
     private Long address;
 
+    private String observation;
+
     public LocalDate getServiceExpectedDate() {
         return serviceExpectedDate;
     }
@@ -40,5 +42,10 @@ public class ServiceOrderCreateDto {
     public void setAddress(Long address) {
         this.address = address;
     }
-
+    public String getObservation() {
+        return observation;
+    }
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
 }
