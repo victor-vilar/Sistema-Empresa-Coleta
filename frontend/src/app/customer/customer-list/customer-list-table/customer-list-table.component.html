@@ -33,11 +33,11 @@
               <td mat-cell *matCellDef="let customer"  >
                   <div class="flex-display">
                     <!-- <button mat-stroked-button type="button" matTooltip="Exibir informações" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'informacoes']"><i class="fas fa-search"></i></button> -->
-                    <button mat-stroked-button type="button" matTooltip="Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i></button>
-                    <button mat-stroked-button type="button" matTooltip="Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i></button>
-                    <button mat-stroked-button type="button" matTooltip="Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'fiscais']"><i class="fas fa-user"></i></button>
-                    <button mat-stroked-button type="button" matTooltip="Editar" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(customer)" [routerLink]="['./'+fatherPathPrefix, customer.cpfCnpj]" [queryParams]="{edit:true,dialog:true}"><i class="fas fa-edit"></i></button>
-                    <button mat-stroked-button type="button" matTooltip="Deletar" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(customer)"><i class="fas fa-times"></i></button>
+                    <button mat-stroked-button type="button" matTooltip="Contratos" name="contratos" id="contratos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'contratos']"><i class="fas fa-file-signature"></i> Contratos</button>
+                    <button mat-stroked-button type="button" matTooltip="Enderecos" name="enderecos" id="enderecos" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'enderecos']" ><i class="fas fa-map-marker-alt"></i> Enderecos</button>
+                    <button mat-stroked-button type="button" matTooltip="Fiscais" name="fiscais" id="fiscais" class="bt bt-op " [routerLink]="['/cliente',customer.cpfCnpj,'fiscais']"><i class="fas fa-user"></i> Fiscais</button>
+                    <button mat-stroked-button type="button" matTooltip="Editar" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(customer)" [routerLink]="['./'+fatherPathPrefix, customer.cpfCnpj]" [queryParams]="{edit:true,dialog:true}"><i class="fas fa-edit"></i> Editar</button>
+                    <button mat-stroked-button type="button" matTooltip="Deletar" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(customer)"><i class="fas fa-times"></i> Deletar</button>
                   </div>
 
                 </td>

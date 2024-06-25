@@ -1,7 +1,7 @@
 .customer-info{
   display: flex;
   flex-direction: column;
-  padding:5px;
+  padding:15px;
   padding-bottom: 25px;
   background-color: white;
   border-radius: 5px;

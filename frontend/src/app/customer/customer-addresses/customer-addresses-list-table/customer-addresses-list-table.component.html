@@ -56,8 +56,8 @@
               <th mat-header-cell *matHeaderCellDef [ngStyle]="{textAlign:'center'}">Opções</th>
               <td mat-cell *matCellDef="let address" >
                 <div class="flex-display">
-                  <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(address)" [routerLink]="['./'+fatherPathPrefix, address.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i></button>
-                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(address)"><i class="fas fa-times"></i></button>
+                  <button mat-stroked-button type="button" matTooltip ="Editar Item" name="edit" id="edit" class="bt bt-edit " (click)="sendObjectToEdit(address)" [routerLink]="['./'+fatherPathPrefix, address.id]" [queryParams]="{edit:true, dialog:true}"><i class="fas fa-edit"></i> Editar</button>
+                <button mat-stroked-button type="button" matTooltip ="Deletar Item" name="delete" id="delete" class="bt bt-delete " (click)="openDialog(address)"><i class="fas fa-times"></i> Deletar</button>
                 </div>
               </td>
             </ng-container>

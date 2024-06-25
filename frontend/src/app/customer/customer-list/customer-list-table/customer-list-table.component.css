@@ -2,13 +2,6 @@ table{
   width: 100%;
 }
 
-th{
-  font-weight: bolder;
-
-
-}
-
-
 
 .options-table-buttons{
   display: flex;
@@ -40,3 +33,5 @@ td, th {
   display: flex;
   gap: 3px;
 }
+
+
