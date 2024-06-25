@@ -27,7 +27,7 @@
           <div class = 'data-block-item'><b>Equipamento  </b> {{order.itemContract.equipment}}</div>
           <div class = 'data-block-item'><b>Resíduo  </b> {{order.itemContract.residue}}</div>
           <div class = 'data-block-item'><b>Unidade Medida  </b> {{order.itemContract.measurementUnit}}</div>
-          <div class = 'data-block-item'><b>Data de Execução </b> {{order.vehicle}}</div>
+          <div class = 'data-block-item'><b>Data de Execução </b> {{order.serviceExecutedDate | date:'dd/MM/yyyy'}}</div>
           <div class = 'data-block-item'><b>Hora  </b> {{order.serviceTime}}</div>
           <div class = 'data-block-item'><b>Qtd Coletada  </b> {{order.amountCollected}}</div>
           <div class="long-data data-block-item"><b>Nº Manifesto INEA</b>{{order.ineaManifest}}</div>
