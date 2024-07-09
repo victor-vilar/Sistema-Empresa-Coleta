@@ -1,39 +1,17 @@
 <div class="container">
 
   <div class="dashboard-cards">
-
-    <div class="dashboard-cards-item totalMoney">
-      <i class="fas fa-money-bill"></i>
-      <span>{{totalValue | currency:'BRL'}}</span>
-      <h5>Total em R$ de Contratos</h5>
-    </div>
-
-    <div class="dashboard-cards-item">
-      <i class="fas fa-user"></i>
-      <span>{{customerRegisteredLength }}</span>
-      <h5>Quantidade de Clientes</h5>
-    </div>
-
-    <div class="dashboard-cards-item">
-      <i class="fas fa-file-signature"></i>
-      <span>{{contractRegisteredLength}}</span>
-      <h5>Quantidade de Contratos</h5>
-    </div>
+    <app-card [iconClass]="'fas fa-money-bill'" [mainInfo]="totalValue | currency:'BRL'" [text]="'Em Contratos'" [link]="'/contratos'"></app-card>
+    <app-card [iconClass]="'fas fa-file-signature'" [mainInfo]="contractRegisteredLength" [text]="'Contratos'" [link]="'/contratos'"></app-card>
+    <app-card [iconClass]="'fas fa-user'" [mainInfo]="customerRegisteredLength" [text]="'Clientes'" [link]="'/clientes'"></app-card>
+    <app-card [iconClass]="'fas fa-file-invoice'" [mainInfo]="serviceorderRegisteredLength" [text]="'Ordens em Aberto'" [link]="'/ordem-servico'"></app-card>
+    <app-card [iconClass]="'fas fa-recycle'" [mainInfo]="residueRegisteredLength" [text]="'Residuos'" [link]="'/residuos'"></app-card>
+    <app-card [iconClass]="'fas fa-trash'" [mainInfo]="equipmentRegisteredLength" [text]="'Equipamentos'" [link]="'/equipamentos'"></app-card>
+  </div>
 
 
-
-    <div class="dashboard-cards-item">
-      <i class="fas fa-recycle"></i>
-      <span>{{residueRegisteredLength}}</span>
-      <h5>Quantidade de Resíduos Cadastrados</h5>
-    </div>
-
-    <div class="dashboard-cards-item">
-      <i class="fas fa-trash"></i>
-      <span>{{equipmentRegisteredLength}}</span>
-      <h5>Quantidade de Equipamentos Cadastrados</h5>
-    </div>
-
+  <div class="next-services">
+    <canvas id="orders">{{chart}}</canvas>
   </div>
 
 </div>

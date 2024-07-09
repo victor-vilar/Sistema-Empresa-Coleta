@@ -18,6 +18,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -44,6 +45,7 @@ import { AppRoutingModule } from '../app-routing.module';
     MatSnackBarModule,
     MatButtonModule,
     MatTooltipModule,
+    SharedModule
   ],
   exports:[
     DashboardComponent,

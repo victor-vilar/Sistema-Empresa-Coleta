@@ -19,6 +19,7 @@ import { SvgListIconComponent } from './svg-list-icon/svg-list-icon.component';
 import { DaysChipComponent } from './days-chip/days-chip.component';
 import { SvgSaveIconComponent } from './svg-save-icon/svg-save-icon.component';
 import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -39,6 +40,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     DaysChipComponent,
     SvgSaveIconComponent,
     SvgAddIconComponent,
+    CardComponent,
 
   ],
   imports: [
@@ -67,6 +69,7 @@ import { SvgAddIconComponent } from './svg-add-icon/svg-add-icon.component';
     DaysChipComponent,
     SvgSaveIconComponent,
     SvgAddIconComponent,
+    CardComponent
 
   ]
 })
