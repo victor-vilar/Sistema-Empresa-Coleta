@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,5 +51,11 @@ public class BillController implements SystemController<BillCreateDto, BillUpdat
     @Override
     public ResponseEntity<BillResponseDto> update(BillUpdateDto updateDto) {
         return ResponseEntity.ok().body(this.billService.update(updateDto));
+    }
+
+    @RequestMapping("/delete/instalment/{id}")
+    public ResponseEntity<?> deleteInstalment(@RequestParam Long id){
+        this.billService.deleteInstalment(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
