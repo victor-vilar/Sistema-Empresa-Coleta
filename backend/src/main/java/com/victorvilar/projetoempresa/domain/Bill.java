@@ -1,8 +1,9 @@
-package com.victorvilar.projetoempresa.domain.bill;
+package com.victorvilar.projetoempresa.domain;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,26 +20,27 @@ public  class Bill implements Serializable {
     @Column(nullable = false)
     private String supplier;
     private String noteNumber;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Instalment> stalments;
     private String description;
+    @OneToMany(mappedBy = "bill",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Instalment> instalments = new ArrayList<>();
+
 
     public Bill() {
     }
 
-    public Bill(String id, String supplier, String noteNumber, List<Instalment> stalments, String description) {
+    public Bill(Long id, String supplier, String noteNumber, List<Instalment> stalments, String description) {
         this.id = id;
         this.supplier = supplier;
         this.noteNumber = noteNumber;
-        this.stalments = stalments;
+        this.instalments = stalments;
         this.description = description;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,13 +60,15 @@ public  class Bill implements Serializable {
         this.noteNumber = noteNumber;
     }
 
-    public List<Instalment> getStalments() {
-        return stalments;
+    public List<Instalment> getInstalments() {
+        return instalments;
     }
 
-    public void addNewStalment(Instalment stalment) {
-        stalment.setBill(this);
-        this.stalments.add(stalment);
+    public void addNewInstalment(Instalment instalment) {
+        if(!this.instalments.contains(instalment)){
+            instalment.setBill(this);
+            this.instalments.add(instalment);
+        }
     }
 
     public String getDescription() {

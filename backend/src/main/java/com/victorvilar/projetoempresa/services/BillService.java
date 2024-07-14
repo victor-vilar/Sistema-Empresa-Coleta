@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
-import com.victorvilar.projetoempresa.domain.bill.Bill;
-import com.victorvilar.projetoempresa.domain.bill.Instalment;
+import com.victorvilar.projetoempresa.domain.Bill;
+import com.victorvilar.projetoempresa.domain.Instalment;
 import com.victorvilar.projetoempresa.dto.bill.BillCreateDto;
 import com.victorvilar.projetoempresa.dto.bill.BillResponseDto;
 import com.victorvilar.projetoempresa.dto.bill.BillUpdateDto;
@@ -15,10 +15,10 @@ import com.victorvilar.projetoempresa.repository.InstalmentRepository;
 import com.victorvilar.projetoempresa.services.interfaces.SystemService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BillService implements SystemService<BillCreateDto, BillUpdateDto, BillResponseDto> {
@@ -63,19 +63,31 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
 
     @Override
     public BillResponseDto update(BillUpdateDto updateDto) {
-        Bill bill = this.billRepository.findById(updateDto.getId()).orElseThrow(() -> new BillNotFoundException("A bill with this id was not found"));
-        updateDto.getInstalments().stream().forEach(instalment ->{
-            if(instalment.getId() == null){
+        Optional<Bill> billToFind = this.billRepository.findById(updateDto.getId());
+        if(billToFind.isPresent()){
 
-                bill.addNewStalment(this.instalmentMapper.toInstalment(instalment));
-            }else{
-                this.updateInstalmentsOfBill(instalment);
-            }
-        });
+            Bill bill = updateBill(billToFind.get(), updateDto);
 
-        return this.billMapper.toBillResponseDto(this.billRepository.save(bill));
+            updateDto.getInstalments().stream().forEach(instalment ->{
+                if(instalment.getId() == null){
 
+                   bill.addNewInstalment(this.instalmentMapper.toInstalment(instalment));
+                }else{
+                    this.updateInstalmentsOfBill(instalment);
+                }
+            });
 
+            return this.billMapper.toBillResponseDto(this.billRepository.save(bill));
+        }else{
+            throw new BillNotFoundException("Bill not found");
+        }
+    }
+
+    private Bill updateBill(Bill bill, BillUpdateDto updateDto){
+        bill.setSupplier(updateDto.getSupplier());
+        bill.setNoteNumber(updateDto.getNoteNumber());
+        bill.setDescription(updateDto.getDescription());
+        return bill;
     }
 
     @Transactional

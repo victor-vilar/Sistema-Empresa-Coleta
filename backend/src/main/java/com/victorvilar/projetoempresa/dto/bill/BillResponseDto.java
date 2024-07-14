@@ -4,10 +4,20 @@ import java.util.List;
 
 public class BillResponseDto {
 
+    private Long id;
     private String supplier;
     private String noteNumber;
-    private List<InstalmentResponseDto> instalments;
     private String description;
+    private List<InstalmentResponseDto> instalments;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getSupplier() {
         return supplier;

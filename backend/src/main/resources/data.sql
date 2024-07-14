@@ -50,3 +50,22 @@ INSERT INTO address(address_name,address_number,complement,zip_code,city,state,r
 VALUES('ENDERECO2','NUMERO2','COMPLEMENTO2','2222-222','CIDADE2','ESTADO2',true,'29439167000135');
 INSERT INTO address(address_name,address_number,complement,zip_code,city,state,requires_collection,customer_id)
 VALUES('ENDERECO3','NUMERO3','COMPLEMENTO3','3333-333','CIDADE3','ESTADO3',true,'43715989000122');
+
+
+--BILL
+INSERT INTO bill(supplier,note_number,description)
+VALUES('LIGHT','0001','CONTA DE LUZ DO MES DE MARCO');
+INSERT INTO bill(supplier,note_number,description)
+VALUES('ATACADAO DE MOTORES','2154','COMPRA DE DOIS MOTORES DE CAMINHÃO');
+
+INSERT INTO instalment(due_date,payment_value,bill_id)
+VALUES('2022-03-01','125.00',1);
+
+INSERT INTO instalment(due_date,payment_value,bill_id)
+VALUES('2022-03-01','1025.00',2);
+INSERT INTO instalment(due_date,payment_value,bill_id)
+VALUES('2022-04-01','1025.00',2);
+INSERT INTO instalment(due_date,payment_value,bill_id)
+VALUES('2022-05-01','1025.00',2);
+INSERT INTO instalment(due_date,payment_value,bill_id)
+VALUES('2022-06-01','1025.00',2);

@@ -1,5 +1,6 @@
-package com.victorvilar.projetoempresa.domain.bill;
+package com.victorvilar.projetoempresa.domain;
 
+import com.victorvilar.projetoempresa.domain.Bill;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name="instalments")
+@Table(name="instalment")
 public class Instalment implements Serializable {
 
     @Id

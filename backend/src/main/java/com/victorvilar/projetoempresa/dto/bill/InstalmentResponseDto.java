@@ -9,12 +9,21 @@ import java.time.LocalDate;
 
 public class InstalmentResponseDto {
 
-
+    private Long id;
     private LocalDate dueDate;
     private LocalDate paymentDate;
     private BigDecimal paymentValue;
     private BigDecimal payedValue;
     private String paymentUrl;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public LocalDate getDueDate() {
         return dueDate;

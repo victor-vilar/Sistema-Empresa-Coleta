@@ -1,9 +1,6 @@
 package com.victorvilar.projetoempresa.dto.bill;
 
-import com.victorvilar.projetoempresa.domain.bill.Instalment;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.MutablePropertyValues;
 
 import java.util.List;
 
@@ -14,8 +11,9 @@ public class BillUpdateDto {
     @NotNull(message = "A bill to update must have a supplier")
     private String supplier;
     private String noteNumber;
-    private List<InstalmentUpdateDto> instalments;
     private String description;
+    private List<InstalmentUpdateDto> instalments;
+
 
     public Long getId() {
         return id;

@@ -9,8 +9,9 @@ public class BillCreateDto {
     @NotNull(message = "A bill to update must have a supplier")
     private String supplier;
     private String noteNumber;
-    private List<InstalmentCreateDto> instalments;
     private String description;
+    private List<InstalmentCreateDto> instalments;
+
 
 
 

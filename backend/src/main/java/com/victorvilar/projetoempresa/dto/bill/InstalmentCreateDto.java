@@ -2,13 +2,10 @@ package com.victorvilar.projetoempresa.dto.bill;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.victorvilar.projetoempresa.domain.bill.Bill;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 public class InstalmentCreateDto {
 

@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.domain.bill.Instalment;
+import com.victorvilar.projetoempresa.domain.Instalment;
 import com.victorvilar.projetoempresa.dto.bill.InstalmentCreateDto;
 import com.victorvilar.projetoempresa.dto.bill.InstalmentUpdateDto;
 import org.modelmapper.ModelMapper;
