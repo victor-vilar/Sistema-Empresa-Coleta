@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.enums.ContractStatus;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
@@ -25,7 +24,7 @@ import java.util.List;
 @Service
 public class ContractService {
 
-    private final ContractRepository contractRepository;
+    private final ContractRepository repository;
     private final ItemContractRepository itemContractRepository;
     private final CustomerRepository customerRepository;
     private final CustomerService customerService;
@@ -39,7 +38,7 @@ public class ContractService {
                             ContractMapper contractMapper,
                             ItemContractMapper itemContractMapper,
                             CustomerRepository customerRepository){
-        this.contractRepository = repository;
+        this.repository = repository;
         this.customerService = customerService;
         this.itemContractRepository = itemContractRepository;
         this.contractMapper = contractMapper;
@@ -53,7 +52,7 @@ public class ContractService {
      */
     public List<ContractResponseDto> getAll() {
 
-        return this.contractMapper.toContractResponseDtoList(this.contractRepository.findAll());
+        return this.contractMapper.toContractResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -62,7 +61,7 @@ public class ContractService {
      * @return
      */
     public List<ContractResponseDto> getAllByCustomerId(String clientId){
-        return this.contractMapper.toContractResponseDtoList(contractRepository.findByCustomerCpfCnpj(clientId));
+        return this.contractMapper.toContractResponseDtoList(repository.findByCustomerCpfCnpj(clientId));
     }
 
     /**
@@ -72,12 +71,12 @@ public class ContractService {
      * @throws ContractNotFoundException
      */
     public ContractResponseDto getById(Long id) throws ContractNotFoundException{
-        Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
+        Contract contract = this.repository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return this.contractMapper.toContractResponseDto(contract);
     }
 
     public Contract findByContractId(Long id) throws ContractNotFoundException{
-        Contract contract = this.contractRepository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
+        Contract contract = this.repository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return contract;
     }
 
@@ -110,7 +109,7 @@ public class ContractService {
         this.customerRepository.save(customer);
 
         //persisting contract
-        this.contractRepository.save(contract1);
+        this.repository.save(contract1);
 
         //returning persisted contract
         return this.contractMapper.toContractResponseDto(contract1);
@@ -136,7 +135,7 @@ public class ContractService {
         itemContractRepository.save(item);
 
         //saving(updating)contract
-        contract = this.contractRepository.save(contract);
+        contract = this.repository.save(contract);
 
         //returning contractResponseDto from contract
         return this.contractMapper.toContractResponseDto(contract);
@@ -148,7 +147,7 @@ public class ContractService {
      */
     @Transactional
     public void delete(Long contractId ){
-        this.contractRepository.deleteById(contractId);
+        this.repository.deleteById(contractId);
     }
 
     /**
@@ -202,7 +201,7 @@ public class ContractService {
         });
 
         //saves contract and return as a contract resposne dto
-        return this.contractMapper.toContractResponseDto(this.contractRepository.save(contract));
+        return this.contractMapper.toContractResponseDto(this.repository.save(contract));
     }
 
     /**
@@ -217,6 +216,10 @@ public class ContractService {
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setItemValue(item.getItemValue());
         itemContractRepository.save(item);
+    }
+
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
     }
 
 }

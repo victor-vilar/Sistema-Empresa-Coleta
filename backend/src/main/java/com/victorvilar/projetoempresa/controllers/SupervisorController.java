@@ -15,18 +15,18 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/supervisor")
+@RequestMapping("/v1/supervisors")
 public class SupervisorController {
 
-    private final SupervisorService supervisorService;
+    private final SupervisorService service;
     private final CustomerService customerService;
     private final SupervisorMapper mapper;
 
     @Autowired
-    public SupervisorController(SupervisorService supervisorService,
+    public SupervisorController(SupervisorService service,
                                 CustomerService customerService,
                                 SupervisorMapper mapper){
-        this.supervisorService = supervisorService;
+        this.service = service;
         this.customerService = customerService;
         this.mapper = mapper;
     }
@@ -37,7 +37,7 @@ public class SupervisorController {
      */
     @GetMapping()
     public ResponseEntity<List<SupervisorResponseDto>> getAll(){
-        return ResponseEntity.ok(this.supervisorService.getAll());
+        return ResponseEntity.ok(this.service.getAll());
     }
 
     /**
@@ -47,7 +47,7 @@ public class SupervisorController {
      */
     @GetMapping("by-customer/{customerId}")
     public ResponseEntity<List<SupervisorResponseDto>> getAllByCustomer(@PathVariable String customerId){
-        return ResponseEntity.ok(this.supervisorService.getAllByCustomer(customerId));
+        return ResponseEntity.ok(this.service.getAllByCustomer(customerId));
     }
 
     /**
@@ -57,7 +57,7 @@ public class SupervisorController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<SupervisorResponseDto> getById(@PathVariable Long id){
-        return ResponseEntity.ok(this.supervisorService.getById(id));
+        return ResponseEntity.ok(this.service.getById(id));
     }
 
     /**
@@ -66,20 +66,20 @@ public class SupervisorController {
      */
     @PostMapping()
     public ResponseEntity<SupervisorResponseDto> save(@Valid  @RequestBody SupervisorCreateDto supervisoCreateDto){
-        return ResponseEntity.ok(this.supervisorService.save(supervisoCreateDto));
+        return ResponseEntity.ok(this.service.save(supervisoCreateDto));
 
     }
 
 
     @DeleteMapping("{supervisorId}")
     public ResponseEntity<Void> delete(@PathVariable Long supervisorId){
-        this.supervisorService.delete(supervisorId);
+        this.service.delete(supervisorId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<SupervisorResponseDto> update(@Valid @RequestBody SupervisorUpdateDto supervisorUpdateDto){
-        return ResponseEntity.ok(this.supervisorService.update(supervisorUpdateDto));
+        return ResponseEntity.ok(this.service.update(supervisorUpdateDto));
     }
 
 }

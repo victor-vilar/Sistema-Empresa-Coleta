@@ -24,46 +24,46 @@ import java.util.Optional;
 public class BillService implements SystemService<BillCreateDto, BillUpdateDto, BillResponseDto> {
 
     private final BillMapper billMapper;
-    private final BillRepository billRepository;
+    private final BillRepository repository;
     private final InstalmentMapper instalmentMapper;
     private final InstalmentRepository instalmentRepository;
 
     @Autowired
-    public BillService(BillMapper billMapper, BillRepository billRepository, InstalmentMapper instalmentMapper, InstalmentRepository instalmentRepository){
+    public BillService(BillMapper billMapper, BillRepository repository, InstalmentMapper instalmentMapper, InstalmentRepository instalmentRepository){
         this.billMapper = billMapper;
-        this.billRepository = billRepository;
+        this.repository = repository;
         this.instalmentMapper = instalmentMapper;
         this.instalmentRepository = instalmentRepository;
     }
 
     @Override
     public List<BillResponseDto> getAll() {
-        return this.billMapper.toBillResponseDtoList(this.billRepository.findAll());
+        return this.billMapper.toBillResponseDtoList(this.repository.findAll());
     }
 
     @Override
     public BillResponseDto getById(Long id) {
-        return this.billMapper.toBillResponseDto(this.billRepository.findById(id).orElseThrow(() -> new BillNotFoundException("A bill with this id was not found")));
+        return this.billMapper.toBillResponseDto(this.repository.findById(id).orElseThrow(() -> new BillNotFoundException("A bill with this id was not found")));
     }
 
     @Override
     public BillResponseDto save(BillCreateDto createDto) {
         Bill bill = this.billMapper.toBill(createDto);
-        return this.billMapper.toBillResponseDto(this.billRepository.save(bill));
+        return this.billMapper.toBillResponseDto(this.repository.save(bill));
     }
 
     @Override
     public void delete(List<Long> ids) {
-        this.billRepository.deleteAllById(ids);
+        this.repository.deleteAllById(ids);
     }
 
     public void delete(Long id){
-        this.billRepository.deleteById(id);
+        this.repository.deleteById(id);
     }
 
     @Override
     public BillResponseDto update(BillUpdateDto updateDto) {
-        Optional<Bill> billToFind = this.billRepository.findById(updateDto.getId());
+        Optional<Bill> billToFind = this.repository.findById(updateDto.getId());
         if(billToFind.isPresent()){
 
             Bill bill = updateBill(billToFind.get(), updateDto);
@@ -77,7 +77,7 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
                 }
             });
 
-            return this.billMapper.toBillResponseDto(this.billRepository.save(bill));
+            return this.billMapper.toBillResponseDto(this.repository.save(bill));
         }else{
             throw new BillNotFoundException("Bill not found");
         }
@@ -104,5 +104,9 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
     @Transactional
     public void deleteInstalment(Long id) {
         this.instalmentRepository.deleteById(id);
+    }
+
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
     }
 }

@@ -13,14 +13,14 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/equipment")
+@RequestMapping("/v1/equipments")
 public class EquipmentController {
 
-    private final EquipmentService equipmentService;
+    private final EquipmentService service;
 
     @Autowired
-    public EquipmentController(EquipmentService equipmentService){
-        this.equipmentService = equipmentService;
+    public EquipmentController(EquipmentService service){
+        this.service = service;
 
     }
 
@@ -30,7 +30,7 @@ public class EquipmentController {
      */
     @GetMapping("")
     public ResponseEntity<List<EquipmentResponseDto>> getAll(){
-        return ResponseEntity.ok(this.equipmentService.getAll());
+        return ResponseEntity.ok(this.service.getAll());
     }
 
     /**
@@ -40,7 +40,7 @@ public class EquipmentController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<EquipmentResponseDto> getById(@PathVariable Long id){
-        return ResponseEntity.ok(this.equipmentService.getById(id));
+        return ResponseEntity.ok(this.service.getById(id));
     }
 
     /**
@@ -49,7 +49,7 @@ public class EquipmentController {
      */
     @PostMapping("")
     public ResponseEntity<EquipmentResponseDto> save(@Valid @RequestBody EquipmentCreateDto equipmentCreateDto){
-        return ResponseEntity.ok(this.equipmentService.save(equipmentCreateDto));
+        return ResponseEntity.ok(this.service.save(equipmentCreateDto));
     }
 
     /**
@@ -59,7 +59,7 @@ public class EquipmentController {
      */
     @PutMapping
     public ResponseEntity<EquipmentResponseDto> update(@Valid @RequestBody EquipmentUpdateDto equipmentUpdateDto){
-        return ResponseEntity.ok(this.equipmentService.update(equipmentUpdateDto));
+        return ResponseEntity.ok(this.service.update(equipmentUpdateDto));
     }
 
     /**
@@ -68,8 +68,13 @@ public class EquipmentController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        this.equipmentService.delete(id);
+        this.service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getEntityCount(){
+        return ResponseEntity.ok(this.service.getEntityCount());
     }
 
 

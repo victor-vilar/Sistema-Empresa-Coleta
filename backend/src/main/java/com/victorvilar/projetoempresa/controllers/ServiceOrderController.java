@@ -14,55 +14,60 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/service-order")
+@RequestMapping("/v1/service-orders")
 public class ServiceOrderController implements EntityOfCustomerController<ServiceOrderCreateDto,ServiceOrderUpdateDto, ServiceOrderResponseDto> {
 
 
-    private ServiceOrderService serviceOrderService;
+    private ServiceOrderService service;
 
     public ServiceOrderController(ServiceOrderService orderService){
-        this.serviceOrderService = orderService;
+        this.service = orderService;
     }
 
     @Override
     public ResponseEntity<List<ServiceOrderResponseDto>> getAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getAll());
     }
 
     @Override
     public ResponseEntity<List<ServiceOrderResponseDto>> getAllByCustomerId(String customerId) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getAllByCustomerId(customerId));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getAllByCustomerId(customerId));
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> getById(Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.getById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getById(id));
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> save(ServiceOrderCreateDto createDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDto));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDto));
     }
 
     @PostMapping("/all")
     public ResponseEntity<List<ServiceOrderResponseDto>> save(@Valid @RequestBody List<ServiceOrderCreateDto> createDtoList){
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.save(createDtoList));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDtoList));
     }
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
-        this.serviceOrderService.delete(Arrays.asList(id));
+        this.service.delete(Arrays.asList(id));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
     public ResponseEntity<ServiceOrderResponseDto> update(@Valid ServiceOrderUpdateDto updateDto) {
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDto));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDto));
     }
 
 
     @PutMapping("/all")
     public ResponseEntity<List<ServiceOrderResponseDto>> update(List<ServiceOrderUpdateDto> updateDtoList){
-        return ResponseEntity.status(HttpStatus.OK).body(this.serviceOrderService.update(updateDtoList));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDtoList));
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getEntityCount(){
+        return ResponseEntity.ok(this.service.getEntityCount());
     }
 }

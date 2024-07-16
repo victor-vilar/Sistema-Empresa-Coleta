@@ -20,7 +20,7 @@ import java.util.List;
  * @author Victor Vilar
  */
 @RestController
-@RequestMapping("/contracts")
+@RequestMapping("/v1/contracts")
 public class ContractController {
 
     private final ContractService service;
@@ -109,6 +109,11 @@ public class ContractController {
     public ResponseEntity<ContractResponseDto> update(@RequestBody ContractUpdateDto contractUpdateDto){
         return ResponseEntity.ok(this.service.update(contractUpdateDto));
 
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getEntityCount(){
+        return ResponseEntity.ok(this.service.getEntityCount());
     }
 
 }

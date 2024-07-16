@@ -17,16 +17,16 @@ import java.util.List;
 @Service
 public class AddressService {
 
-    private final AddressRepository addressRepository;
+    private final AddressRepository repository;
     private final AddressMapper addressMapper;
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
 
     @Autowired
     //constructor
-    public AddressService(AddressRepository addressRepository, AddressMapper mapper, CustomerService customerService
-    ,CustomerRepository customerRepository) {
-        this.addressRepository = addressRepository;
+    public AddressService(AddressRepository repository, AddressMapper mapper, CustomerService customerService
+    , CustomerRepository customerRepository) {
+        this.repository = repository;
         this.addressMapper = mapper;
         this.customerService = customerService;
         this.customerRepository = customerRepository;
@@ -38,7 +38,7 @@ public class AddressService {
      * @return all address
      */
     public List<AddressResponseDto> getAll(){
-        return this.addressMapper.toAddressResponseDtoList(this.addressRepository.findAll());
+        return this.addressMapper.toAddressResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -47,7 +47,7 @@ public class AddressService {
      * @return
      */
     public List<AddressResponseDto> getAllByCustomerId(String clientId){
-        return this.addressMapper.toAddressResponseDtoList(this.addressRepository.findByCustomerCpfCnpj(clientId));
+        return this.addressMapper.toAddressResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
 
     /**
@@ -55,7 +55,7 @@ public class AddressService {
      * @return Address Object
      */
     public Address findAddressById(Long id){
-        return this.addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
+        return this.repository.findById(id).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
     }
 
     /**
@@ -75,7 +75,7 @@ public class AddressService {
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
-        return this.addressMapper.toAddressResponseDto(this.addressRepository.save(address));
+        return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }
 
 
@@ -85,7 +85,7 @@ public class AddressService {
      */
     public void delete(Long id){
         Address address = this.findAddressById(id);
-        this.addressRepository.deleteById(id);
+        this.repository.deleteById(id);
     }
 
 
@@ -95,7 +95,7 @@ public class AddressService {
      * @return saved contract
      */
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
-        Address addressToUpdate = this.addressRepository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
+        Address addressToUpdate = this.repository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
         addressToUpdate.setAddressName(addressUpdateDto.getAddressName());
         addressToUpdate.setAddressNumber(addressUpdateDto.getAddressNumber());
         addressToUpdate.setCity(addressUpdateDto.getCity());
@@ -103,8 +103,12 @@ public class AddressService {
         addressToUpdate.setState(addressUpdateDto.getState());
         addressToUpdate.setZipCode(addressUpdateDto.getZipCode());
         addressToUpdate.setRequiresCollection(addressUpdateDto.isRequiresCollection());
-        this.addressRepository.save(addressToUpdate);
+        this.repository.save(addressToUpdate);
         return this.addressMapper.toAddressResponseDto(addressToUpdate);
+    }
+
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
     }
 
 

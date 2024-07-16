@@ -16,14 +16,14 @@ import java.util.List;
 @Service
 public class EquipmentService {
 
-    private final EquipmentRepository equipmentRepository;
+    private final EquipmentRepository repository;
     private final EquipmentMapper equipmentMapper;
 
     @Autowired
     public EquipmentService(
-            EquipmentRepository equipmentRepository,
+            EquipmentRepository repository,
             EquipmentMapper equipmentMapper){
-        this.equipmentRepository = equipmentRepository;
+        this.repository = repository;
         this.equipmentMapper = equipmentMapper;
     }
 
@@ -32,7 +32,7 @@ public class EquipmentService {
      * @return a list of equipments
      */
     public List<EquipmentResponseDto> getAll(){
-        return this.equipmentMapper.toEquipmentResponseDtoList(this.equipmentRepository.findAll());
+        return this.equipmentMapper.toEquipmentResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -43,7 +43,7 @@ public class EquipmentService {
 
     public EquipmentResponseDto getById(Long id){
         return this.equipmentMapper.toEquipmentResponseDto(
-                this.equipmentRepository.findById(id)
+                this.repository.findById(id)
                         .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"))
         );
     }
@@ -54,7 +54,7 @@ public class EquipmentService {
      * @return equipment
      */
     public Equipment findEquipmentById(Long id){
-                return this.equipmentRepository.findById(id)
+                return this.repository.findById(id)
                 .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"));
     }
 
@@ -65,7 +65,7 @@ public class EquipmentService {
     @Transactional
     public EquipmentResponseDto save(EquipmentCreateDto equipmentCreateDto){
         Equipment equipment = this.equipmentMapper.toEquipament(equipmentCreateDto);
-        return this.equipmentMapper.toEquipmentResponseDto(this.equipmentRepository.save(equipment));
+        return this.equipmentMapper.toEquipmentResponseDto(this.repository.save(equipment));
     }
 
     /**
@@ -77,7 +77,7 @@ public class EquipmentService {
         Equipment equipment = this.findEquipmentById(equipmentUpdateDto.getId());
         equipment.setEquipmentName(equipmentUpdateDto.getEquipmentName());
         equipment.setSizeInMeterCubic(equipmentUpdateDto.getSizeInMeterCubic());
-        this.equipmentRepository.save(equipment);
+        this.repository.save(equipment);
         return this.equipmentMapper.toEquipmentResponseDto(equipment);
 
     }
@@ -88,9 +88,11 @@ public class EquipmentService {
      */
     @Transactional
     public void delete(Long id){
-        this.equipmentRepository.delete(this.findEquipmentById(id));
+        this.repository.delete(this.findEquipmentById(id));
     }
 
-
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
+    }
 
 }

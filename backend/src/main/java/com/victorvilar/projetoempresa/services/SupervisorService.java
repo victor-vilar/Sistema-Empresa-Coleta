@@ -18,17 +18,17 @@ import java.util.List;
 @Service
 public class SupervisorService {
 
-    private final SupervisorRepository supervisorRespository;
+    private final SupervisorRepository repository;
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
     private final SupervisorMapper mapper;
 
     @Autowired
-    public SupervisorService(SupervisorRepository supervisorRespository,
+    public SupervisorService(SupervisorRepository repository,
                              CustomerService customerService,
                              SupervisorMapper mapper,
                              CustomerRepository customerRepository){
-        this.supervisorRespository = supervisorRespository;
+        this.repository = repository;
         this.customerService = customerService;
         this.customerRepository = customerRepository;
         this.mapper = mapper;
@@ -39,7 +39,7 @@ public class SupervisorService {
      * @return
      */
     public List<SupervisorResponseDto> getAll() {
-        return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findAll());
+        return this.mapper.toSupervisorResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -48,7 +48,7 @@ public class SupervisorService {
      * @return
      */
     public List<SupervisorResponseDto> getAllByCustomer(String clientId) {
-        return this.mapper.toSupervisorResponseDtoList(this.supervisorRespository.findByCustomerCpfCnpj(clientId));
+        return this.mapper.toSupervisorResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
 
     /**
@@ -57,7 +57,7 @@ public class SupervisorService {
      * @return
      */
     public Supervisor findSupervisorById(Long id){
-        return this.supervisorRespository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"));
+        return this.repository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"));
     }
 
     /**
@@ -67,7 +67,7 @@ public class SupervisorService {
      */
     public SupervisorResponseDto getById(Long id){
         return this.mapper.toSupervisorResponseDto(
-                this.supervisorRespository.findById(id)
+                this.repository.findById(id)
                         .orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"))
         );
     }
@@ -82,7 +82,7 @@ public class SupervisorService {
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
         customer.addNewSupervisor(supervisor);
-        this.supervisorRespository.save(supervisor);
+        this.repository.save(supervisor);
         this.customerRepository.save(customer);
         return this.mapper.toSupervisorResponseDto(supervisor);
     }
@@ -93,7 +93,7 @@ public class SupervisorService {
      */
     @Transactional
     public void delete(Long supervisorId) {
-        this.supervisorRespository.deleteById(supervisorId);
+        this.repository.deleteById(supervisorId);
     }
 
     /**
@@ -109,6 +109,10 @@ public class SupervisorService {
         supervisorToUpdate.setRole(supervisorUpdateDto.getRole());
         supervisorToUpdate.setEmail(supervisorUpdateDto.getEmail());
         supervisorToUpdate.setPhoneNumber(supervisorUpdateDto.getPhoneNumber());
-        return this.mapper.toSupervisorResponseDto(this.supervisorRespository.save(supervisorToUpdate));
+        return this.mapper.toSupervisorResponseDto(this.repository.save(supervisorToUpdate));
+    }
+
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
     }
 }

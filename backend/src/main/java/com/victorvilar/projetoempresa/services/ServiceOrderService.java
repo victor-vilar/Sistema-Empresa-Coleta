@@ -18,12 +18,12 @@ import java.util.List;
 public class ServiceOrderService implements EntityOfCustomerService<ServiceOrderCreateDto, ServiceOrderUpdateDto, ServiceOrderResponseDto> {
 
 
-    private final ServiceOrderRepository serviceOrderRepository;
+    private final ServiceOrderRepository repository;
     private final ServiceOrderMapper mapper;
 
     @Autowired
     public ServiceOrderService(ServiceOrderRepository repository,ServiceOrderMapper mapper){
-        this.serviceOrderRepository = repository;
+        this.repository = repository;
         this.mapper = mapper;
 
     }
@@ -35,7 +35,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
      */
     @Override
     public List<ServiceOrderResponseDto> getAll() {
-        return this.mapper.toServiceResponseDtoList(this.serviceOrderRepository.findAll());
+        return this.mapper.toServiceResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -46,7 +46,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
      */
     @Override
     public List<ServiceOrderResponseDto> getAllByCustomerId(String customerId) {
-        return this.mapper.toServiceResponseDtoList(this.serviceOrderRepository.findByCustomerCpfCnpj(customerId));
+        return this.mapper.toServiceResponseDtoList(this.repository.findByCustomerCpfCnpj(customerId));
     }
 
     /**
@@ -68,7 +68,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
      */
     @Override
     public ServiceOrderResponseDto getById(Long id) {
-        return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !")));
+        return this.mapper.toServiceOrderResponseDto(this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !")));
     }
 
     /**
@@ -78,7 +78,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
      * @return service order
      */
     public ServiceOrder findById(Long id){
-        return this.serviceOrderRepository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
+        return this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
     }
 
     /**
@@ -90,7 +90,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
     @Override
     public ServiceOrderResponseDto save(ServiceOrderCreateDto createDto) {
         ServiceOrder serviceOrder = this.mapper.toServiceOrder(createDto);
-        return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(serviceOrder));
+        return this.mapper.toServiceOrderResponseDto(this.repository.save(serviceOrder));
     }
 
     /**
@@ -102,7 +102,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
     @Transactional
     public List<ServiceOrderResponseDto> save(List<ServiceOrderCreateDto> createDtoList){
         List<ServiceOrder> serviceOrderList = this.mapper.toServiceOrderListFromServiceOrderCreateDtoList(createDtoList);
-        return this.mapper.toServiceResponseDtoList(this.serviceOrderRepository.saveAll(serviceOrderList));
+        return this.mapper.toServiceResponseDtoList(this.repository.saveAll(serviceOrderList));
     }
 
 
@@ -113,7 +113,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
      */
     @Transactional
     public void delete(List<Long> ids){
-        this.serviceOrderRepository.deleteAllById(ids);
+        this.repository.deleteAllById(ids);
     }
 
     /**
@@ -125,7 +125,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
     @Override
     public ServiceOrderResponseDto update(ServiceOrderUpdateDto updateDto) {
         ServiceOrder order = this.mapper.toServiceOrder(updateDto);
-        return this.mapper.toServiceOrderResponseDto(this.serviceOrderRepository.save(order));
+        return this.mapper.toServiceOrderResponseDto(this.repository.save(order));
     }
 
 
@@ -138,9 +138,12 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
     @Transactional
     public List<ServiceOrderResponseDto> update(List<ServiceOrderUpdateDto> updateDtoList){
         List<ServiceOrder> orders = this.mapper.toServiceOrderListFromServiceOrderUpdateDtoList(updateDtoList);
-        return this.mapper.toServiceResponseDtoList(this.serviceOrderRepository.saveAll(orders));
+        return this.mapper.toServiceResponseDtoList(this.repository.saveAll(orders));
     }
 
 
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
+    }
 
 }

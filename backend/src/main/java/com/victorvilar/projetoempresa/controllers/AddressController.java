@@ -19,15 +19,15 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/v1/addresses")
 public class AddressController {
 
-    private final AddressService addressService;
+    private final AddressService service;
 
 
     @Autowired
     public AddressController(AddressService service){
-        this.addressService = service;
+        this.service = service;
     }
 
     /**
@@ -36,7 +36,7 @@ public class AddressController {
      */
     @GetMapping()
     public ResponseEntity<List<AddressResponseDto>> getAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAll());
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getAll());
     }
 
     /**
@@ -46,7 +46,7 @@ public class AddressController {
      */
     @GetMapping("by-customer/{clientId}")
     public ResponseEntity<List<AddressResponseDto>> getAllByCustomerId(@PathVariable String clientId){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getAllByCustomerId(clientId));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getAllByCustomerId(clientId));
     }
 
     /**
@@ -56,7 +56,7 @@ public class AddressController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<AddressResponseDto> getById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.getById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.getById(id));
     }
 
     /**
@@ -66,7 +66,7 @@ public class AddressController {
      */
     @PostMapping()
     public ResponseEntity<AddressResponseDto> save(@Valid @RequestBody AddressCreateDto addressCreateDto){
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.save(addressCreateDto));
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.save(addressCreateDto));
     }
 
     /**
@@ -76,7 +76,7 @@ public class AddressController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        this.addressService.delete(id);
+        this.service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -86,10 +86,12 @@ public class AddressController {
      */
     @PutMapping()
     public ResponseEntity<AddressResponseDto> update(@RequestBody AddressUpdateDto addressUpdateDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.service.update(addressUpdateDto));
+    }
 
-        return ResponseEntity.status(HttpStatus.OK).body(this.addressService.update(addressUpdateDto));
-
-
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getEntityCount(){
+        return ResponseEntity.ok(this.service.getEntityCount());
     }
 
 }

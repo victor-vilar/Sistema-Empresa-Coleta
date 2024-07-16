@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/residue")
+@RequestMapping("/v1/residues")
 public class ResidueController {
 
-    private final ResidueService residueService;
+    private final ResidueService service;
     private final ResidueMapper mapper;
 
     @Autowired
-    public ResidueController(ResidueService residueService, ResidueMapper mapper){
-        this.residueService = residueService;
+    public ResidueController(ResidueService service, ResidueMapper mapper){
+        this.service = service;
         this.mapper = mapper;
     }
 
@@ -32,7 +32,7 @@ public class ResidueController {
      */
     @GetMapping("")
     public ResponseEntity<List<ResidueResponseDto>> getAll(){
-        return ResponseEntity.ok(this.residueService.getAll());
+        return ResponseEntity.ok(this.service.getAll());
     }
 
     /**
@@ -42,7 +42,7 @@ public class ResidueController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<ResidueResponseDto> getById(@PathVariable Long id){
-        return ResponseEntity.ok(this.residueService.getById(id));
+        return ResponseEntity.ok(this.service.getById(id));
     }
 
     /**
@@ -51,7 +51,7 @@ public class ResidueController {
      */
     @PostMapping("")
     public ResponseEntity<ResidueResponseDto> save(@Valid @RequestBody ResidueCreateDto residue){
-        return ResponseEntity.ok(this.residueService.save(residue));
+        return ResponseEntity.ok(this.service.save(residue));
 
     }
 
@@ -61,7 +61,7 @@ public class ResidueController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        this.residueService.delete(id);
+        this.service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -74,8 +74,12 @@ public class ResidueController {
      */
     @PutMapping()
     public ResponseEntity<ResidueResponseDto> udpate(@Valid @RequestBody ResidueUpdateDto residue){
-        return new ResponseEntity<>(this.residueService.udpate(residue),HttpStatus.OK);
+        return new ResponseEntity<>(this.service.udpate(residue),HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> getEntityCount(){
+        return ResponseEntity.ok(this.service.getEntityCount());
+    }
 
 }

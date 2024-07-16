@@ -20,7 +20,7 @@ import jakarta.validation.Valid;
  * @author Victor Vilar
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/v1/customers")
 public class CustomerController {
 
 	
@@ -79,9 +79,9 @@ public class CustomerController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@GetMapping("/size")
-	public ResponseEntity<Integer> getSize(){
-		return ResponseEntity.ok(this.service.getCustomersSize());
+	@GetMapping("/count")
+	public ResponseEntity<Integer> getEntityCount(){
+		return ResponseEntity.ok(this.service.getEntityCount());
 	}
 
 }

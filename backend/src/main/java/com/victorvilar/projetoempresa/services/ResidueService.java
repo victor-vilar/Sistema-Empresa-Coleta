@@ -16,14 +16,14 @@ import java.util.List;
 @Service
 public class ResidueService {
 
-    private final ResidueRepository residueRepository;
+    private final ResidueRepository repository;
     private final ResidueMapper mapper;
 
     @Autowired
     public ResidueService(
-            ResidueRepository residueRepository,
+            ResidueRepository repository,
             ResidueMapper mapper){
-        this.residueRepository = residueRepository;
+        this.repository = repository;
         this.mapper = mapper;
     }
 
@@ -32,7 +32,7 @@ public class ResidueService {
      * @return a list of ResidueResponseDto
      */
     public List<ResidueResponseDto> getAll() {
-        return this.mapper.toResidueTypeResponseDtoList(this.residueRepository.findAll());
+        return this.mapper.toResidueTypeResponseDtoList(this.repository.findAll());
     }
 
     /**
@@ -42,7 +42,7 @@ public class ResidueService {
      */
     public ResidueResponseDto getById(Long id){
         return this.mapper.toResidueTypeResponseDto(
-                this.residueRepository.findById(id)
+                this.repository.findById(id)
                         .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"))
         );
     }
@@ -52,7 +52,7 @@ public class ResidueService {
      * @return Residue
      */
     public Residue findResidueById(Long id){
-        return this.residueRepository
+        return this.repository
                 .findById(id)
                 .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"));
     }
@@ -60,13 +60,13 @@ public class ResidueService {
     @Transactional
     public ResidueResponseDto save(ResidueCreateDto residueCreateDto){
         Residue residue = this.mapper.toResidue(residueCreateDto);
-        return this.mapper.toResidueTypeResponseDto(this.residueRepository.save(residue));
+        return this.mapper.toResidueTypeResponseDto(this.repository.save(residue));
     }
 
     @Transactional
     public void delete(Long id){
         Residue residue = this.findResidueById(id);
-        this.residueRepository.delete(residue);
+        this.repository.delete(residue);
     }
 
 
@@ -76,10 +76,13 @@ public class ResidueService {
         Residue residue = this.findResidueById(residueCreateDto.getId());
         residue.setType(residueCreateDto.getType());
         residue.setDescription(residueCreateDto.getDescription());
-        this.residueRepository.save(residue);
+        this.repository.save(residue);
         return this.mapper.toResidueTypeResponseDto(residue);
 
     }
 
+    public Integer getEntityCount(){
+        return this.repository.getEntityCount();
+    }
 
 }
