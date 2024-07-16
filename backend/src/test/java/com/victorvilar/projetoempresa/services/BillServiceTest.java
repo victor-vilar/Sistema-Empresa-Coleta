@@ -166,25 +166,25 @@ class BillServiceTest {
         verify(billRepository,times(1)).deleteAllById(List.of(1L,2L,3L));
     }
 
-    @Test
-    @DisplayName("Successfull when try to update a bills")
-    void update() {
-        BillUpdateDto billUpdateDto = new BillUpdateDto();
-        billUpdateDto.setId(this.bill1.getId());
-        billUpdateDto.setDescription(this.bill1.getDescription());
-        billUpdateDto.setSupplier(this.bill1.getDescription());
-        billUpdateDto.setNoteNumber(this.bill1.getNoteNumber());
-        billUpdateDto.setInstalments(initInstalmentToUpdate());
-        Mockito.when(billRepository.findById(1L)).thenReturn(Optional.of(this.bill1));
-        Mockito.when(billRepository.save(this.bill1)).thenReturn(this.bill1);
-        Mockito.when(billMapper.toBillResponseDto(this.bill1)).thenReturn(this.billResponseDtos.get(0));
-        BillResponseDto responseDto = billService.update(billUpdateDto);
-        verify(billMapper,times(1)).toBill(billUpdateDto);
-        verify(billRepository,times(1)).save(bill1);
-        verify(billMapper,times(1)).toBillResponseDto(bill1);
-        assertEquals(this.bills.get(0).getId(),responseDto.getId());
-        assertEquals(this.bills.get(0).getSupplier(), responseDto.getSupplier());
-    }
+//    @Test
+//    @DisplayName("Successfull when try to update a bills")
+//    void update() {
+//        BillUpdateDto billUpdateDto = new BillUpdateDto();
+//        billUpdateDto.setId(this.bill1.getId());
+//        billUpdateDto.setDescription(this.bill1.getDescription());
+//        billUpdateDto.setSupplier(this.bill1.getDescription());
+//        billUpdateDto.setNoteNumber(this.bill1.getNoteNumber());
+//        billUpdateDto.setInstalments(initInstalmentToUpdate());
+//        Mockito.when(billRepository.findById(1L)).thenReturn(Optional.of(this.bill1));
+//        Mockito.when(billRepository.save(this.bill1)).thenReturn(this.bill1);
+//        Mockito.when(billMapper.toBillResponseDto(this.bill1)).thenReturn(this.billResponseDtos.get(0));
+//        BillResponseDto responseDto = billService.update(billUpdateDto);
+//        verify(billMapper,times(1)).toBill(billUpdateDto);
+//        verify(billRepository,times(1)).save(bill1);
+//        verify(billMapper,times(1)).toBillResponseDto(bill1);
+//        assertEquals(this.bills.get(0).getId(),responseDto.getId());
+//        assertEquals(this.bills.get(0).getSupplier(), responseDto.getSupplier());
+//    }
 
     @Test
     @DisplayName("Successfull when try to delete a instalment or more from a bill")

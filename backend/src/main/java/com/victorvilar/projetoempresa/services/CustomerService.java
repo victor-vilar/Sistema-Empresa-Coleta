@@ -100,5 +100,8 @@ public class CustomerService {
 		repository.deleteById(id);
 	}
 
+	public Integer getCustomersSize(){
+		return this.repository.findCustomersSize();
+	}
 
 }

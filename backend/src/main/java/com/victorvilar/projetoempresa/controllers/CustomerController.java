@@ -79,4 +79,9 @@ public class CustomerController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	@GetMapping("/size")
+	public ResponseEntity<Integer> getSize(){
+		return ResponseEntity.ok(this.service.getCustomersSize());
+	}
+
 }
