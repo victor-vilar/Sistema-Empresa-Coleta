@@ -89,6 +89,10 @@ public class AddressController {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.update(addressUpdateDto));
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     @GetMapping("/count")
     public ResponseEntity<Integer> getEntityCount(){
         return ResponseEntity.ok(this.service.getEntityCount());

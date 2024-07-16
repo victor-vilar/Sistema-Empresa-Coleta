@@ -5,7 +5,7 @@ import { EquipmentsService } from '../../equipaments/services/equipments.service
 import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { CustomerService } from '../../customer/services/customer.service';
 
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login/services/login.service';
 import { Chart } from 'chart.js/auto';
@@ -16,7 +16,7 @@ import { Chart } from 'chart.js/auto';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
 
 
   $customerTotalCount: Observable<number>;
@@ -50,11 +50,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-  this.$customerTotalCount = this.contractService.getCount();
+  this.$customerTotalCount = this.customerService.getCount();
   this.$contractTotalCount = this.contractService.getCount();
   this.$equipmentTotalCount = this.equipmentService.getCount();
   this.$residueTotalCount = this.residueService.getCount();
-  this.$serviceOrderTotalCount = this.serviceOrderService.getCount();
+  this.$serviceOrderTotalCount = this.serviceOrderService.getCountOfNotExecuted();
 
   // this.subscriptionList
   // .push(
@@ -70,9 +70,11 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.createNextServiceDaysChart();
   }
+
+
 
 
   createNextServiceDaysChart(){

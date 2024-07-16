@@ -112,6 +112,10 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDto(this.repository.save(supervisorToUpdate));
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

@@ -66,8 +66,30 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDtoList));
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     @GetMapping("/count")
     public ResponseEntity<Integer> getEntityCount(){
         return ResponseEntity.ok(this.service.getEntityCount());
+    }
+
+    /**
+     * get all orders that is not executed yet
+     * @return list of service order dto that is not executed
+     */
+    @GetMapping("/opened")
+    public ResponseEntity<List<ServiceOrderResponseDto>> getNotExecuted(){
+        return ResponseEntity.ok(this.service.getNotExecuted());
+    }
+
+    /**
+     * get count of not executed service orders
+     * @return count of not executed list orders
+     */
+    @GetMapping("/opened/count")
+    public Integer getNotExecutedCount(){
+        return this.service.getNotExecutedCount();
     }
 }

@@ -106,6 +106,10 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
         this.instalmentRepository.deleteById(id);
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

@@ -107,6 +107,10 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(addressToUpdate);
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

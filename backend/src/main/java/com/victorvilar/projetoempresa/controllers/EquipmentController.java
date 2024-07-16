@@ -72,6 +72,10 @@ public class EquipmentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     @GetMapping("/count")
     public ResponseEntity<Integer> getEntityCount(){
         return ResponseEntity.ok(this.service.getEntityCount());

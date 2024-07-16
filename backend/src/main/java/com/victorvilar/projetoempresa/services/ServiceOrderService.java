@@ -128,7 +128,6 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         return this.mapper.toServiceOrderResponseDto(this.repository.save(order));
     }
 
-
     /**
      * update a list of itens
      *
@@ -141,9 +140,28 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         return this.mapper.toServiceResponseDtoList(this.repository.saveAll(orders));
     }
 
-
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }
 
+    /**
+     * get all orders that is not executed yet
+     * @return list of service order dto that is not executed
+     */
+    public List<ServiceOrderResponseDto> getNotExecuted() {
+        List<ServiceOrder> list = this.repository.getNotExecutedList();
+        return this.mapper.toServiceResponseDtoList(list);
+    }
+
+    /**
+     * get count of not executed service orders
+     * @return count of not executed list orders
+     */
+    public Integer getNotExecutedCount(){
+        return this.repository.getNotExecutedCount();
+    }
 }

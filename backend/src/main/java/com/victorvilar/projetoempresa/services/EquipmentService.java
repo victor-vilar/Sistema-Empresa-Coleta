@@ -91,6 +91,10 @@ public class EquipmentService {
         this.repository.delete(this.findEquipmentById(id));
     }
 
+    /**
+     * get the total of entitys persisted
+     * @return integer of the count
+     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }
