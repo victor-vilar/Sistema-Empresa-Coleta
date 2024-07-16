@@ -1,5 +1,5 @@
 import { ServiceorderService } from './../../service-order/services/serviceorder.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ResiduesService } from '../../residue/services/residues.service';
 import { EquipmentsService } from '../../equipaments/services/equipments.service';
 import { CustomerContractsService } from '../../customer/services/customerContracts.service';
@@ -19,13 +19,13 @@ import { Chart } from 'chart.js/auto';
 export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
-  customerRegisteredLength;
-  contractRegisteredLength;
-  equipmentRegisteredLength;
-  residueRegisteredLength;
-  serviceorderRegisteredLength;
+  $customerTotalCount: Observable<number>;
+  $contractTotalCount: Observable<number>;
+  $equipmentTotalCount: Observable<number>;
+  $residueTotalCount: Observable<number>;
+  $serviceOrderTotalCount: Observable<number>;
   totalValue = 0;
-  subscriptionList:Subscription[] = [];
+  subscriptions:Subscription = new Subscription();
   chart: any = [];
   days:any = [];
 
@@ -39,65 +39,35 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterViewInit {
     private router:Router,
     private loginService:LoginService) { }
 
-
-
   ngOnDestroy(): void {
-      this.subscriptionList.forEach(e => e.unsubscribe());
+      this.subscriptions.unsubscribe();
   }
 
   ngOnInit(): void {
-
 
   if(this.loginService.applicationUser === undefined){
         this.router.navigate(['/login'])
   }
 
-  this.subscriptionList
-  .push(
-    this.customerService.refreshAllData()
-    .subscribe(response =>{this.customerRegisteredLength = response.length})
-    );
 
-  this.subscriptionList
-  .push(
-    this.contractService.refreshAllData().subscribe(response =>{
-        this.contractRegisteredLength = response.length
+  this.$customerTotalCount = this.contractService.getCount();
+  this.$contractTotalCount = this.contractService.getCount();
+  this.$equipmentTotalCount = this.equipmentService.getCount();
+  this.$residueTotalCount = this.residueService.getCount();
+  this.$serviceOrderTotalCount = this.serviceOrderService.getCount();
 
-        //return a list of lists of itens
-        let listOfItens = response.map(e => e.itens);
-        listOfItens.forEach(e =>
-          //loop trough each item to sum all contracts
-          e.forEach(c => this.totalValue += c.itemValue * c.qtdOfResidue));
-  }));
+  // this.subscriptionList
+  // .push(
+  //   this.contractService.refreshAllData().subscribe(response =>{
+  //       this.contractRegisteredLength = response.length
 
-  this.subscriptionList
-  .push(
-    this.equipmentService.refreshAllData()
-    .subscribe(response =>{this.equipmentRegisteredLength = response.length})
-  );
+  //       //return a list of lists of itens
+  //       let listOfItens = response.map(e => e.itens);
+  //       listOfItens.forEach(e =>
+  //         //loop trough each item to sum all contracts
+  //         e.forEach(c => this.totalValue += c.itemValue * c.qtdOfResidue));
+  // }));
 
-
-  this.subscriptionList
-  .push(
-    this.residueService.refreshAllData()
-    .subscribe(response =>{this.residueRegisteredLength = response.length})
-  );
-
-  this.subscriptionList
-  .push(
-    this.serviceOrderService.refreshAllData()
-    .subscribe(response =>{
-      this.serviceorderRegisteredLength = response.length
-      this.fillDays();
-    })
-  );
-
-
-  this.customerService.getAll();
-  this.contractService.getAll();
-  this.equipmentService.getAll();
-  this.residueService.getAll();
-  this.serviceOrderService.getAll();
   }
 
   ngAfterViewInit(): void {

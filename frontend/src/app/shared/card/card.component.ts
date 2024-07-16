@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
   text:string;
 
   @Input()
-  mainInfo:string
+  mainInfo:any
 
   @Input()
   link:string

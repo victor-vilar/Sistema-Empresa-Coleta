@@ -11,7 +11,7 @@ export class EquipmentsService extends CrudBaseService<Equipment> {
 
   constructor() {
     super();
-    this.rota='equipment'
+    this.rota='equipments'
    }
 
 }

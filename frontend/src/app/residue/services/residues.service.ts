@@ -10,6 +10,6 @@ export class ResiduesService  extends CrudBaseService<Residue> {
 
   constructor() {
     super();
-    this.rota='residue'
+    this.rota='residues'
    }
 }

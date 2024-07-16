@@ -90,5 +90,13 @@ export abstract class CrudBaseService<T>{
     return this.http.delete<T>(this.BASE_URL + this.rota + '/' + id,{withCredentials:true});
   };
 
+  /**
+   * get the total of T object from api
+   * @returns Observable of number
+   */
+  getCount():Observable<number>{
+    return this.http.get<number>(this.BASE_URL + this.rota + "/count",{withCredentials:true});
+  }
+
 
 }

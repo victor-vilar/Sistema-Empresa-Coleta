@@ -12,7 +12,7 @@ export class CustomerSupervisorService extends CrudBaseService<Supervisor> imple
 
   constructor() {
     super();
-    this.rota='supervisor'
+    this.rota='supervisors'
    }
 
    route:string;

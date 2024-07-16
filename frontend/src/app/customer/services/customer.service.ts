@@ -10,7 +10,7 @@ export class CustomerService extends CrudBaseService<Customer>  {
 
   constructor() {
     super();
-    this.rota='customer'
+    this.rota='customers'
    }
 
   //find first customer by customer id, in the list

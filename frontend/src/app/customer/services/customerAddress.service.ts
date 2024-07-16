@@ -14,7 +14,7 @@ export class CustomerAddressService extends CrudBaseService<Address> implements 
 
   constructor() {
     super();
-    this.rota='address'
+    this.rota='addresses'
    }
 
    route:string;
