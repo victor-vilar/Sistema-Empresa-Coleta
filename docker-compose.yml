@@ -1,0 +1,13 @@
+version: '4'
+services:
+ frontend:
+  build: ./frontend
+  container_name: front_coleta
+  ports:
+   - "4200:4200"
+
+ backend:
+  build: ./backend
+  container_name: back_coleta
+  ports:
+   - "8080:8080"
