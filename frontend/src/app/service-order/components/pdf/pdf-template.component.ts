@@ -1,11 +1,11 @@
 import jsPDF from 'jspdf';
-import { CommunicationService } from '../../shared/services/communication.service';
+import { CommunicationService } from '../../../shared/services/communication.service';
 import { AfterViewInit, Component, DoCheck, ElementRef, OnInit, ViewChild, OnDestroy,inject, Inject } from '@angular/core';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActiveDataPoint } from 'chart.js';
-import { ServiceorderService } from '../services/serviceorder.service';
+import { ServiceorderService } from '../../services/serviceorder.service';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 
 

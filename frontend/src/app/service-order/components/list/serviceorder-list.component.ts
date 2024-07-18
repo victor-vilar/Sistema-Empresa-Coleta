@@ -1,10 +1,7 @@
-import { ServiceOrderStatus } from '../../shared/enums/ServiceOrderStatus';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { ServiceOrder } from 'src/app/shared/entities/ServiceOrder';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { PdfTemplateComponent } from '../pdf-template/pdf-template.component';
+
 
 @Component({
   selector: 'app-serviceorder-list',

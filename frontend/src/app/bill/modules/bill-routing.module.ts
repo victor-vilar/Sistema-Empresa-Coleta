@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ServiceorderDetailComponent } from 'src/app/service-order/service-order-detail/serviceorder.detail.component';
-import { ServiceorderComponent } from 'src/app/service-order/serviceorder.component';
-import { BillComponent } from '../components/main/bill.component';
+import { BillMainComponent } from '../components/main/bill-main.component';
 import { BillDetailComponent } from '../components/detail/bill-detail.component';
 
 const routes: Routes = [
-  {path:'contas',component:BillComponent, children:[
+  {path:'contas',component:BillMainComponent, children:[
     {path:'novo',component:BillDetailComponent},
     {path:':id',component:BillDetailComponent},
   ]

@@ -1,10 +1,10 @@
 
 import { Component, inject } from '@angular/core';
-import { ServiceorderService } from './services/serviceorder.service';
-import { ServiceOrderListTableComponentMapperService } from './services/service-order-list-table-component-mapper.service';
-import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';
+import { ServiceorderService } from '../../services/serviceorder.service';
+import { ServiceOrderListTableComponentMapperService } from '../../services/service-order-list-table-component-mapper.service';
+import { ServiceorderDetailComponent } from '../detail/serviceorder.detail.component';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
-import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
+import { PdfTemplateComponent } from '../pdf/pdf-template.component';
 
 
 @Component({

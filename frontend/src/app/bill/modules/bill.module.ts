@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BillComponent } from '../components/main/bill.component';
+import { BillMainComponent } from '../components/main/bill-main.component';
 import { BillListComponent } from '../components/list/bill-list.component';
 import { BillDetailComponent } from '../components/detail/bill-detail.component';
 import { BillRoutingModule } from './bill-routing.module';
@@ -14,7 +14,7 @@ import { MaterialModuleModule } from 'src/app/shared/material-module.module';
 
 @NgModule({
   declarations: [
-    BillComponent,
+    BillMainComponent,
     BillListComponent,
     BillDetailComponent
   ],

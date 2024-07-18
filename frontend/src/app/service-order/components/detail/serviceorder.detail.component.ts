@@ -1,6 +1,6 @@
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
-import { ServiceorderService } from '../services/serviceorder.service';
+import { ServiceorderService } from '../../services/serviceorder.service';
 import { AfterViewInit, Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { Contract } from 'src/app/shared/entities/Contract';
@@ -10,7 +10,7 @@ import { Address } from 'src/app/shared/entities/Address';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
-import { ServiceorderDetailComponentErrorsHelperService } from '../services/serviceorder-detail-component-errors-helper.service';
+import { ServiceorderDetailComponentErrorsHelperService } from '../../services/serviceorder-detail-component-errors-helper.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { ServiceOrder } from 'src/app/shared/entities/ServiceOrder';
 
