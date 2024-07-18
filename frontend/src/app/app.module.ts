@@ -15,7 +15,7 @@ import { ResidueModule } from './residue/modules/residue.module';
 import { EquipamentsModule } from './equipaments/equipaments.module';
 import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './login/modules/login.module';
 import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
 import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilter';
 import { ContractModule } from './contracts/contract.module';

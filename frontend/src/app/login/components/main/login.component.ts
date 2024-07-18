@@ -1,8 +1,8 @@
-import { DialogServiceService } from './../shared/services/dialog-service.service';
+import { DialogServiceService } from '../../../shared/services/dialog-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoginService } from './services/login.service';
-import { ApplicationUser } from '../shared/entities/ApplicationUser';
+import { LoginService } from '../../services/login.service';
+import { ApplicationUser } from '../../../shared/entities/ApplicationUser';
 import { getCookie } from 'typescript-cookie';
 import { Router } from '@angular/router';
 
