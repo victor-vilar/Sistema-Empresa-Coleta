@@ -8,7 +8,7 @@ export class FullAddressFinderService {
 
   constructor() { }
 
-  private BASE_URL='https://viacep.com.br/ws/';
+  private readonly BASE_URL='https://viacep.com.br/ws/';
 
   async getFullAddress(cep:string, type:string = 'json'):Promise<any>{
     if(cep !== ''){

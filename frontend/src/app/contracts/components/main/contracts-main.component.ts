@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CustomerContractsService } from '../../../customer/services/customerContracts.service';
-import { ContractsListTableComponentMapperService } from '../../services/contracts-list-table-component-mapper.service';
+import { ContractsListComponentMapperService } from '../../services/contracts-list-component-mapper.service';
 
 @Component({
   selector: 'app-contracts-main',
@@ -13,7 +13,7 @@ export class ContractsMainComponent implements OnInit {
   title = "Contratos"
   objectToEdit:any;
   contractService:CustomerContractsService = inject(CustomerContractsService);
-  mapper:ContractsListTableComponentMapperService = inject(ContractsListTableComponentMapperService);
+  mapper:ContractsListComponentMapperService = inject(ContractsListComponentMapperService);
 
 
   constructor(){}

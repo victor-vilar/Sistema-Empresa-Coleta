@@ -6,7 +6,7 @@ import { Mapper } from 'src/app/shared/interfaces/mapper.mapper';
 @Injectable({
   providedIn: 'root'
 })
-export class ContractsListTableComponentMapperService implements Mapper {
+export class ContractsListComponentMapperService implements Mapper {
 
   customerService:CustomerService
   constructor(customerService:CustomerService) {this.customerService = customerService }

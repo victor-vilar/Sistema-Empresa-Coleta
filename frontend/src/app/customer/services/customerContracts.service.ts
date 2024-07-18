@@ -7,20 +7,25 @@ import { Contract } from '../../shared/entities/Contract';
 import { CrudBaseService } from 'src/app/shared/services/crudbase.service';
 import { Mapper } from '../../shared/interfaces/mapper.mapper';
 import { Schedule, ScheduleType } from 'src/app/shared/enums/Schedule';
+import { ByCustomerSearcher } from '../interfaces/ByCustomerSearcher';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerContractsService extends CrudBaseService<Contract> implements Mapper  {
+export class CustomerContractsService extends CrudBaseService<Contract> implements Mapper, ByCustomerSearcher<Contract>  {
 
+  private route;
   constructor() {
     super();
     this.rota = 'contracts'
    }
 
-   private route;
 
-
+  //get all contracts by customer id
+  getAllByCustomerId(customerId:string | number):Observable<Contract[]>{
+    this.route = this.BASE_URL + this.rota +'/all/'+customerId;
+    return this.http.get<Contract[]>(this.route,{withCredentials:true});
+  }
 
   /**
    *  delete a list of itens from api
@@ -31,15 +36,6 @@ export class CustomerContractsService extends CrudBaseService<Contract> implemen
     this.route = this.BASE_URL + this.rota +'/deleteitens';
     return this.http.delete<any>(this.route,{withCredentials:true,body:itens});
   }
-
-
-  //get all contracts by customer id
-  getAllByCustomerId(clientCpfCnpj:string):Observable<Contract[]>{
-    this.route = this.BASE_URL + this.rota +'/all/'+clientCpfCnpj;
-    return this.http.get<Contract[]>(this.route,{withCredentials:true});
-  }
-
-
 
 
   // get all contracts that have a contractStatus equals to given param
