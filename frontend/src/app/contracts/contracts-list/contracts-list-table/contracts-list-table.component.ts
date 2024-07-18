@@ -3,7 +3,7 @@ import { CommunicationService } from './../../../shared/services/communication.s
 import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CustomerContractsDetailComponent } from 'src/app/customer/customer-contracts/customer-contracts-detail/customer-contracts-detail.component';
+import { CustomerContractsDetailComponent } from 'src/app/customer/components/contracts/detail/customer-contracts-detail.component';
 import { CustomerService } from 'src/app/customer/services/customer.service';
 import { Contract } from 'src/app/shared/entities/Contract';
 import { ContractStatus, getContractStatusValues } from 'src/app/shared/enums/ContractStatus';

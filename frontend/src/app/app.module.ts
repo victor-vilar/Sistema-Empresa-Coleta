@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { TemplateModule } from './template/template.module';
 import { ResidueModule } from './residue/modules/residue.module';
 import { EquipamentsModule } from './equipaments/modules/equipaments.module';
-import { CustomerModule } from './customer/customer.module';
+import { CustomerModule } from './customer/modules/customer.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/modules/login.module';
 import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
