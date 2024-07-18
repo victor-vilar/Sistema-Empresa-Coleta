@@ -5,11 +5,11 @@ import { MainComponentEntity } from '../../../shared/entities/MainComponentEntit
 
 
 @Component({
-  selector: 'app-equipaments',
-  templateUrl: './equipaments.component.html',
-  styleUrls: ['./equipaments.component.css']
+  selector: 'app-equipaments-main',
+  templateUrl: './equipaments-main.component.html',
+  styleUrls: ['./equipaments-main.component.css']
 })
-export class EquipmentsComponent extends MainComponentEntity {
+export class EquipamentsMainComponent extends MainComponentEntity {
 
   equipmentService:EquipmentsService = inject(EquipmentsService);
 

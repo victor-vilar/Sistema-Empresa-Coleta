@@ -5,11 +5,11 @@ import { DialogServiceService } from 'src/app/shared/services/dialog-service.ser
 import { MapperService } from 'src/app/shared/services/mapper.service';
 
 @Component({
-  selector: 'app-equipment-list-table',
-  templateUrl: './equipment-list-table.component.html',
-  styleUrls: ['./equipment-list-table.component.css']
+  selector: 'app-equipment-list',
+  templateUrl: './equipment-list.component.html',
+  styleUrls: ['./equipment-list.component.css']
 })
-export class EquipmentListTableComponent extends ItensTableComponent {
+export class EquipmentListComponent extends ItensTableComponent {
 
   constructor(){
     super();

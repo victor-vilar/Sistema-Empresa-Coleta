@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EquipmentsComponent } from '../components/main/equipaments.component';
+import { EquipamentsMainComponent } from '../components/main/equipaments-main.component';
 import { EquipmentDetailComponent } from '../components/detail/equipament-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,15 +12,15 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { EquipmentRoutingModule } from './equipment-routing.module';
 import { MaterialModuleModule } from '../../shared/material-module.module';
-import { EquipmentListTableComponent } from '../components/list/equipment-list-table.component';
+import { EquipmentListComponent } from '../components/list/equipment-list.component';
 
 
 
 @NgModule({
   declarations: [
-    EquipmentsComponent,
+    EquipamentsMainComponent,
     EquipmentDetailComponent,
-    EquipmentListTableComponent
+    EquipmentListComponent
   ],
   imports: [
     CommonModule,
