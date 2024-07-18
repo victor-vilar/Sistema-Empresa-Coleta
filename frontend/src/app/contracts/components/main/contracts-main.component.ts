@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CustomerContractsService } from '../../../customer/services/customerContracts.service';
+import { CustomerContractsService } from '../../../customer/services/customer-contracts.service';
 import { ContractsListComponentMapperService } from '../../services/contracts-list-component-mapper.service';
 
 @Component({
