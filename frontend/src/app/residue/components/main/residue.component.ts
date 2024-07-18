@@ -1,11 +1,10 @@
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ResiduesService } from 'src/app/residue/services/residues.service';
-
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
+import { ResidueDetailComponent } from '../detail/residue-detail.component';
 import { Component, inject } from '@angular/core';
-import { MainComponentEntity } from '../shared/entities/MainComponentEntity';
+import { MainComponentEntity } from '../../../shared/entities/MainComponentEntity';
 @Component({
   selector: 'app-residue',
   templateUrl: './residue.component.html',

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from '../template/dashboard/dashboard.component';
-import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
-import { ResidueComponent } from './residue.component';
+import { DashboardComponent } from '../../template/dashboard/dashboard.component';
+import { ResidueDetailComponent } from '../components/detail/residue-detail.component';
+import { ResidueComponent } from '../components/main/residue.component';
 
 
 

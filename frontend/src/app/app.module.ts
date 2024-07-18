@@ -11,7 +11,7 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
 
 import { RouterModule } from '@angular/router';
 import { TemplateModule } from './template/template.module';
-import { ResidueModule } from './residue/residue.module';
+import { ResidueModule } from './residue/modules/residue.module';
 import { EquipamentsModule } from './equipaments/equipaments.module';
 import { CustomerModule } from './customer/customer.module';
 import { SharedModule } from './shared/shared.module';

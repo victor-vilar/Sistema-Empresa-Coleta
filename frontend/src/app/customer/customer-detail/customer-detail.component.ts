@@ -3,7 +3,7 @@ import { Component, Inject, OnInit, ViewChild, AfterViewInit } from '@angular/co
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Customer } from 'src/app/shared/entities/Customer';
-import { ResidueDetailComponent } from '../../residue/residue-detail/residue-detail.component';
+import { ResidueDetailComponent } from '../../residue/components/detail/residue-detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 

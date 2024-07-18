@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from '../template/dashboard/dashboard.component';
 import { ContractModule } from '../contracts/contract.module';
 import { CustomerModule } from '../customer/customer.module';
-import { ResidueModule } from '../residue/residue.module';
+import { ResidueModule } from '../residue/modules/residue.module';
 import { ServiceorderComponent } from './serviceorder.component';
 import { EquipamentsModule } from '../equipaments/equipaments.module';
 import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';

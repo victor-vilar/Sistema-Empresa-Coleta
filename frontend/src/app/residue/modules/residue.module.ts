@@ -1,7 +1,7 @@
-import { ResidueComponent } from './residue.component';
+import { ResidueComponent } from '../components/main/residue.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResidueDetailComponent } from './residue-detail/residue-detail.component';
+import { ResidueDetailComponent } from '../components/detail/residue-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,8 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TemplateModule } from 'src/app/template/template.module';
 import { ResidueRoutingModule } from './residue-routing.module';
-import { MaterialModuleModule } from '../shared/material-module.module';
-import { ResidueListTableComponent } from './residue-list-table/residue-list-table.component';
+import { MaterialModuleModule } from '../../shared/material-module.module';
+import { ResidueListTableComponent } from '../components/list/residue-list-table.component';
 
 
 

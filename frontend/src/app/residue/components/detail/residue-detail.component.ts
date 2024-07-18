@@ -7,7 +7,7 @@ import { Residue } from 'src/app/shared/entities/Residue';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
-import { ResidueDetailErrosHelperService } from '../services/residue-detail-erros-helper.service';
+import { ResidueDetailErrosHelperService } from '../../services/residue-detail-erros-helper.service';
 
 
 @Component({
