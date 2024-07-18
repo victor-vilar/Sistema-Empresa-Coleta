@@ -21,13 +21,14 @@ import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilte
 import { ContractModule } from './contracts/contract.module';
 import { MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { ServiceorderModule } from './service-order/serviceorder.module';
+import { BillModule } from './bill/modules/bill.module';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
 
   ],
   imports: [
@@ -43,7 +44,8 @@ import { ServiceorderModule } from './service-order/serviceorder.module';
     CustomerModule,
     LoginModule,
     ContractModule,
-    ServiceorderModule
+    ServiceorderModule,
+    BillModule
 
   ],
   providers: [
