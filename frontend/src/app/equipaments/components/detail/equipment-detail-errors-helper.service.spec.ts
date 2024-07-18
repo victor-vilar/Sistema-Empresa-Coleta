@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EquipmentDetailErrorsHelperService } from './equipment-detail-errors-helper.service';
+import { EquipmentDetailErrorsHelperService } from '../../services/equipment-detail-errors-helper.service';
 
 describe('EquipmentDetailErrorsHelperService', () => {
   let service: EquipmentDetailErrorsHelperService;

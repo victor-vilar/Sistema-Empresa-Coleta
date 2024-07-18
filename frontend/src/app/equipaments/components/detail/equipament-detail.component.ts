@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { EquipmentDetailErrorsHelperService } from './equipment-detail-errors-helper.service';
+import { EquipmentDetailErrorsHelperService } from '../../services/equipment-detail-errors-helper.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 
 

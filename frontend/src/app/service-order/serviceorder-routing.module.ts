@@ -6,7 +6,7 @@ import { ContractModule } from '../contracts/contract.module';
 import { CustomerModule } from '../customer/customer.module';
 import { ResidueModule } from '../residue/modules/residue.module';
 import { ServiceorderComponent } from './serviceorder.component';
-import { EquipamentsModule } from '../equipaments/equipaments.module';
+import { EquipamentsModule } from '../equipaments/modules/equipaments.module';
 import { ServiceorderDetailComponent } from './service-order-detail/serviceorder.detail.component';
 import { PdfTemplateComponent } from './pdf-template/pdf-template.component';
 
