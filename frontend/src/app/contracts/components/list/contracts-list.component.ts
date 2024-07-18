@@ -1,22 +1,17 @@
-import { Customer } from './../../../shared/entities/Customer';
-import { CommunicationService } from './../../../shared/services/communication.service';
-import { Component, Input, OnInit, ElementRef, ViewChild, inject } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+
+import { Component, ViewChild, inject } from '@angular/core';
 import { CustomerContractsDetailComponent } from 'src/app/customer/components/contracts/detail/customer-contracts-detail.component';
 import { CustomerService } from 'src/app/customer/services/customer.service';
-import { Contract } from 'src/app/shared/entities/Contract';
-import { ContractStatus, getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
+import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { ItensTableComponent } from 'src/app/shared/itens-table/itens-table.component';
-import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
-import { MapperService } from 'src/app/shared/services/mapper.service';
+
 
 @Component({
-  selector: 'app-contracts-list-table',
-  templateUrl: './contracts-list-table.component.html',
-  styleUrls: ['./contracts-list-table.component.css']
+  selector: 'app-contracts-list',
+  templateUrl: './contracts-list.component.html',
+  styleUrls: ['./contracts-list.component.css']
 })
-export class ContractsListTableComponent extends ItensTableComponent {
+export class ContractsListComponent extends ItensTableComponent {
 
   @ViewChild('search') search:HTMLSelectElement;
   customerService = inject(CustomerService);

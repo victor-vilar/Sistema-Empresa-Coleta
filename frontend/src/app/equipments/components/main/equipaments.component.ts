@@ -1,5 +1,5 @@
 import { EquipmentDetailComponent } from '../detail/equipament-detail.component';
-import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
+import { EquipmentsService } from 'src/app/equipments/services/equipments.service';
 import { Component, inject } from '@angular/core';
 import { MainComponentEntity } from '../../../shared/entities/MainComponentEntity';
 

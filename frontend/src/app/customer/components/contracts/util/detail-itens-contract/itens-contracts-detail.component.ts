@@ -5,7 +5,7 @@ import { DialogServiceService } from '../../../../../shared/services/dialog-serv
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
+import { EquipmentsService } from 'src/app/equipments/services/equipments.service';
 import { ResiduesService } from 'src/app/residue/services/residues.service';
 import { Equipment } from 'src/app/shared/entities/Equipment';
 import { ItemContract } from 'src/app/shared/entities/ItemContract';

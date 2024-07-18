@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { CustomerRoutingModule } from './customer-routing.module';
-import { ContractRoutingModule } from '../../contracts/contract-routing.module';
+import { ContractRoutingModule } from '../../contracts/modules/contract-routing.module';
 import { MaterialModuleModule } from '../../shared/material-module.module';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';

@@ -4,7 +4,7 @@ import { Equipment } from 'src/app/shared/entities/Equipment';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Inject, AfterViewInit, inject } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EquipmentsService } from 'src/app/equipaments/services/equipments.service';
+import { EquipmentsService } from 'src/app/equipments/services/equipments.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EquipmentDetailErrorsHelperService } from '../../services/equipment-detail-errors-helper.service';

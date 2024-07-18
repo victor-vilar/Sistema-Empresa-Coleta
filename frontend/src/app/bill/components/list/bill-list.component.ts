@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillListComponent implements OnInit {
 
+
+  //TODO extender a classe itens table.
+
   constructor() { }
 
   ngOnInit(): void {

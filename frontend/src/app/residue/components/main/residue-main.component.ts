@@ -6,11 +6,11 @@ import { ResidueDetailComponent } from '../detail/residue-detail.component';
 import { Component, inject } from '@angular/core';
 import { MainComponentEntity } from '../../../shared/entities/MainComponentEntity';
 @Component({
-  selector: 'app-residue',
-  templateUrl: './residue.component.html',
-  styleUrls: ['./residue.component.css']
+  selector: 'app-residue-main',
+  templateUrl: './residue-main.component.html',
+  styleUrls: ['./residue-main.component.css']
 })
-export class ResidueComponent extends MainComponentEntity {
+export class ResidueMainComponent extends MainComponentEntity {
 
   residueService:ResiduesService = inject(ResiduesService);
 

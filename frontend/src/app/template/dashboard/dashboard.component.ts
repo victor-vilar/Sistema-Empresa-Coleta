@@ -1,7 +1,7 @@
 import { ServiceorderService } from './../../service-order/services/serviceorder.service';
 import { Observable, Subscription } from 'rxjs';
 import { ResiduesService } from '../../residue/services/residues.service';
-import { EquipmentsService } from '../../equipaments/services/equipments.service';
+import { EquipmentsService } from '../../equipments/services/equipments.service';
 import { CustomerContractsService } from '../../customer/services/customerContracts.service';
 import { CustomerService } from '../../customer/services/customer.service';
 

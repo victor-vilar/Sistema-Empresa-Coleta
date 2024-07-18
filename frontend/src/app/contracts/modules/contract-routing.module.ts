@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ContractsListComponent } from './contracts-list/contracts-list.component';
+import { ContractsMainComponent } from '../components/main/contracts-main.component';
 
 
 
 const routes: Routes = [
-  {path:'contratos',component:ContractsListComponent}
+  {path:'contratos',component:ContractsMainComponent}
 
 
 ]

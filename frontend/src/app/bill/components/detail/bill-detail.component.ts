@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillDetailComponent implements OnInit {
 
+  //TODO extender classe formDetail
+
   constructor() { }
 
   ngOnInit(): void {

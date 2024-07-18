@@ -1,4 +1,4 @@
-import { ResidueComponent } from '../components/main/residue.component';
+import { ResidueMainComponent } from '../components/main/residue-main.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResidueDetailComponent } from '../components/detail/residue-detail.component';
@@ -19,7 +19,7 @@ import { ResidueListTableComponent } from '../components/list/residue-list-table
 
 @NgModule({
   declarations: [
-    ResidueComponent,
+    ResidueMainComponent,
     ResidueDetailComponent,
     ResidueListTableComponent
   ],

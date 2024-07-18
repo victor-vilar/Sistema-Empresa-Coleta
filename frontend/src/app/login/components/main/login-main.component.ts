@@ -7,11 +7,11 @@ import { getCookie } from 'typescript-cookie';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-main',
+  templateUrl: './login-main.component.html',
+  styleUrls: ['./login-main.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginMainComponent implements OnInit {
 
   @ViewChild('meuForm') formulario:NgForm;
 

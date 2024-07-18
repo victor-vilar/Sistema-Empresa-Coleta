@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResidueComponent } from './residue.component';
+import { LoginMainComponent } from './login-main.component';
 
-describe('ResidueComponent', () => {
-  let component: ResidueComponent;
-  let fixture: ComponentFixture<ResidueComponent>;
+describe('LoginMainComponent', () => {
+  let component: LoginMainComponent;
+  let fixture: ComponentFixture<LoginMainComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResidueComponent ]
+      declarations: [ LoginMainComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ResidueComponent);
+    fixture = TestBed.createComponent(LoginMainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

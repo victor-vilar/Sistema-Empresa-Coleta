@@ -8,11 +8,11 @@ import { PdfTemplateComponent } from '../pdf/pdf-template.component';
 
 
 @Component({
-  selector: 'app-serviceorder',
-  templateUrl: './serviceorder.component.html',
-  styleUrls: ['./serviceorder.component.css']
+  selector: 'app-serviceorder-main',
+  templateUrl: './serviceorder-main.component.html',
+  styleUrls: ['./serviceorder-main.component.css']
 })
-export class ServiceorderComponent extends MainComponentEntityOfCustomer {
+export class ServiceorderMainComponent extends MainComponentEntityOfCustomer {
 
   serviceOrderService:ServiceorderService = inject(ServiceorderService);
 

@@ -7,14 +7,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ServiceorderListComponent } from '../components/list/serviceorder-list.component';
 import { PdfTemplateComponent } from '../components/pdf/pdf-template.component';
-import { ServiceorderComponent } from '../components/main/serviceorder.component';
+import { ServiceorderMainComponent } from '../components/main/serviceorder-main.component';
 import { ServiceorderDetailComponent } from '../components/detail/serviceorder.detail.component';
 
 
 
 @NgModule({
   declarations: [
-    ServiceorderComponent,
+    ServiceorderMainComponent,
     ServiceorderDetailComponent,
     ServiceorderListComponent,
     PdfTemplateComponent,

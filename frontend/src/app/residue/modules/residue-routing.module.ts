@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from '../../template/dashboard/dashboard.component';
 import { ResidueDetailComponent } from '../components/detail/residue-detail.component';
-import { ResidueComponent } from '../components/main/residue.component';
+import { ResidueMainComponent } from '../components/main/residue-main.component';
 
 
 
 const routes: Routes = [
-  {path:'residuos',component:ResidueComponent, children:[
+  {path:'residuos',component:ResidueMainComponent, children:[
     {path:'residuo/:id',component:ResidueDetailComponent},
     {path:'residuo/novo',component:ResidueDetailComponent},
   ]},
