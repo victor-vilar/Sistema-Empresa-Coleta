@@ -17,16 +17,15 @@ import { LoginModule } from './login/modules/login.module';
 import { jwtTokenInterceptorFilter } from './security/jwtTokenInterceptorFilter';
 import { csrfTokenInterceptorFilter } from './security/csrfTokenInterceptorFilter';
 import { ContractModule } from './contracts/modules/contract.module';
-import { MatDialogModule, MatDialogRef, MatDialog, MAT_DIALOG_DATA  } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { ServiceorderModule } from './service-order/modules/serviceorder.module';
 import { BillModule } from './bill/modules/bill.module';
-
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
 
   ],
   imports: [
