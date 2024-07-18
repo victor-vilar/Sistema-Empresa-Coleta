@@ -27,10 +27,6 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    ResidueModule,
-    EquipamentsModule,
-    CustomerModule,
-    ContractModule,
     RouterModule.forChild(routes)
   ],
   exports:[RouterModule]
