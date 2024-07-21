@@ -17,6 +17,7 @@ Aqui estão o link dos outros repositórios caso voce tenha interesse em ver os 
 
 - HTML
 - CSS
+- Typescript
 - Angular
 
 ### Backend
@@ -40,11 +41,19 @@ Executar o comando:
 E então:
 `npm run ng s -o`
 
+Ao iniciar o projeto abre na página de login, para conseguir fazer o login é necessário que o backend esteja rodando. O backend está configurado para ouvir a porta 8080.
+
+### Login e Senha
+username: madruga
+senha: mama
 
 ### Backend
 Pré requisitos
 - Java 17+
 - Maven
+
+
+Também é possivel utilizar o Docker para iniciar o projeto utilizando o docker compose. Para isso é necessário fazer o comando `docker compose up` na raiz do projeto.
 
 ## Empresa de Coleta
 
