@@ -63,10 +63,27 @@ Além disso tambem existe a Companhia Municipal de Limpeza Urbana da Cidade do R
 
 
 
-## O Sistema
+## Funcionalidades
 
-O sistema é um frontend junto com uma API Rest
+É possivel realizar o gerenciamento das seguintes Features:
+- Clientes
+- Endereços
+- Fiscais
+- Contratos
+- Contas - Com a possibilidade de gerar uma conta com várias parcelas
+- Equipamentos
+- Resíduos
+- Ordens de Serviço
+- Emissão do PDF da Ordem de Serviço
 
+## Futuras implementações
+
+- Criação de Ordens de Serviço automaticamente, seguindo o agendamento feito dos itens no cadastro do contrato.
+- Atualização dos Contratos com possibilidade de reajuste dos valores dos itens seguindo os indices do contrato.
+- Emissão de Relatórios do quantitativo coletado nas ordens de serviço em um período específico.
+- Emissão de Relatórios de futuras contas e de contas pagas em um período específico.
+- CRUD dos veículos.
+- Controle de abastecimento nos veículos.
 ## Contato
 Para informações mais detalhadas sobre o sistema por favor entre em contato comigo por um dos links abaixo:
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victor-vilar01/)  [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/victorvilar01/)
