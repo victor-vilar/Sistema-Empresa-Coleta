@@ -84,6 +84,8 @@ Além disso tambem existe a Companhia Municipal de Limpeza Urbana da Cidade do R
 - Emissão de Relatórios de futuras contas e de contas pagas em um período específico.
 - CRUD dos veículos.
 - Controle de abastecimento nos veículos.
+- Adicionar o Redis para fazer o caching da aplicação.
+  
 ## Contato
 Para informações mais detalhadas sobre o sistema por favor entre em contato comigo por um dos links abaixo:
 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victor-vilar01/)  [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/victorvilar01/)
