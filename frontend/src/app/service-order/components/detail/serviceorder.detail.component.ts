@@ -1,5 +1,5 @@
 import { CustomerService } from 'src/app/customer/services/customer.service';
-import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
+import { CustomerContractsService } from 'src/app/customer/services/customer-contracts.service';
 import { ServiceorderService } from '../../services/serviceorder.service';
 import { AfterViewInit, Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { Customer } from 'src/app/shared/entities/Customer';

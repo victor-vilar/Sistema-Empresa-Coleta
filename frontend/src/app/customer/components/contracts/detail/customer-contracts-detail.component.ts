@@ -6,7 +6,7 @@ import { Contract } from 'src/app/shared/entities/Contract';
 import { ItemContract, itemContractListForTests } from 'src/app/shared/entities/ItemContract';
 import { Component, Inject, OnInit, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
+import { CustomerContractsService } from 'src/app/customer/services/customer-contracts.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getContractStatusValues } from 'src/app/shared/enums/ContractStatus';
 import { ItensContractsDetailComponent } from '../util/detail-itens-contract/itens-contracts-detail.component';

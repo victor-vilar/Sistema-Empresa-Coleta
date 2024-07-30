@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CustomerService } from 'src/app/customer/services/customer.service';
-import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
+import { CustomerSupervisorService } from 'src/app/customer/services/customer-supervisor.service';
 import { CustomerSupervisorsDetailComponent } from '../detail/customer-supervisors-detail.component';
 import { CustomerSupervisorsListTableComponentMapperService } from '../services/customer-supervisors-list-table-component-mapper.service';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';

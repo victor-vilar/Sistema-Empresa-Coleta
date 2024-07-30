@@ -1,4 +1,4 @@
-import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
+import { CustomerAddressService } from 'src/app/customer/services/customer-address.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';

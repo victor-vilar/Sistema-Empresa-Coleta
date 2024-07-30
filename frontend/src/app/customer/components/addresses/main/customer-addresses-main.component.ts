@@ -1,4 +1,4 @@
-import { CustomerAddressService } from 'src/app/customer/services/customerAddress.service';
+import { CustomerAddressService } from 'src/app/customer/services/customer-address.service';
 import { Component, inject } from '@angular/core';
 import { CustomerAddressesDetailComponent } from '../detail/customer-addresses-detail.component';
 import { CustomerAddressListTableComponentMapperService } from '../services/customer-address-list-table-component-mapper-service.service';

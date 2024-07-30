@@ -1,4 +1,4 @@
-import { CustomerSupervisorService } from 'src/app/customer/services/customerSupervisor.service';
+import { CustomerSupervisorService } from 'src/app/customer/services/customer-supervisor.service';
 import { Component, OnInit, ViewChild, AfterViewInit, Input, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';

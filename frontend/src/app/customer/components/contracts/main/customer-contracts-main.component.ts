@@ -1,6 +1,6 @@
 import { CustomerContractsDetailComponent } from '../detail/customer-contracts-detail.component';
 import { Component, inject } from '@angular/core';
-import { CustomerContractsService } from 'src/app/customer/services/customerContracts.service';
+import { CustomerContractsService } from 'src/app/customer/services/customer-contracts.service';
 import { CustomerContractsByCustomerTableMapperService } from '../services/customer-contracts-by-customer-table-mapper.service';
 import { CommunicationService } from 'src/app/shared/services/communication.service';
 import { MainComponentEntityOfCustomer } from 'src/app/shared/entities/MainComponentEntityOfCustomer';
