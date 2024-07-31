@@ -64,23 +64,23 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
     @Override
     public BillResponseDto update(BillUpdateDto updateDto) {
         Optional<Bill> billToFind = this.repository.findById(updateDto.getId());
-        if(billToFind.isPresent()){
-
-            Bill bill = updateBill(billToFind.get(), updateDto);
-
-            updateDto.getInstalments().stream().forEach(instalment ->{
-                if(instalment.getId() == null){
-
-                   bill.addNewInstalment(this.instalmentMapper.toInstalment(instalment));
-                }else{
-                    this.updateInstalmentsOfBill(instalment);
-                }
-            });
-
-            return this.billMapper.toBillResponseDto(this.repository.save(bill));
-        }else{
+        if(!billToFind.isPresent()) {
             throw new BillNotFoundException("Bill not found");
         }
+
+        Bill bill = updateBill(billToFind.get(), updateDto);
+
+        updateDto.getInstalments().stream().forEach(instalment ->{
+            if(instalment.getId() == null){
+
+                bill.addNewInstalment(this.instalmentMapper.toInstalment(instalment));
+            }else{
+                this.updateInstalmentsOfBill(instalment);
+            }
+        });
+
+        return this.billMapper.toBillResponseDto(this.repository.save(bill));
+
     }
 
     private Bill updateBill(Bill bill, BillUpdateDto updateDto){
