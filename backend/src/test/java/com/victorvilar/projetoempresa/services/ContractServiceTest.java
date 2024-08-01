@@ -7,7 +7,6 @@ import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.dto.contract.*;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
-import com.victorvilar.projetoempresa.enums.Schedule;
 import com.victorvilar.projetoempresa.enums.Weekday;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ContractMapper;
@@ -186,7 +185,7 @@ class ContractServiceTest {
                 .thenReturn(contract1);
         when(this.customerService.findCustomerById(anyString()))
                 .thenReturn(customer);
-        when(this.itemContractMapper.fromItemContractCreateDtoListToItemContractList(anyList()))
+        when(this.itemContractMapper.ToItemContractList(anyList()))
                 .thenReturn(itens);
         when(this.contractRepository.save(any(Contract.class)))
                 .thenReturn(contract1);

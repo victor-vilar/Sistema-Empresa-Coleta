@@ -52,7 +52,7 @@ public class ItemContractMapper {
     }
 
     //transform all itemContractCreateDto into a ItemContract List
-    public List<ItemContract> fromItemContractCreateDtoListToItemContractList(List<ItemContractCreateDto> list){
+    public List<ItemContract> ToItemContractList(List<ItemContractCreateDto> list){
            return list.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
     }
 

@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ContractNotFoundException;
 import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.domain.ItemContract;
@@ -66,26 +65,19 @@ public class ContractService {
     }
 
     @Transactional
-    public ContractResponseDto save(ContractCreateDto contract) {
+    public ContractResponseDto save(ContractCreateDto contractCreateDto) {
 
-        Contract contract1 = this.contractMapper.toContract(contract);
-
-        Customer customer = this.customerService.findCustomerById(contract.getCustomerId());
-
-        contract1.setCustomer(customer);
+        Contract contract = this.contractMapper.toContract(contractCreateDto);
+        Customer customer = this.customerService.findCustomerById(contractCreateDto.getCustomerId());
 
         List<ItemContract> list =
-        this.itemContractMapper.fromItemContractCreateDtoListToItemContractList
-                (contract.getItens())
-                .stream().toList();
+        this.itemContractMapper.ToItemContractList(contractCreateDto.getItens());
 
-        list.stream().forEach(item -> contract1.addNewItem(item));
+        list.stream().forEach(item -> contract.addNewItem(item));
 
+        customer.addNewContract(contract);
         this.customerRepository.save(customer);
-
-        this.repository.save(contract1);
-
-        return this.contractMapper.toContractResponseDto(contract1);
+        return this.contractMapper.toContractResponseDto(this.repository.save(contract));
     }
 
     @Transactional

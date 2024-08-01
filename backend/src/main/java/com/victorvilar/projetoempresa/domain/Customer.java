@@ -27,16 +27,16 @@ public class Customer implements Serializable {
 
 	private boolean isActive = true;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
 	private List<Address> addresses = new ArrayList<Address>();
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
 	private List<Supervisor> supervisors = new ArrayList<Supervisor>();
 	
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
 	private List<Contract> contracts = new ArrayList<Contract>();
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
 	private List<ServiceOrder> serviceOrders = new ArrayList<>();
 
 
