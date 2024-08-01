@@ -20,14 +20,6 @@ public class ApplicationUser implements UserDetails {
     private String password;
     private String profilePhotoUrl;
 
-    public String getProfilePhotoUrl() {
-        return profilePhotoUrl;
-    }
-
-    public void setProfilePhotoUrl(String profilePhotoUrl) {
-        this.profilePhotoUrl = profilePhotoUrl;
-    }
-
     @ManyToMany
     @JoinTable(name="users_roles", joinColumns = @JoinColumn(name="application_user_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<ApplicationUserRole> applicationUserRoles = new HashSet<>();
@@ -46,6 +38,7 @@ public class ApplicationUser implements UserDetails {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -53,6 +46,7 @@ public class ApplicationUser implements UserDetails {
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -62,12 +56,24 @@ public class ApplicationUser implements UserDetails {
     public String getPassword() {
         return this.password;
     }
-    public void setPassword(String password){this.password = password;}
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.applicationUserRoles;
     }
+
     public void setRoles(Set<ApplicationUserRole> roles){
         this.applicationUserRoles = roles;
     }
@@ -76,19 +82,21 @@ public class ApplicationUser implements UserDetails {
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
     @Override
     public boolean isEnabled() {
         return true;
     }
-
 
     @Override
     public boolean equals(Object o) {

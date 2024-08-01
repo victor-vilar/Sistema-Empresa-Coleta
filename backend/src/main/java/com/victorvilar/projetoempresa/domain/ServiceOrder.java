@@ -7,36 +7,21 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * CRIAR OBJETO ORDEM DE SERVIÇO -- todo
- */
-
 @Entity
 @Table(name = "service_order")
 public class ServiceOrder implements Serializable {
 
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /**
-     * the date of emission of the service order
-     */
     private LocalDate emissionDate = LocalDate.now();
 
-    /**
-     * expected date of service, sometimes the service is not executed in the expected time
-     */
     private LocalDate serviceExpectedDate;
 
-    /**
-     * date that the service was executed
-     */
     private LocalDate serviceExecutedDate;
 
     @ManyToOne
@@ -54,25 +39,13 @@ public class ServiceOrder implements Serializable {
     @JoinColumn(name="address_id",nullable = false)
     private Address address;
 
-    /**
-     * the total of residue collected in the service;
-     */
+
     private Long amountCollected;
 
-    /**
-     * inea manifest it is a document that the customer must emit in each service execution. This document must
-     * be made in the INEA site.
-     */
     private String ineaManifest;
 
-    /**
-     * the time where the service were executed
-     */
     private LocalTime serviceTime;
 
-    /**
-     * A field to add any request of the customer or by the driver
-     */
     private String observation;
 
     /**
@@ -81,9 +54,6 @@ public class ServiceOrder implements Serializable {
      */
     private String osFileUrl;
 
-    /**
-     * service order status
-     */
     private Integer serviceOrderStatus = ServiceOrderStatus.UNDONE.getId();
 
     public ServiceOrder() {
@@ -117,6 +87,7 @@ public class ServiceOrder implements Serializable {
     public LocalDate getEmissionDate() {
         return emissionDate;
     }
+
     public void setEmissionDate(LocalDate localDate){this.emissionDate = localDate;}
 
     public LocalDate getServiceExpectedDate() {
@@ -210,6 +181,7 @@ public class ServiceOrder implements Serializable {
     public ServiceOrderStatus getServiceOrderStatus() {
         return ServiceOrderStatus.getById(this.serviceOrderStatus);
     }
+
     public void setServiceOrderStatus(ServiceOrderStatus serviceOrderStatus) {
         this.serviceOrderStatus = serviceOrderStatus.getId();
     }

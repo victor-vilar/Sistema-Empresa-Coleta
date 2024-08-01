@@ -13,9 +13,7 @@ import jakarta.persistence.Table;
 @Table(name="residues")
 public class Residue implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -24,11 +22,9 @@ public class Residue implements Serializable {
 	
 	@Column(nullable = false)
 	private String type;
-	private String description;
-	
 
-	
-	//constructors
+	private String description;
+
 	public Residue() {
 	}
 
@@ -36,34 +32,31 @@ public class Residue implements Serializable {
 		this.type = type;
 		this.description = description;
 	}
-	//-----------
-	
-	//getters e setters = type
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
-	//-----------
-	
-	//getters e setters = description
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	//-----------
 
-	//getters e setters - id
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	//-----------
+
 	
 	
 	

@@ -6,34 +6,26 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-/**
- * REPRESENTAR UM VEICULO -- todo
- */
+
 @Entity
 @Table(name="vehicles")
 public class Vehicle implements Serializable {
 
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //tipo de Veiculo
     @Enumerated(EnumType.STRING)
     private VehicleType type;
 
-    //placa XXX-XXXX
     @Column(nullable = false)
     private String plate;
 
-    //renavam
     private String renavam;
 
-    //url do ultimo crlv emitido
     private String validCrlvUrl;
 
 

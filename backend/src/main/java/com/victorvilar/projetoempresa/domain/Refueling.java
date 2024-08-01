@@ -13,9 +13,6 @@ public class Refueling {
     private String id;
     @Column(nullable = false)
     private LocalDate refuelDate;
-    @ManyToOne
-    @JoinColumn(name="vechile_id")
-    private Vehicle vechicle;
     @Column(nullable = false)
     private FuelType fuelType;
     @Column(nullable = false)

@@ -6,9 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * contas -- todo
- */
+
 @Entity
 @Table(name="bill")
 public  class Bill implements Serializable {

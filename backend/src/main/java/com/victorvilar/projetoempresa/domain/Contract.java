@@ -21,28 +21,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
-/**
- * Class that represents the contract of a Client
- * @since 2022-02-14
- * @author Victor Vilar
- */
 @Entity
 @Table(name="contracts")
 public class Contract implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	/**
-	 * the number of the contract could be a combination of characters and numbers and special characters,
-	 * therefore this is a String
-	 */
+
     @Column(nullable=false)
     private String number;
 
@@ -61,14 +51,10 @@ public class Contract implements Serializable {
     @JoinColumn(name = "customer_id", nullable=false)
 	private Customer customer;
 
-	//each new contract has an 'ATIVO' status
 	private Integer status = 1;
       
 	
-	/**
-	 * add a new item to contract, add this contract to item
-	 * @param itemContract
-	 */
+
 	public void addNewItem(ItemContract itemContract) {
 		if (!itens.contains(itemContract)) {
 			itemContract.setContract(this);
@@ -88,71 +74,62 @@ public class Contract implements Serializable {
 		this.customer = customer;
 	}
 
-	//-----------------------
-	//getters and setters - id
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	//-----------------------
-  //getters and setters - number
+
 	public String getNumber() {
 		return number;
 	}
+
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	//-----------------------
-	//getters and setters - beginDate
+
 	public LocalDate getBeginDate() {
 		return beginDate;
 	}
+
 	public void setBeginDate(LocalDate beginDate) {
 		this.beginDate = beginDate;
 	}
-	//-----------------------
-	//getters and setters - validity
+
 	public LocalDate getEndDate() {
 		return endDate;
 	}
+
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	//-----------------------
-	//getters and setters - itens
+
 	public List<ItemContract> getItens() {
 		return itens;
 	}
-	//--------------
-	//getters e setters - client
+
 	public void setCustomer(Customer customer2) {
 		this.customer = customer2;
 	}
+
 	public Customer getCustomer() {
 		return this.customer;
 	}
-	//--------------
 
-	//delete a item from contract
 	public void deleteItem(int itemIndex){
 		this.itens.remove(itemIndex);
 	}
 
-	//getters and setters - status
 	public void setContractStatus(ContractStatus status){
 		this.status = status.getId();
 	}
+
 	public ContractStatus getContractStatus(){
 		return ContractStatus.getById(this.status);
 	}
-	//--------------
 
-	/**
-	 * crates a new Contractbuilder
-	 * @return ContractBuilder
-	 */
 	public static ContractBuilder builder(){
 		return new ContractBuilder();
 	}
