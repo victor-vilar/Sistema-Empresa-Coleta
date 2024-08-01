@@ -37,13 +37,16 @@ public class LoginController {
     @GetMapping
     public ResponseEntity<ApplicationUserResponseDto> login(Authentication authentication){
 
-        if(authentication != null){
-            try {
-                ApplicationUserResponseDto responseDto = this.loginService.getLoggedUserDetails(authentication);
+        if(authentication == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        try {
+            ApplicationUserResponseDto responseDto = this.loginService.getLoggedUserDetails(authentication);
                 return ResponseEntity.ok(responseDto);
-            }catch(UsernameNotFoundException e){
+        }
+        catch(UsernameNotFoundException e){
                 System.out.println(e.getMessage());
-            }
         }
 
         return ResponseEntity.badRequest().build();
