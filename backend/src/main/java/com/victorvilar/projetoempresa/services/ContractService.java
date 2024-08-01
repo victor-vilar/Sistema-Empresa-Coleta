@@ -83,18 +83,13 @@ public class ContractService {
     @Transactional
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
-
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
-
         Contract contract = this.findByContractId(contractId);
 
         contract.addNewItem(item);
-
         itemContractRepository.save(item);
 
-        contract = this.repository.save(contract);
-
-        return this.contractMapper.toContractResponseDto(contract);
+        return this.contractMapper.toContractResponseDto(this.repository.save(contract));
     }
 
     @Transactional
@@ -144,12 +139,8 @@ public class ContractService {
         return this.contractMapper.toContractResponseDto(this.repository.save(contract));
     }
 
-    /**
-     * update a item of contract
-     * @return
-     */
     @Transactional
-    public void updateItemContract(Contract contract, ItemContract item){
+    private void updateItemContract(Contract contract, ItemContract item){
         ItemContract itemToUpdate = this.itemContractRepository.findById(item.getId()).orElseThrow(() -> new ItemContractNotFoundException("Item not found"));
         itemToUpdate.setEquipment(item.getEquipment());
         itemToUpdate.setResidue(item.getResidue());
@@ -158,10 +149,6 @@ public class ContractService {
         itemContractRepository.save(item);
     }
 
-    /**
-     * get the total of entitys persisted
-     * @return integer of the count
-     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }
