@@ -185,7 +185,7 @@ class ContractServiceTest {
                 .thenReturn(contract1);
         when(this.customerService.findCustomerById(anyString()))
                 .thenReturn(customer);
-        when(this.itemContractMapper.ToItemContractList(anyList()))
+        when(this.itemContractMapper.toItemContractList(anyList()))
                 .thenReturn(itens);
         when(this.contractRepository.save(any(Contract.class)))
                 .thenReturn(contract1);
@@ -247,7 +247,7 @@ class ContractServiceTest {
 
         when(this.customerService.findCustomerById(anyString()))
                 .thenReturn(customer);
-        when(this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(anyList()))
+        when(this.itemContractMapper.toItemContractList(anyList()))
                 .thenReturn(list);
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseDto1);
@@ -277,7 +277,7 @@ class ContractServiceTest {
         when(this.customerService.findCustomerById(anyString()))
                 .thenReturn(customer);
 
-        when(this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(anyList()))
+        when(this.itemContractMapper.toItemContractList(anyList()))
                 .thenReturn(list);
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseDto1);
@@ -286,7 +286,6 @@ class ContractServiceTest {
                 .thenReturn(Optional.of(new ItemContract()));
 
         ContractResponseDto contractResponseDto = this.contractService.update(contractUpdateDto1);
-        verify(this.itemContractRepository,times(2)).save(any());
         verify(this.contractRepository,times(1)).save(any());
 
         Assertions.assertFalse(contractResponseDto.getItens().isEmpty());
@@ -300,7 +299,7 @@ class ContractServiceTest {
 
     @Test
     @DisplayName("Delete a item from contract")
-    void UpdateItemContract_whenSuccessfull() {
+    void UpdateItemContract_Fields_whenSuccessfull() {
 
     }
 

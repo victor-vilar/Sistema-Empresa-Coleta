@@ -46,7 +46,6 @@ public class ContractService {
     }
 
     public List<ContractResponseDto> getAll() {
-
         return this.contractMapper.toContractResponseDtoList(this.repository.findAll());
     }
 
@@ -71,13 +70,12 @@ public class ContractService {
         Customer customer = this.customerService.findCustomerById(contractCreateDto.getCustomerId());
 
         List<ItemContract> list =
-        this.itemContractMapper.ToItemContractList(contractCreateDto.getItens());
-
-        list.stream().forEach(item -> contract.addNewItem(item));
-
+        this.itemContractMapper.toItemContractList(contractCreateDto.getItens());
+        list.forEach(contract::addNewItem);
         customer.addNewContract(contract);
         this.customerRepository.save(customer);
         return this.contractMapper.toContractResponseDto(this.repository.save(contract));
+
     }
 
     @Transactional
@@ -85,11 +83,10 @@ public class ContractService {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         Contract contract = this.findByContractId(contractId);
-
         contract.addNewItem(item);
         itemContractRepository.save(item);
-
         return this.contractMapper.toContractResponseDto(this.repository.save(contract));
+
     }
 
     @Transactional
@@ -105,48 +102,34 @@ public class ContractService {
     @Transactional
     public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
 
-        //creates instance of contract
-        Contract contract = this.findByContractId(contractUpdateDto.getId());
+        Contract contract = this.updateContractFields(contractUpdateDto);
+        List<ItemContract> lista = this.itemContractMapper.toItemContractList(contractUpdateDto.getItens());
+        lista.stream().filter(item -> item.getId() == null).forEach(contract::addNewItem);
+        lista.stream().filter(item -> item.getId() != null).forEach(this::updateItemContractFields);
+        return this.contractMapper.toContractResponseDto(this.repository.save(contract));
 
-        //updating contract data
+    }
+
+    private Contract updateContractFields(ContractUpdateDto contractUpdateDto){
+        Contract contract = this.findByContractId(contractUpdateDto.getId());
         contract.setCustomer(this.customerService.findCustomerById(contractUpdateDto.getCustomerId()));
         contract.setNumber(contractUpdateDto.getNumber());
         contract.setBeginDate(contractUpdateDto.getBeginDate());
         contract.setEndDate(contractUpdateDto.getEndDate());
         contract.setContractStatus(contractUpdateDto.getContractStatus());
-
-        //transform itemContractCreateList into a ItemContractList and add to contract
-        List<ItemContract> lista = this.itemContractMapper.fromItemContractUpdateDtoListToItemContractList(contractUpdateDto.getItens());
-
-        //loop to insert a new item or update an exist one
-        lista.stream().forEach(item ->{
-
-            //setting contract to item, the itens comes with a null contract from mapper
-            item.setContract(contract);
-
-            //if item id it's not null, so its a item update
-            if(item.getId() != null){
-                updateItemContract(contract,item);
-
-                //else it is a new item
-            }else{
-                contract.addNewItem(item);
-            }
-
-        });
-
-        //saves contract and return as a contract resposne dto
-        return this.contractMapper.toContractResponseDto(this.repository.save(contract));
+        return contract;
     }
 
     @Transactional
-    private void updateItemContract(Contract contract, ItemContract item){
+    private void updateItemContractFields(ItemContract item){
         ItemContract itemToUpdate = this.itemContractRepository.findById(item.getId()).orElseThrow(() -> new ItemContractNotFoundException("Item not found"));
         itemToUpdate.setEquipment(item.getEquipment());
         itemToUpdate.setResidue(item.getResidue());
         itemToUpdate.setQtdOfResidue(item.getQtdOfResidue());
         itemToUpdate.setItemValue(item.getItemValue());
-        itemContractRepository.save(item);
+        itemToUpdate.setDescription(item.getDescription());
+        itemToUpdate.setCollectionFrequency(item.getCollectionFrequency());
+        itemToUpdate.setMeasurementUnit(item.getMeasurementUnit());
     }
 
     public Integer getEntityCount(){

@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.dto.contract.ItemRequestDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;
@@ -29,14 +30,8 @@ public class ItemContractMapper {
         this.equipmentService = equipmentService;
     }
 
-    public ItemContract toItemContract(ItemContractCreateDto itemDto){
-        ItemContract item = this.mapper.map(itemDto,ItemContract.class);
-        item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
-        item.setEquipment(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
-        return item;
-    }
 
-    public ItemContract toItemContract(ItemContractUpdateDto itemDto){
+    public ItemContract toItemContract(ItemRequestDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
         item.setEquipment(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
@@ -51,13 +46,9 @@ public class ItemContractMapper {
         return this.mapper.map(item,ItemContractResponseDto.class);
     }
 
-    //transform all itemContractCreateDto into a ItemContract List
-    public List<ItemContract> ToItemContractList(List<ItemContractCreateDto> list){
+    public List<ItemContract> toItemContractList(List<? extends ItemRequestDto> list){
            return list.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
     }
 
-    public List<ItemContract> fromItemContractUpdateDtoListToItemContractList(List<ItemContractUpdateDto> listUpdate){
-        return listUpdate.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
-    }
 
 }
