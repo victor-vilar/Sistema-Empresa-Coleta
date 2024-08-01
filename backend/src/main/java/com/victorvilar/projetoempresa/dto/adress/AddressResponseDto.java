@@ -98,4 +98,84 @@ public class AddressResponseDto {
     public void setRequiresCollection(boolean requiresCollection) {
         this.requiresCollection = requiresCollection;
     }
+
+
+    public static AddressResponseDtoBuilder builder(){
+        return new AddressResponseDtoBuilder();
+    }
+    
+    public static class AddressResponseDtoBuilder{
+
+        private Long id;
+        private String addressName;
+        private String addressNumber;
+        private String complement;
+        private String zipCode;
+        private String city;
+        private String state;
+        private boolean requiresCollection;
+        private String customerId;
+
+        public AddressResponseDtoBuilder id(Long id){
+            this.id = id;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder addressName(String addressName){
+            this.addressName = addressName;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder addressNumber(String addressNumber){
+            this.addressNumber = addressNumber;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder complement(String complement){
+            this.complement = complement;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder zipCode(String zipCode){
+            this.zipCode = zipCode;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder city(String city){
+            this.city = city;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder state(String state){
+            this.state = state;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder requiresCollection(boolean requiresCollection){
+            this.requiresCollection = requiresCollection;
+            return this;
+        }
+
+        public AddressResponseDtoBuilder customerId(String customerId){
+            this.customerId = customerId;
+            return this;
+        }
+
+        public AddressResponseDto build(){
+            AddressResponseDto address= new AddressResponseDto();
+            address.setId(this.id);
+            address.setAddressName(this.addressName);
+            address.setAddressNumber(this.addressNumber);
+            address.setComplement(this.complement);
+            address.setZipCode(this.zipCode);
+            address.setCity(this.city);
+            address.setState(this.state);
+            address.setRequiresCollection(this.requiresCollection);
+            address.setCustomerId(this.customerId);
+            return address;
+        }
+    
+    }
+
+    
 }

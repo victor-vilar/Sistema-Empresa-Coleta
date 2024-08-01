@@ -28,11 +28,11 @@ public  class Bill implements Serializable {
     public Bill() {
     }
 
-    public Bill(Long id, String supplier, String noteNumber, List<Instalment> stalments, String description) {
+    public Bill(Long id, String supplier, String noteNumber, List<Instalment> instalments, String description) {
         this.id = id;
         this.supplier = supplier;
         this.noteNumber = noteNumber;
-        this.instalments = stalments;
+        this.instalments = instalments;
         this.description = description;
     }
 

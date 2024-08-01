@@ -41,11 +41,9 @@ class AddressServiceTest {
     @Mock
     private CustomerService customerService;
 
-    @Mock
-    private CustomerRepository customerRepository;
 
-    Customer customer;
-    Customer anotherCustomer;
+    Customer customer1;
+    Customer customer2;
     Address address1;
     AddressResponseDto addressResponseDto1;
     Address address2;
@@ -54,15 +52,13 @@ class AddressServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
 
-
-        customer = new Customer.CustomerBuilder()
+        customer1 = new Customer.CustomerBuilder()
                 .cpfCnpj("59213337000")
                 .nameCompanyName("TEST CUSTOMER")
                 .build();
 
-        anotherCustomer = new Customer.CustomerBuilder()
+        customer2 = new Customer.CustomerBuilder()
                 .cpfCnpj("40204340004")
                 .nameCompanyName("TEST CUSTOMER")
                 .build();
@@ -78,17 +74,6 @@ class AddressServiceTest {
                 .requiresCollection(true)
                 .build();
 
-
-        customer.addNewAddress(address1);
-        addressResponseDto1 = new AddressResponseDto(
-                1L,address1.getAddressName(),address1.getAddressNumber(),
-                address1.getComplement(),address1.getZipCode(),
-                address1.getCity(),address1.getState(),
-                address1.getClient().getCpfCnpj(),
-                address1.isRequiresCollection()
-        );
-        addressResponseDto1.setCustomerId(address1.getClient().getCpfCnpj());
-
         address2 = Address
                 .builder()
                 .addressName("address 2 - name")
@@ -100,9 +85,33 @@ class AddressServiceTest {
                 .requiresCollection(true)
                 .build();
 
-        anotherCustomer.addNewAddress(address2);
-        addressResponseDto2 = new AddressResponseDto();
-        addressResponseDto2.setCustomerId(address2.getClient().getCpfCnpj());
+        customer1.addNewAddress(address1);
+        customer2.addNewAddress(address2);
+
+
+        addressResponseDto1 = AddressResponseDto.builder()
+                .id(1L)
+                .addressName(address1.getAddressName())
+                .addressNumber(address1.getAddressNumber())
+                .complement(address1.getComplement())
+                .zipCode(address1.getZipCode())
+                .city(address1.getCity())
+                .state(address1.getState())
+                .customerId(address1.getClient().getCpfCnpj())
+                .requiresCollection(address1.isRequiresCollection())
+                .build();
+
+        addressResponseDto2 = AddressResponseDto.builder()
+                .id(1L)
+                .addressName(address2.getAddressName())
+                .addressNumber(address2.getAddressNumber())
+                .complement(address2.getComplement())
+                .zipCode(address2.getZipCode())
+                .city(address2.getCity())
+                .state(address2.getState())
+                .customerId(address2.getClient().getCpfCnpj())
+                .requiresCollection(address2.isRequiresCollection())
+                .build();
 
         addressCreateDto1 = AddressCreateDto
                 .builder()
@@ -115,6 +124,7 @@ class AddressServiceTest {
                 .requiresCollection(true)
                 .build();
 
+
         addressCreateDto1.setCustomerId(address1.getClient().getCpfCnpj());
     }
 
@@ -122,7 +132,7 @@ class AddressServiceTest {
     @DisplayName("Get a list of Address when successfull")
     public void getAll_WhenSuccessfull(){
         when(repository.findAll()).thenReturn(List.of(address1,address2));
-        when(mapper.toAddressResponseDtoList(List.of(address1,address2))).thenReturn(List.of(new AddressResponseDto(),new AddressResponseDto()));
+        when(mapper.toAddressResponseDtoList(List.of(address1,address2))).thenReturn(List.of(addressResponseDto1,addressResponseDto2));
 
         List<AddressResponseDto> list = this.addressService.getAll();
         Assertions.assertNotNull(list);
@@ -141,7 +151,7 @@ class AddressServiceTest {
         Assertions.assertNotNull(list);
         Assertions.assertFalse(list.isEmpty());
         Assertions.assertEquals(1,list.size());
-        Assertions.assertEquals(customer.getCpfCnpj(),list.get(0).getCustomerId());
+        Assertions.assertEquals(customer1.getCpfCnpj(),list.get(0).getCustomerId());
     }
 
     @Test
@@ -149,7 +159,7 @@ class AddressServiceTest {
     public void save_WhenSuccessfull(){
 
         when(mapper.toAddress(addressCreateDto1)).thenReturn(address1);
-        when(customerService.findCustomerById("59213337000")).thenReturn(customer);
+        when(customerService.findCustomerById("59213337000")).thenReturn(customer1);
         when(repository.save(address1)).thenReturn(address1);
         when(mapper.toAddressResponseDto(address1)).thenReturn(addressResponseDto1);
 
