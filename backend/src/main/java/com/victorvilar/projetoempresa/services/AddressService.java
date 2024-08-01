@@ -31,46 +31,23 @@ public class AddressService {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
     }
-    //------------
 
-    /**
-     * get all address
-     * @return all address
-     */
     public List<AddressResponseDto> getAll(){
         return this.addressMapper.toAddressResponseDtoList(this.repository.findAll());
     }
 
-    /**
-     *  get all address of a client
-     * @param clientId
-     * @return
-     */
     public List<AddressResponseDto> getAllByCustomerId(String clientId){
         return this.addressMapper.toAddressResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
 
-    /**
-     * get a Address Object without mapping
-     * @return Address Object
-     */
     public Address findAddressById(Long id){
         return this.repository.findById(id).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
     }
 
-    /**
-     * get an address by id
-     * @param id
-     * @return
-     */
     public AddressResponseDto getById(Long id){
         return this.addressMapper.toAddressResponseDto(this.findAddressById(id));
     }
 
-    /**
-     * create a new address
-     * @param addressCreateDto
-     */
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
@@ -78,22 +55,11 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }
 
-
-    /**
-     * delete an address
-     * @param id
-     */
     public void delete(Long id){
         Address address = this.findAddressById(id);
         this.repository.deleteById(id);
     }
 
-
-    /**
-     * update an address
-     * @param addressUpdateDto
-     * @return saved contract
-     */
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
         Address addressToUpdate = this.repository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
         addressToUpdate.setAddressName(addressUpdateDto.getAddressName());
@@ -107,10 +73,6 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(addressToUpdate);
     }
 
-    /**
-     * get the total of entitys persisted
-     * @return integer of the count
-     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

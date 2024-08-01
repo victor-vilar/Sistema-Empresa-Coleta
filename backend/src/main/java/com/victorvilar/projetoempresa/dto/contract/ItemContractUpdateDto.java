@@ -33,11 +33,10 @@ public class ItemContractUpdateDto {
     @NotNull(message = "the item must have a unit measurement ")
     private MeasurementUnit measurementUnit;
 
-
-    //constructors
     public ItemContractUpdateDto() {
 
     }
+
     public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
         this.id = id;
         this.residue = residue;
@@ -46,7 +45,7 @@ public class ItemContractUpdateDto {
         this.itemValue = itemValue;
         this.description=description;
     }
-    //----------------------------
+
 
 
     public Long getId() {
@@ -89,27 +88,24 @@ public class ItemContractUpdateDto {
         this.itemValue = itemValue;
     }
 
-    //getters and setters - description
     public String getDescription() {return this.description;}
+
     public void setDescription(String description){this.description = description;}
-    //-----------
 
-    //getters and setters - equipment quantity
     public Integer getEquipmentQuantity() {return this.equipmentQuantity;}
+
     public void setEquipmentQuantity(Integer equipmentQuantity){this.equipmentQuantity = equipmentQuantity;}
-    //-----------
 
-    //getters and setter - collection frequency
     public CollectionFrequency getCollectionFrequency(){ return this.collectionFrequency;}
-    public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
-    //-----------
 
-    //getters and setter - measurement unit
+    public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
+
     public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;
     }
+
     public void setMeasurementUnit(String measurementUnit) {
         this.measurementUnit = MeasurementUnit.getByName(measurementUnit);
     }
-    //-----------
+
 }

@@ -24,22 +24,10 @@ public class JwtService {
     @Value("${app.security.configuration.issuer}")
     private String apiIssuer;
 
-
-    /**
-     * creates a SecretKey
-     * @return
-     */
     private SecretKey encondeKey(){
         return Keys.hmacShaKeyFor(signatureKey.getBytes(StandardCharsets.UTF_8));
     }
 
-
-    /**
-     * Generate a new token
-     *
-     * @param claims
-     * @return string of a jwt token
-     */
     public String generateJwtToken(Map<String,Object> claims){
         return Jwts.builder()
                 .setIssuer(apiIssuer)
@@ -49,12 +37,6 @@ public class JwtService {
                 .compact();
     }
 
-    /**
-     * validates a token
-     *
-     * @param token token created and signed by application
-     * @return the claims
-     */
     public Claims validateJwtToken(String token){
         try{
             return Jwts.parserBuilder()

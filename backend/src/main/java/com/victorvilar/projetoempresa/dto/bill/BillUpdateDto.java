@@ -14,7 +14,6 @@ public class BillUpdateDto {
     private String description;
     private List<InstalmentUpdateDto> instalments;
 
-
     public Long getId() {
         return id;
     }

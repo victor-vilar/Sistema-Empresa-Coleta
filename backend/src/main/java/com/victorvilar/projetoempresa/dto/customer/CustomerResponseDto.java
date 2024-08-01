@@ -30,58 +30,52 @@ public class CustomerResponseDto {
         this.nameCompanyName = nameCompanyName;
     }
 
-
-    //getters and setters - NameCompanyName
     public String getNameCompanyName() {
         return nameCompanyName;
     }
+
     public void setNameCompanyName(String nameCompanyName) {
         this.nameCompanyName = nameCompanyName;
     }
-    //-------------
 
-    //getters and setters - cpfCnpj
     public String getCpfCnpj() {
         return cpfCnpj;
     }
+
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
     }
-    //-------------
 
-    //getters and setters - supervisors
     public List<SupervisorResponseDto> getSupervisors(){
         return this.supervisors;
     }
+
     public void setSupervisors(List<SupervisorResponseDto> supervisors){
         this.supervisors = supervisors;
     }
-    //-------------
 
-    //getters and setters - contratos
     public List<ContractResponseDto> getContracts() {
         return this.contracts;
     }
+
     public void setContracts(List<ContractResponseDto> contratos) {
         this.contracts = contratos;
     }
-    //-----------
 
-    //getters and setters - address
     public List<AddressResponseDto> getAddresses() {
         return addresses;
     }
+
     public void setAddresses(List<AddressResponseDto> address) {
         this.addresses = address;
     }
-    //-----------
 
-    //getters and setters - address
     public List<ServiceOrderResponseDto> getServiceOrders() {
         return serviceOrders;
     }
+
     public void setServiceOrders(List<ServiceOrderResponseDto> serviceOrders) {
         this.serviceOrders = serviceOrders;
     }
-    //-----------
+
 }

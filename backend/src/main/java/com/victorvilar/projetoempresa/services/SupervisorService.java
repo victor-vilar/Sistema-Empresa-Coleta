@@ -34,37 +34,18 @@ public class SupervisorService {
         this.mapper = mapper;
     }
 
-    /**
-     * get all supervisors
-     * @return
-     */
     public List<SupervisorResponseDto> getAll() {
         return this.mapper.toSupervisorResponseDtoList(this.repository.findAll());
     }
 
-    /**
-     * get all supervisores of a client
-     * @param clientId id of a client
-     * @return
-     */
     public List<SupervisorResponseDto> getAllByCustomer(String clientId) {
         return this.mapper.toSupervisorResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
 
-    /**
-     * find supervisor by id
-     * @param id id of supervisor
-     * @return
-     */
     public Supervisor findSupervisorById(Long id){
         return this.repository.findById(id).orElseThrow(() -> new SupervisorNotFoundException("Supervisor Not Found !"));
     }
 
-    /**
-     * find supervisor by id and return as SupervisorResponseDto
-     * @param id id of supervisor
-     * @return
-     */
     public SupervisorResponseDto getById(Long id){
         return this.mapper.toSupervisorResponseDto(
                 this.repository.findById(id)
@@ -72,11 +53,6 @@ public class SupervisorService {
         );
     }
 
-
-    /**
-     * add a new supervisor for a client
-     * @param supervisorCreateDto
-     */
     @Transactional
     public SupervisorResponseDto save(SupervisorCreateDto supervisorCreateDto){
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
@@ -87,20 +63,10 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDto(supervisor);
     }
 
-    /**
-     * delete a supervisor
-     * @param supervisorId supervisor id
-     */
     @Transactional
     public void delete(Long supervisorId) {
         this.repository.deleteById(supervisorId);
     }
-
-    /**
-     * Update supervisor data
-     * @param supervisorUpdateDto supervisor new data
-     *
-     */
 
     @Transactional
     public SupervisorResponseDto update(SupervisorUpdateDto supervisorUpdateDto) {
@@ -112,10 +78,6 @@ public class SupervisorService {
         return this.mapper.toSupervisorResponseDto(this.repository.save(supervisorToUpdate));
     }
 
-    /**
-     * get the total of entitys persisted
-     * @return integer of the count
-     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

@@ -10,7 +10,6 @@ public class BillResponseDto {
     private String description;
     private List<InstalmentResponseDto> instalments;
 
-
     public Long getId() {
         return id;
     }

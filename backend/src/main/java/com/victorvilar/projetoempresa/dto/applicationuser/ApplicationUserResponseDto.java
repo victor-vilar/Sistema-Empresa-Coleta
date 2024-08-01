@@ -14,7 +14,9 @@ public class ApplicationUserResponseDto {
     private Set<String> roles = new HashSet<>();
     private String profilePhotoUrl;
 
+    public ApplicationUserResponseDto(){
 
+    }
 
     public String getProfilePhotoUrl(){
         return this.profilePhotoUrl;
@@ -24,22 +26,20 @@ public class ApplicationUserResponseDto {
         this.profilePhotoUrl = url;
     }
 
-
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public Set<String> getRoles() {
         return roles;
     }
+
     public void setRoles(Set<String> roles) {
         this.roles = roles;
-    }
-
-    public ApplicationUserResponseDto(){
-
     }
 
     public static ApplicationUserResponseDtoBuilder builder(){

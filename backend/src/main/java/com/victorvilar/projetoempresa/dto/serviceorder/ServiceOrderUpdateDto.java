@@ -42,66 +42,85 @@ public class ServiceOrderUpdateDto  {
     public Long getAddress() {
         return address;
     }
+
     public void setAddress(Long address) {
         this.address = address;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public LocalDate getServiceExpectedDate() {
         return serviceExpectedDate;
     }
+
     public void setServiceExpectedDate(LocalDate serviceExpectedDate) {
         this.serviceExpectedDate = serviceExpectedDate;
     }
     public LocalDate getServiceExecutedDate() {
         return serviceExecutedDate;
     }
+
     public void setServiceExecutedDate(LocalDate serviceExecutedDate) {
         this.serviceExecutedDate = serviceExecutedDate;
     }
     public Long getVehicle() {
         return vehicle;
     }
+
     public void setVehicle(Long vehicle) {
         this.vehicle = vehicle;
     }
+
     public Long getItemContract() {
         return itemContract;
     }
+
     public void setItemContract(Long itemContract) {
         this.itemContract = itemContract;
     }
+
     public String getIneaManifest() {
         return ineaManifest;
     }
+
     public void setIneaManifest(String ineaManifest) {
         this.ineaManifest = ineaManifest;
     }
+
     public LocalTime getServiceTime() {
         return serviceTime;
     }
+
     public void setServiceTime(LocalTime serviceTime) {
         this.serviceTime = serviceTime;
     }
+
     public String getObservation() {
         return observation;
     }
+
     public void setObservation(String observation) {
         this.observation = observation;
     }
+
     public String getOsFileUrl() {
         return osFileUrl;
     }
+
     public void setOsFileUrl(String osFileUrl) {
         this.osFileUrl = osFileUrl;
     }
+
     public Long getAmountCollected() {
         return amountCollected;
     }
+
     public void setAmountCollected(Long amountCollected) {
         this.amountCollected = amountCollected;
     }

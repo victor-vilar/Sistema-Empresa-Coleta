@@ -46,30 +46,15 @@ public class ContractService {
         this.customerRepository = customerRepository;
     }
 
-    /**
-     * get all contracts
-     * @return
-     */
     public List<ContractResponseDto> getAll() {
 
         return this.contractMapper.toContractResponseDtoList(this.repository.findAll());
     }
 
-    /**
-     * get all contracts by client id
-     * @param clientId
-     * @return
-     */
     public List<ContractResponseDto> getAllByCustomerId(String clientId){
         return this.contractMapper.toContractResponseDtoList(repository.findByCustomerCpfCnpj(clientId));
     }
 
-    /**
-     * get contract by id
-     * @param id of a contract
-     * @return a contract
-     * @throws ContractNotFoundException
-     */
     public ContractResponseDto getById(Long id) throws ContractNotFoundException{
         Contract contract = this.repository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return this.contractMapper.toContractResponseDto(contract);
@@ -80,93 +65,56 @@ public class ContractService {
         return contract;
     }
 
-    /**
-     * creates a new contract
-     * @throws CustomerNotFoundException
-     */
     @Transactional
     public ContractResponseDto save(ContractCreateDto contract) {
 
-        //contractCreateDto to Contract
         Contract contract1 = this.contractMapper.toContract(contract);
 
-        //find customer by id
         Customer customer = this.customerService.findCustomerById(contract.getCustomerId());
 
-        //setting customer
         contract1.setCustomer(customer);
 
-        //transform itemContractCreate list into a ItemContract list and add to contract
         List<ItemContract> list =
         this.itemContractMapper.fromItemContractCreateDtoListToItemContractList
                 (contract.getItens())
                 .stream().toList();
 
-        //add list of itens to contract
         list.stream().forEach(item -> contract1.addNewItem(item));
 
-        //parsisting customer;
         this.customerRepository.save(customer);
 
-        //persisting contract
         this.repository.save(contract1);
 
-        //returning persisted contract
         return this.contractMapper.toContractResponseDto(contract1);
     }
 
-    /**
-     * add a new item to a contract
-     * @param contractId
-     */
     @Transactional
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
-        //from itemContractCreateDto for itemContract
+
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
 
-        //find contract
         Contract contract = this.findByContractId(contractId);
 
-        //setting contract to item
         contract.addNewItem(item);
 
-        //saving contract to repository
         itemContractRepository.save(item);
 
-        //saving(updating)contract
         contract = this.repository.save(contract);
 
-        //returning contractResponseDto from contract
         return this.contractMapper.toContractResponseDto(contract);
     }
 
-    /**
-     * remove a contract from db
-     * @param contractId
-     */
     @Transactional
     public void delete(Long contractId ){
         this.repository.deleteById(contractId);
     }
 
-    /**
-     * remove a list of itens from a contract
-     * @param  itens A list of item contract id of the item
-     */
     @Transactional
     public void deleteItemContract(List<Long> itens) {
-
-        //deleting all itens contract.
         this.itemContractRepository.deleteAllById(itens);
-
-
     }
 
-    /**
-     * Update contract and its itens
-     * @return
-     */
     @Transactional
     public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
 

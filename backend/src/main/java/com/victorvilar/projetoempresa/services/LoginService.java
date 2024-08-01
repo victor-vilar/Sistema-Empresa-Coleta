@@ -24,12 +24,6 @@ public class LoginService {
         this.userRepository= userRepository;
     }
 
-    /**
-     * get information from an Authentication Object to send after a
-     * sign in
-     * @param authentication Authentication Object created by Spring
-     * @return An ApplicationUserResponseDto, to be possible to get the profilePhotoUrl
-     */
     public ApplicationUserResponseDto getLoggedUserDetails(Authentication authentication) throws UsernameNotFoundException{
 
         //get userApplication from database

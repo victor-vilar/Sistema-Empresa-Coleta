@@ -12,9 +12,6 @@ public class BillCreateDto {
     private String description;
     private List<InstalmentCreateDto> instalments;
 
-
-
-
     public String getSupplier() {
         return supplier;
     }

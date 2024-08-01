@@ -33,18 +33,23 @@ public class ServiceOrderCreateDto {
     public Long getItemContract() {
         return itemContract;
     }
+
     public void setItemContract(Long itemContract) {
         this.itemContract = itemContract;
     }
+
     public Long getAddress() {
         return address;
     }
+
     public void setAddress(Long address) {
         this.address = address;
     }
+
     public String getObservation() {
         return observation;
     }
+
     public void setObservation(String observation) {
         this.observation = observation;
     }

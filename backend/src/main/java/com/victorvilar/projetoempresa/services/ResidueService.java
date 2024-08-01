@@ -27,19 +27,11 @@ public class ResidueService {
         this.mapper = mapper;
     }
 
-    /**
-     * get all residues
-     * @return a list of ResidueResponseDto
-     */
     public List<ResidueResponseDto> getAll() {
         return this.mapper.toResidueTypeResponseDtoList(this.repository.findAll());
     }
 
-    /**
-     * get Residue from repository and return as
-     * ResidueResponseDto
-     * @return ResidueResponseDto
-     */
+
     public ResidueResponseDto getById(Long id){
         return this.mapper.toResidueTypeResponseDto(
                 this.repository.findById(id)
@@ -47,10 +39,6 @@ public class ResidueService {
         );
     }
 
-    /**
-     * get Residue from repository
-     * @return Residue
-     */
     public Residue findResidueById(Long id){
         return this.repository
                 .findById(id)
@@ -69,8 +57,6 @@ public class ResidueService {
         this.repository.delete(residue);
     }
 
-
-
     @Transactional
     public ResidueResponseDto udpate(ResidueUpdateDto residueCreateDto){
         Residue residue = this.findResidueById(residueCreateDto.getId());
@@ -81,10 +67,6 @@ public class ResidueService {
 
     }
 
-    /**
-     * get the total of entitys persisted
-     * @return integer of the count
-     */
     public Integer getEntityCount(){
         return this.repository.getEntityCount();
     }

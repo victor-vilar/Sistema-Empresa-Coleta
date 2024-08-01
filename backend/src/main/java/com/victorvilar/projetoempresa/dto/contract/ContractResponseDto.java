@@ -61,7 +61,6 @@ public class ContractResponseDto {
         this.customerId = clientId;
     }
 
-
     public LocalDate getBeginDate() {
         return beginDate;
     }
@@ -90,14 +89,13 @@ public class ContractResponseDto {
         return new ContractResponseDtoBuilder();
     }
 
-    //getters and setters - status
     public void setContractStatus(String contractStatus){
         this.contractStatus = ContractStatus.valueOf(contractStatus).getName();
     }
     public String getContractStatus(){
         return this.contractStatus;
     }
-    //--------------
+
 
     public static final class ContractResponseDtoBuilder{
 

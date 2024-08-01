@@ -47,24 +47,26 @@ public class ContractCreateDto {
 
     }
 
-
     public String getCustomerId() {
         return customerId;
     }
+
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
-
     public List<ItemContractCreateDto> getItens() {
         return itens;
     }
+
     public void setItens(List<ItemContractCreateDto> itens) {
         this.itens = itens;
     }
+
     public String getNumber() {
         return number;
     }
+
     public void setNumber(String number) {
         this.number = number;
     }
@@ -72,6 +74,7 @@ public class ContractCreateDto {
     public LocalDate getBeginDate() {
         return beginDate;
     }
+
     public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
@@ -79,18 +82,18 @@ public class ContractCreateDto {
     public LocalDate getEndDate() {
         return endDate;
     }
+
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    //getters and setters - status
     public void setContractStatus(String contractStatus){
         this.contractStatus = ContractStatus.getByName(contractStatus);
     }
+
     public ContractStatus getContractStatus(){
         return this.contractStatus;
     }
-    //--------------
 
     public static ContractCreateDtoBuilder builder(){
         return new ContractCreateDtoBuilder();
