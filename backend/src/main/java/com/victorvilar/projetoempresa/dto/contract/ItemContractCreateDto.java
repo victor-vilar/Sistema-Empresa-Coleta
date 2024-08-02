@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractCreateDto implements ItemRequestDto {
+public class ItemContractCreateDto implements ItemContractDto {
 
     @NotNull(message = "The item must have a residue")
     private Long residue;

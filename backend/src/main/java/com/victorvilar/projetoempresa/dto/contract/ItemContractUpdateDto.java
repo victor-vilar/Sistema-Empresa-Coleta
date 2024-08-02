@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractUpdateDto implements ItemRequestDto{
+public class ItemContractUpdateDto implements ItemContractDto {
 
 
     private Long id;
