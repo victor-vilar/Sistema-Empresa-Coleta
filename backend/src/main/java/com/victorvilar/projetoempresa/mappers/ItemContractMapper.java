@@ -1,10 +1,8 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
-import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
-import com.victorvilar.projetoempresa.dto.contract.ItemRequestDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;
@@ -31,7 +29,7 @@ public class ItemContractMapper {
     }
 
 
-    public ItemContract toItemContract(ItemRequestDto itemDto){
+    public ItemContract toItemContract(ItemContractDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findResidueById(itemDto.getResidue()));
         item.setEquipment(this.equipmentService.findEquipmentById(itemDto.getEquipment()));
@@ -46,7 +44,7 @@ public class ItemContractMapper {
         return this.mapper.map(item,ItemContractResponseDto.class);
     }
 
-    public List<ItemContract> toItemContractList(List<? extends ItemRequestDto> list){
+    public List<ItemContract> toItemContractList(List<? extends ItemContractDto> list){
            return list.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
     }
 
