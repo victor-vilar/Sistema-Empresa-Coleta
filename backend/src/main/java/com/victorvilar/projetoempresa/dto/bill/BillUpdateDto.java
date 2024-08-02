@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public class BillUpdateDto {
+public class BillUpdateDto implements BillDto {
 
     @NotNull(message = "A bill to update must have an id")
     private Long id;

@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.domain.Bill;
 import com.victorvilar.projetoempresa.domain.Instalment;
 import com.victorvilar.projetoempresa.dto.bill.BillCreateDto;
+import com.victorvilar.projetoempresa.dto.bill.BillDto;
 import com.victorvilar.projetoempresa.dto.bill.BillResponseDto;
 import com.victorvilar.projetoempresa.dto.bill.BillUpdateDto;
 import org.modelmapper.ModelMapper;
@@ -23,22 +24,15 @@ public class BillMapper {
         this.instalmentMapper = instalmentMapper;
     }
 
-    public Bill toBill(BillCreateDto billCreateDto){
-        Bill bill = this.mapper.map(billCreateDto,Bill.class);
-        List<Instalment> instalments = billCreateDto.getInstalments().stream().map(i -> this.instalmentMapper.toInstalment(i)).toList();
-        instalments.stream().forEach(i -> bill.addNewInstalment(i));
+    public Bill toBill(BillDto billDto){
+        Bill bill = this.mapper.map(billDto,Bill.class);
+        List<Instalment> instalments = billDto.getInstalments().stream().map(this.instalmentMapper::toInstalmentList).toList();
+        instalments.forEach(bill::addNewInstalment);
         return bill;
     }
 
-    public Bill toBill(BillUpdateDto billUpdateDto){
-        Bill bill = this.mapper.map(billUpdateDto,Bill.class);
-        List<Instalment> instalments = billUpdateDto.getInstalments().stream().map(i -> this.instalmentMapper.toInstalment(i)).toList();
-        instalments.stream().forEach(i -> bill.addNewInstalment(i));
-        return bill;
-    }
-
-    public List<Bill> toBillList(List<BillUpdateDto> billUpdateDtoList){
-        return billUpdateDtoList.stream().map(this::toBill).toList();
+    public List<Bill> toBillList(List<? extends BillDto> billDtos){
+        return billDtos.stream().map(this::toBill).toList();
     }
 
     public BillResponseDto toBillResponseDto(Bill bill){

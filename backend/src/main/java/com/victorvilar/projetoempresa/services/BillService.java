@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.domain.Instalment;
 import com.victorvilar.projetoempresa.dto.bill.BillCreateDto;
 import com.victorvilar.projetoempresa.dto.bill.BillResponseDto;
 import com.victorvilar.projetoempresa.dto.bill.BillUpdateDto;
-import com.victorvilar.projetoempresa.dto.bill.InstalmentUpdateDto;
 import com.victorvilar.projetoempresa.exceptions.BillNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.InstalmentNotFoundException;
 import com.victorvilar.projetoempresa.mappers.BillMapper;
@@ -63,22 +62,17 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
 
     @Override
     public BillResponseDto update(BillUpdateDto updateDto) {
+
         Optional<Bill> billToFind = this.repository.findById(updateDto.getId());
-        if(!billToFind.isPresent()) {
+
+        if(billToFind.isEmpty()) {
             throw new BillNotFoundException("Bill not found");
         }
 
         Bill bill = updateBill(billToFind.get(), updateDto);
-
-        updateDto.getInstalments().stream().forEach(instalment ->{
-            if(instalment.getId() == null){
-
-                bill.addNewInstalment(this.instalmentMapper.toInstalment(instalment));
-            }else{
-                this.updateInstalmentsOfBill(instalment);
-            }
-        });
-
+        List<Instalment> instalmentsToUpdate = this.instalmentMapper.toInstalmentList(updateDto.getInstalments());
+        instalmentsToUpdate.stream().filter(i -> i.getId() == null).forEach(bill::addNewInstalment);
+        instalmentsToUpdate.stream().filter(i -> i.getId() != null).forEach(this::updateInstalmentsFields);
         return this.billMapper.toBillResponseDto(this.repository.save(bill));
 
     }
@@ -91,14 +85,13 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
     }
 
     @Transactional
-    private void  updateInstalmentsOfBill(InstalmentUpdateDto instalmentUpdateDto){
-        Instalment instalment = this.instalmentRepository.findById(instalmentUpdateDto.getId()).orElseThrow(() -> new InstalmentNotFoundException("Instalment not found"));
-        instalment.setDueDate(instalmentUpdateDto.getDueDate());
-        instalment.setPaymentValue(instalmentUpdateDto.getPaymentValue());
-        instalment.setPaymentDate(instalmentUpdateDto.getPaymentDate());
-        instalment.setPayedValue(instalmentUpdateDto.getPayedValue());
-        instalment.setPaymentUrl(instalmentUpdateDto.getPaymentUrl());
-        this.instalmentRepository.save(instalment);
+    private void updateInstalmentsFields(Instalment instalmentToUpdate){
+        Instalment instalment = this.instalmentRepository.findById(instalmentToUpdate.getId()).orElseThrow(() -> new InstalmentNotFoundException("Instalment not found"));
+        instalment.setDueDate(instalmentToUpdate.getDueDate());
+        instalment.setPaymentValue(instalmentToUpdate.getPaymentValue());
+        instalment.setPaymentDate(instalmentToUpdate.getPaymentDate());
+        instalment.setPayedValue(instalmentToUpdate.getPayedValue());
+        instalment.setPaymentUrl(instalmentToUpdate.getPaymentUrl());
     }
 
     @Transactional

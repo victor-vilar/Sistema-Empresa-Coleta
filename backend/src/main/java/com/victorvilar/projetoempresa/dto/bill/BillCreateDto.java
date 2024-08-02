@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public class BillCreateDto {
+public class BillCreateDto implements BillDto {
 
     @NotNull(message = "A bill to update must have a supplier")
     private String supplier;
