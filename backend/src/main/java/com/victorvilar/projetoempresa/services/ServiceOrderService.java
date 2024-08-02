@@ -60,7 +60,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
 
     @Transactional
     public List<ServiceOrderResponseDto> save(List<ServiceOrderCreateDto> createDtoList){
-        List<ServiceOrder> serviceOrderList = this.mapper.toServiceOrderListFromServiceOrderCreateDtoList(createDtoList);
+        List<ServiceOrder> serviceOrderList = this.mapper.toServiceOrder(createDtoList);
         return this.mapper.toServiceResponseDtoList(this.repository.saveAll(serviceOrderList));
     }
 

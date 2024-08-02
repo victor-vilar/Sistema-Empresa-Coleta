@@ -2,15 +2,13 @@ package com.victorvilar.projetoempresa.dto.serviceorder;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.victorvilar.projetoempresa.domain.Vehicle;
-import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ServiceOrderUpdateDto  {
+public class ServiceOrderUpdateDto implements ServiceOrderDto {
 
 
     @NotNull(message="A service order to update must have an id")

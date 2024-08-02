@@ -2,16 +2,11 @@ package com.victorvilar.projetoempresa.dto.serviceorder;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.domain.ItemContract;
-import com.victorvilar.projetoempresa.domain.Vehicle;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public class ServiceOrderCreateDto {
+public class ServiceOrderCreateDto implements ServiceOrderDto {
 
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -23,13 +18,16 @@ public class ServiceOrderCreateDto {
     private Long address;
 
     private String observation;
+    private Long vehicle;
 
     public LocalDate getServiceExpectedDate() {
         return serviceExpectedDate;
     }
+
     public void setServiceExpectedDate(LocalDate serviceExpectedDate) {
         this.serviceExpectedDate = serviceExpectedDate;
     }
+
     public Long getItemContract() {
         return itemContract;
     }
@@ -52,5 +50,14 @@ public class ServiceOrderCreateDto {
 
     public void setObservation(String observation) {
         this.observation = observation;
+    }
+
+    @Override
+    public Long getVehicle() {
+        return this.vehicle;
+    }
+
+    public void setVehicle(Long vehicle) {
+        this.vehicle = vehicle;
     }
 }

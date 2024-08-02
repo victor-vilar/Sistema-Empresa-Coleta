@@ -5,9 +5,7 @@ import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
-import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
-import com.victorvilar.projetoempresa.mappers.ContractMapper;
 import com.victorvilar.projetoempresa.mappers.ServiceOrderMapper;
 import com.victorvilar.projetoempresa.repository.ServiceOrderRepository;
 import org.junit.jupiter.api.Assertions;
@@ -19,7 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.ActiveProfiles;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -28,7 +26,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -180,7 +177,7 @@ class ServiceOrderServiceTest {
         List<ServiceOrderCreateDto> list = new ArrayList<>();
         list.add(new ServiceOrderCreateDto());
         list.add(new ServiceOrderCreateDto());
-        when(this.serviceOrderMapper.toServiceOrderListFromServiceOrderCreateDtoList(anyList())).thenReturn(List.of(so1, so2));
+        when(this.serviceOrderMapper.toServiceOrder(anyList())).thenReturn(List.of(so1, so2));
         when(this.serviceOrderRepository.saveAll(List.of(so1, so2))).thenReturn(List.of(so1, so2));
         when(this.serviceOrderMapper.toServiceResponseDtoList(List.of(so1, so2))).thenReturn(List.of(sord1, sord2));
         List<ServiceOrderResponseDto> orders = this.serviceOrderService.save(list);

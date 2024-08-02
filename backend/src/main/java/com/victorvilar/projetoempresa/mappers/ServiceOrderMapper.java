@@ -1,9 +1,9 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.*;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
@@ -41,25 +41,15 @@ public class ServiceOrderMapper {
 
     }
 
-    public ServiceOrder toServiceOrder(ServiceOrderCreateDto createDto){
-        ServiceOrder serviceOrder = this.mapper.map(createDto,ServiceOrder.class);
-        this.setBasicProperties(serviceOrder, createDto.getItemContract(),createDto.getAddress());
-
-        return serviceOrder;
-    }
-
-    public ServiceOrder toServiceOrder(ServiceOrderUpdateDto updateDto){
-        return this.setPropertiesAndUpdate(updateDto);
+    public ServiceOrder toServiceOrder(ServiceOrderDto serviceDto){
+        return this.mapper.map(serviceDto,ServiceOrder.class);
     }
 
 
-    public List<ServiceOrder> toServiceOrderListFromServiceOrderCreateDtoList(List<ServiceOrderCreateDto> list){
-        return list.stream().map(order -> this.toServiceOrder(order)).toList();
+    public List<ServiceOrder> toServiceOrder(List<? extends ServiceOrderDto> list){
+        return list.stream().map(this::toServiceOrder).toList();
     }
 
-    public List<ServiceOrder> toServiceOrderListFromServiceOrderUpdateDtoList(List<ServiceOrderUpdateDto> list){
-        return list.stream().map(order -> this.toServiceOrder(order)).toList();
-    }
 
     public ServiceOrderResponseDto toServiceOrderResponseDto(ServiceOrder order){
         ServiceOrderResponseDto responseDto = this.mapper.map(order,ServiceOrderResponseDto.class);
@@ -71,14 +61,7 @@ public class ServiceOrderMapper {
         return list.stream().map(order -> this.toServiceOrderResponseDto(order)).toList();
     }
 
-    /**
-     * set all properties that can not be null
-     *
-     * @param serviceOrder service order to set the properties
-     * @param item the item contract of the service
-     * @param serviceAddress the address where the service is going to be undertake
-     * @return service order with properties filled
-     */
+
     private void setBasicProperties(ServiceOrder serviceOrder, Long item, Long serviceAddress){
 
         ItemContract itemContract = this.itemContractRepository.findById(item).get();
@@ -91,12 +74,7 @@ public class ServiceOrderMapper {
 
     }
 
-    /**
-     * method to get the order from database and update its properties
-     *
-     * @param updateDto the item with the id and properties to update
-     * @return service order updated
-     */
+
     private ServiceOrder setPropertiesAndUpdate(ServiceOrderUpdateDto updateDto){
 
         //search of the order in database
