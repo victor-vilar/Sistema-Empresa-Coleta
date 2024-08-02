@@ -25,9 +25,9 @@ INSERT INTO users_roles(application_user_id,role_id)VALUES(1,3);
 INSERT INTO users_roles(application_user_id,role_id)VALUES(2,2);
 
 --CUSTOMERS
-INSERT INTO clients(cpf_cnpj,name_company_name,is_active)VALUES('08454836000178','EMPRESA 1',true);
-INSERT INTO clients(cpf_cnpj,name_company_name,is_active)VALUES('29439167000135','INSTITUTO MILITAR DE ESCOTEIROS DE APARTAMENTO',true);
-INSERT INTO clients(cpf_cnpj,name_company_name,is_active)VALUES('43715989000122','COMANDO DOS PODERES FRACOS DE OPERAÇÕES ESPECIALIZADAS EM ABSTRAÇÕES BASTANTE ESPECIFICAS',true);
+INSERT INTO customers(cpf_cnpj,name_company_name,is_active)VALUES('08454836000178','EMPRESA 1',true);
+INSERT INTO customers(cpf_cnpj,name_company_name,is_active)VALUES('29439167000135','INSTITUTO MILITAR DE ESCOTEIROS DE APARTAMENTO',true);
+INSERT INTO customers(cpf_cnpj,name_company_name,is_active)VALUES('43715989000122','COMANDO DOS PODERES FRACOS DE OPERAÇÕES ESPECIALIZADAS EM ABSTRAÇÕES BASTANTE ESPECIFICAS',true);
 
 --SUPERVISORS
 INSERT INTO supervisors(name,role,phone_number,email,customer_id)VALUES('ALFREDINHO ROBERTINHO','GERENTINHO','21999999999','gerentinho@gmail.com','08454836000178');

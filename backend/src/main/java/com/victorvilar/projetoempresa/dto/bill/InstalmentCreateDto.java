@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InstalmentCreateDto {
+public class InstalmentCreateDto implements InstalmentDto {
 
 
     @NotNull(message="An instalment must have a dueDate")

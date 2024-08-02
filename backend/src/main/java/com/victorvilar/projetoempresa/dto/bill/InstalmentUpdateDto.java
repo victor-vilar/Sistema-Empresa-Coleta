@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InstalmentUpdateDto {
+public class InstalmentUpdateDto implements InstalmentDto{
 
     @NotNull(message="An instalment to update must have an id")
     private Long id;

@@ -1,10 +1,11 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.Instalment;
-import com.victorvilar.projetoempresa.dto.bill.InstalmentCreateDto;
-import com.victorvilar.projetoempresa.dto.bill.InstalmentUpdateDto;
+import com.victorvilar.projetoempresa.dto.bill.InstalmentDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class InstalmentMapper {
@@ -15,12 +16,12 @@ public class InstalmentMapper {
       this.mapper=modelMapper;
     }
 
-    public Instalment toInstalment(InstalmentCreateDto createDto){
+    public Instalment toInstalmentList(InstalmentDto createDto){
         return this.mapper.map(createDto,Instalment.class);
     }
 
-    public Instalment toInstalment(InstalmentUpdateDto updateDto){
-        return this.mapper.map(updateDto,Instalment.class);
+    public List<Instalment> toInstalmentList(List<? extends InstalmentDto> list){
+        return list.stream().map(this::toInstalmentList).toList();
     }
 }
 
