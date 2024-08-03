@@ -45,7 +45,7 @@ public class EquipmentService {
 
     @Transactional
     public EquipmentResponseDto save(EquipmentCreateDto equipmentCreateDto){
-        Equipment equipment = this.equipmentMapper.toEquipament(equipmentCreateDto);
+        Equipment equipment = this.equipmentMapper.toEquipment(equipmentCreateDto);
         return this.equipmentMapper.toEquipmentResponseDto(this.repository.save(equipment));
     }
 

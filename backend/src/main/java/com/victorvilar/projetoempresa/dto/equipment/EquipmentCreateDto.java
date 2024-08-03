@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.dto.equipment;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class EquipmentCreateDto {
+public class EquipmentCreateDto implements EquipmentDto{
 
 
     @NotBlank(message="The equipment must have a name")
