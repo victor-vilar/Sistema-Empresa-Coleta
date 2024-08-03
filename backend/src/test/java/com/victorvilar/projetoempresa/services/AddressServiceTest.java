@@ -7,7 +7,6 @@ import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
-import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -125,7 +123,7 @@ class AddressServiceTest {
                 .build();
 
 
-        addressCreateDto1.setCustomerId(address1.getClient().getCpfCnpj());
+        addressCreateDto1.setCustomer(address1.getClient().getCpfCnpj());
     }
 
     @Test

@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.dto.adress;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class AddressCreateDto {
+public class AddressCreateDto implements AddressDto {
 
 
     private String addressName;
@@ -13,7 +13,7 @@ public class AddressCreateDto {
     private String state;
     private boolean requiresCollection;
     @NotBlank(message="An address must have a customer")
-    private String customerId;
+    private String customer;
 
 
     public AddressCreateDto() {
@@ -28,7 +28,7 @@ public class AddressCreateDto {
                             String city,
                             String state,
                             boolean requiresCollection,
-                            String customerId) {
+                            String customer) {
 
         this.addressName = addressName;
         this.addressNumber = addressNumber;
@@ -37,7 +37,7 @@ public class AddressCreateDto {
         this.city = city;
         this.state = state;
         this.requiresCollection = requiresCollection;
-        this.customerId = customerId;
+        this.customer = customer;
     }
 
 
@@ -97,12 +97,12 @@ public class AddressCreateDto {
         this.requiresCollection = requiresCollection;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     public static AddressCreateBuilder builder(){
@@ -169,7 +169,7 @@ public class AddressCreateDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomerId(this.customerId);
+            address.setCustomer(this.customerId);
             return address;
         }
     }

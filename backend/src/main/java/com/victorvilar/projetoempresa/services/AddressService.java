@@ -50,7 +50,7 @@ public class AddressService {
 
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
+        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomer());
         customer.addNewAddress(address);
         return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }
@@ -69,8 +69,7 @@ public class AddressService {
         addressToUpdate.setState(addressUpdateDto.getState());
         addressToUpdate.setZipCode(addressUpdateDto.getZipCode());
         addressToUpdate.setRequiresCollection(addressUpdateDto.isRequiresCollection());
-        this.repository.save(addressToUpdate);
-        return this.addressMapper.toAddressResponseDto(addressToUpdate);
+        return this.addressMapper.toAddressResponseDto(this.repository.save(addressToUpdate));
     }
 
     public Integer getEntityCount(){

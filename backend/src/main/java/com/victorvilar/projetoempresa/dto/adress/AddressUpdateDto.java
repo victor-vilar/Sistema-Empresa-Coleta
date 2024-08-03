@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.dto.adress;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class AddressUpdateDto {
+public class AddressUpdateDto implements AddressDto {
 
     @NotNull(message="An address to update must have an id")
     private Long id;
@@ -15,12 +15,12 @@ public class AddressUpdateDto {
     private String state;
     private boolean requiresCollection;
     @NotBlank(message="An address must have a customer")
-    private String customerId;
+    private String customer;
 
     public AddressUpdateDto() {
     }
 
-    public AddressUpdateDto(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, boolean requiresCollection, String customerId) {
+    public AddressUpdateDto(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, boolean requiresCollection, String customer) {
         this.id = id;
         this.addressName = addressName;
         this.addressNumber = addressNumber;
@@ -29,7 +29,7 @@ public class AddressUpdateDto {
         this.city = city;
         this.state = state;
         this.requiresCollection = requiresCollection;
-        this.customerId = customerId;
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -96,12 +96,12 @@ public class AddressUpdateDto {
         this.requiresCollection = requiresCollection;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     public AddressUpdateDtoBuilder builder(){
@@ -168,7 +168,7 @@ public class AddressUpdateDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomerId(this.customerId);
+            address.setCustomer(this.customerId);
             return address;
         }
     }

@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 
 import com.victorvilar.projetoempresa.dto.adress.AddressCreateDto;
+import com.victorvilar.projetoempresa.dto.adress.AddressDto;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.adress.AddressUpdateDto;
 import com.victorvilar.projetoempresa.domain.Address;
@@ -19,29 +20,23 @@ public class AddressMapper {
     private final ModelMapper mapper;
 
     @Autowired
-
     public AddressMapper(ModelMapper mapper){
         this.mapper = mapper;
     }
 
-    public Address toAddress(AddressCreateDto addressCreateDto){
-        Address address = this.mapper.map(addressCreateDto,Address.class);
+    public Address toAddress(AddressDto addressDto){
+        Address address = this.mapper.map(addressDto,Address.class);
         address.setId(null);
         return address;
     }
 
-    public Address toAddress(AddressUpdateDto addressUpdateDto){
-        return this.mapper.map(addressUpdateDto, Address.class);
-    }
 
     public AddressResponseDto toAddressResponseDto(Address address){
         return this.mapper.map(address,AddressResponseDto.class);
     }
 
     public List<AddressResponseDto> toAddressResponseDtoList( List<Address> addresses){
-        return addresses.stream().map(
-                e -> this.toAddressResponseDto(e)
-        ).collect(Collectors.toList());
+        return addresses.stream().map(this::toAddressResponseDto).toList();
     }
 
 
