@@ -28,6 +28,10 @@ public class Residue implements Serializable {
 	public Residue() {
 	}
 
+	public Residue(String type){
+		this.type = type;
+	}
+
 	public Residue(String type, String description){
 		this.type = type;
 		this.description = description;
