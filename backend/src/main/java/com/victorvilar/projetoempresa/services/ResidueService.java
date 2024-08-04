@@ -28,12 +28,12 @@ public class ResidueService {
     }
 
     public List<ResidueResponseDto> getAll() {
-        return this.mapper.toResidueTypeResponseDtoList(this.repository.findAll());
+        return this.mapper.toResidueResponseDtoList(this.repository.findAll());
     }
 
 
     public ResidueResponseDto getById(Long id){
-        return this.mapper.toResidueTypeResponseDto(
+        return this.mapper.toResidueResponseDto(
                 this.repository.findById(id)
                         .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"))
         );
@@ -48,7 +48,7 @@ public class ResidueService {
     @Transactional
     public ResidueResponseDto save(ResidueCreateDto residueCreateDto){
         Residue residue = this.mapper.toResidue(residueCreateDto);
-        return this.mapper.toResidueTypeResponseDto(this.repository.save(residue));
+        return this.mapper.toResidueResponseDto(this.repository.save(residue));
     }
 
     @Transactional
@@ -62,8 +62,7 @@ public class ResidueService {
         Residue residue = this.findResidueById(residueCreateDto.getId());
         residue.setType(residueCreateDto.getType());
         residue.setDescription(residueCreateDto.getDescription());
-        this.repository.save(residue);
-        return this.mapper.toResidueTypeResponseDto(residue);
+        return this.mapper.toResidueResponseDto(this.repository.save(residue));
 
     }
 

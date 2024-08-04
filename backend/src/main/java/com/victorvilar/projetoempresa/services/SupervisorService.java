@@ -58,9 +58,7 @@ public class SupervisorService {
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
         customer.addNewSupervisor(supervisor);
-        this.repository.save(supervisor);
-        this.customerRepository.save(customer);
-        return this.mapper.toSupervisorResponseDto(supervisor);
+        return this.mapper.toSupervisorResponseDto(this.repository.save(supervisor));
     }
 
     @Transactional

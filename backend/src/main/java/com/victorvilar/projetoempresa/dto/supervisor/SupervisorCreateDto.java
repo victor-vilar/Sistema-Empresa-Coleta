@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.dto.supervisor;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public class SupervisorCreateDto {
+public class SupervisorCreateDto implements SupervisorDto {
 
 
     @NotBlank(message = "The name of supervisor is required")

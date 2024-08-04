@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.dto.residuetype;
 
 import jakarta.validation.constraints.NotNull;
 
-public class ResidueUpdateDto {
+public class ResidueUpdateDto implements ResidueDto {
     @NotNull(message = "A residue to update must have an id")
     private Long id;
     @NotNull(message = "Residue must have a name")

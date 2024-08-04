@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorUpdateDto;
 import com.victorvilar.projetoempresa.domain.Supervisor;
@@ -21,18 +22,13 @@ public class SupervisorMapper {
         this.mapper = mapper;
     }
 
-    public Supervisor toSupervisor(SupervisorCreateDto supervisorCreateDto){
-        return this.mapper.map(supervisorCreateDto, Supervisor.class);
-    }
-
-    public Supervisor toSupervisor(SupervisorUpdateDto supervisorUpdateDto){
-        return this.mapper.map(supervisorUpdateDto, Supervisor.class);
+    public Supervisor toSupervisor(SupervisorDto supervisorDto){
+        return this.mapper.map(supervisorDto, Supervisor.class);
     }
 
     public SupervisorResponseDto toSupervisorResponseDto(Supervisor supervisor){
         return this.mapper.map(supervisor,SupervisorResponseDto.class);
     }
-
 
 
     public List<SupervisorResponseDto> toSupervisorResponseDtoList(List<Supervisor> supervisors){

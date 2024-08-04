@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.dto.residuetype;
 
 import jakarta.validation.constraints.NotNull;
 
-public class ResidueCreateDto {
+public class ResidueCreateDto implements ResidueDto {
 
     @NotNull(message = "Residue must have a name")
     private String type;

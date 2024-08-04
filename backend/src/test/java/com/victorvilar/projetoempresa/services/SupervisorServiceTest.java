@@ -216,8 +216,6 @@ class SupervisorServiceTest {
                 .thenReturn(supervisorResponseDto1);
 
         SupervisorResponseDto srdto = this.supervisorService.save(supervisorCreateDto1);
-
-        verify(this.customerRepository,times(1)).save(cpfCustomer);
         verify(this.supervisorRepository,times(1)).save(any(Supervisor.class));
 
         assertEquals(srdto,supervisorResponseDto1);

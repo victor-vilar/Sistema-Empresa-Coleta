@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class SupervisorUpdateDto {
+public class SupervisorUpdateDto implements SupervisorDto{
 
     @NotNull(message="A supervisor to update needs to have a id number")
     private Long id;

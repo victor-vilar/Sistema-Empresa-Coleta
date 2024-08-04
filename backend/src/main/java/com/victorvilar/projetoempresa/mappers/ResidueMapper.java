@@ -1,6 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueCreateDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueDto;
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueUpdateDto;
 import com.victorvilar.projetoempresa.domain.Residue;
@@ -22,19 +23,16 @@ public class ResidueMapper {
         this.mapper = mapper;
     }
 
-    public ResidueResponseDto toResidueTypeResponseDto(Residue residue){
+    public ResidueResponseDto toResidueResponseDto(Residue residue){
         return this.mapper.map(residue, ResidueResponseDto.class);
     }
 
-    public List<ResidueResponseDto> toResidueTypeResponseDtoList(List<Residue> list){
-        return list.stream().map(e -> this.toResidueTypeResponseDto(e)).collect(Collectors.toList());
+    public List<ResidueResponseDto> toResidueResponseDtoList(List<Residue> list){
+        return list.stream().map(this::toResidueResponseDto).toList();
     }
 
-    public Residue toResidue(ResidueCreateDto residueCreateDto) {
-        return this.mapper.map(residueCreateDto, Residue.class);
+    public Residue toResidue(ResidueDto residueDto) {
+        return this.mapper.map(residueDto, Residue.class);
     }
 
-    public Residue toResidue(ResidueUpdateDto residueUpdateDto){
-        return this.mapper.map(residueUpdateDto, Residue.class);
-    }
 }
