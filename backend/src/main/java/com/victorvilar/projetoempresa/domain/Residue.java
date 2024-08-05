@@ -37,6 +37,12 @@ public class Residue implements Serializable {
 		this.description = description;
 	}
 
+	public Residue(Long id, String type, String description){
+		this.id = id;
+		this.type = type;
+		this.description = description;
+	}
+
 	public String getType() {
 		return type;
 	}

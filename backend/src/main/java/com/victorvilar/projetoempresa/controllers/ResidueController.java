@@ -50,7 +50,7 @@ public class ResidueController {
 
     @PutMapping()
     public ResponseEntity<ResidueResponseDto> udpate(@Valid @RequestBody ResidueUpdateDto residue){
-        return new ResponseEntity<>(this.service.udpate(residue),HttpStatus.OK);
+        return new ResponseEntity<>(this.service.update(residue),HttpStatus.OK);
     }
 
     @GetMapping("/count")

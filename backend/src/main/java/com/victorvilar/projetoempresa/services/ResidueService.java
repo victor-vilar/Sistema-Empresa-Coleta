@@ -39,7 +39,7 @@ public class ResidueService {
         );
     }
 
-    public Residue findResidueById(Long id){
+    public Residue findById(Long id){
         return this.repository
                 .findById(id)
                 .orElseThrow(() -> new ResidueNotFoundException("Residue Not Found !"));
@@ -53,15 +53,15 @@ public class ResidueService {
 
     @Transactional
     public void delete(Long id){
-        Residue residue = this.findResidueById(id);
+        Residue residue = this.findById(id);
         this.repository.delete(residue);
     }
 
     @Transactional
-    public ResidueResponseDto udpate(ResidueUpdateDto residueCreateDto){
-        Residue residue = this.findResidueById(residueCreateDto.getId());
-        residue.setType(residueCreateDto.getType());
-        residue.setDescription(residueCreateDto.getDescription());
+    public ResidueResponseDto update(ResidueUpdateDto residueUpdateDto){
+        Residue residue = this.findById(residueUpdateDto.getId());
+        residue.setType(residueUpdateDto.getType());
+        residue.setDescription(residueUpdateDto.getDescription());
         return this.mapper.toResidueResponseDto(this.repository.save(residue));
 
     }

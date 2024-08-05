@@ -11,6 +11,10 @@ public class ResidueResponseDto {
     public ResidueResponseDto() {
     }
 
+    public ResidueResponseDto(String type){
+        this.type = type;
+    }
+
     public ResidueResponseDto(Long id, String type, String description) {
         this.id = id;
         this.type = type;
