@@ -38,7 +38,7 @@ public class EquipmentService {
         );
     }
 
-    public Equipment findEquipmentById(Long id){
+    public Equipment findById(Long id){
                 return this.repository.findById(id)
                 .orElseThrow(() -> new EquipmentNotFoundException("Equipment not found !"));
     }
@@ -51,7 +51,7 @@ public class EquipmentService {
 
     @Transactional
     public EquipmentResponseDto update(EquipmentUpdateDto equipmentUpdateDto){
-        Equipment equipment = this.findEquipmentById(equipmentUpdateDto.getId());
+        Equipment equipment = this.findById(equipmentUpdateDto.getId());
         equipment.setEquipmentName(equipmentUpdateDto.getEquipmentName());
         equipment.setSizeInMeterCubic(equipmentUpdateDto.getSizeInMeterCubic());
         return this.equipmentMapper.toEquipmentResponseDto(this.repository.save(equipment));
@@ -60,7 +60,7 @@ public class EquipmentService {
 
     @Transactional
     public void delete(Long id){
-        this.repository.delete(this.findEquipmentById(id));
+        this.repository.delete(this.findById(id));
     }
 
     public Integer getEntityCount(){

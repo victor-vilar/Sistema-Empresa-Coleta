@@ -35,6 +35,12 @@ public class Equipment implements Serializable{
 		this.sizeInMeterCubic = sizeInMeterCubic;
 	}
 
+	public Equipment(Long id,String equipmentName, double sizeInMeterCubic ){
+		this.id = id;
+		this.equipmentName = equipmentName;
+		this.sizeInMeterCubic = sizeInMeterCubic;
+	}
+
 	public Long getId() {
 		return id;
 	}
