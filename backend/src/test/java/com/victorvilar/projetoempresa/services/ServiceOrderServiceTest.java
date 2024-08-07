@@ -212,7 +212,7 @@ class ServiceOrderServiceTest {
         List<ServiceOrderUpdateDto> list = new ArrayList<>();
         list.add(new ServiceOrderUpdateDto());
         list.add(new ServiceOrderUpdateDto());
-        when(this.serviceOrderMapper.toServiceOrderListFromServiceOrderUpdateDtoList(anyList())).thenReturn(List.of(so1, so2));
+        when(this.serviceOrderMapper.toServiceOrder(anyList())).thenReturn(List.of(so1, so2));
         when(this.serviceOrderRepository.saveAll(List.of(so1, so2))).thenReturn(List.of(so1, so2));
         when(this.serviceOrderMapper.toServiceResponseDtoList(List.of(so1, so2))).thenReturn(List.of(sord1, sord2));
         List<ServiceOrderResponseDto> orders = this.serviceOrderService.update(list);

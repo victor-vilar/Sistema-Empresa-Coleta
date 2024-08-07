@@ -95,7 +95,7 @@ class AddressServiceTest {
                 .zipCode(address1.getZipCode())
                 .city(address1.getCity())
                 .state(address1.getState())
-                .customerId(address1.getClient().getCpfCnpj())
+                .customerId(address1.getCustomer().getCpfCnpj())
                 .requiresCollection(address1.isRequiresCollection())
                 .build();
 
@@ -107,7 +107,7 @@ class AddressServiceTest {
                 .zipCode(address2.getZipCode())
                 .city(address2.getCity())
                 .state(address2.getState())
-                .customerId(address2.getClient().getCpfCnpj())
+                .customerId(address2.getCustomer().getCpfCnpj())
                 .requiresCollection(address2.isRequiresCollection())
                 .build();
 
@@ -123,7 +123,7 @@ class AddressServiceTest {
                 .build();
 
 
-        addressCreateDto1.setCustomer(address1.getClient().getCpfCnpj());
+        addressCreateDto1.setCustomer(address1.getCustomer().getCpfCnpj());
     }
 
     @Test
@@ -149,7 +149,7 @@ class AddressServiceTest {
         Assertions.assertNotNull(list);
         Assertions.assertFalse(list.isEmpty());
         Assertions.assertEquals(1,list.size());
-        Assertions.assertEquals(customer1.getCpfCnpj(),list.get(0).getCustomerId());
+        Assertions.assertEquals(customer1.getCpfCnpj(),list.get(0).getCustomer());
     }
 
     @Test

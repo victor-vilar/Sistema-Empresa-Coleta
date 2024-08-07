@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.dto.adress;
 
-public class AddressResponseDto {
+public class AddressResponseDto implements AddressDto {
 
     private Long id;
     private String addressName;
@@ -9,7 +9,7 @@ public class AddressResponseDto {
     private String zipCode;
     private String city;
     private String state;
-    private String customerId;
+    private String customer;
     private boolean requiresCollection;
 
     public AddressResponseDto() {
@@ -22,7 +22,7 @@ public class AddressResponseDto {
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
-        this.customerId = clientId;
+        this.customer = clientId;
         this.id = id;
         this.requiresCollection = requiresCollection;
     }
@@ -83,12 +83,12 @@ public class AddressResponseDto {
         this.state = state;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(String clientId) {
-        this.customerId = clientId;
+    public void setCustomer(String clientId) {
+        this.customer = clientId;
     }
 
     public boolean isRequiresCollection() {
@@ -171,7 +171,7 @@ public class AddressResponseDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomerId(this.customerId);
+            address.setCustomer(this.customerId);
             return address;
         }
     

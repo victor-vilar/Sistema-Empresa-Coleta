@@ -74,7 +74,7 @@ public class Customer implements Serializable {
 
 
 	public void addNewAddress(Address address) {
-		address.setClient(this);
+		address.setCustomer(this);
 		this.getAddresses().add(address);
 	}
 
