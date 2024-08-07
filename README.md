@@ -85,6 +85,7 @@ Além disso tambem existe a Companhia Municipal de Limpeza Urbana da Cidade do R
 - CRUD dos veículos.
 - Controle de abastecimento nos veículos.
 - Adicionar o Redis para fazer o caching da aplicação.
+- Envio dos relatórios dos quantitativos coletados para o email dos fiscais cadastrados.
   
 ## Contato
 Para informações mais detalhadas sobre o sistema por favor entre em contato comigo por um dos links abaixo:
