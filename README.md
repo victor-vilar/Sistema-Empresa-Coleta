@@ -1,7 +1,7 @@
 # Descrição do Projeto
 
 O projeto é um sistema de um empresa de coleta de resíduos. Trabalhei na área administrativa de uma empresa do ramo, então decidi praticar o que venho aprendendo implementando soluções para esta área.
-Um sistema igual a esse foi desenvolvido por mim durante esses anos que estive lá, mas nesse projeto utilizo tudo o que venho aprendendo sobre arquiteturas de sistemas mais modernas e diferente desse primeiro sistema ao qual foi criado utilizando linguagens não tão mais utilizadas como VBA e utilizando banco de dados Access, nesse estou utilizando linguagens e ferramentas mais modernas.
+Um sistema igual a esse foi desenvolvido por mim durante esses anos que estive lá, mas nesse projeto utilizo tudo o que venho aprendendo sobre arquiteturas de sistemas com o que tem de mais moderno no mercado atualmente.
 
 ## Informação Importante
 
@@ -36,10 +36,16 @@ Pré requisitos
 - Node
 - Angular Cli
 
-Executar o comando:
-`npm install `
-E então:
-`npm run ng s -o`
+Executar o comando para instalar as dependências do projeto:  
+`npm install `  
+
+E então utilizar uma das opções abaixo:  
+
+Sem Angular CLI:  
+`npm run ng s -o` 
+
+Com Angular CLI:  
+`ng s -o`
 
 Ao iniciar o projeto abre na página de login, para conseguir fazer o login é necessário que o backend esteja rodando. O backend está configurado para ouvir a porta 8080.
 
