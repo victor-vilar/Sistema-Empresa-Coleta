@@ -48,6 +48,8 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
     @Override
     public BillResponseDto save(BillCreateDto createDto) {
         Bill bill = this.billMapper.toBill(createDto);
+        List<Instalment> instalments = createDto.getInstalments().stream().map(this.instalmentMapper::toInstalmentList).toList();
+        instalments.forEach(bill::addNewInstalment);
         return this.billMapper.toBillResponseDto(this.repository.save(bill));
     }
 

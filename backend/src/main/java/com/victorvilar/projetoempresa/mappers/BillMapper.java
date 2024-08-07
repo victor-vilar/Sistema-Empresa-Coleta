@@ -26,8 +26,6 @@ public class BillMapper {
 
     public Bill toBill(BillDto billDto){
         Bill bill = this.mapper.map(billDto,Bill.class);
-        List<Instalment> instalments = billDto.getInstalments().stream().map(this.instalmentMapper::toInstalmentList).toList();
-        instalments.forEach(bill::addNewInstalment);
         return bill;
     }
 

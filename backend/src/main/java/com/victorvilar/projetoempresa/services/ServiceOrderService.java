@@ -77,7 +77,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
 
     @Transactional
     public List<ServiceOrderResponseDto> update(List<ServiceOrderUpdateDto> updateDtoList){
-        List<ServiceOrder> orders = this.mapper.toServiceOrderListFromServiceOrderUpdateDtoList(updateDtoList);
+        List<ServiceOrder> orders = this.mapper.toServiceOrder(updateDtoList);
         return this.mapper.toServiceResponseDtoList(this.repository.saveAll(orders));
     }
 
