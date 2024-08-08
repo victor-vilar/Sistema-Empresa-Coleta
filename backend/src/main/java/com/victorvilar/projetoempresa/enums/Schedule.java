@@ -39,7 +39,7 @@ public enum Schedule {
 
     public static Schedule getByName(String name){
         for(Schedule s : Schedule.values()){
-            if(s.getName().equals(name)){
+            if(s.getName().equals(name.toUpperCase())){
                 return s;
             }
         }

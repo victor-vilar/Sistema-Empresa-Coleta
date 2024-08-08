@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.dto.bill;
 import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BillCreateDto implements BillDto {
@@ -11,7 +12,7 @@ public class BillCreateDto implements BillDto {
     private String supplier;
     private String noteNumber;
     private String description;
-    private List<InstalmentCreateDto> instalments;
+    private List<InstalmentCreateDto> instalments = new ArrayList<>();
 
     public BillCreateDto(){};
 

@@ -34,7 +34,7 @@ public enum Weekday {
 
     public static Weekday getByName(String name) {
         for(Weekday weekDayConstant : values()){
-            if( weekDayConstant.dayName.equals(name)){
+            if( weekDayConstant.dayName.equals(name.toUpperCase())){
                 return weekDayConstant;
             }
         }

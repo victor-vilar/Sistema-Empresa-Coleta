@@ -27,7 +27,7 @@ class WeekdayTest {
     public void findWeekdaySucessfully_WhenPassingValidDayName(){
 
         Weekday segunda = Weekday.getByName("segunda-feira");
-        Weekday terca = Weekday.getByName("terça-feira");
+        Weekday terca = Weekday.getByName("TERÇA-FEIRA");
         assertEquals(segunda,Weekday.SEGUNDA);
         assertEquals(terca,Weekday.TERCA);
 
