@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractResponseDto {
+public class ContractResponseDto implements ContractDto {
 
 
     private Long id;

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractResponseDto {
+public class ItemContractResponseDto implements ItemContractDto{
 
     private Long id;
     private String residue;
