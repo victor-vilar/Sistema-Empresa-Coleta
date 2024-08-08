@@ -1,12 +1,13 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractResponseDto implements ContractDto {
+public class ContractResponseImplDto implements ContractDto {
 
 
     private Long id;
@@ -20,15 +21,15 @@ public class ContractResponseDto implements ContractDto {
     //@JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate endDate;
 
-    private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
+    private List<ItemContractResponseImplDto> itens = new ArrayList<ItemContractResponseImplDto>();
 
     //each new contract has an 'ATIVO' status
     private String contractStatus;
 
-    public ContractResponseDto() {
+    public ContractResponseImplDto() {
     }
 
-    public ContractResponseDto(Long id, String number, String customerId, LocalDate beginDate, LocalDate endDate, List<ItemContractResponseDto> itens) {
+    public ContractResponseImplDto(Long id, String number, String customerId, LocalDate beginDate, LocalDate endDate, List<ItemContractResponseImplDto> itens) {
         this.id = id;
         this.number = number;
         this.customerId = customerId;
@@ -77,11 +78,12 @@ public class ContractResponseDto implements ContractDto {
         this.endDate = endDate;
     }
 
-    public List<ItemContractResponseDto> getItens() {
+    public List<ItemContractResponseImplDto> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemContractResponseDto> itens) {
+
+    public void setItens(List<ItemContractResponseImplDto> itens) {
         this.itens = itens;
     }
 
@@ -104,7 +106,7 @@ public class ContractResponseDto implements ContractDto {
         private String customerId;
         private LocalDate beginDate;
         private LocalDate endDate;
-        private List<ItemContractResponseDto> itens = new ArrayList<ItemContractResponseDto>();
+        private List<ItemContractResponseImplDto> itens = new ArrayList<ItemContractResponseImplDto>();
         private String contractStatus;
 
         private ContractResponseDtoBuilder id(Long id){
@@ -137,8 +139,8 @@ public class ContractResponseDto implements ContractDto {
             return this;
         }
 
-        public ContractResponseDto build(){
-            ContractResponseDto contract = new ContractResponseDto();
+        public ContractResponseImplDto build(){
+            ContractResponseImplDto contract = new ContractResponseImplDto();
             contract.setNumber(this.number);
             contract.setBeginDate(this.beginDate);
             contract.setEndDate(this.endDate);

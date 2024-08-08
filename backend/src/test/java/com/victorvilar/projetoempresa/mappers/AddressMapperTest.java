@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.domain.Address;
 import com.victorvilar.projetoempresa.domain.Customer;
 import com.victorvilar.projetoempresa.dto.adress.AddressCreateDto;
-import com.victorvilar.projetoempresa.dto.adress.AddressDto;
+import com.victorvilar.projetoempresa.dto.adress.interfaces.AddressDto;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.adress.AddressUpdateDto;
 import org.junit.jupiter.api.BeforeEach;

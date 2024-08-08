@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.domain.Bill;
 import com.victorvilar.projetoempresa.domain.Instalment;
 import com.victorvilar.projetoempresa.dto.bill.*;
+import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,16 +1,12 @@
 package com.victorvilar.projetoempresa.dto.serviceorder;
 
-import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
-import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.UUID;
 
 public class ServiceOrderResponseDto {
 
@@ -20,7 +16,7 @@ public class ServiceOrderResponseDto {
     private LocalDate serviceExpectedDate;
     private LocalDate serviceExecutedDate;
     private Vehicle vehicle;
-    private ItemContractResponseDto itemContract;
+    private ItemContractResponseImplDto itemContract;
     private String customerId;
     private String ineaManifest;
     private LocalTime serviceTime;
@@ -72,11 +68,11 @@ public class ServiceOrderResponseDto {
         this.vehicle = vehicle;
     }
 
-    public ItemContractResponseDto getItemContract() {
+    public ItemContractResponseImplDto getItemContract() {
         return itemContract;
     }
 
-    public void setItemContract(ItemContractResponseDto itemContract) {
+    public void setItemContract(ItemContractResponseImplDto itemContract) {
         this.itemContract = itemContract;
     }
 

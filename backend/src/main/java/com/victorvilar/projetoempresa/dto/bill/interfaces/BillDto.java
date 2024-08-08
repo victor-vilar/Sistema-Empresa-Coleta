@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.dto.bill;
+package com.victorvilar.projetoempresa.dto.bill.interfaces;
 
 import java.util.List;
 

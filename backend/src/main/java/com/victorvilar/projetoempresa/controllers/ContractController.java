@@ -1,8 +1,7 @@
 package com.victorvilar.projetoempresa.controllers;
 
-import com.victorvilar.projetoempresa.domain.Contract;
 import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
-import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.services.ContractService;
@@ -28,29 +27,29 @@ public class ContractController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<ContractResponseDto>> getAll(){
+    public ResponseEntity<List<ContractResponseImplDto>> getAll(){
         return ResponseEntity.ok(this.service.getAll());
     }
 
     @GetMapping("/all/{clientId}")
-    public ResponseEntity<List<ContractResponseDto>> getAllByCustomerId(@PathVariable String clientId){
+    public ResponseEntity<List<ContractResponseImplDto>> getAllByCustomerId(@PathVariable String clientId){
         return ResponseEntity.ok(this.service.getAllByCustomerId(clientId));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContractResponseDto> getById(@PathVariable Long id) {
+    public ResponseEntity<ContractResponseImplDto> getById(@PathVariable Long id) {
         return ResponseEntity.ok(this.service.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<ContractResponseDto> save(@Valid @RequestBody ContractCreateDto contract) {
+    public ResponseEntity<ContractResponseImplDto> save(@Valid @RequestBody ContractCreateDto contract) {
         return ResponseEntity.ok(this.service.save(contract));
     }
 
     @PostMapping("/additem/{contractId}")
-    public ResponseEntity<ContractResponseDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
-        ContractResponseDto contractResponseDto = this.service.addNewItemToContract(contractId,itemDto);
-        return ResponseEntity.ok(contractResponseDto);
+    public ResponseEntity<ContractResponseImplDto> addNewItemToContract(@PathVariable Long contractId, @Valid @RequestBody ItemContractCreateDto itemDto){
+        ContractResponseImplDto contractResponseImplDto = this.service.addNewItemToContract(contractId,itemDto);
+        return ResponseEntity.ok(contractResponseImplDto);
     }
 
     @DeleteMapping("/{contractId}")
@@ -66,7 +65,7 @@ public class ContractController {
     }
 
     @PutMapping()
-    public ResponseEntity<ContractResponseDto> update(@RequestBody ContractUpdateDto contractUpdateDto){
+    public ResponseEntity<ContractResponseImplDto> update(@RequestBody ContractUpdateDto contractUpdateDto){
         return ResponseEntity.ok(this.service.update(contractUpdateDto));
 
     }

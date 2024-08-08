@@ -1,6 +1,6 @@
 package com.victorvilar.projetoempresa.dto.bill;
 
-import com.victorvilar.projetoempresa.domain.Bill;
+import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 
 import java.util.List;
 

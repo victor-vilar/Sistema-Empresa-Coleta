@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.dto.adress;
 
+import com.victorvilar.projetoempresa.dto.adress.interfaces.AddressDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

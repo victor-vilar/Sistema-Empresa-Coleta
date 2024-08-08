@@ -1,12 +1,12 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
-import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractResponseDto implements ItemContractDto{
+public class ItemContractResponseImplDto implements ItemContractResponseDto {
 
     private Long id;
     private String residue;
@@ -19,10 +19,10 @@ public class ItemContractResponseDto implements ItemContractDto{
     private CollectionFrequency collectionFrequency;
     private String measurementUnit;
 
-    public ItemContractResponseDto() {
+    public ItemContractResponseImplDto() {
     }
 
-    public ItemContractResponseDto(Long id, String residue, String equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
+    public ItemContractResponseImplDto(Long id, String residue, String equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;

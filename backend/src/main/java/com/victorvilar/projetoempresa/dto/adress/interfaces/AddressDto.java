@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.dto.adress;
+package com.victorvilar.projetoempresa.dto.adress.interfaces;
 
 public interface AddressDto {
 

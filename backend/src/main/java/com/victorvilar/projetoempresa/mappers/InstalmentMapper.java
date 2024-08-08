@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.Instalment;
-import com.victorvilar.projetoempresa.dto.bill.InstalmentDto;
+import com.victorvilar.projetoempresa.dto.bill.interfaces.InstalmentDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

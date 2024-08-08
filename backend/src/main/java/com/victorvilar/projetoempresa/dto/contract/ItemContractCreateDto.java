@@ -2,12 +2,13 @@ package com.victorvilar.projetoempresa.dto.contract;
 
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractRequestDto;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractCreateDto implements ItemContractDto {
+public class ItemContractCreateDto implements ItemContractRequestDto {
 
     @NotNull(message = "The item must have a residue")
     private Long residue;

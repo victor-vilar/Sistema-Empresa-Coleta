@@ -2,14 +2,15 @@ package com.victorvilar.projetoempresa.dto.contract;
 
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractRequestDto;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class ItemContractUpdateDto implements ItemContractDto {
+public class ItemContractUpdateDto implements ItemContractRequestDto {
 
-
+    @NotNull(message="A item to update, must have an id.")
     private Long id;
 
     @NotNull(message = "The item must have a residue")

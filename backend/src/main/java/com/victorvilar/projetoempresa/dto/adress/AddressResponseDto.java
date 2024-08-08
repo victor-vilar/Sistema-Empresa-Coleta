@@ -1,5 +1,7 @@
 package com.victorvilar.projetoempresa.dto.adress;
 
+import com.victorvilar.projetoempresa.dto.adress.interfaces.AddressDto;
+
 public class AddressResponseDto implements AddressDto {
 
     private Long id;

@@ -2,8 +2,8 @@ package com.victorvilar.projetoempresa.configuration;
 
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
-import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 import org.modelmapper.ModelMapper;
@@ -23,9 +23,9 @@ public class ModelMapperConfiguration {
                     maper.map(src -> src.getCustomer().getCpfCnpj(),SupervisorResponseDto::setCustomerId);
                 });
 
-        mapper.typeMap(Contract.class, ContractResponseDto.class)
+        mapper.typeMap(Contract.class, ContractResponseImplDto.class)
                 .addMappings(maper ->{
-                    maper.map(src -> src.getCustomer().getCpfCnpj(), ContractResponseDto::setCustomerId);
+                    maper.map(src -> src.getCustomer().getCpfCnpj(), ContractResponseImplDto::setCustomerId);
                 });
 
         mapper.typeMap(Address.class, AddressResponseDto.class)
@@ -33,11 +33,11 @@ public class ModelMapperConfiguration {
                     maper.map(src -> src.getCustomer().getCpfCnpj(), AddressResponseDto::setCustomer);
                 });
 
-        mapper.typeMap(ItemContract.class, ItemContractResponseDto.class)
+        mapper.typeMap(ItemContract.class, ItemContractResponseImplDto.class)
                 .addMappings(maper ->{
-                    maper.map(src-> src.getResidue().getType(), ItemContractResponseDto::setResidue);
-                    maper.map(src-> src.getEquipment().getEquipmentName(),ItemContractResponseDto::setEquipment);
-                    maper.map(src-> src.getContract().getNumber(),ItemContractResponseDto::setContract);
+                    maper.map(src-> src.getResidue().getType(), ItemContractResponseImplDto::setResidue);
+                    maper.map(src-> src.getEquipment().getEquipmentName(), ItemContractResponseImplDto::setEquipment);
+                    maper.map(src-> src.getContract().getNumber(), ItemContractResponseImplDto::setContract);
                 });
 
         mapper.typeMap(ServiceOrder.class, ServiceOrderResponseDto.class)

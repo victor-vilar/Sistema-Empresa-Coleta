@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.dto.bill;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.victorvilar.projetoempresa.dto.bill.interfaces.InstalmentDto;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;

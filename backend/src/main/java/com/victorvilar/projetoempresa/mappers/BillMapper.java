@@ -1,11 +1,8 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.Bill;
-import com.victorvilar.projetoempresa.domain.Instalment;
-import com.victorvilar.projetoempresa.dto.bill.BillCreateDto;
-import com.victorvilar.projetoempresa.dto.bill.BillDto;
+import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 import com.victorvilar.projetoempresa.dto.bill.BillResponseDto;
-import com.victorvilar.projetoempresa.dto.bill.BillUpdateDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
-import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.domain.Contract;
 import org.modelmapper.ModelMapper;
@@ -33,11 +33,11 @@ public class ContractMapper {
         return this.mapper.map(contractUpdateDto,Contract.class);
     }
 
-    public ContractResponseDto toContractResponseDto(Contract contract){
-        return this.mapper.map(contract,ContractResponseDto.class);
+    public ContractResponseImplDto toContractResponseDto(Contract contract){
+        return this.mapper.map(contract, ContractResponseImplDto.class);
     }
 
-    public List<ContractResponseDto> toContractResponseDtoList(List<Contract> contracts){
+    public List<ContractResponseImplDto> toContractResponseDtoList(List<Contract> contracts){
         return contracts.stream().map(c ->this.toContractResponseDto(c)).collect(Collectors.toList());
 
     }

@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
-import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.domain.Customer;
@@ -45,15 +45,15 @@ public class ContractService {
         this.customerRepository = customerRepository;
     }
 
-    public List<ContractResponseDto> getAll() {
+    public List<ContractResponseImplDto> getAll() {
         return this.contractMapper.toContractResponseDtoList(this.repository.findAll());
     }
 
-    public List<ContractResponseDto> getAllByCustomerId(String clientId){
+    public List<ContractResponseImplDto> getAllByCustomerId(String clientId){
         return this.contractMapper.toContractResponseDtoList(repository.findByCustomerCpfCnpj(clientId));
     }
 
-    public ContractResponseDto getById(Long id) throws ContractNotFoundException{
+    public ContractResponseImplDto getById(Long id) throws ContractNotFoundException{
         Contract contract = this.repository.findById(id).orElseThrow(() -> new ContractNotFoundException("This contract doesn't exist") );
         return this.contractMapper.toContractResponseDto(contract);
     }
@@ -64,7 +64,7 @@ public class ContractService {
     }
 
     @Transactional
-    public ContractResponseDto save(ContractCreateDto contractCreateDto) {
+    public ContractResponseImplDto save(ContractCreateDto contractCreateDto) {
 
         Contract contract = this.contractMapper.toContract(contractCreateDto);
         Customer customer = this.customerService.findCustomerById(contractCreateDto.getCustomerId());
@@ -79,7 +79,7 @@ public class ContractService {
     }
 
     @Transactional
-    public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
+    public ContractResponseImplDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
         Contract contract = this.findByContractId(contractId);
@@ -100,7 +100,7 @@ public class ContractService {
     }
 
     @Transactional
-    public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
+    public ContractResponseImplDto update(ContractUpdateDto contractUpdateDto){
 
         Contract contract = this.updateContractFields(contractUpdateDto);
         List<ItemContract> lista = this.itemContractMapper.toItemContractList(contractUpdateDto.getItens());

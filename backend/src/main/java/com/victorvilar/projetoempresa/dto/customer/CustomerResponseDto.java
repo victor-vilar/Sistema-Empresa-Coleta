@@ -1,7 +1,7 @@
 package com.victorvilar.projetoempresa.dto.customer;
 
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.dto.contract.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 
@@ -17,7 +17,7 @@ public class CustomerResponseDto {
     private String nameCompanyName;
     private String cpfCnpj;
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
-    private List<ContractResponseDto> contracts = new ArrayList<ContractResponseDto>();
+    private List<ContractResponseImplDto> contracts = new ArrayList<ContractResponseImplDto>();
     private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
     private List<ServiceOrderResponseDto> serviceOrders = new ArrayList<>();
 
@@ -54,11 +54,11 @@ public class CustomerResponseDto {
         this.supervisors = supervisors;
     }
 
-    public List<ContractResponseDto> getContracts() {
+    public List<ContractResponseImplDto> getContracts() {
         return this.contracts;
     }
 
-    public void setContracts(List<ContractResponseDto> contratos) {
+    public void setContracts(List<ContractResponseImplDto> contratos) {
         this.contracts = contratos;
     }
 

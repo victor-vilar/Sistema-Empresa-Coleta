@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.dto.bill;
 
+import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;

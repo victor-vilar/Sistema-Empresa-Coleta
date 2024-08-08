@@ -1,8 +1,8 @@
 package com.victorvilar.projetoempresa.mappers;
 
-import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractRequestDto;
+import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
-import com.victorvilar.projetoempresa.dto.contract.ItemContractDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ItemContractMapper {
@@ -29,7 +28,7 @@ public class ItemContractMapper {
     }
 
 
-    public ItemContract toItemContract(ItemContractDto itemDto){
+    public ItemContract toItemContract(ItemContractRequestDto itemDto){
         ItemContract item = this.mapper.map(itemDto,ItemContract.class);
         item.setResidue(this.residueService.findById(itemDto.getResidue()));
         item.setEquipment(this.equipmentService.findById(itemDto.getEquipment()));
@@ -40,12 +39,12 @@ public class ItemContractMapper {
         return item;
     }
 
-    public ItemContractResponseDto toItemContractResponseDto(ItemContract item){
-        return this.mapper.map(item,ItemContractResponseDto.class);
+    public ItemContractResponseImplDto toItemContractResponseDto(ItemContract item){
+        return this.mapper.map(item, ItemContractResponseImplDto.class);
     }
 
-    public List<ItemContract> toItemContractList(List<? extends ItemContractDto> list){
-           return list.stream().map(e -> this.toItemContract(e)).collect(Collectors.toList());
+    public List<ItemContract> toItemContractList(List<? extends ItemContractRequestDto> list){
+           return list.stream().map(this::toItemContract).toList();
     }
 
 
