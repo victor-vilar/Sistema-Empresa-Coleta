@@ -1,15 +1,15 @@
 package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.domain.Bill;
-import com.victorvilar.projetoempresa.dto.bill.BillCreateDto;
-import com.victorvilar.projetoempresa.dto.bill.BillUpdateDto;
-import com.victorvilar.projetoempresa.dto.bill.BillDto;
-import com.victorvilar.projetoempresa.dto.bill.BillResponseDto;
+import com.victorvilar.projetoempresa.domain.Instalment;
+import com.victorvilar.projetoempresa.dto.bill.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,16 +28,36 @@ class BillMapperTest {
     BillUpdateDto billUpdateDto2;
     BillResponseDto billResponseDto1;
     BillResponseDto billResponseDto2;
+    Instalment instalment1;
+    Instalment instalment2;
 
     @BeforeEach
     void setUp(){
 
-        bill1 = new Bill(1L,"Supplier1","111", List.of(),"conta1");
-        bill2 = new Bill(2L,"Supplier2","222", List.of(),"conta2");
+        bill1 = new Bill();
+        bill2 = new Bill();
+        instalment1 = new Instalment(1L,bill1, LocalDate.now(), BigDecimal.valueOf(10),LocalDate.now(),BigDecimal.valueOf(10),"/");
+        instalment2 = new Instalment(2L,bill1, LocalDate.now(), BigDecimal.valueOf(10),LocalDate.now(),BigDecimal.valueOf(10),"/");
+
+
+        bill1.setId(1L);
+        bill1.setSupplier("Supplier1");
+        bill1.setNoteNumber("111");
+        bill1.setDescription("conta1");
+        bill1.addNewInstalment(instalment1);
+
+        bill2.setId(2L);
+        bill2.setSupplier("Supplier2");
+        bill2.setNoteNumber("222");
+        bill2.setDescription("conta2");
+        bill2.addNewInstalment(instalment2);
+
         billCreateDto1 = new BillCreateDto("Supplier1","111","conta1", List.of());
         billCreateDto2 = new BillCreateDto("Supplier2","222","conta2", List.of());
         billUpdateDto1 = new BillUpdateDto(1L,"Supplier1","111","conta1", List.of());
         billUpdateDto2 = new BillUpdateDto(2L,"Supplier2","222","conta2", List.of());
+
+
     }
 
     @Test
@@ -76,6 +96,7 @@ class BillMapperTest {
     void toBillResponseDto() {
         BillResponseDto billResponseDto = this.mapper.toBillResponseDto(bill1);
         assertEquals(billResponseDto.getId(),bill1.getId());
+        assertEquals(billResponseDto.getInstalments().get(0).getClass(), InstalmentResponseDto.class);
         compare(billResponseDto,bill1);
     }
 
@@ -85,6 +106,7 @@ class BillMapperTest {
         List<Bill> bills = List.of(bill1,bill2);
         for(int i = 0; i < bills.size(); i++){
             assertEquals(billsResponseDto.get(i).getId(),bills.get(i).getId());
+            assertEquals(billsResponseDto.get(i).getInstalments().get(0).getClass(), InstalmentResponseDto.class);
             compare(billsResponseDto.get(i),bills.get(i));
         }
 
