@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InstalmentResponseDto {
+public class InstalmentResponseDto implements InstalmentDto {
 
     private Long id;
     private LocalDate dueDate;

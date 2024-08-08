@@ -14,6 +14,16 @@ public class BillUpdateDto implements BillDto {
     private String description;
     private List<InstalmentUpdateDto> instalments;
 
+    public BillUpdateDto(){};
+
+    public BillUpdateDto(Long id, String supplier, String noteNumber, String description, List<InstalmentUpdateDto> instalments) {
+        this.id = id;
+        this.supplier = supplier;
+        this.noteNumber = noteNumber;
+        this.description = description;
+        this.instalments = instalments;
+    }
+
     public Long getId() {
         return id;
     }

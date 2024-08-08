@@ -1,8 +1,10 @@
 package com.victorvilar.projetoempresa.dto.bill;
 
+import com.victorvilar.projetoempresa.domain.Bill;
+
 import java.util.List;
 
-public class BillResponseDto {
+public class BillResponseDto implements BillDto {
 
     private Long id;
     private String supplier;

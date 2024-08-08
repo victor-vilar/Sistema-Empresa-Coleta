@@ -12,6 +12,15 @@ public class BillCreateDto implements BillDto {
     private String description;
     private List<InstalmentCreateDto> instalments;
 
+    public BillCreateDto(){};
+
+    public BillCreateDto(String supplier, String noteNumber, String description, List<InstalmentCreateDto> instalments) {
+        this.supplier = supplier;
+        this.noteNumber = noteNumber;
+        this.description = description;
+        this.instalments = instalments;
+    }
+
     public String getSupplier() {
         return supplier;
     }

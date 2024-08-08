@@ -16,12 +16,10 @@ import java.util.List;
 public class BillMapper {
 
     private final ModelMapper mapper;
-    private final InstalmentMapper instalmentMapper;
 
     @Autowired
-    public BillMapper(ModelMapper mapper, InstalmentMapper instalmentMapper){
+    public BillMapper(ModelMapper mapper){
         this.mapper = mapper;
-        this.instalmentMapper = instalmentMapper;
     }
 
     public Bill toBill(BillDto billDto){
