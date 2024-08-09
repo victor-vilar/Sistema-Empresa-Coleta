@@ -3,6 +3,7 @@ package com.victorvilar.projetoempresa.mappers;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractRequestDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.domain.ItemContract;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractResponseDto;
 import com.victorvilar.projetoempresa.services.EquipmentService;
 import com.victorvilar.projetoempresa.services.ResidueService;
 import org.modelmapper.ModelMapper;
@@ -39,8 +40,12 @@ public class ItemContractMapper {
         return item;
     }
 
-    public ItemContractResponseImplDto toItemContractResponseDto(ItemContract item){
+    public ItemContractResponseDto toItemContractResponseDto(ItemContract item){
         return this.mapper.map(item, ItemContractResponseImplDto.class);
+    }
+
+    public List<ItemContractResponseDto> toItemContractResponseDto(List<ItemContract> contracts){
+        return  contracts.stream().map(this::toItemContractResponseDto).toList();
     }
 
     public List<ItemContract> toItemContractList(List<? extends ItemContractRequestDto> list){

@@ -51,6 +51,14 @@ public class CollectionFrequency implements Serializable {
         this.days = days.stream().map(day -> day.getId()).collect(Collectors.toSet());
     }
 
+    public void addNewDay(Weekday day){
+        this.days.add(day.getId());
+    }
+
+    public void removeDay(Weekday day){
+        if(this.days.contains(day.getId())) this.days.remove(day.getId());
+    }
+
     public Set<Weekday> getDays() {
         return this.days.stream().map(day -> Weekday.getByDay(day)).collect(Collectors.toSet());
     }
@@ -62,6 +70,8 @@ public class CollectionFrequency implements Serializable {
     public String getSchedule() {
         return Schedule.getById(schedule).getName();
     }
+
+
 
 
     @Override

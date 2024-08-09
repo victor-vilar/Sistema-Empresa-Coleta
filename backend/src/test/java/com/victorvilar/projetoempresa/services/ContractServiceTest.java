@@ -378,8 +378,8 @@ class ContractServiceTest {
 
         contractUpdateDto1.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo"),
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo")));
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS),
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS)));
 
 
         contractUpdateDto2 = ContractUpdateDto.builder()
@@ -392,8 +392,8 @@ class ContractServiceTest {
 
         contractUpdateDto2.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo"),
-                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo")));
+                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS),
+                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS)));
     }
     private void setUpContractResponse(){
 

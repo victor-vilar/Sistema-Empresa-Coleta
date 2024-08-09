@@ -38,13 +38,16 @@ public class ItemContractUpdateDto implements ItemContractRequestDto {
 
     }
 
-    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
+    public ItemContractUpdateDto(Long id, Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description,Integer equipmentQuantity, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
         this.itemValue = itemValue;
         this.description=description;
+        this.equipmentQuantity = equipmentQuantity;
+        this.collectionFrequency = collectionFrequency;
+        this.measurementUnit = measurementUnit;
     }
 
 
