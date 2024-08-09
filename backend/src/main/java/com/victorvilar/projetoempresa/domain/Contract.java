@@ -123,6 +123,7 @@ public class Contract implements Serializable {
 	}
 
 	public void setContractStatus(ContractStatus status){
+		if(status == null) return;
 		this.status = status.getId();
 	}
 

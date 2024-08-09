@@ -3,6 +3,8 @@ package com.victorvilar.projetoempresa.dto.contract;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractDto;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractRequestDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractUpdateDto {
+public class ContractUpdateDto implements ContractRequestDto {
 
     @NotNull(message ="A contract to update must have a number")
     private Long id;
@@ -36,6 +38,17 @@ public class ContractUpdateDto {
     @NotNull
     private ContractStatus contractStatus;
 
+    public ContractUpdateDto(){};
+
+    public ContractUpdateDto(Long id, String number, LocalDate beginDate, LocalDate endDate, List<ItemContractUpdateDto> itens, String customerId, String contractStatus) {
+        this.id = id;
+        this.number = number;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.customerId = customerId;
+        this.itens = itens;
+        this.setContractStatus(contractStatus);
+    }
 
     public List<ItemContractUpdateDto> getItens() {
         return itens;

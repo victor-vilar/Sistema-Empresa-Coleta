@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractDto;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractRequestDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractCreateDto implements ContractDto {
+public class ContractCreateDto implements ContractRequestDto {
 
 
 

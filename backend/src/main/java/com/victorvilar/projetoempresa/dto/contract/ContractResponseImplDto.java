@@ -1,13 +1,14 @@
 package com.victorvilar.projetoempresa.dto.contract;
 
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractDto;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractResponseDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContractResponseImplDto implements ContractDto {
+public class ContractResponseImplDto implements ContractResponseDto {
 
 
     private Long id;
