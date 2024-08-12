@@ -34,7 +34,7 @@ class ContractMapperTest {
 
     @BeforeEach
     void setUp(){
-        customer1 = new Customer("82508641073","EMPRESA1");
+        customer1 = new Customer("82508641073","EMPRESA1",true);
 
         itemContract1 = new ItemContract();
         itemContract1.setMeasurementUnit(MeasurementUnit.LITROS);

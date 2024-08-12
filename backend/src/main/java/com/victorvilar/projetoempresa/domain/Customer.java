@@ -43,9 +43,10 @@ public class Customer implements Serializable {
 	public Customer() {
 
 	}
-	public Customer(String cpfCnpj,String nameCompanyName) {
+	public Customer(String cpfCnpj,String nameCompanyName, boolean isActive) {
 		this.cpfCnpj = cpfCnpj;
 		this.nameCompanyName = nameCompanyName;
+		this.isActive = isActive;
 	}
 
 	public String getCpfCnpj() {

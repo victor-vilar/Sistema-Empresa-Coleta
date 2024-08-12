@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.victorvilar.projetoempresa.business.rules.customer.CustomerRegisterRuler;
 import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
-import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
-import com.victorvilar.projetoempresa.util.CpfCnpjValidator;
 
 import jakarta.transaction.Transactional;
 

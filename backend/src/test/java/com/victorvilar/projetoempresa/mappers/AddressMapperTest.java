@@ -33,7 +33,7 @@ class AddressMapperTest {
 
     @BeforeEach
     void setUp(){
-        customer = new Customer("82508641073","EMPRESA1");
+        customer = new Customer("82508641073","EMPRESA1",true);
         address = new Address(1L,"ENDERECO1","10","10","111111","CIDADE1","CD",customer,true);
         address2 = new Address(2L,"ENDERECO2","20","20","222222","CIDADE2","CD",customer,true);
         updateDto = new AddressUpdateDto();

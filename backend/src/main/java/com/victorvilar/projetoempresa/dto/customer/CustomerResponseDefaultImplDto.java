@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.dto.customer;
 
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
+import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 
@@ -11,24 +12,27 @@ import java.util.List;
 /**
  * Class created to not expose the models of the API
  */
-public class CustomerResponseDto {
+public class CustomerResponseDefaultImplDto implements CustomerResponseDto {
 
 
     private String nameCompanyName;
     private String cpfCnpj;
+    private boolean isActive;
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
     private List<ContractResponseImplDto> contracts = new ArrayList<ContractResponseImplDto>();
     private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
     private List<ServiceOrderResponseDto> serviceOrders = new ArrayList<>();
 
-    public CustomerResponseDto(){
+    public CustomerResponseDefaultImplDto(){
 
     }
 
-    public CustomerResponseDto(String cpfCnpj, String nameCompanyName){
+    public CustomerResponseDefaultImplDto(String cpfCnpj, String nameCompanyName, boolean isActive){
         this.cpfCnpj = cpfCnpj;
         this.nameCompanyName = nameCompanyName;
+        this.isActive = isActive;
     }
+
 
     public String getNameCompanyName() {
         return nameCompanyName;
@@ -44,6 +48,14 @@ public class CustomerResponseDto {
 
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
+    }
+
+    public void setActive(Boolean active){
+        this.isActive = active;
+    }
+
+    public boolean isActive(){
+        return this.isActive;
     }
 
     public List<SupervisorResponseDto> getSupervisors(){

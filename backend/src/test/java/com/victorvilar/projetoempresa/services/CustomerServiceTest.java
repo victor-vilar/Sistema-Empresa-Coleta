@@ -4,9 +4,9 @@ import com.victorvilar.projetoempresa.business.rules.customer.CustomerAlreadyExi
 import com.victorvilar.projetoempresa.business.rules.customer.CustomerCpfCnpjNotValid;
 import com.victorvilar.projetoempresa.business.rules.customer.CustomerRegisterRuler;
 import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
-import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.domain.Customer;
-import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
+import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
@@ -27,7 +27,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -104,9 +103,9 @@ class CustomerServiceTest {
     void addNewCustomer_Successfully_WhenPassingValidCpf(){
 
 
-        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
-        when(repository.save(any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
-        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName(),true));
+        when(repository.save(any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName(),true));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDefaultImplDto(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName(),true));
 
         CustomerResponseDto savedCustomer = customerService.save(cpfCustomer);
         assertEquals(cpfCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
@@ -118,9 +117,9 @@ class CustomerServiceTest {
     @DisplayName("save successfully when passing cnpj")
     void addNewCustomer_Successfully_WhenPassingValidCnpj(){
 
-        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
-        when(repository.save(any(Customer.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
-        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName()));
+        when(mapper.toCustomer(any(CustomerCreateDto.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName(),true));
+        when(repository.save(any(Customer.class))).thenReturn(new Customer(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName(),true));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDefaultImplDto(cnpjCustomer.getCpfCnpj(),cnpjCustomer.getNameCompanyName(),true));
 
         CustomerResponseDto savedCustomer = customerService.save(cnpjCustomer);
         assertEquals(cnpjCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
@@ -140,7 +139,7 @@ class CustomerServiceTest {
     @DisplayName("find customer by cpfCnpj when successfull")
     void find_Successfully_WhenPassValidCpfCnpj(){
 
-        when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName())));
+        when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName(),true)));
         Customer savedCustomer = customerService.findCustomerById("86570192051");
         assertEquals(cpfCustomer.getCpfCnpj(),savedCustomer.getCpfCnpj());
         assertEquals(cpfCustomer.getNameCompanyName(),savedCustomer.getNameCompanyName());
@@ -163,8 +162,8 @@ class CustomerServiceTest {
     @DisplayName("update customer when successfull")
     void update_Successfully_WhenPassValidCpfCnpj(){
         when(repository.findByCpfCnpj(Mockito.anyString())).thenReturn(Optional.of(Mockito.mock(Customer.class)));
-        when(repository.save(Mockito.any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName()));
-        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDto(cpfCustomer.getCpfCnpj(), cpfCustomer.getNameCompanyName()));
+        when(repository.save(Mockito.any(Customer.class))).thenReturn(new Customer(cpfCustomer.getCpfCnpj(),cpfCustomer.getNameCompanyName(),true));
+        when(mapper.toCustomerResponseDto(any(Customer.class))).thenReturn(new CustomerResponseDefaultImplDto(cpfCustomer.getCpfCnpj(), cpfCustomer.getNameCompanyName(),true));
         CustomerResponseDto updatedCustomer = this.customerService.update(cpfCustomer);
         assertNotNull(updatedCustomer);
         assertEquals(updatedCustomer.getNameCompanyName(),cpfCustomer.getNameCompanyName());
