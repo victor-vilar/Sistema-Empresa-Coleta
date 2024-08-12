@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Customer service tests class")
+@DisplayName("JWT service tests class")
 class JwtServiceTest {
 
     @InjectMocks
