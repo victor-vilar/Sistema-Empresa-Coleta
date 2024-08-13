@@ -14,7 +14,7 @@ public class AddressCreateDto implements AddressDto {
     private String state;
     private boolean requiresCollection;
     @NotBlank(message="An address must have a customer")
-    private String customer;
+    private String customerId;
 
 
     public AddressCreateDto() {
@@ -38,7 +38,7 @@ public class AddressCreateDto implements AddressDto {
         this.city = city;
         this.state = state;
         this.requiresCollection = requiresCollection;
-        this.customer = customer;
+        this.customerId = customer;
     }
 
 
@@ -98,12 +98,12 @@ public class AddressCreateDto implements AddressDto {
         this.requiresCollection = requiresCollection;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public static AddressCreateBuilder builder(){
@@ -170,7 +170,7 @@ public class AddressCreateDto implements AddressDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomer(this.customerId);
+            address.setCustomerId(this.customerId);
             return address;
         }
     }

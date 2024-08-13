@@ -72,7 +72,7 @@ class AddressMapperTest {
         assertEquals(addresses.size(),responses.size());
         for(int i = 0 ; i < addresses.size(); i ++){
             assertEquals(responses.get(i).getId(),addresses.get(i).getId());
-            assertEquals(responses.get(i).getCustomer(),address.getCustomer().getCpfCnpj());
+            assertEquals(responses.get(i).getCustomerId(),address.getCustomer().getCpfCnpj());
             compare(responses.get(i),addresses.get(i));
         }
     }

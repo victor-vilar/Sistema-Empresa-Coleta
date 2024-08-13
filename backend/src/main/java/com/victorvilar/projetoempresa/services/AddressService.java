@@ -50,7 +50,7 @@ public class AddressService {
 
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
-        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomer());
+        Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
         customer.addNewAddress(address);
         return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }

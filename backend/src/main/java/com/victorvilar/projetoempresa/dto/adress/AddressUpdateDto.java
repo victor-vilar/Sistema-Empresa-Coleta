@@ -16,12 +16,12 @@ public class AddressUpdateDto implements AddressDto {
     private String state;
     private boolean requiresCollection;
     @NotBlank(message="An address must have a customer")
-    private String customer;
+    private String customerId;
 
     public AddressUpdateDto() {
     }
 
-    public AddressUpdateDto(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, boolean requiresCollection, String customer) {
+    public AddressUpdateDto(Long id, String addressName, String addressNumber, String complement, String zipCode, String city, String state, boolean requiresCollection, String customerId) {
         this.id = id;
         this.addressName = addressName;
         this.addressNumber = addressNumber;
@@ -30,7 +30,7 @@ public class AddressUpdateDto implements AddressDto {
         this.city = city;
         this.state = state;
         this.requiresCollection = requiresCollection;
-        this.customer = customer;
+        this.customerId = customerId;
     }
 
     public Long getId() {
@@ -97,12 +97,12 @@ public class AddressUpdateDto implements AddressDto {
         this.requiresCollection = requiresCollection;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public AddressUpdateDtoBuilder builder(){
@@ -169,7 +169,7 @@ public class AddressUpdateDto implements AddressDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomer(this.customerId);
+            address.setCustomerId(this.customerId);
             return address;
         }
     }

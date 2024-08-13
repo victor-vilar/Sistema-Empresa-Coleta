@@ -30,7 +30,7 @@ public class ModelMapperConfiguration {
 
         mapper.typeMap(Address.class, AddressResponseDto.class)
                 .addMappings(maper ->{
-                    maper.map(src -> src.getCustomer().getCpfCnpj(), AddressResponseDto::setCustomer);
+                    maper.map(src -> src.getCustomer().getCpfCnpj(), AddressResponseDto::setCustomerId);
                 });
 
         mapper.typeMap(ItemContract.class, ItemContractResponseImplDto.class)

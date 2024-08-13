@@ -16,7 +16,7 @@ public interface AddressDto {
     public void setState(String state);
     public boolean isRequiresCollection();
     public void setRequiresCollection(boolean requiresCollection);
-    public String getCustomer();
-    public void setCustomer(String customer);
+    public String getCustomerId();
+    public void setCustomerId(String customerId);
 
 }

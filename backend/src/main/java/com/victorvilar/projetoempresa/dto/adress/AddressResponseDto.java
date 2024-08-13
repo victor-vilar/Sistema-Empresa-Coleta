@@ -11,7 +11,7 @@ public class AddressResponseDto implements AddressDto {
     private String zipCode;
     private String city;
     private String state;
-    private String customer;
+    private String customerId;
     private boolean requiresCollection;
 
     public AddressResponseDto() {
@@ -24,7 +24,7 @@ public class AddressResponseDto implements AddressDto {
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
-        this.customer = clientId;
+        this.customerId = clientId;
         this.id = id;
         this.requiresCollection = requiresCollection;
     }
@@ -85,12 +85,12 @@ public class AddressResponseDto implements AddressDto {
         this.state = state;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(String clientId) {
-        this.customer = clientId;
+    public void setCustomerId(String clientId) {
+        this.customerId = clientId;
     }
 
     public boolean isRequiresCollection() {
@@ -173,7 +173,7 @@ public class AddressResponseDto implements AddressDto {
             address.setCity(this.city);
             address.setState(this.state);
             address.setRequiresCollection(this.requiresCollection);
-            address.setCustomer(this.customerId);
+            address.setCustomerId(this.customerId);
             return address;
         }
     

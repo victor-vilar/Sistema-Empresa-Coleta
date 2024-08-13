@@ -123,7 +123,7 @@ class AddressServiceTest {
                 .build();
 
 
-        addressCreateDto1.setCustomer(address1.getCustomer().getCpfCnpj());
+        addressCreateDto1.setCustomerId(address1.getCustomer().getCpfCnpj());
     }
 
     @Test
@@ -149,7 +149,7 @@ class AddressServiceTest {
         Assertions.assertNotNull(list);
         Assertions.assertFalse(list.isEmpty());
         Assertions.assertEquals(1,list.size());
-        Assertions.assertEquals(customer1.getCpfCnpj(),list.get(0).getCustomer());
+        Assertions.assertEquals(customer1.getCpfCnpj(),list.get(0).getCustomerId());
     }
 
     @Test
