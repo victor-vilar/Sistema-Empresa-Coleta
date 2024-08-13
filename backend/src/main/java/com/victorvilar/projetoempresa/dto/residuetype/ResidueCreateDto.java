@@ -1,5 +1,6 @@
 package com.victorvilar.projetoempresa.dto.residuetype;
 
+import com.victorvilar.projetoempresa.dto.residuetype.interfaces.ResidueDto;
 import jakarta.validation.constraints.NotNull;
 
 public class ResidueCreateDto implements ResidueDto {

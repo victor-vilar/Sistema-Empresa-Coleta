@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.dto.residuetype;
 
-public class ResidueResponseDto {
+import com.victorvilar.projetoempresa.dto.residuetype.interfaces.ResidueDto;
+
+public class ResidueResponseDto implements ResidueDto {
 
 
     private Long id;

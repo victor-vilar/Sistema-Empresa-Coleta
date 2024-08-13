@@ -27,8 +27,8 @@ class EquipmentMapperTest {
 
     @BeforeEach
     void setUp(){
-        equipment1 = new Equipment("Caçamba 5m³",5);
-        equipment2 = new Equipment("Caçamba 15m³",15);
+        equipment1 = new Equipment(1L,"Caçamba 5m³",5);
+        equipment2 = new Equipment(2L,"Caçamba 15m³",15);
         equipmentCreateDto = new EquipmentCreateDto("Caçamba 20m³",20);
         equipmentUpdateDto = new EquipmentUpdateDto(1L,"Caçamba 30m³",30);
 
@@ -61,6 +61,7 @@ class EquipmentMapperTest {
         List<EquipmentResponseDto> dtos = mapper.toEquipmentResponseDtoList(List.of(equipment1,equipment2));
         List<Equipment> equipments = List.of(equipment1,equipment2);
         for(int i = 0; i < dtos.size() ; i++){
+            assertEquals(dtos.get(i).getId(),equipments.get(i).getId());
             compare(dtos.get(i),equipments.get(i));
         }
     }

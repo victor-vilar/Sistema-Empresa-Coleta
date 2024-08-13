@@ -2,11 +2,9 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.Residue;
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueCreateDto;
-import com.victorvilar.projetoempresa.dto.residuetype.ResidueDto;
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.dto.residuetype.ResidueUpdateDto;
 import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ResidueMapper;
 import com.victorvilar.projetoempresa.repository.ResidueRepository;
 import org.junit.jupiter.api.Assertions;
