@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.dto.equipment;
 
-public class EquipmentResponseDto {
+import com.victorvilar.projetoempresa.dto.equipment.interfaces.EquipmentDto;
+
+public class EquipmentResponseDto implements EquipmentDto {
 
 
     private Long id;

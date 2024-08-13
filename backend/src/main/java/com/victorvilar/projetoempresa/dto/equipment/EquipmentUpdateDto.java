@@ -1,9 +1,10 @@
 package com.victorvilar.projetoempresa.dto.equipment;
 
+import com.victorvilar.projetoempresa.dto.equipment.interfaces.EquipmentDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class EquipmentUpdateDto implements EquipmentDto{
+public class EquipmentUpdateDto implements EquipmentDto {
 
     @NotNull(message="An equipment to update must have an id")
     private Long id;

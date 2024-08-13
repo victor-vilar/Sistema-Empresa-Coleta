@@ -5,7 +5,6 @@ import com.victorvilar.projetoempresa.dto.equipment.EquipmentCreateDto;
 import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
 import com.victorvilar.projetoempresa.dto.equipment.EquipmentUpdateDto;
 import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
-import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
 import com.victorvilar.projetoempresa.repository.EquipmentRepository;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
 
@@ -23,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
