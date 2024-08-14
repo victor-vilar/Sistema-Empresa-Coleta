@@ -68,13 +68,14 @@ class ContractMapperTest {
     void toContract_WhenPassingContractCreateDto() {
         Contract contract = this.mapper.toContract(contractCreateDto);
         contract.getItens().forEach(e -> assertEquals(e.getClass(),ItemContract.class ));
+        assertNull(contract.getId());
         compareRequestDto(contractCreateDto,contract);
     }
 
     @Test
     void toContract_WhenPassingContractUpdateDto() {
         Contract contract = this.mapper.toContract(contractUpdateDto);
-        contract.getItens().forEach(e -> assertEquals(e.getClass(),ItemContract.class ));
+        contract.getItens().forEach(e -> assertEquals(e.getClass(),ItemContract.class));
         compareRequestDto(contractUpdateDto,contract);
     }
 
@@ -113,6 +114,7 @@ class ContractMapperTest {
         assertEquals(dto.getNumber(),contract.getNumber());
         assertEquals(dto.getBeginDate(),contract.getBeginDate());
         assertEquals(dto.getEndDate(),contract.getEndDate());
+
     }
 
 

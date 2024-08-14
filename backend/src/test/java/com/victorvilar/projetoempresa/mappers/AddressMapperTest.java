@@ -45,6 +45,7 @@ class AddressMapperTest {
         createDto = new AddressCreateDto("ENDERECO1","10","10","25085858","CIDADE1","CD",true,"82508641073");
         Address address1 = this.mapper.toAddress(createDto);
         assertEquals(address1.getClass(),address.getClass());
+        assertNull(address1.getId());
         compare(createDto,address1);
     }
 
@@ -85,7 +86,6 @@ class AddressMapperTest {
         assertEquals(responseDto.getZipCode(),address.getZipCode());
         assertEquals(responseDto.getState(),address.getState());
         assertEquals(responseDto.isRequiresCollection(),address.isRequiresCollection());
-
     }
 
 
