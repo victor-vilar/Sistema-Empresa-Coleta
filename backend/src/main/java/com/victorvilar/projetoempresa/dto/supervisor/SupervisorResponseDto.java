@@ -1,13 +1,13 @@
 package com.victorvilar.projetoempresa.dto.supervisor;
 
-public class SupervisorResponseDto {
+public class SupervisorResponseDto implements SupervisorDto{
 
     private Long id;
     private String name;
     private String role;
     private String phoneNumber;
     private String email;
-    private String clientId;
+    private String customerId;
 
 
     public SupervisorResponseDto() {
@@ -50,10 +50,10 @@ public class SupervisorResponseDto {
     }
 
     public String getCustomerId() {
-        return clientId;
+        return customerId;
     }
     public void setCustomerId(String clientId) {
-        this.clientId = clientId;
+        this.customerId = clientId;
     }
 
     public static SupervisorResponseDtoBuilder builder(){

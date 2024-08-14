@@ -9,6 +9,7 @@ import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
+import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,10 @@ public class ModelMapperConfiguration {
         mapper.typeMap(Supervisor.class, SupervisorResponseDto.class).
                 addMappings(maper -> {
                     maper.map(src -> src.getCustomer().getCpfCnpj(),SupervisorResponseDto::setCustomerId);
+                });
+        mapper.typeMap(SupervisorCreateDto.class, Supervisor.class)
+                .addMappings(maper -> {
+                    maper.skip((supervisor, o) -> supervisor.getId());
                 });
 
         mapper.typeMap(Contract.class, ContractResponseImplDto.class)
