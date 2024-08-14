@@ -81,14 +81,14 @@ class ContractMapperTest {
 
     @Test
     void toContractResponseDto() {
-        ContractResponseImplDto dto = this.mapper.toContractResponseDto(contract1);
+        ContractResponseDto dto = this.mapper.toContractResponseDto(contract1);
         dto.getItens().forEach(e-> assertEquals(e.getClass(), ItemContractResponseImplDto.class ));
         compareResponseDto(dto,contract1);
     }
 
     @Test
     void toContractResponseDtoList() {
-        List<ContractResponseImplDto> dtos = this.mapper.toContractResponseDtoList(List.of(contract1,contract2));
+        List<ContractResponseDto> dtos = this.mapper.toContractResponseDtoList(List.of(contract1,contract2));
         List<Contract> contracts = List.of(contract1,contract2);
         assertEquals(dtos.size(),contracts.size());
         dtos.forEach(dto -> dto.getItens().forEach(e-> assertEquals(e.getClass(), ItemContractResponseImplDto.class)));

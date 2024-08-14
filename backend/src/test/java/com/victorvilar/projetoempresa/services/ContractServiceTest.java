@@ -8,6 +8,7 @@ import com.victorvilar.projetoempresa.dto.contract.*;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
+import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractResponseDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import com.victorvilar.projetoempresa.enums.Weekday;
@@ -108,7 +109,7 @@ class ContractServiceTest {
     public void getAll_WhenSuccessfull() {
         when(this.contractRepository.findAll()).thenReturn(List.of(contract1, contract2));
         when(this.contractMapper.toContractResponseDtoList(Mockito.anyList())).thenReturn(List.of(contractResponseImplDto1, contractResponseImplDto1));
-        List<ContractResponseImplDto> list = this.contractService.getAll();
+        List<ContractResponseDto> list = this.contractService.getAll();
         Assertions.assertNotNull(list);
         Assertions.assertEquals(2, list.size());
 
@@ -119,7 +120,7 @@ class ContractServiceTest {
     public void getAllByCustomer_WhenSuccessfull() {
         when(this.contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
         when(this.contractMapper.toContractResponseDtoList(List.of(contract1, contract2))).thenReturn(List.of(contractResponseImplDto1, contractResponseImplDto2));
-        List<ContractResponseImplDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
+        List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
         Assertions.assertNotNull(list);
         Assertions.assertEquals(2, list.size());
         Assertions.assertEquals("1000", list.get(0).getNumber());
@@ -130,7 +131,7 @@ class ContractServiceTest {
     @DisplayName("Get all by customer id when customer not found")
     public void getAllByCustomer_ReturnEmpty_WhenCustomerNotFound() {
         when(contractRepository.findByCustomerCpfCnpj(anyString())).thenReturn(anyList());
-        List<ContractResponseImplDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
+        List<ContractResponseDto> list = this.contractService.getAllByCustomerId(customer.getCpfCnpj());
         Assertions.assertTrue(list.isEmpty());
     }
 
@@ -140,8 +141,7 @@ class ContractServiceTest {
         when(this.contractRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(contract1));
         when(this.contractMapper.toContractResponseDto(any(Contract.class))).thenReturn(contractResponseImplDto1);
 
-        ContractResponseImplDto contractResponseImplDto = this.contractService.getById(2L);
-        Assertions.assertEquals(contract1.getId(), contractResponseImplDto.getId());
+        ContractResponseDto contractResponseImplDto = this.contractService.getById(2L);
         Assertions.assertEquals(contract1.getBeginDate(), contractResponseImplDto.getBeginDate());
         Assertions.assertEquals(contract1.getEndDate(), contractResponseImplDto.getEndDate());
 
@@ -195,7 +195,7 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(contract1))
                 .thenReturn(contractResponseImplDto1);
 
-        ContractResponseImplDto contractResponseImplDto = this.contractService.save(contractCreateDto1);
+        ContractResponseDto contractResponseImplDto = this.contractService.save(contractCreateDto1);
 
         verify(this.customerRepository, times(1)).save(any(Customer.class));
         Assertions.assertEquals(contract1.getNumber(), contractResponseImplDto.getNumber());
@@ -215,7 +215,7 @@ class ContractServiceTest {
         when(this.contractMapper.toContractResponseDto(any(Contract.class)))
                 .thenReturn(contractResponseImplDto1);
 
-        ContractResponseImplDto contractResponseImplDto = this.contractService.addNewItemToContract(1L, itemContractCreateDto1);
+        ContractResponseDto contractResponseImplDto = this.contractService.addNewItemToContract(1L, itemContractCreateDto1);
 
 
         Assertions.assertEquals(contractResponseImplDto1.getNumber(), contractResponseImplDto.getNumber());
@@ -254,7 +254,7 @@ class ContractServiceTest {
                 .thenReturn(list);
         when(this.contractMapper.toContractResponseDto(any()))
                 .thenReturn(contractResponseImplDto1);
-        ContractResponseImplDto contractResponseImplDto = this.contractService.update(contractUpdateDto1);
+        ContractResponseDto contractResponseImplDto = this.contractService.update(contractUpdateDto1);
 
         verify(this.contractRepository,times(1)).save(any());
         Assertions.assertFalse(contractResponseImplDto.getItens().isEmpty());
@@ -288,7 +288,7 @@ class ContractServiceTest {
         when(this.itemContractRepository.findById(any()))
                 .thenReturn(Optional.of(new ItemContract()));
 
-        ContractResponseImplDto contractResponseImplDto = this.contractService.update(contractUpdateDto1);
+        ContractResponseDto contractResponseImplDto = this.contractService.update(contractUpdateDto1);
         verify(this.contractRepository,times(1)).save(any());
 
         Assertions.assertFalse(contractResponseImplDto.getItens().isEmpty());
