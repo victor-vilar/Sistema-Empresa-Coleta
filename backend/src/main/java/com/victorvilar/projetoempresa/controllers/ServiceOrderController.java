@@ -44,10 +44,7 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDto));
     }
 
-    @PostMapping("/all")
-    public ResponseEntity<List<ServiceOrderResponseDto>> save(@Valid @RequestBody List<ServiceOrderCreateDto> createDtoList){
-        return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDtoList));
-    }
+
 
     @Override
     public ResponseEntity<Void> delete(Long id) {
@@ -60,11 +57,6 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDto));
     }
 
-
-    @PutMapping("/all")
-    public ResponseEntity<List<ServiceOrderResponseDto>> update(List<ServiceOrderUpdateDto> updateDtoList){
-        return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDtoList));
-    }
 
     @GetMapping("/count")
     public ResponseEntity<Integer> getEntityCount(){

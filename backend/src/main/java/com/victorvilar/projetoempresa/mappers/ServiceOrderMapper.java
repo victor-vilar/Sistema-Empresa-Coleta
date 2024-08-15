@@ -45,12 +45,6 @@ public class ServiceOrderMapper {
         return this.mapper.map(serviceDto,ServiceOrder.class);
     }
 
-
-    public List<ServiceOrder> toServiceOrder(List<? extends ServiceOrderDto> list){
-        return list.stream().map(this::toServiceOrder).toList();
-    }
-
-
     public ServiceOrderResponseDto toServiceOrderResponseDto(ServiceOrder order){
         ServiceOrderResponseDto responseDto = this.mapper.map(order,ServiceOrderResponseDto.class);
         responseDto.setCustomerId(order.getCustomer().getCpfCnpj());
@@ -61,27 +55,10 @@ public class ServiceOrderMapper {
         return list.stream().map(order -> this.toServiceOrderResponseDto(order)).toList();
     }
 
-
-    private void setBasicProperties(ServiceOrder serviceOrder, Long item, Long serviceAddress){
-
-        ItemContract itemContract = this.itemContractRepository.findById(item).get();
-        Customer customer = itemContract.getContract().getCustomer();
-        Address address = customer.getAddresses().stream().filter(add -> Objects.equals(add.getId(), serviceAddress)).findFirst().get();
-
-        serviceOrder.setItemContract(itemContract);
-        serviceOrder.setCustomer(customer);
-        serviceOrder.setAddress(address);
-
-    }
-
-
     private ServiceOrder setPropertiesAndUpdate(ServiceOrderUpdateDto updateDto){
 
         //search of the order in database
         ServiceOrder order = this.serviceOrderRepository.findById(updateDto.getId()).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
-
-        //set the basic properties, in this case it will update
-        this.setBasicProperties(order, updateDto.getItemContract(), updateDto.getAddress());
 
         if(updateDto.getVehicle() != null){
             Vehicle vehicle = this.vehicleRepository.findById(updateDto.getVehicle()).get();
@@ -94,12 +71,7 @@ public class ServiceOrderMapper {
             order.setServiceOrderStatus(ServiceOrderStatus.UNDONE);
         }
 
-        order.setIneaManifest(updateDto.getIneaManifest());
-        order.setServiceTime(updateDto.getServiceTime());
-        order.setObservation(updateDto.getObservation());
-        order.setOsFileUrl(updateDto.getOsFileUrl());
-        order.setAmountCollected(updateDto.getAmountCollected());
-        order.setServiceExecutedDate(updateDto.getServiceExecutedDate());
+
 
 
 
