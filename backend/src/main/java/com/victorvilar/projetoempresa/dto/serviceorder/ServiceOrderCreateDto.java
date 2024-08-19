@@ -52,13 +52,6 @@ public class ServiceOrderCreateDto implements ServiceOrderRequestDto {
         return this.vehicle;
     }
 
-    @Override
-    public ServiceOrderStatus getStatus() {
-        if(this.serviceExecutedDate != null && this.amountCollected != null){
-            return ServiceOrderStatus.DONE;
-        }
-        return ServiceOrderStatus.UNDONE;
-    }
 
     @Override
     public LocalDate getEmissionDate() {
@@ -71,7 +64,7 @@ public class ServiceOrderCreateDto implements ServiceOrderRequestDto {
     }
 
     @Override
-    public LocalDate serviceExecutedDate() {
+    public LocalDate getServiceExecutedDate() {
         return this.serviceExecutedDate;
     }
 
@@ -99,6 +92,15 @@ public class ServiceOrderCreateDto implements ServiceOrderRequestDto {
     public String getOsFileUrl() {
         return this.osFileUrl;
     }
+
+    @Override
+    public ServiceOrderStatus getStatus() {
+        if(this.serviceExecutedDate != null && this.amountCollected != null){
+            return ServiceOrderStatus.DONE;
+        }
+        return ServiceOrderStatus.UNDONE;
+    }
+
 
     public void setAddress(Long address) {
         this.address = address;

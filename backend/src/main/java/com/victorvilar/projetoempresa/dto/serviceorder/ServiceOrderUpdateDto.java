@@ -2,13 +2,15 @@ package com.victorvilar.projetoempresa.dto.serviceorder;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderRequestDto;
 import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class ServiceOrderUpdateDto implements ServiceOrderDto {
+public class ServiceOrderUpdateDto implements ServiceOrderRequestDto {
 
 
     @NotNull(message="A service order to update must have an id")
@@ -29,99 +31,116 @@ public class ServiceOrderUpdateDto implements ServiceOrderDto {
     private String osFileUrl;
     private ServiceOrderStatus serviceOrderStatus;
 
-
-
-    public ServiceOrderStatus getServiceOrderStatus() {
-        return serviceOrderStatus;
+    public Long getId(){
+        return this.id;
     }
-    public void setServiceOrderStatus(String serviceOrderStatus) {
-        this.serviceOrderStatus = ServiceOrderStatus.getByName(serviceOrderStatus);
+
+    @Override
+    public Long getItemContract() {
+        return this.itemContract;
     }
+
+    @Override
     public Long getAddress() {
-        return address;
+        return this.address;
     }
 
-    public void setAddress(Long address) {
-        this.address = address;
+    @Override
+    public Long getVehicle() {
+        return this.vehicle;
     }
 
-    public Long getId() {
-        return id;
+
+    @Override
+    public LocalDate getEmissionDate() {
+        return null;
+    }
+
+    @Override
+    public LocalDate getServiceExpectedDate() {
+        return this.serviceExpectedDate;
+    }
+
+    @Override
+    public LocalDate getServiceExecutedDate() {
+        return this.serviceExecutedDate;
+    }
+
+    @Override
+    public String getObservation() {
+        return this.observation;
+    }
+
+    @Override
+    public LocalTime getServiceTime() {
+        return this.serviceTime;
+    }
+
+    @Override
+    public Long getAmountCollected() {
+        return this.amountCollected;
+    }
+
+    @Override
+    public String getIneaManifest() {
+        return this.ineaManifest;
+    }
+
+    @Override
+    public String getOsFileUrl() {
+        return this.osFileUrl;
+    }
+
+    @Override
+    public ServiceOrderStatus getStatus() {
+        return this.serviceOrderStatus;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDate getServiceExpectedDate() {
-        return serviceExpectedDate;
-    }
-
     public void setServiceExpectedDate(LocalDate serviceExpectedDate) {
         this.serviceExpectedDate = serviceExpectedDate;
-    }
-    public LocalDate getServiceExecutedDate() {
-        return serviceExecutedDate;
     }
 
     public void setServiceExecutedDate(LocalDate serviceExecutedDate) {
         this.serviceExecutedDate = serviceExecutedDate;
-    }
-    public Long getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Long vehicle) {
-        this.vehicle = vehicle;
-    }
-
-    public Long getItemContract() {
-        return itemContract;
-    }
-
-    public void setItemContract(Long itemContract) {
-        this.itemContract = itemContract;
-    }
-
-    public String getIneaManifest() {
-        return ineaManifest;
-    }
-
-    public void setIneaManifest(String ineaManifest) {
-        this.ineaManifest = ineaManifest;
-    }
-
-    public LocalTime getServiceTime() {
-        return serviceTime;
     }
 
     public void setServiceTime(LocalTime serviceTime) {
         this.serviceTime = serviceTime;
     }
 
-    public String getObservation() {
-        return observation;
+    public void setItemContract(Long itemContract) {
+        this.itemContract = itemContract;
     }
 
-    public void setObservation(String observation) {
-        this.observation = observation;
-    }
-
-    public String getOsFileUrl() {
-        return osFileUrl;
-    }
-
-    public void setOsFileUrl(String osFileUrl) {
-        this.osFileUrl = osFileUrl;
-    }
-
-    public Long getAmountCollected() {
-        return amountCollected;
+    public void setAddress(Long address) {
+        this.address = address;
     }
 
     public void setAmountCollected(Long amountCollected) {
         this.amountCollected = amountCollected;
     }
 
+    public void setVehicle(Long vehicle) {
+        this.vehicle = vehicle;
+    }
 
+    public void setIneaManifest(String ineaManifest) {
+        this.ineaManifest = ineaManifest;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
+
+    public void setOsFileUrl(String osFileUrl) {
+        this.osFileUrl = osFileUrl;
+    }
+
+    public void setServiceOrderStatus(Integer serviceOrderStatus) {
+        this.serviceOrderStatus = ServiceOrderStatus.getById(serviceOrderStatus);
+    }
 }
