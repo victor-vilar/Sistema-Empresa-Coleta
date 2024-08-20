@@ -3,11 +3,10 @@ package com.victorvilar.projetoempresa.configuration;
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.adress.AddressCreateDto;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
-import com.victorvilar.projetoempresa.dto.adress.interfaces.AddressDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
 import org.modelmapper.ModelMapper;
@@ -59,9 +58,9 @@ public class ModelMapperConfiguration {
                     maper.map(src-> src.getContract().getNumber(), ItemContractResponseImplDto::setContract);
                 });
 
-        mapper.typeMap(ServiceOrder.class, ServiceOrderResponseDto.class)
+        mapper.typeMap(ServiceOrder.class, ServiceOrderResponseDefaultImplDto.class)
                 .addMappings(maper ->{
-                    maper.map(src-> src.getCustomer().getCpfCnpj(), ServiceOrderResponseDto::setCustomerId);
+                    maper.map(src-> src.getCustomer().getCpfCnpj(), ServiceOrderResponseDefaultImplDto::setCustomerId);
 
                 });
 
