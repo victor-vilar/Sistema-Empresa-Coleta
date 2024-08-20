@@ -2,9 +2,12 @@ package com.victorvilar.projetoempresa.services;
 
 import com.victorvilar.projetoempresa.domain.*;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderRequestDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.enums.ServiceOrderStatus;
 import com.victorvilar.projetoempresa.exceptions.AddressNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ItemContractNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
@@ -19,10 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Vector;
 
 @Service
-public class ServiceOrderService implements EntityOfCustomerService<ServiceOrderCreateDto, ServiceOrderUpdateDto, ServiceOrderResponseDto> {
+public class ServiceOrderService  {
 
 
     private final ServiceOrderRepository repository;
@@ -40,27 +42,27 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
 
     }
 
-    @Override
-    public List<ServiceOrderResponseDto> getAll() {
+
+    public List< ? extends ServiceOrderResponseDto> getAll() {
         return this.mapper.toServiceResponseDtoList(this.repository.findAll());
     }
 
-    @Override
-    public List<ServiceOrderResponseDto> getAllByCustomerId(String customerId) {
+
+    public List<? extends ServiceOrderResponseDto> getAllByCustomerId(String customerId) {
         return this.mapper.toServiceResponseDtoList(this.repository.findByCustomerCpfCnpj(customerId));
     }
 
-    public List<ServiceOrderResponseDto> getAllByItemContract(Long itemId){
+    public List< ? extends ServiceOrderResponseDto> getAllByItemContract(Long itemId){
         //TODO
         return null;
     }
 
-    @Override
+
     public ServiceOrderResponseDto getById(Long id) {
         return this.mapper.toServiceOrderResponseDto(this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !")));
     }
 
-    public List<ServiceOrderResponseDto> getNotExecuted() {
+    public List<? extends ServiceOrderResponseDto> getNotExecuted() {
         List<ServiceOrder> list = this.repository.getNotExecutedList();
         return this.mapper.toServiceResponseDtoList(list);
     }
@@ -77,14 +79,14 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         return this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
     }
 
-    @Override
+
     public ServiceOrderResponseDto save(ServiceOrderCreateDto createDto) {
         ServiceOrder serviceOrder = this.mapper.toServiceOrder(createDto);
         setRelationalProperties(serviceOrder, createDto);
         return this.mapper.toServiceOrderResponseDto(this.repository.save(serviceOrder));
     }
 
-    @Override
+
     public ServiceOrderResponseDto update(ServiceOrderUpdateDto updateDto) {
         ServiceOrder order = this.findById(updateDto.getId());
         this.setRelationalProperties(order,updateDto);
@@ -99,6 +101,13 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         order.setOsFileUrl(dto.getOsFileUrl());
         order.setAmountCollected(dto.getAmountCollected());
         order.setServiceExecutedDate(dto.getServiceExecutedDate());
+        order.setServiceExpectedDate(dto.getServiceExpectedDate());
+
+        if(dto.getAmountCollected() != null && dto.getServiceExecutedDate() != null){
+            order.setServiceOrderStatus(ServiceOrderStatus.DONE);
+        }else{
+            order.setServiceOrderStatus(ServiceOrderStatus.UNDONE);
+        }
     }
 
 
@@ -107,7 +116,7 @@ public class ServiceOrderService implements EntityOfCustomerService<ServiceOrder
         this.repository.deleteAllById(ids);
     }
 
-    private void setRelationalProperties(ServiceOrder serviceOrder, ServiceOrderDto dto){
+    private void setRelationalProperties(ServiceOrder serviceOrder, ServiceOrderRequestDto dto){
         ItemContract itemContract = findSelectedItemContract(dto.getItemContract());
         Customer customer = itemContract.getContract().getCustomer();
         Address address = findSelectedAddress(customer.getAddresses(),dto.getAddress());
