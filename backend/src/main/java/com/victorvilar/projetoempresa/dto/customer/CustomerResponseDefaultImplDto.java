@@ -3,7 +3,7 @@ package com.victorvilar.projetoempresa.dto.customer;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.ContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class CustomerResponseDefaultImplDto implements CustomerResponseDto {
     private List<SupervisorResponseDto> supervisors = new ArrayList<SupervisorResponseDto>();
     private List<ContractResponseImplDto> contracts = new ArrayList<ContractResponseImplDto>();
     private List<AddressResponseDto> addresses = new ArrayList<AddressResponseDto>();
-    private List<ServiceOrderResponseDto> serviceOrders = new ArrayList<>();
+    private List<ServiceOrderResponseDefaultImplDto> serviceOrders = new ArrayList<>();
 
     public CustomerResponseDefaultImplDto(){
 
@@ -82,11 +82,11 @@ public class CustomerResponseDefaultImplDto implements CustomerResponseDto {
         this.addresses = address;
     }
 
-    public List<ServiceOrderResponseDto> getServiceOrders() {
+    public List<ServiceOrderResponseDefaultImplDto> getServiceOrders() {
         return serviceOrders;
     }
 
-    public void setServiceOrders(List<ServiceOrderResponseDto> serviceOrders) {
+    public void setServiceOrders(List<ServiceOrderResponseDefaultImplDto> serviceOrders) {
         this.serviceOrders = serviceOrders;
     }
 
