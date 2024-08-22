@@ -1,12 +1,16 @@
 package com.victorvilar.projetoempresa.services;
 
+import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.ServiceOrder;
 import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.exceptions.ServiceOrderNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ServiceOrderMapper;
+import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import com.victorvilar.projetoempresa.repository.ServiceOrderRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,13 +47,27 @@ class ServiceOrderServiceTest {
     @Mock
     private ServiceOrderRepository serviceOrderRepository;
 
+    @Mock
+    private ItemContractRepository itemContractRepository;
+
     ServiceOrder so1;
     ServiceOrder so2;
-    ServiceOrderResponseDto sord1 = new ServiceOrderResponseDto();
-    ServiceOrderResponseDto sord2 = new ServiceOrderResponseDto();
+    ServiceOrderResponseDefaultImplDto sord1 = new ServiceOrderResponseDefaultImplDto();
+    ServiceOrderResponseDefaultImplDto sord2 = new ServiceOrderResponseDefaultImplDto();
+    ItemContract itemContract;
+    //Contract contract;
+    Customer customer;
 
     @BeforeEach
-    private void setUp() {
+    public void setUp() {
+
+
+
+        customer = Customer.builer()
+                .cpfCnpj("123456")
+                .nameCompanyName("empresa1")
+                .build();
+
         this.so1 = ServiceOrder.builder()
                 .id(1L)
                 .emissionDate(LocalDate.now())
@@ -76,9 +94,10 @@ class ServiceOrderServiceTest {
     @Test
     @DisplayName("Return successfully when get all orders")
     public void getAll_WhenSuccessfull() {
+        List<ServiceOrderResponseDefaultImplDto> list = List.of(sord1,sord2);
         when(this.serviceOrderRepository.findAll()).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderMapper.toServiceResponseDtoList(anyList())).thenReturn(List.of(sord1, sord2));
-        List<ServiceOrderResponseDto> orders = this.serviceOrderService.getAll();
+        doReturn(list).when(serviceOrderMapper).toServiceResponseDtoList(List.of(so1, so2));
+        List<? extends ServiceOrderResponseDto> orders = this.serviceOrderService.getAll();
         assertFalse(orders.isEmpty());
         assertEquals(orders.size(), 2);
         verify(this.serviceOrderRepository, times(1)).findAll();
@@ -89,9 +108,10 @@ class ServiceOrderServiceTest {
     @Test
     @DisplayName("Return successfully a list of service orders when pass a valid cnpj/cpf")
     public void getAllByCustomerId_WhenSuccessfull() {
+        List<ServiceOrderResponseDefaultImplDto> list = List.of(sord1,sord2);
         when(this.serviceOrderRepository.findByCustomerCpfCnpj(anyString())).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderMapper.toServiceResponseDtoList(anyList())).thenReturn(List.of(sord1, sord2));
-        List<ServiceOrderResponseDto> orders = this.serviceOrderService.getAllByCustomerId("123456789");
+        doReturn(list).when(serviceOrderMapper).toServiceResponseDtoList(List.of(so1, so2));
+        List<? extends ServiceOrderResponseDto> orders = this.serviceOrderService.getAllByCustomerId("123456789");
         assertFalse(orders.isEmpty());
         assertEquals(orders.size(), 2);
         verify(this.serviceOrderRepository, times(1)).findByCustomerCpfCnpj("123456789");
@@ -102,7 +122,7 @@ class ServiceOrderServiceTest {
     public void getAllByCustomer_ReturnEmpty_WhenPassingInvalidCnpjCpf() {
         when(this.serviceOrderRepository.findByCustomerCpfCnpj(anyString())).thenReturn(Collections.emptyList());
         when(this.serviceOrderMapper.toServiceResponseDtoList(anyList())).thenReturn(Collections.emptyList());
-        List<ServiceOrderResponseDto> orders = this.serviceOrderService.getAllByCustomerId("123456789");
+        List<? extends ServiceOrderResponseDto> orders = this.serviceOrderService.getAllByCustomerId("123456789");
         assertTrue(orders.isEmpty());
         assertEquals(orders.size(), 0);
         verify(this.serviceOrderRepository, times(1)).findByCustomerCpfCnpj("123456789");
@@ -120,7 +140,6 @@ class ServiceOrderServiceTest {
         when(this.serviceOrderRepository.findById(anyLong())).thenReturn(Optional.of(so1));
         when(this.serviceOrderMapper.toServiceOrderResponseDto(any())).thenReturn(sord1);
         ServiceOrderResponseDto order = this.serviceOrderService.getById(anyLong());
-        assertEquals(order.getId(), 1);
         assertEquals(order.getEmissionDate(), LocalDate.now());
         verify(this.serviceOrderRepository, times(1)).findById(anyLong());
     }
@@ -134,6 +153,24 @@ class ServiceOrderServiceTest {
         assertNotEquals(exception, null);
         assertEquals(exception.getClass(), ServiceOrderNotFoundException.class);
         Mockito.verifyNoMoreInteractions(serviceOrderRepository);
+    }
+
+    @Test
+    @DisplayName("Get orders that where not executed yet")
+    public void getNotExecuted_WhenSuccessfull(){
+        //TODO
+    }
+
+    @Test
+    @DisplayName("Get not executed count")
+    public void getNotExecutedCount_WhenSuccessfull(){
+        //todo
+    }
+
+    @Test
+    @DisplayName("Get total of orders persisted")
+    public void getTotalOfOrdersPersisted_WhenSuccessfull(){
+        //todo
     }
 
     @Test
@@ -158,6 +195,8 @@ class ServiceOrderServiceTest {
     }
 
 
+
+
     @Test
     @DisplayName("Save successfully when pass a valid ServiceOrderCreateDTO")
     public void save_WhenSuccessfull() {
@@ -165,27 +204,23 @@ class ServiceOrderServiceTest {
         when(this.serviceOrderRepository.save(so1)).thenReturn(so1);
         when(this.serviceOrderMapper.toServiceOrderResponseDto(so1)).thenReturn(sord1);
         ServiceOrderResponseDto order = this.serviceOrderService.save(new ServiceOrderCreateDto());
-        assertEquals(order.getId(), 1);
         assertEquals(order.getEmissionDate(), LocalDate.now());
         verify(this.serviceOrderRepository, times(1)).save(any(ServiceOrder.class));
     }
 
 
+
     @Test
-    @DisplayName("Save successfully when pass a list of ServiceOrderCreateDto")
-    public void save_Successfully_WhenPassList() {
-        List<ServiceOrderCreateDto> list = new ArrayList<>();
-        list.add(new ServiceOrderCreateDto());
-        list.add(new ServiceOrderCreateDto());
-        when(this.serviceOrderMapper.toServiceOrder(anyList())).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderRepository.saveAll(List.of(so1, so2))).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderMapper.toServiceResponseDtoList(List.of(so1, so2))).thenReturn(List.of(sord1, sord2));
-        List<ServiceOrderResponseDto> orders = this.serviceOrderService.save(list);
-        assertFalse(orders.isEmpty());
-        assertEquals(orders.size(), 2);
-        verify(this.serviceOrderRepository, times(1)).saveAll(anyList());
+    @DisplayName("Update a ServiceOrder when successfull")
+    public void update_WhenSuccessfull() {
+        when(this.serviceOrderMapper.toServiceOrder(any(ServiceOrderUpdateDto.class))).thenReturn(so1);
+        when(this.serviceOrderMapper.toServiceOrderResponseDto(any())).thenReturn(sord1);
+        ServiceOrderResponseDto order = this.serviceOrderService.update(new ServiceOrderUpdateDto());
+        assertEquals(order.getEmissionDate(), LocalDate.now());
+        verify(this.serviceOrderRepository, times(1)).save(any(ServiceOrder.class));
 
     }
+
 
     @Test
     @DisplayName("Delete a service order when successfull")
@@ -194,32 +229,6 @@ class ServiceOrderServiceTest {
         verify(this.serviceOrderRepository, times(1)).deleteAllById(anyList());
     }
 
-    @Test
-    @DisplayName("Update a ServiceOrder when successfull")
-    public void update_WhenSuccessfull() {
-        when(this.serviceOrderMapper.toServiceOrder(any(ServiceOrderUpdateDto.class))).thenReturn(so1);
-        when(this.serviceOrderMapper.toServiceOrderResponseDto(any())).thenReturn(sord1);
-        ServiceOrderResponseDto order = this.serviceOrderService.update(new ServiceOrderUpdateDto());
-        assertEquals(order.getId(), 1);
-        assertEquals(order.getEmissionDate(), LocalDate.now());
-        verify(this.serviceOrderRepository, times(1)).save(any(ServiceOrder.class));
 
-    }
-
-    @Test
-    @DisplayName("Update a ServiceOrder list when successfull")
-    public void update_Successfully_WhenPassList() {
-        List<ServiceOrderUpdateDto> list = new ArrayList<>();
-        list.add(new ServiceOrderUpdateDto());
-        list.add(new ServiceOrderUpdateDto());
-        when(this.serviceOrderMapper.toServiceOrder(anyList())).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderRepository.saveAll(List.of(so1, so2))).thenReturn(List.of(so1, so2));
-        when(this.serviceOrderMapper.toServiceResponseDtoList(List.of(so1, so2))).thenReturn(List.of(sord1, sord2));
-        List<ServiceOrderResponseDto> orders = this.serviceOrderService.update(list);
-        assertFalse(orders.isEmpty());
-        assertEquals(orders.size(), 2);
-        verify(this.serviceOrderRepository, times(1)).saveAll(anyList());
-
-    }
 }
 

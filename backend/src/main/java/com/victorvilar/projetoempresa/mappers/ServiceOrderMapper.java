@@ -14,6 +14,7 @@ import java.util.List;
 public class ServiceOrderMapper {
 
     private final ModelMapper mapper;
+
     @Autowired
     public ServiceOrderMapper(ModelMapper mapper){
         this.mapper = mapper;

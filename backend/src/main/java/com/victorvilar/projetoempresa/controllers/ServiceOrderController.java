@@ -2,7 +2,7 @@ package com.victorvilar.projetoempresa.controllers;
 
 import com.victorvilar.projetoempresa.controllers.interfaces.EntityOfCustomerController;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderCreateDto;
-import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderResponseDto;
+import com.victorvilar.projetoempresa.dto.serviceorder.interfaces.ServiceOrderResponseDto;
 import com.victorvilar.projetoempresa.dto.serviceorder.ServiceOrderUpdateDto;
 import com.victorvilar.projetoempresa.services.ServiceOrderService;
 import jakarta.validation.Valid;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/service-orders")
-public class ServiceOrderController implements EntityOfCustomerController<ServiceOrderCreateDto,ServiceOrderUpdateDto, ServiceOrderResponseDto> {
+public class ServiceOrderController {
 
 
     private ServiceOrderService service;
@@ -24,35 +24,33 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
         this.service = orderService;
     }
 
-    @Override
-    public ResponseEntity<List<ServiceOrderResponseDto>> getAll() {
+    @GetMapping()
+    public ResponseEntity<List< ? extends ServiceOrderResponseDto>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.getAll());
     }
 
-    @Override
-    public ResponseEntity<List<ServiceOrderResponseDto>> getAllByCustomerId(String customerId) {
+    @GetMapping("by-customer/{customerId}")
+    public ResponseEntity<List<? extends ServiceOrderResponseDto>> getAllByCustomerId(String customerId) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.getAllByCustomerId(customerId));
     }
 
-    @Override
+    @GetMapping("/{id}")
     public ResponseEntity<ServiceOrderResponseDto> getById(Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.getById(id));
     }
 
-    @Override
+    @PostMapping()
     public ResponseEntity<ServiceOrderResponseDto> save(ServiceOrderCreateDto createDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDto));
     }
 
-
-
-    @Override
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(Long id) {
         this.service.delete(Arrays.asList(id));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @Override
+    @PutMapping()
     public ResponseEntity<ServiceOrderResponseDto> update(@Valid ServiceOrderUpdateDto updateDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDto));
     }
@@ -64,7 +62,7 @@ public class ServiceOrderController implements EntityOfCustomerController<Servic
     }
 
     @GetMapping("/opened")
-    public ResponseEntity<List<ServiceOrderResponseDto>> getNotExecuted(){
+    public ResponseEntity<List<? extends ServiceOrderResponseDto>> getNotExecuted(){
         return ResponseEntity.ok(this.service.getNotExecuted());
     }
 
