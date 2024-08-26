@@ -40,7 +40,7 @@ public class ServiceOrderController {
     }
 
     @PostMapping()
-    public ResponseEntity<ServiceOrderResponseDto> save(ServiceOrderCreateDto createDto) {
+    public ResponseEntity<ServiceOrderResponseDto> save(@RequestBody ServiceOrderCreateDto createDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.save(createDto));
     }
 
@@ -51,7 +51,7 @@ public class ServiceOrderController {
     }
 
     @PutMapping()
-    public ResponseEntity<ServiceOrderResponseDto> update(@Valid ServiceOrderUpdateDto updateDto) {
+    public ResponseEntity<ServiceOrderResponseDto> update(@Valid @RequestBody ServiceOrderUpdateDto updateDto) {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.update(updateDto));
     }
 
