@@ -1,6 +1,10 @@
 package com.victorvilar.projetoempresa.dto.supervisor;
 
-public class SupervisorResponseDto implements SupervisorDto{
+import com.victorvilar.projetoempresa.dto.supervisor.interfaces.SupervisorDto;
+
+import java.io.Serializable;
+
+public class SupervisorResponseDto implements SupervisorDto, Serializable {
 
     private Long id;
     private String name;

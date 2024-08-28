@@ -2,10 +2,11 @@ package com.victorvilar.projetoempresa.dto.bill;
 
 import com.victorvilar.projetoempresa.dto.bill.interfaces.InstalmentDto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class InstalmentResponseDto implements InstalmentDto {
+public class InstalmentResponseDto implements InstalmentDto, Serializable {
 
     private Long id;
     private LocalDate dueDate;

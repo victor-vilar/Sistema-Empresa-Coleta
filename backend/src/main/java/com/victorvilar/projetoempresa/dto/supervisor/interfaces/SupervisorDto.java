@@ -1,4 +1,4 @@
-package com.victorvilar.projetoempresa.dto.supervisor;
+package com.victorvilar.projetoempresa.dto.supervisor.interfaces;
 
 public interface SupervisorDto {
 

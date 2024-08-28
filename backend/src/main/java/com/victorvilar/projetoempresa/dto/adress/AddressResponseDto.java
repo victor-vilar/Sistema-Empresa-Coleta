@@ -2,7 +2,9 @@ package com.victorvilar.projetoempresa.dto.adress;
 
 import com.victorvilar.projetoempresa.dto.adress.interfaces.AddressDto;
 
-public class AddressResponseDto implements AddressDto {
+import java.io.Serializable;
+
+public class AddressResponseDto implements AddressDto, Serializable {
 
     private Long id;
     private String addressName;

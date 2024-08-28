@@ -1,10 +1,11 @@
 package com.victorvilar.projetoempresa.dto.supervisor;
 
+import com.victorvilar.projetoempresa.dto.supervisor.interfaces.SupervisorDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class SupervisorUpdateDto implements SupervisorDto{
+public class SupervisorUpdateDto implements SupervisorDto {
 
     @NotNull(message="A supervisor to update needs to have a id number")
     private Long id;

@@ -2,7 +2,9 @@ package com.victorvilar.projetoempresa.dto.equipment;
 
 import com.victorvilar.projetoempresa.dto.equipment.interfaces.EquipmentDto;
 
-public class EquipmentResponseDto implements EquipmentDto {
+import java.io.Serializable;
+
+public class EquipmentResponseDto implements EquipmentDto, Serializable {
 
 
     private Long id;

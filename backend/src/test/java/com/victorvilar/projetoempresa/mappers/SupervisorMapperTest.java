@@ -4,7 +4,7 @@ import com.victorvilar.projetoempresa.domain.Supervisor;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorCreateDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorResponseDto;
 import com.victorvilar.projetoempresa.dto.supervisor.SupervisorUpdateDto;
-import com.victorvilar.projetoempresa.dto.supervisor.SupervisorDto;
+import com.victorvilar.projetoempresa.dto.supervisor.interfaces.SupervisorDto;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

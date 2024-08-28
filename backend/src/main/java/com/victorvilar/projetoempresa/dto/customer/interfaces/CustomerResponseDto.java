@@ -1,6 +1,8 @@
 package com.victorvilar.projetoempresa.dto.customer.interfaces;
 
-public interface CustomerResponseDto extends CustomerDto{
+import java.io.Serializable;
+
+public interface CustomerResponseDto extends CustomerDto, Serializable {
 
 
 }

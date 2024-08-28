@@ -4,7 +4,9 @@ import com.victorvilar.projetoempresa.domain.Vehicle;
 import com.victorvilar.projetoempresa.dto.adress.AddressResponseDto;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractResponseDto;
 
-public interface ServiceOrderResponseDto extends ServiceOrderDto{
+import java.io.Serializable;
+
+public interface ServiceOrderResponseDto extends ServiceOrderDto, Serializable {
 
     ItemContractResponseDto getItemContract();
     String getCustomerId();

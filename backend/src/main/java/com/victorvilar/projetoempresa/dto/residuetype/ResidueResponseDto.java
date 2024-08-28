@@ -2,7 +2,9 @@ package com.victorvilar.projetoempresa.dto.residuetype;
 
 import com.victorvilar.projetoempresa.dto.residuetype.interfaces.ResidueDto;
 
-public class ResidueResponseDto implements ResidueDto {
+import java.io.Serializable;
+
+public class ResidueResponseDto implements ResidueDto, Serializable {
 
 
     private Long id;

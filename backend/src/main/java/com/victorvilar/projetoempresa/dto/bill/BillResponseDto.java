@@ -2,9 +2,10 @@ package com.victorvilar.projetoempresa.dto.bill;
 
 import com.victorvilar.projetoempresa.dto.bill.interfaces.BillDto;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class BillResponseDto implements BillDto {
+public class BillResponseDto implements BillDto, Serializable {
 
     private Long id;
     private String supplier;
