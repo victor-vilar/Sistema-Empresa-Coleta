@@ -10,6 +10,9 @@ import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,10 +35,12 @@ public class AddressService {
         this.customerRepository = customerRepository;
     }
 
+    @Cacheable(value="addresses")
     public List<AddressResponseDto> getAll(){
         return this.addressMapper.toAddressResponseDtoList(this.repository.findAll());
     }
 
+    @Cacheable(value="addresses",key="#clientId")
     public List<AddressResponseDto> getAllByCustomerId(String clientId){
         return this.addressMapper.toAddressResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
@@ -48,6 +53,7 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(this.findAddressById(id));
     }
 
+    @CacheEvict(value = "addresses", allEntries = true)
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
@@ -55,11 +61,13 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }
 
+    @CacheEvict(value = "addresses", allEntries = true)
     public void delete(Long id){
         Address address = this.findAddressById(id);
         this.repository.deleteById(id);
     }
 
+    @CacheEvict(value = "addresses", allEntries = true)
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
         Address addressToUpdate = this.repository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
         addressToUpdate.setAddressName(addressUpdateDto.getAddressName());
