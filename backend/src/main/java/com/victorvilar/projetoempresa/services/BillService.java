@@ -14,13 +14,15 @@ import com.victorvilar.projetoempresa.repository.InstalmentRepository;
 import com.victorvilar.projetoempresa.services.interfaces.SystemService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BillService implements SystemService<BillCreateDto, BillUpdateDto, BillResponseDto> {
+public class BillService {
 
     private final BillMapper billMapper;
     private final BillRepository repository;
@@ -35,17 +37,19 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
         this.instalmentRepository = instalmentRepository;
     }
 
-    @Override
+
+    @Cacheable(value="bills")
     public List<BillResponseDto> getAll() {
         return this.billMapper.toBillResponseDtoList(this.repository.findAll());
     }
 
-    @Override
+
     public BillResponseDto getById(Long id) {
         return this.billMapper.toBillResponseDto(this.repository.findById(id).orElseThrow(() -> new BillNotFoundException("A bill with this id was not found")));
     }
 
-    @Override
+    @Transactional
+    @CacheEvict(value="bills",allEntries = true)
     public BillResponseDto save(BillCreateDto createDto) {
         Bill bill = this.billMapper.toBill(createDto);
         List<Instalment> instalments = createDto.getInstalments().stream().map(this.instalmentMapper::toInstalmentList).toList();
@@ -53,16 +57,20 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
         return this.billMapper.toBillResponseDto(this.repository.save(bill));
     }
 
-    @Override
+    @Transactional
+    @CacheEvict(value="bills",allEntries = true)
     public void delete(List<Long> ids) {
         this.repository.deleteAllById(ids);
     }
 
+    @Transactional
+    @CacheEvict(value="bills",allEntries = true)
     public void delete(Long id){
         this.repository.deleteById(id);
     }
 
-    @Override
+    @Transactional
+    @CacheEvict(value="bills",allEntries = true)
     public BillResponseDto update(BillUpdateDto updateDto) {
 
         Optional<Bill> billToFind = this.repository.findById(updateDto.getId());
@@ -78,6 +86,7 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
         return this.billMapper.toBillResponseDto(this.repository.save(bill));
 
     }
+
 
     private Bill updateBill(Bill bill, BillUpdateDto updateDto){
         bill.setSupplier(updateDto.getSupplier());
@@ -97,6 +106,7 @@ public class BillService implements SystemService<BillCreateDto, BillUpdateDto, 
     }
 
     @Transactional
+    @CacheEvict(value="bills",allEntries = true)
     public void deleteInstalment(Long id) {
         this.instalmentRepository.deleteById(id);
     }
