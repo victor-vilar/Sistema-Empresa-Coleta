@@ -9,6 +9,7 @@ import com.victorvilar.projetoempresa.exceptions.AddressNotFoundException;
 import com.victorvilar.projetoempresa.mappers.AddressMapper;
 import com.victorvilar.projetoempresa.repository.AddressRepository;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -53,6 +54,7 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(this.findAddressById(id));
     }
 
+    @Transactional
     @CacheEvict(value = "addresses", allEntries = true)
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
@@ -61,12 +63,14 @@ public class AddressService {
         return this.addressMapper.toAddressResponseDto(this.repository.save(address));
     }
 
+    @Transactional
     @CacheEvict(value = "addresses", allEntries = true)
     public void delete(Long id){
         Address address = this.findAddressById(id);
         this.repository.deleteById(id);
     }
 
+    @Transactional
     @CacheEvict(value = "addresses", allEntries = true)
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
         Address addressToUpdate = this.repository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
