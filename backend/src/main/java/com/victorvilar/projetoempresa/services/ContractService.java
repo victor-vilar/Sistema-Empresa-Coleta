@@ -16,6 +16,9 @@ import com.victorvilar.projetoempresa.repository.ContractRepository;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -46,10 +49,12 @@ public class ContractService {
         this.customerRepository = customerRepository;
     }
 
+    @Cacheable(value="contracts")
     public List<ContractResponseDto> getAll() {
         return this.contractMapper.toContractResponseDtoList(this.repository.findAll());
     }
 
+    @Cacheable(value="contracts",key="#clientId")
     public List<ContractResponseDto> getAllByCustomerId(String clientId){
         return this.contractMapper.toContractResponseDtoList(repository.findByCustomerCpfCnpj(clientId));
     }
@@ -65,6 +70,7 @@ public class ContractService {
     }
 
     @Transactional
+    @CacheEvict(value = "contracts", allEntries = true)
     public ContractResponseDto save(ContractCreateDto contractCreateDto) {
 
         Contract contract = this.contractMapper.toContract(contractCreateDto);
@@ -80,6 +86,7 @@ public class ContractService {
     }
 
     @Transactional
+    @CacheEvict(value = "contracts", allEntries = true)
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
@@ -91,16 +98,19 @@ public class ContractService {
     }
 
     @Transactional
+    @CacheEvict(value = "contracts", allEntries = true)
     public void delete(Long contractId ){
         this.repository.deleteById(contractId);
     }
 
     @Transactional
+    @CacheEvict(value = "contracts", allEntries = true)
     public void deleteItemContract(List<Long> itens) {
         this.itemContractRepository.deleteAllById(itens);
     }
 
     @Transactional
+    @CacheEvict(value = "contracts", allEntries = true)
     public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
 
         Contract contract = this.updateContractFields(contractUpdateDto);
