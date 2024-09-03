@@ -11,6 +11,8 @@ import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
 import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
@@ -33,54 +35,33 @@ public class CustomerService {
 		this.customerRegisterRulers = rules;
 	}
 	
-	/**
-	 * get all clients, transform in a clientResponseDto list and return;
-	 * @param
-	 */
+
+	@Cacheable(value="customers")
 	public List<CustomerResponseDto> getAll() {
 		return this.mapper.toCustomerResponseDtoList(this.repository.findAll());
 	}
-	/**
-	 * Return a client with this id, or return null;
-	 * @param id
-	 * @return
-	 */
+
 	public Customer findCustomerById(String id) throws CustomerNotFoundException {
 		return this.repository.findByCpfCnpj(id).orElseThrow(() ->new CustomerNotFoundException("Customer Not Found !"));
 	}
 
-	/**
-	 * Return a customerResponseDto
-	 * @param id
-	 * @return
-	 */
+	@Cacheable(value="customers", key="#id")
 	public CustomerResponseDto getById(String id){
 		Customer customer = this.findCustomerById(id);
 		return this.mapper.toCustomerResponseDto(customer);
 	}
 
-	
-	/**
-	 * Sing in a new Client
-	 * @param customerCreateDto, a client
-	 */
 	@Transactional
+	@CacheEvict(value="customers",allEntries = true)
 	public CustomerResponseDto save(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
-
-
 		Customer customer = this.mapper.toCustomer(customerCreateDto);
 		this.customerRegisterRulers.forEach(rule -> rule.verification(customer,this.repository));
 		customer.setNameCompanyName(customer.getNameCompanyName().toUpperCase());
 		return this.mapper.toCustomerResponseDto(this.repository.save(customer));
-
-
 	}
 
-	/**
-	 * update client
-	 * @param customerCreateDto
-	 * @return
-	 */
+	@Transactional
+	@CacheEvict(value="customers",allEntries = true)
 	public CustomerResponseDto update(CustomerCreateDto customerCreateDto) {
 		Customer customer = findCustomerById(customerCreateDto.getCpfCnpj());
 		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
@@ -88,22 +69,14 @@ public class CustomerService {
 		return this.mapper.toCustomerResponseDto(repository.save(customer));
 	}
 
-
-	/**
-	 * Delete a client of the database
-	 * @param id id of a client
-	 */
 	@Transactional
+	@CacheEvict(value="customers",allEntries = true)
 	public void delete(String id) {
 		//if the id is not found will throw a exception
 		findCustomerById(id);
 		repository.deleteById(id);
 	}
 
-	/**
-	 * get the total of entitys persisted
-	 * @return integer of the count
-	 */
 	public Integer getEntityCount(){
 		return this.repository.getEntityCount();
 	}

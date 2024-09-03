@@ -8,6 +8,8 @@ import com.victorvilar.projetoempresa.exceptions.EquipmentNotFoundException;
 import com.victorvilar.projetoempresa.mappers.EquipmentMapper;
 import com.victorvilar.projetoempresa.repository.EquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -27,10 +29,12 @@ public class EquipmentService {
         this.equipmentMapper = equipmentMapper;
     }
 
+    @Cacheable(value="equipments")
     public List<EquipmentResponseDto> getAll(){
         return this.equipmentMapper.toEquipmentResponseDtoList(this.repository.findAll());
     }
 
+    @Cacheable(value="equipments",key="#id")
     public EquipmentResponseDto getById(Long id){
         return this.equipmentMapper.toEquipmentResponseDto(
                 this.repository.findById(id)
@@ -44,12 +48,14 @@ public class EquipmentService {
     }
 
     @Transactional
+    @CacheEvict(value="equipments",allEntries = true)
     public EquipmentResponseDto save(EquipmentCreateDto equipmentCreateDto){
         Equipment equipment = this.equipmentMapper.toEquipment(equipmentCreateDto);
         return this.equipmentMapper.toEquipmentResponseDto(this.repository.save(equipment));
     }
 
     @Transactional
+    @CacheEvict(value="equipments",allEntries = true)
     public EquipmentResponseDto update(EquipmentUpdateDto equipmentUpdateDto){
         Equipment equipment = this.findById(equipmentUpdateDto.getId());
         equipment.setEquipmentName(equipmentUpdateDto.getEquipmentName());
@@ -59,6 +65,7 @@ public class EquipmentService {
     }
 
     @Transactional
+    @CacheEvict(value="equipments",allEntries = true)
     public void delete(Long id){
         this.repository.delete(this.findById(id));
     }

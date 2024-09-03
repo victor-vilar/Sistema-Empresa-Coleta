@@ -16,6 +16,8 @@ import com.victorvilar.projetoempresa.repository.ItemContractRepository;
 import com.victorvilar.projetoempresa.repository.ServiceOrderRepository;
 import com.victorvilar.projetoempresa.services.interfaces.EntityOfCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,12 +44,12 @@ public class ServiceOrderService  {
 
     }
 
-
+    @Cacheable(value="service_orders")
     public List< ? extends ServiceOrderResponseDto> getAll() {
         return this.mapper.toServiceResponseDtoList(this.repository.findAll());
     }
 
-
+    @Cacheable(value="service_orders",key="#customerId")
     public List<? extends ServiceOrderResponseDto> getAllByCustomerId(String customerId) {
         return this.mapper.toServiceResponseDtoList(this.repository.findByCustomerCpfCnpj(customerId));
     }
@@ -57,11 +59,11 @@ public class ServiceOrderService  {
         return null;
     }
 
-
     public ServiceOrderResponseDto getById(Long id) {
         return this.mapper.toServiceOrderResponseDto(this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !")));
     }
 
+    @Cacheable(value="service_orders",key="'notExecuted'")
     public List<? extends ServiceOrderResponseDto> getNotExecuted() {
         List<ServiceOrder> list = this.repository.getNotExecutedList();
         return this.mapper.toServiceResponseDtoList(list);
@@ -79,19 +81,39 @@ public class ServiceOrderService  {
         return this.repository.findById(id).orElseThrow(() -> new ServiceOrderNotFoundException("Service Order Not Found !"));
     }
 
-
+    @Transactional
+    @CacheEvict(value="service_orders",allEntries = true)
     public ServiceOrderResponseDto save(ServiceOrderCreateDto createDto) {
         ServiceOrder serviceOrder = this.mapper.toServiceOrder(createDto);
         setRelationalProperties(serviceOrder, createDto);
         return this.mapper.toServiceOrderResponseDto(this.repository.save(serviceOrder));
     }
 
-
+    @Transactional
+    @CacheEvict(value="service_orders",allEntries = true)
     public ServiceOrderResponseDto update(ServiceOrderUpdateDto updateDto) {
         ServiceOrder order = this.findById(updateDto.getId());
         this.setRelationalProperties(order,updateDto);
         this.updateProperties(order,updateDto);
         return this.mapper.toServiceOrderResponseDto(this.repository.save(order));
+    }
+
+    @Transactional
+    @CacheEvict(value="service_orders",allEntries = true)
+    public void delete(List<Long> ids){
+        this.repository.deleteAllById(ids);
+    }
+
+    private void setRelationalProperties(ServiceOrder serviceOrder, ServiceOrderRequestDto dto){
+        ItemContract itemContract = findSelectedItemContract(dto.getItemContract());
+        Customer customer = itemContract.getContract().getCustomer();
+        Address address = findSelectedAddress(customer.getAddresses(),dto.getAddress());
+        Vehicle vehicle = findSelectedVehicle(dto.getVehicle());
+
+        serviceOrder.setItemContract(itemContract);
+        serviceOrder.setCustomer(customer);
+        serviceOrder.setAddress(address);
+        serviceOrder.setVehicle(vehicle);
     }
 
     private void updateProperties(ServiceOrder order, ServiceOrderUpdateDto dto){
@@ -108,24 +130,6 @@ public class ServiceOrderService  {
         }else{
             order.setServiceOrderStatus(ServiceOrderStatus.UNDONE);
         }
-    }
-
-
-    @Transactional
-    public void delete(List<Long> ids){
-        this.repository.deleteAllById(ids);
-    }
-
-    private void setRelationalProperties(ServiceOrder serviceOrder, ServiceOrderRequestDto dto){
-        ItemContract itemContract = findSelectedItemContract(dto.getItemContract());
-        Customer customer = itemContract.getContract().getCustomer();
-        Address address = findSelectedAddress(customer.getAddresses(),dto.getAddress());
-        Vehicle vehicle = findSelectedVehicle(dto.getVehicle());
-
-        serviceOrder.setItemContract(itemContract);
-        serviceOrder.setCustomer(customer);
-        serviceOrder.setAddress(address);
-        serviceOrder.setVehicle(vehicle);
     }
 
     private ItemContract findSelectedItemContract(Long id){

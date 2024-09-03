@@ -8,6 +8,8 @@ import com.victorvilar.projetoempresa.exceptions.ResidueNotFoundException;
 import com.victorvilar.projetoempresa.mappers.ResidueMapper;
 import com.victorvilar.projetoempresa.repository.ResidueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -27,11 +29,12 @@ public class ResidueService {
         this.mapper = mapper;
     }
 
+    @Cacheable(value="residues")
     public List<ResidueResponseDto> getAll() {
         return this.mapper.toResidueResponseDtoList(this.repository.findAll());
     }
 
-
+    @Cacheable(value="residues",key="#id")
     public ResidueResponseDto getById(Long id){
         return this.mapper.toResidueResponseDto(
                 this.repository.findById(id)
@@ -46,18 +49,21 @@ public class ResidueService {
     }
 
     @Transactional
+    @CacheEvict(value="residues",allEntries = true)
     public ResidueResponseDto save(ResidueCreateDto residueCreateDto){
         Residue residue = this.mapper.toResidue(residueCreateDto);
         return this.mapper.toResidueResponseDto(this.repository.save(residue));
     }
 
     @Transactional
+    @CacheEvict(value="residues",allEntries = true)
     public void delete(Long id){
         Residue residue = this.findById(id);
         this.repository.delete(residue);
     }
 
     @Transactional
+    @CacheEvict(value="residues",allEntries = true)
     public ResidueResponseDto update(ResidueUpdateDto residueUpdateDto){
         Residue residue = this.findById(residueUpdateDto.getId());
         residue.setType(residueUpdateDto.getType());

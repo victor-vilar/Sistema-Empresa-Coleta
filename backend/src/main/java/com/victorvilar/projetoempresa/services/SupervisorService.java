@@ -10,6 +10,8 @@ import com.victorvilar.projetoempresa.mappers.SupervisorMapper;
 import com.victorvilar.projetoempresa.repository.CustomerRepository;
 import com.victorvilar.projetoempresa.repository.SupervisorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -34,10 +36,12 @@ public class SupervisorService {
         this.mapper = mapper;
     }
 
+    @Cacheable(value="supervisors")
     public List<SupervisorResponseDto> getAll() {
         return this.mapper.toSupervisorResponseDtoList(this.repository.findAll());
     }
 
+    @Cacheable(value="supervisors",key="#clientId")
     public List<SupervisorResponseDto> getAllByCustomer(String clientId) {
         return this.mapper.toSupervisorResponseDtoList(this.repository.findByCustomerCpfCnpj(clientId));
     }
@@ -54,6 +58,7 @@ public class SupervisorService {
     }
 
     @Transactional
+    @CacheEvict(value="supervisors",allEntries = true)
     public SupervisorResponseDto save(SupervisorCreateDto supervisorCreateDto){
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
@@ -62,11 +67,13 @@ public class SupervisorService {
     }
 
     @Transactional
+    @CacheEvict(value="supervisors",allEntries = true)
     public void delete(Long supervisorId) {
         this.repository.deleteById(supervisorId);
     }
 
     @Transactional
+    @CacheEvict(value="supervisors",allEntries = true)
     public SupervisorResponseDto update(SupervisorUpdateDto supervisorUpdateDto) {
         Supervisor supervisorToUpdate = findSupervisorById(supervisorUpdateDto.getId());
         supervisorToUpdate.setName(supervisorUpdateDto.getName());
