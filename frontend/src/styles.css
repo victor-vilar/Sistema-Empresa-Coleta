@@ -81,17 +81,17 @@ body {
   color: var(--verde);
 }
 
-.bt-delete{
+.bt-delete:hover{
   background-color: rgb(199, 19, 19);
   color:white
 }
 
-.bt-add{
+.bt-add:hover{
   background-color: #097432;
   color:#ffffff
 }
 
-.bt-gerar-pdf{
+.bt-gerar-pdf:hover{
   color:white;
   background-color: #1477d3;
 }
