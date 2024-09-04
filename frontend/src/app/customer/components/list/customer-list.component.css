@@ -34,4 +34,7 @@ td, th {
   gap: 3px;
 }
 
-
+.bt-delete-local:hover{
+  background-color: rgb(199, 19, 19);
+  color:white;
+}
