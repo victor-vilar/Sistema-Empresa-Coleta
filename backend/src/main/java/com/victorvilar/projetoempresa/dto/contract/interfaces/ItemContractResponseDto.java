@@ -1,5 +1,8 @@
 package com.victorvilar.projetoempresa.dto.contract.interfaces;
 
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  * */
 public interface ItemContractResponseDto extends ItemContractDto, Serializable {
 
-    String getResidue();
-    String getEquipment();
+    ResidueResponseDto getResidue();
+    EquipmentResponseDto getEquipment();
     String getMeasurementUnit();
 }

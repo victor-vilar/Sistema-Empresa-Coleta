@@ -2,6 +2,8 @@ package com.victorvilar.projetoempresa.dto.contract;
 
 import com.victorvilar.projetoempresa.domain.CollectionFrequency;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 
 import java.math.BigDecimal;
@@ -9,8 +11,8 @@ import java.math.BigDecimal;
 public class ItemContractResponseImplDto implements ItemContractResponseDto {
 
     private Long id;
-    private String residue;
-    private String equipment;
+    private ResidueResponseDto residue;
+    private EquipmentResponseDto equipment;
     private Integer equipmentQuantity;
     private Double qtdOfResidue;
     private BigDecimal itemValue;
@@ -22,7 +24,7 @@ public class ItemContractResponseImplDto implements ItemContractResponseDto {
     public ItemContractResponseImplDto() {
     }
 
-    public ItemContractResponseImplDto(Long id, String residue, String equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
+    public ItemContractResponseImplDto(Long id, ResidueResponseDto residue, EquipmentResponseDto equipment, Double qtdOfResidue, BigDecimal itemValue, String description) {
         this.id = id;
         this.residue = residue;
         this.equipment = equipment;
@@ -46,19 +48,19 @@ public class ItemContractResponseImplDto implements ItemContractResponseDto {
         this.id = id;
     }
 
-    public String getResidue() {
+    public ResidueResponseDto getResidue() {
         return residue;
     }
 
-    public void setResidue(String residue) {
+    public void setResidue(ResidueResponseDto residue) {
         this.residue = residue;
     }
 
-    public String getEquipment() {
+    public EquipmentResponseDto getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(String equipament) {
+    public void setEquipment(EquipmentResponseDto equipament) {
         this.equipment = equipament;
     }
 
