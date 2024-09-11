@@ -9,6 +9,8 @@ import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ContractResponseDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.enums.ContractStatus;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import com.victorvilar.projetoempresa.enums.Weekday;
@@ -408,8 +410,8 @@ class ContractServiceTest {
 
         contractResponseImplDto1.setItens(
                 Arrays.asList(
-                        new ItemContractResponseImplDto(1L,residue.getType(),equipment.getEquipmentName(),10d,new BigDecimal(10d),"coleta residuo"),
-                        new ItemContractResponseImplDto(2L,residue.getType(),equipment.getEquipmentName(),10d,new BigDecimal(10d),"coleta residuo")));
+                        new ItemContractResponseImplDto(1L,new ResidueResponseDto(),new EquipmentResponseDto(),10d,new BigDecimal(10d),"coleta residuo"),
+                        new ItemContractResponseImplDto(2L,new ResidueResponseDto(),new EquipmentResponseDto(),10d,new BigDecimal(10d),"coleta residuo")));
 
         contractResponseImplDto2 = ContractResponseImplDto.builder()
                 .number("2000")
@@ -421,8 +423,8 @@ class ContractServiceTest {
 
         contractResponseImplDto2.setItens(
                 Arrays.asList(
-                        new ItemContractResponseImplDto(1L,residue.getType(),equipment.getEquipmentName(),10d,new BigDecimal(10d),"coleta residuo"),
-                        new ItemContractResponseImplDto(2L,residue.getType(),equipment.getEquipmentName(),10d,new BigDecimal(10d),"coleta residuo")));
+                        new ItemContractResponseImplDto(1L,new ResidueResponseDto(),new EquipmentResponseDto(),10d,new BigDecimal(10d),"coleta residuo"),
+                        new ItemContractResponseImplDto(2L,new ResidueResponseDto(),new EquipmentResponseDto(),10d,new BigDecimal(10d),"coleta residuo")));
 
     }
     private void setUpItemContract(){

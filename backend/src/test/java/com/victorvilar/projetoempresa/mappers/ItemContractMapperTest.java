@@ -10,6 +10,8 @@ import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractDto;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractRequestDto;
 import com.victorvilar.projetoempresa.dto.contract.interfaces.ItemContractResponseDto;
+import com.victorvilar.projetoempresa.dto.equipment.EquipmentResponseDto;
+import com.victorvilar.projetoempresa.dto.residuetype.ResidueResponseDto;
 import com.victorvilar.projetoempresa.enums.MeasurementUnit;
 import com.victorvilar.projetoempresa.enums.Weekday;
 import org.junit.jupiter.api.BeforeEach;
@@ -93,8 +95,12 @@ class ItemContractMapperTest {
     }
 
     void compareResponseDto(ItemContractResponseDto dto, ItemContract item){
-        assertEquals(dto.getEquipment(),item.getEquipment().getEquipmentName());
-        assertEquals(dto.getResidue(),item.getResidue().getType());
+        assertEquals(dto.getEquipment().getClass(), EquipmentResponseDto.class);
+        assertEquals(dto.getEquipment().getId(), item.getEquipment().getId());
+        assertEquals(dto.getEquipment().getEquipmentName(), item.getEquipment().getEquipmentName());
+        assertEquals(dto.getResidue().getClass(), ResidueResponseDto.class);
+        assertEquals(dto.getResidue().getId(), item.getResidue().getId());
+        assertEquals(dto.getResidue().getType(), item.getResidue().getType());
         assertEquals(dto.getMeasurementUnit(),item.getMeasurementUnit().getName());
         compare(dto,item);
     }
