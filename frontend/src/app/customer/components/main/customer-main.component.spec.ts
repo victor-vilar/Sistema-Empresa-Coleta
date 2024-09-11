@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomerMainComponent } from '../../customer-list/customer.component';
+import { CustomerMainComponent } from './customer-main.component';
 
 describe('ClientComponent', () => {
   let component: CustomerMainComponent;

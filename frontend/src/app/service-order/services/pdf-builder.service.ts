@@ -42,7 +42,7 @@ export class PdfBuilderService {
     console.log('colocando customer')
     pdf.text('Dados do Cliente:',2,30);
     pdf.text('Nome:',2,36);
-    pdf.text(serviceOrder.customer.nameCompanyName,20,36);
+    //pdf.text(serviceOrder.customer.nameCompanyName,20,36);
 
   }
 

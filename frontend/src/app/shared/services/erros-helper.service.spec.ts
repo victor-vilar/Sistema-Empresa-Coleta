@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ErrosHelperService } from './erros-helper.service';
+import { ErrorsHelperService } from './erros-helper.service';
 
 describe('ErrosHelperService', () => {
-  let service: ErrosHelperService;
+  let service: ErrorsHelperService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ErrosHelperService);
+    service = TestBed.inject(ErrorsHelperService);
   });
 
   it('should be created', () => {

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvgIconConfiguratorComponent } from './svg-list-icon.component';
+import { SvgListIconComponent } from './svg-list-icon.component';
 
 describe('SvgIconConfiguratorComponent', () => {
-  let component: SvgIconConfiguratorComponent;
-  let fixture: ComponentFixture<SvgIconConfiguratorComponent>;
+  let component: SvgListIconComponent;
+  let fixture: ComponentFixture<SvgListIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SvgIconConfiguratorComponent ]
+      declarations: [ SvgListIconComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SvgIconConfiguratorComponent);
+    fixture = TestBed.createComponent(SvgListIconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

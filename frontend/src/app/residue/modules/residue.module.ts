@@ -36,6 +36,10 @@ import { ResidueListTableComponent } from '../components/list/residue-list-table
     RouterModule,
     SharedModule,
     MaterialModuleModule
-  ]
+  ],
+  exports:[
+    ResidueMainComponent,
+    ResidueDetailComponent,
+    ResidueListTableComponent]
 })
 export class ResidueModule { }

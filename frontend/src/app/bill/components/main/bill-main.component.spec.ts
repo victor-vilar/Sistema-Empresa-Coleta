@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BillMainComponent } from '../bill.component';
+import { BillMainComponent } from './bill-main.component';
 
 describe('BillMainComponent', () => {
   let component: BillMainComponent;
