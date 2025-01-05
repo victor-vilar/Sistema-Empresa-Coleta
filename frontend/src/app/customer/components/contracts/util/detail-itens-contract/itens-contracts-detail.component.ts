@@ -96,7 +96,7 @@ export class ItensContractsDetailComponent implements OnInit, OnChanges, AfterVi
       this.getAll();
       //maping itens from contract
       if(this.itemContractList.length > 0){
-        this.itemContractList = this.itemContractListFromApiMapper();
+        //this.itemContractList = this.itemContractListFromApiMapper();
         //updating view
         this.sumTotalOfContract();
       }
@@ -188,27 +188,27 @@ export class ItensContractsDetailComponent implements OnInit, OnChanges, AfterVi
       })
     }
 
-    //transform list of itens from api to itemContract of front
-    itemContractListFromApiMapper(){
+    // //transform list of itens from api to itemContract of front
+    // itemContractListFromApiMapper(){
 
-        return this.itemContractList.map(e =>{
+    //     return this.itemContractList.map(e =>{
 
-          let residue = this.residuesService.list.find(r => r.type === e.residue);
-          let equipment = this.equipmentsService.list.find(eq => eq.equipmentName === e.equipment);
+    //       let residue = this.residuesService.list.find(r => r.type === e.residue);
+    //       let equipment = this.equipmentsService.list.find(eq => eq.equipmentName === e.equipment);
 
-          return {
-            id:e.id,
-            residue:residue,
-            equipment:equipment,
-            equipmentQuantity:e.equipmentQuantity,
-            qtdOfResidue:e.qtdOfResidue,
-            itemValue:e.itemValue,
-            description:e.description,
-            collectionFrequency: e.collectionFrequency,
-            measurementUnit:e.measurementUnit
-          }
-        })
-    }
+    //       return {
+    //         id:e.id,
+    //         residue:residue,
+    //         equipment:equipment,
+    //         equipmentQuantity:e.equipmentQuantity,
+    //         qtdOfResidue:e.qtdOfResidue,
+    //         itemValue:e.itemValue,
+    //         description:e.description,
+    //         collectionFrequency: e.collectionFrequency,
+    //         measurementUnit:e.measurementUnit
+    //       }
+    //     })
+    // }
 
 
     //Update the itens list of this component, getting the list that comes from the itemContract table dialog component.
