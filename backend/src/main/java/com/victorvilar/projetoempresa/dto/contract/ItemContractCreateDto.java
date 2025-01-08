@@ -28,7 +28,7 @@ public class ItemContractCreateDto implements ItemContractRequestDto {
     private String description;
 
     @NotNull(message = "the item must have a frequency that the service going to be undertaken")
-    private CollectionFrequency collectionFrequency;
+    private CollectionFrequencyDto collectionFrequency;
 
     @NotNull(message = "the item must have a unit measurement ")
     private MeasurementUnit measurementUnit;
@@ -36,7 +36,7 @@ public class ItemContractCreateDto implements ItemContractRequestDto {
     public ItemContractCreateDto() {
 
     }
-    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description, Integer equipmentQuantity, CollectionFrequency collectionFrequency, MeasurementUnit measurementUnit) {
+    public ItemContractCreateDto(Long residue, Long equipment, Double qtdOfResidue, BigDecimal itemValue, String description, Integer equipmentQuantity, CollectionFrequencyDto collectionFrequency, MeasurementUnit measurementUnit) {
         this.residue = residue;
         this.equipment = equipment;
         this.qtdOfResidue = qtdOfResidue;
@@ -88,9 +88,9 @@ public class ItemContractCreateDto implements ItemContractRequestDto {
 
     public void setEquipmentQuantity(Integer equipmentQuantity){this.equipmentQuantity = equipmentQuantity;}
 
-    public CollectionFrequency getCollectionFrequency(){ return this.collectionFrequency;}
+    public CollectionFrequencyDto getCollectionFrequency(){ return this.collectionFrequency;}
 
-    public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
+    public void setCollectionFrequency(CollectionFrequencyDto collectionFrequency){this.collectionFrequency = collectionFrequency;}
 
     public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;

@@ -18,7 +18,7 @@ public class ItemContractResponseImplDto implements ItemContractResponseDto {
     private BigDecimal itemValue;
     private String contract;
     private String description;
-    private CollectionFrequency collectionFrequency;
+    private CollectionFrequencyDto collectionFrequency;
     private String measurementUnit;
 
     public ItemContractResponseImplDto() {
@@ -88,9 +88,9 @@ public class ItemContractResponseImplDto implements ItemContractResponseDto {
 
     public void setEquipmentQuantity(Integer equipmentQuantity){this.equipmentQuantity = equipmentQuantity;}
 
-    public CollectionFrequency getCollectionFrequency(){ return this.collectionFrequency;}
+    public CollectionFrequencyDto getCollectionFrequency(){ return this.collectionFrequency;}
 
-    public void setCollectionFrequency(CollectionFrequency collectionFrequency){this.collectionFrequency = collectionFrequency;}
+    public void setCollectionFrequency(CollectionFrequencyDto collectionFrequency){this.collectionFrequency = collectionFrequency;}
 
     public String getMeasurementUnit() {
         return measurementUnit;

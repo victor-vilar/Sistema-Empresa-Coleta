@@ -13,6 +13,12 @@ public class CollectionFrequencyDto {
     private Set<Integer> days = new HashSet<>();
     private Integer schedule;
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setDays(Set<Weekday> days) {
         this.days = days.stream().map(day -> day.getId()).collect(Collectors.toSet());

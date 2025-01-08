@@ -4,6 +4,7 @@ import com.victorvilar.projetoempresa.domain.CollectionFrequency;
 import com.victorvilar.projetoempresa.domain.Equipment;
 import com.victorvilar.projetoempresa.domain.ItemContract;
 import com.victorvilar.projetoempresa.domain.Residue;
+import com.victorvilar.projetoempresa.dto.contract.CollectionFrequencyDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractCreateDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractResponseImplDto;
 import com.victorvilar.projetoempresa.dto.contract.ItemContractUpdateDto;
@@ -39,6 +40,7 @@ class ItemContractMapperTest {
     Residue residue;
     Equipment equipment;
     CollectionFrequency collectionFrequency;
+    CollectionFrequencyDto collectionFrequencyDto;
     @BeforeEach
     public void setUp(){
 
@@ -50,10 +52,17 @@ class ItemContractMapperTest {
         collectionFrequency.setSchedule("MENSAL");
         collectionFrequency.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
 
+        collectionFrequencyDto = new CollectionFrequencyDto();
+        collectionFrequencyDto.setId(1L);
+        collectionFrequencyDto.setSchedule("MENSAL");
+        collectionFrequencyDto.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
+
+
+
         itemContract1 = new ItemContract(residue,equipment,100.00, BigDecimal.valueOf(100.00),"Coleta de Resíduo Extraordinário",10,collectionFrequency, MeasurementUnit.LITROS);
         itemContract2 = new ItemContract(residue,equipment,200.00, BigDecimal.valueOf(200.00),"Coleta de Resíduo Extraordinário",20,collectionFrequency, MeasurementUnit.LITROS);
-        itemContractCreateDto = new ItemContractCreateDto(1L,1L,100.00, BigDecimal.valueOf(100.00),"Coleta de Resíduo Extraordinário",10,collectionFrequency, MeasurementUnit.LITROS);
-        itemContractUpdateDto = new ItemContractUpdateDto(1L,1L,1L,100.00, BigDecimal.valueOf(100.00),"Coleta de Resíduo Extraordinário",10,collectionFrequency, MeasurementUnit.LITROS);
+        itemContractCreateDto = new ItemContractCreateDto(1L,1L,100.00, BigDecimal.valueOf(100.00),"Coleta de Resíduo Extraordinário",10,collectionFrequencyDto, MeasurementUnit.LITROS);
+        itemContractUpdateDto = new ItemContractUpdateDto(1L,1L,1L,100.00, BigDecimal.valueOf(100.00),"Coleta de Resíduo Extraordinário",10,collectionFrequencyDto, MeasurementUnit.LITROS);
 
     }
 
@@ -112,7 +121,7 @@ class ItemContractMapperTest {
         compare(dto.getCollectionFrequency(),item.getCollectionFrequency());
     }
 
-    void compare(CollectionFrequency collection1, CollectionFrequency collection2){
+    void compare(CollectionFrequencyDto collection1, CollectionFrequency collection2){
         assertEquals(collection1.getDays().size(), collection2.getDays().size());
         assertEquals(collection1.getSchedule(),collection2.getSchedule());
     }

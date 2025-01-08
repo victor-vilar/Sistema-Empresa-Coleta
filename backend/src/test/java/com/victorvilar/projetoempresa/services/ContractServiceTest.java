@@ -83,6 +83,7 @@ class ContractServiceTest {
     Residue residue;
     Equipment equipment;
     CollectionFrequency collectionFrequency = new CollectionFrequency();
+    CollectionFrequencyDto collectionFrequencyDto = new CollectionFrequencyDto();
 
 
     @BeforeEach
@@ -103,6 +104,8 @@ class ContractServiceTest {
         this.setUpItemContract();
         collectionFrequency.setSchedule("SEMANAL");
         collectionFrequency.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
+        collectionFrequencyDto.setSchedule("SEMANAL");
+        collectionFrequencyDto.setDays(Set.of(Weekday.SEGUNDA,Weekday.QUARTA));
 
     }
 
@@ -349,8 +352,8 @@ class ContractServiceTest {
 
         contractCreateDto1.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO)));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO)));
 
 
          contractCreateDto2 = ContractCreateDto.builder()
@@ -363,8 +366,8 @@ class ContractServiceTest {
 
         contractCreateDto2.setItens(
                 Arrays.asList(
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO),
-                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO)));
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO),
+                new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO)));
 
 
     }
@@ -380,8 +383,8 @@ class ContractServiceTest {
 
         contractUpdateDto1.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS),
-                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS)));
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequencyDto, MeasurementUnit.LITROS),
+                        new ItemContractUpdateDto(null,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequencyDto, MeasurementUnit.LITROS)));
 
 
         contractUpdateDto2 = ContractUpdateDto.builder()
@@ -394,8 +397,8 @@ class ContractServiceTest {
 
         contractUpdateDto2.setItens(
                 Arrays.asList(
-                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS),
-                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequency, MeasurementUnit.LITROS)));
+                        new ItemContractUpdateDto(3L,residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",10,collectionFrequencyDto, MeasurementUnit.LITROS),
+                        new ItemContractUpdateDto(4L,residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",10,collectionFrequencyDto, MeasurementUnit.LITROS)));
     }
     private void setUpContractResponse(){
 
@@ -434,8 +437,8 @@ class ContractServiceTest {
         itemContract2.setContract(contract1);
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
 
-        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
-        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequency,MeasurementUnit.EQUIPAMENTO);
+        itemContractCreateDto1 = new ItemContractCreateDto(residue.getId(),equipment.getId(),10d,new BigDecimal(10d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO);
+        itemContractCreateDto2 = new ItemContractCreateDto(residue.getId(),equipment.getId(),20d,new BigDecimal(20d),"coleta residuo",12,collectionFrequencyDto,MeasurementUnit.EQUIPAMENTO);
 
         itens.addAll(Arrays.asList(itemContract1,itemContract2));
     }
