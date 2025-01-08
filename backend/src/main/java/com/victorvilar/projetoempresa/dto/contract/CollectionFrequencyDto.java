@@ -3,11 +3,12 @@ package com.victorvilar.projetoempresa.dto.contract;
 import com.victorvilar.projetoempresa.enums.Schedule;
 import com.victorvilar.projetoempresa.enums.Weekday;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CollectionFrequencyDto {
+public class CollectionFrequencyDto implements Serializable {
 
     private Long id;
     private Set<Integer> days = new HashSet<>();
