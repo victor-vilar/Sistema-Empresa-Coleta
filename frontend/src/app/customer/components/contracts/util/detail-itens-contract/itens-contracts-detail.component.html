@@ -7,7 +7,7 @@
             <h6>Resíduos</h6>
             <div class="options">
               <a mat-stroked-button type="button" (click)="openItensView()" matBadgeColor="warn" matBadge={{listSize}} matTooltip="Itens" class="bt-itens"><app-svg-list-icon></app-svg-list-icon> Itens</a>
-              <a mat-stroked-button type="button" (click)="addItemToContract()" matTooltip="Adicionar" class="bt-add"><app-svg-add-icon></app-svg-add-icon> Adicionar</a>
+              <a mat-stroked-button type="button" (click)="addItemToContract()" matTooltip="Adicionar" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> Adicionar</a>
             </div>
           </div>
         </div>
@@ -56,15 +56,15 @@
                   <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
                 </mat-select>
               </mat-form-field>
-        </div>
+          </div>
 
-        <!-- equipment quantity field -->
-        <div class="residue-data" >
-            <mat-form-field appearance="outline">
-              <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
-              <input matInput type="number" name="equipmentQuantity" ngModel required matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
-              </mat-form-field>
-        </div>
+          <!-- equipment quantity field -->
+          <div class="residue-data" >
+              <mat-form-field appearance="outline">
+                <mat-label for="equipmentQuantity">Quantidade de Equipamentos:</mat-label>
+                <input matInput type="number" name="equipmentQuantity" ngModel required matTooltip="Quantidade de equipamentos que serão disponibilizados para o serviço" >
+                </mat-form-field>
+          </div>
 
 
         </div>
