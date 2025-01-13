@@ -141,6 +141,7 @@ public class ContractService {
         itemToUpdate.setDescription(item.getDescription());
         itemToUpdate.setCollectionFrequency(item.getCollectionFrequency());
         itemToUpdate.setMeasurementUnit(item.getMeasurementUnit());
+        this.itemContractRepository.save(itemToUpdate);
     }
 
     public Integer getEntityCount(){

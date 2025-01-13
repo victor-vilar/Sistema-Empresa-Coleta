@@ -9,7 +9,7 @@
               <a mat-stroked-button type="button" (click)="openItensView()" matBadgeColor="warn" matBadge={{listSize}} matTooltip="Itens" class="bt-itens"><app-svg-list-icon></app-svg-list-icon> Itens</a>
               <a mat-stroked-button type="button" (click)="addItemToContract()" matTooltip="Adicionar" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> Adicionar</a>
               <!-- botão para auxiliar no preenchimento dos campos no ambinete de desenvolvimento-->
-              <a *ngIf="isProduction" mat-stroked-button type="button" (click)="fillForm()" matTooltip="add" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> add</a>
+              <a *ngIf="!isProduction" mat-stroked-button type="button" (click)="fillForm()" matTooltip="add" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> add</a>
             </div>
           </div>
         </div>
