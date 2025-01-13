@@ -18,6 +18,7 @@ import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.servic
 import { Subscription } from 'rxjs';
 import { ItemContractListComponent } from '../item-contract-list/item-contract-list.component';
 import { CommunicationService } from 'src/app/shared/services/communication.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-itens-contracts-detail',
@@ -56,7 +57,7 @@ export class ItensContractsDetailComponent implements OnInit, OnChanges, AfterVi
     //constantes para as mensagens de salvamento
     private readonly SAVE_MESSAGE = {header:"Cadastro",message:"Resíduo inserido com sucesso"};
     private readonly NEW_WEEKDAY_MESSAGE = {header:"Dia Adicionado",message:"Dia inserido com sucesso"};
-
+    isProduction = environment.production
 
   constructor() {}
 
@@ -284,6 +285,33 @@ export class ItensContractsDetailComponent implements OnInit, OnChanges, AfterVi
     openItensView(){
       this.dialogService.openDialog(ItemContractListComponent,this.itemContractList,null,"800px");
     }
+
+
+    /**
+     * fill the form with data and make some  tests
+     * 
+     */
+    fillForm(){
+      console.log(this.residuesList);
+      console.log(this.equipmentsList);
+      console.log(this.weekDaysEnumValues);
+      this.form.setValue({
+        description: "this is a test item",
+        residue:this.residuesList[0].id,
+        quantity: 100,
+        equipment:this.equipmentsList[0].id,
+        equipmentQuantity:100,
+        schedule:this.scheduleEnumValues[0],
+        measurementUnit:this.measurementUnitList[0],
+        itemValue:200,
+        days:'SEGUNDA'
+
+
+      })
+
+      //this.weekdaysListToAddToItemContract.push("DOMINGO");
+    }
+    
 
 
 }

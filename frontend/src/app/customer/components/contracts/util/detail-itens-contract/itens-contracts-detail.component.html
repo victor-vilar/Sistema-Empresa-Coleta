@@ -8,6 +8,8 @@
             <div class="options">
               <a mat-stroked-button type="button" (click)="openItensView()" matBadgeColor="warn" matBadge={{listSize}} matTooltip="Itens" class="bt-itens"><app-svg-list-icon></app-svg-list-icon> Itens</a>
               <a mat-stroked-button type="button" (click)="addItemToContract()" matTooltip="Adicionar" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> Adicionar</a>
+              <!-- botão para auxiliar no preenchimento dos campos no ambinete de desenvolvimento-->
+              <a *ngIf="isProduction" mat-stroked-button type="button" (click)="fillForm()" matTooltip="add" class="bt-add bt-add-iten"><app-svg-add-icon></app-svg-add-icon> add</a>
             </div>
           </div>
         </div>
@@ -34,7 +36,7 @@
                 <mat-form-field appearance="outline">
                   <mat-label for="residue">Resíduo:</mat-label>
                   <mat-select name="residue" id="residue" ngModel required >
-                    <mat-option value="{{residue.id}}" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
+                    <mat-option [value]="residue.id" *ngFor="let residue of residuesList">{{residue.type}}</mat-option>
                   </mat-select>
                 </mat-form-field>
             </div>
@@ -53,7 +55,7 @@
             <mat-form-field appearance="outline">
               <mat-label for="equipment">Equipamento:</mat-label>
                 <mat-select name="equipment" id="equipment"  ngModel required>
-                  <mat-option value="{{equipment.id}}" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
+                  <mat-option [value]="equipment.id" *ngFor="let equipment of equipmentsList">{{equipment.equipmentName}}</mat-option>
                 </mat-select>
               </mat-form-field>
           </div>
@@ -77,7 +79,7 @@
               <mat-form-field appearance="outline">
                 <mat-label for="schedule">Frequência:</mat-label>
                   <mat-select name="schedule" id="schedule"  ngModel required matTooltip="Frequência em que o serviço será executado" >
-                    <mat-option value="{{schedule}}" *ngFor="let schedule of scheduleEnumValues">{{schedule}}</mat-option>
+                    <mat-option [value]="schedule" *ngFor="let schedule of scheduleEnumValues">{{schedule}}</mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
@@ -86,7 +88,7 @@
             <mat-form-field appearance="outline">
                 <mat-label for="measurementUnit">Unidade de Medida</mat-label>
                 <mat-select name="measurementUnit" id="measurementUnit" ngModel required>
-                  <mat-option value="{{measurementUnit}}" *ngFor="let measurementUnit of measurementUnitList">{{measurementUnit}}</mat-option>
+                  <mat-option [value]="measurementUnit" *ngFor="let measurementUnit of measurementUnitList">{{measurementUnit}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -103,7 +105,7 @@
           <mat-form-field appearance="outline">
             <mat-label for="days">Dias:</mat-label>
               <mat-select name="days" id="days" ngModel #daysInput (selectionChange)="disableButton()" matTooltip="Dias em que o serviço será executado, selecione o dia e clique em adicionar">
-                <mat-option value="{{weekday}}" *ngFor="let weekday of weekDaysEnumValues">{{weekday}}</mat-option>
+                <mat-option [value]="weekday" *ngFor="let weekday of weekDaysEnumValues">{{weekday}}</mat-option>
               </mat-select>
             </mat-form-field>
       </div>

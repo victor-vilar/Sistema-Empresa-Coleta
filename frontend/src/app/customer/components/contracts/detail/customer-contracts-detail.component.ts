@@ -84,6 +84,8 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
         })
         this.itemContractList = this.objectToEdit.itens;
 
+        console.log(this.itemContractList);
+
 
       }
     },200);
@@ -118,6 +120,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
     //adding list of itens to contract, that have been transformed;
     contract.itens = this.child.itemContractListMapper();
+    console.log(contract.itens);
     contract.customerId = this.clientCpfCnpj;
 
     //creates a contractObserver
@@ -142,6 +145,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
       contractObserver = this.contractUpdateObserver();
 
       //put on api
+      console.log(contract);
       observervable$ = this.contractService.update(contract);
     }
 

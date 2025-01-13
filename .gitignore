@@ -250,3 +250,6 @@ Thumbs.db
 /backend/target/
 /backend/sistema.drawio
 /backend/Diagrama sem nome.drawio
+
+#vscode
+.vscode

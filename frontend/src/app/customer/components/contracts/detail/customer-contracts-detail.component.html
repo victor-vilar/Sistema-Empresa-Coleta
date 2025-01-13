@@ -36,7 +36,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Status</mat-label>
               <mat-select name="contractStatus" id="contractStatus" ngModel >
-                <mat-option value="{{status}}" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
+                <mat-option [value]="status" *ngFor="let status of contractStatusEnumValues">{{status}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
