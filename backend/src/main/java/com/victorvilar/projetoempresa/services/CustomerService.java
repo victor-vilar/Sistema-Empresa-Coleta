@@ -6,6 +6,7 @@ import com.victorvilar.projetoempresa.business.rules.customer.CustomerRegisterRu
 import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
 import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDefaultImplDto;
 import com.victorvilar.projetoempresa.domain.Customer;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseSimpleDto;
 import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 import com.victorvilar.projetoempresa.exceptions.CustomerNotFoundException;
 import com.victorvilar.projetoempresa.exceptions.CpfOrCnpjAlreadyExistsException;
@@ -39,6 +40,11 @@ public class CustomerService {
 	@Cacheable(value="customers")
 	public List<CustomerResponseDto> getAll() {
 		return this.mapper.toCustomerResponseDtoList(this.repository.findAll());
+	}
+
+	@Cacheable(value="customers")
+	public List<CustomerResponseDto> getAllSimple(){
+		return this.mapper.toCustomerResponseDtoList(this.repository.findAll(), CustomerResponseSimpleDto.class);
 	}
 
 	public Customer findCustomerById(String id) throws CustomerNotFoundException {

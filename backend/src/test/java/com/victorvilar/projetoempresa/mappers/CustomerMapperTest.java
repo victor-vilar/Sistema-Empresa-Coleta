@@ -74,6 +74,21 @@ class CustomerMapperTest {
         }
 
     }
+
+    @Test
+    void toCustomerResponseDtoListPassingList(){
+        List<CustomerResponseDto> dtosDefault = mapper.toCustomerResponseDtoList(List.of(customer1,customer2), CustomerResponseDefaultImplDto.class);
+        List<CustomerResponseDto> dtosSimple = mapper.toCustomerResponseDtoList(List.of(customer1,customer2), CustomerResponseSimpleDto.class);
+        List<Customer> customes = List.of(customer1,customer2);
+        for(int i = 0; i < customes.size();i++){
+            compare(dtosDefault.get(i),CustomerResponseDefaultImplDto.class);
+            compare(dtosSimple.get(i), CustomerResponseSimpleDto.class);
+            compare(dtosDefault.get(i),customes.get(i));
+            compare(dtosSimple.get(i),customes.get(i));
+        }
+    }
+
+
     void compare(CustomerDto dto ,Class<?> className){
         assertEquals(dto.getClass(), className);
     }

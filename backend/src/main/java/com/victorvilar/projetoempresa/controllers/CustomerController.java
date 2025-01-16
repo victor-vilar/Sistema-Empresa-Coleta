@@ -35,6 +35,11 @@ public class CustomerController {
 		return ResponseEntity.ok(this.service.getAll());
 	}
 
+	@GetMapping("/simple")
+	public ResponseEntity<List<CustomerResponseDto>> getAllSimple(){
+		return ResponseEntity.ok(this.service.getAllSimple());
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<CustomerResponseDto> getById(@PathVariable String id) {
 		return ResponseEntity.ok(this.service.getById(id));

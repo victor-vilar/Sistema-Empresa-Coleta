@@ -2,6 +2,7 @@ package com.victorvilar.projetoempresa.mappers;
 
 import com.victorvilar.projetoempresa.dto.customer.CustomerCreateDto;
 import com.victorvilar.projetoempresa.dto.customer.CustomerResponseDefaultImplDto;
+import com.victorvilar.projetoempresa.dto.customer.CustomerResponseSimpleDto;
 import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 import com.victorvilar.projetoempresa.domain.Customer;
 import org.modelmapper.ModelMapper;
@@ -34,5 +35,9 @@ public class CustomerMapper {
 
     public List<CustomerResponseDto> toCustomerResponseDtoList(List<Customer> clientes){
         return clientes.stream().map(this::toCustomerResponseDto).toList();
+    }
+
+    public List<CustomerResponseDto> toCustomerResponseDtoList(List<Customer> customers, Class<? extends CustomerResponseDto> dto){
+        return customers.stream().map(customer -> this.toCustomerResponseDto(customer, dto)).toList();
     }
 }
