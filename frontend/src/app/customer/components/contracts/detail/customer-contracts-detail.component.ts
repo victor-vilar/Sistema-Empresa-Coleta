@@ -150,7 +150,7 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     }
 
     //executing observable
-    observervable$.subscribe(contractObserver);
+    this.subscriptionsList.push(observervable$.subscribe(contractObserver));
 
     this.destroy();
   }
@@ -171,8 +171,8 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
    */
   deleteItemsFromApi(){
 
-      this.contractService.deleteItensFromContract(this.deletedSavedItensIdList)
-      .subscribe(this.deleteItemFromContractObserver());
+      this.subscriptionsList.push(this.contractService.deleteItensFromContract(this.deletedSavedItensIdList)
+      .subscribe(this.deleteItemFromContractObserver()));
   }
 
   //navigates to another page
@@ -272,16 +272,16 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     //if contract form it is dirty and the form button was not pressed to save the alteration
     //display message asking the if the user wants to save
     if(this.form.dirty){
-        this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
+        this.subscriptionsList.push(this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
           //if the user doesn't want to save, destroy component
           if(response){
             this.destroy();
           }
-        })
+        }))
     }else{
       this.destroy();
     }
-
+    
 
 
 

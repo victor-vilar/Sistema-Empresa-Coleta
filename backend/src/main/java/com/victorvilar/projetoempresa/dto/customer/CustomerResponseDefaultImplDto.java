@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class created to not expose the models of the API
+ * Class that return info of customer with its all objects
  */
 public class CustomerResponseDefaultImplDto implements CustomerResponseDto {
 

@@ -2,6 +2,10 @@ package com.victorvilar.projetoempresa.dto.customer;
 
 import com.victorvilar.projetoempresa.dto.customer.interfaces.CustomerResponseDto;
 
+/**
+ * Classs to get customer, returning only its data and nothing of its
+ *
+ * */
 public class CustomerResponseSimpleDto implements CustomerResponseDto {
 
     private String nameCompanyName;
