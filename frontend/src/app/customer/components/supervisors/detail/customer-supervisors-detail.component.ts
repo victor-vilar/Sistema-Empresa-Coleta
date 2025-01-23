@@ -34,6 +34,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
     setTimeout(() =>{
      this.form.setValue({
               supervisorName:this.objectToEdit.name,
+              supervisorRole:this.objectToEdit.role,
               supervisorPhone: this.objectToEdit.phoneNumber,
               supervisorEmail:this.objectToEdit.email,
         })
@@ -44,6 +45,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
   createObject():any {
     return {
       name:this.form.value.supervisorName,
+      role:this.form.value.role,
       phoneNumber:this.form.value.supervisorPhone,
       email:this.form.value.supervisorEmail,
     }
