@@ -63,7 +63,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
       observable$ = this.supervisorService.update(supervisor);
     }
 
-    observable$.subscribe(this.saveObserver());
+    this.subscriptionsList.push(observable$.subscribe(this.saveObserver()));
     this.destroy();
   }
 
