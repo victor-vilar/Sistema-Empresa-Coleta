@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Inject, inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -21,6 +21,7 @@ export abstract class FormDetail{
   protected objectToEdit:any;
   protected idOfEditedItem:number | string;
   protected crudOperation:string = "Cadastro";
+  protected destroy$ = new Subject<void>();
 
 
   constructor(){ }

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Supervisor } from 'src/app/shared/entities/Supervisor';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { finalize, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -65,8 +66,15 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
       observable$ = this.supervisorService.update(supervisor);
     }
 
-    this.subscriptionsList.push(observable$.subscribe(this.saveObserver()));
-    this.destroy();
+    observable$.pipe(
+    takeUntil(this.destroy$),
+    finalize(() => {
+      this.dialogService.closeProgressSpinnerDialog();
+      this.destroy();
+    }))
+    .subscribe(this.saveObserver());
+
+    
   }
 
 
@@ -74,12 +82,10 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
   saveObserver(){
     return {
       next:(response) =>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Fiscal salvo com sucesso !','/clientes');
         this.supervisorService.getAll();
       },
       error:(response) =>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
@@ -88,7 +94,9 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
 
 
   destroy(): void {
-    this.unsubscribeToObservables();
+
+    this.destroy$.next();
+    this.destroy$.complete();
     this.dialogRef.close();
 
   }
