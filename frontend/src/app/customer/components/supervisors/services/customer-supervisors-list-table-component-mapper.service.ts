@@ -9,11 +9,12 @@ export class CustomerSupervisorsListTableComponentMapperService implements Mappe
 
 
    mapItens(list:Supervisor[]):any[]{
-
+    console.log(list);
     return list.map(e =>{
       return {
         id:e.id,
         name:e.name,
+        role:e.role,
         phoneNumber:e.phoneNumber,
         email:e.email
       }
