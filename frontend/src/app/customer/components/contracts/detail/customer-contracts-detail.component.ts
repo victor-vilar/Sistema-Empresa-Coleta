@@ -209,12 +209,16 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     //if contract form it is dirty and the form button was not pressed to save the alteration
     //display message asking the if the user wants to save
     if(this.form.dirty){
-        this.subscriptionsList.push(this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?").subscribe(response =>{
+        this.dialogService.openConfirmCloseDialog("Deseja sair sem salvar ?")
+        .pipe(
+          takeUntil(this.destroy$)
+        )
+        .subscribe(response =>{
           //if the user doesn't want to save, destroy component
           if(response){
             this.destroy();
           }
-        }))
+        })
     }else{
       this.destroy();
     }

@@ -12,7 +12,6 @@ import { FormDetailHelperService } from '../services/form-detail-helper.service'
 export abstract class FormDetail{
 
 
-  protected subscriptionsList:Subscription[] = [];
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   protected router:Router = inject(Router);
   protected dialogService = inject(DialogServiceService);
@@ -73,12 +72,7 @@ export abstract class FormDetail{
   };
 
 
-  /**
-   * Metodo para desinscrever todos os observables do formulário
-   */
-  protected unsubscribeToObservables():void {
-    this.subscriptionsList.forEach(s => s.unsubscribe());
-  }
+
 
 
 
