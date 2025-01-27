@@ -58,7 +58,12 @@ public class CustomerService {
 	}
 
 	@Transactional
-	@CacheEvict(value="customers",allEntries = true)
+	@Caching(evict= { 
+	 @CacheEvict(value = "contracts", allEntries = true),
+	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "supervisors", allEntries = true),
+	 @CacheEvict(value = "addresses", allEntries = true),
+	 })
 	public CustomerResponseDto save(CustomerCreateDto customerCreateDto) throws InvalidCpfOrCnpjException, CpfOrCnpjAlreadyExistsException {
 		Customer customer = this.mapper.toCustomer(customerCreateDto);
 		this.customerRegisterRulers.forEach(rule -> rule.verification(customer,this.repository));
@@ -67,7 +72,12 @@ public class CustomerService {
 	}
 
 	@Transactional
-	@CacheEvict(value="customers",allEntries = true)
+	@Caching(evict= { 
+	 @CacheEvict(value = "contracts", allEntries = true),
+	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "supervisors", allEntries = true),
+	 @CacheEvict(value = "addresses", allEntries = true),
+	 })
 	public CustomerResponseDto update(CustomerCreateDto customerCreateDto) {
 		Customer customer = findCustomerById(customerCreateDto.getCpfCnpj());
 		customer.setCpfCnpj(customerCreateDto.getCpfCnpj());
@@ -76,7 +86,12 @@ public class CustomerService {
 	}
 
 	@Transactional
-	@CacheEvict(value="customers",allEntries = true)
+	@Caching(evict= { 
+	 @CacheEvict(value = "contracts", allEntries = true),
+	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "supervisors", allEntries = true),
+	 @CacheEvict(value = "addresses", allEntries = true),
+	 })
 	public void delete(String id) {
 		//if the id is not found will throw a exception
 		findCustomerById(id);

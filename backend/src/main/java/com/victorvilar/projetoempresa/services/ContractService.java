@@ -70,7 +70,7 @@ public class ContractService {
     }
 
     @Transactional
-    @CacheEvict(value = "contracts", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "contracts", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public ContractResponseDto save(ContractCreateDto contractCreateDto) {
 
         Contract contract = this.contractMapper.toContract(contractCreateDto);
@@ -86,7 +86,7 @@ public class ContractService {
     }
 
     @Transactional
-    @CacheEvict(value = "contracts", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "contracts", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public ContractResponseDto addNewItemToContract(Long contractId, ItemContractCreateDto itemDto) {
 
         ItemContract item = this.itemContractMapper.toItemContract(itemDto);
@@ -98,19 +98,19 @@ public class ContractService {
     }
 
     @Transactional
-    @CacheEvict(value = "contracts", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "contracts", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public void delete(Long contractId ){
         this.repository.deleteById(contractId);
     }
 
     @Transactional
-    @CacheEvict(value = "contracts", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "contracts", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public void deleteItemContract(List<Long> itens) {
         this.itemContractRepository.deleteAllById(itens);
     }
 
     @Transactional
-    @CacheEvict(value = "contracts", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "contracts", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public ContractResponseDto update(ContractUpdateDto contractUpdateDto){
 
         Contract contract = this.updateContractFields(contractUpdateDto);

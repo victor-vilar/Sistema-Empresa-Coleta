@@ -55,7 +55,7 @@ public class AddressService {
     }
 
     @Transactional
-    @CacheEvict(value = "addresses", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "addresses", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public AddressResponseDto save(AddressCreateDto addressCreateDto){
         Address address = this.addressMapper.toAddress(addressCreateDto);
         Customer customer = this.customerService.findCustomerById(addressCreateDto.getCustomerId());
@@ -64,14 +64,14 @@ public class AddressService {
     }
 
     @Transactional
-    @CacheEvict(value = "addresses", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "addresses", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public void delete(Long id){
         Address address = this.findAddressById(id);
         this.repository.deleteById(id);
     }
 
     @Transactional
-    @CacheEvict(value = "addresses", allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "addresses", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public AddressResponseDto update(AddressUpdateDto addressUpdateDto){
         Address addressToUpdate = this.repository.findById(addressUpdateDto.getId()).orElseThrow(() -> new AddressNotFoundException("Address Not found"));
         addressToUpdate.setAddressName(addressUpdateDto.getAddressName());

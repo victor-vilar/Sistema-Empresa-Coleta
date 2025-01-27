@@ -58,7 +58,7 @@ public class SupervisorService {
     }
 
     @Transactional
-    @CacheEvict(value="supervisors",allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "supervisors", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public SupervisorResponseDto save(SupervisorCreateDto supervisorCreateDto){
         Customer customer = this.customerService.findCustomerById(supervisorCreateDto.getCustomerId());
         Supervisor supervisor = mapper.toSupervisor(supervisorCreateDto);
@@ -67,13 +67,13 @@ public class SupervisorService {
     }
 
     @Transactional
-    @CacheEvict(value="supervisors",allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "supervisors", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public void delete(Long supervisorId) {
         this.repository.deleteById(supervisorId);
     }
 
     @Transactional
-    @CacheEvict(value="supervisors",allEntries = true)
+    @Caching(evict= { @CacheEvict(value = "supervisors", allEntries = true), @CacheEvict(value = "customers", allEntries = true)})
     public SupervisorResponseDto update(SupervisorUpdateDto supervisorUpdateDto) {
         Supervisor supervisorToUpdate = findSupervisorById(supervisorUpdateDto.getId());
         supervisorToUpdate.setName(supervisorUpdateDto.getName());
