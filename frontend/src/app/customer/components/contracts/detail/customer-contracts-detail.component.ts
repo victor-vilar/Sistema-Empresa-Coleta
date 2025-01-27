@@ -13,6 +13,7 @@ import { ItensContractsDetailComponent } from '../util/detail-itens-contract/ite
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 import { CustomerContractsDetailErrorsHelperService } from '../services/customer-contracts-detail-errors-helper.service';
+import { takeUntil, finalize, of, switchMap, mergeMap, tap } from 'rxjs';
 
 
 @Component({
@@ -120,39 +121,33 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
     //adding list of itens to contract, that have been transformed;
     contract.itens = this.child.itemContractListMapper();
-    console.log(contract.itens);
     contract.customerId = this.clientCpfCnpj;
 
-    //creates a contractObserver
-    let contractObserver;
 
-    //observervable$
-    let observervable$;
+    let contractObserver;
+    let observable$;
+
+    contractObserver = this.saveObserver();
 
     //if the idOfEditedItem === undefined means its a new contract not a edited one
     if(this.objectToEdit === null || this.objectToEdit === undefined){
-
-      contractObserver = this.contractCreateObserver();
-      observervable$ = this.contractService.save(contract);
-
-      //if it's undefined it's just updating
+      observable$ = this.contractService.save(contract);
     }else{
-
-      //fill empty contract fields to make the update
       contract.id = this.objectToEdit.id;
-      contract.customerId = this.objectToEdit.customerId;
-
-      contractObserver = this.contractUpdateObserver();
-
-      //put on api
-      console.log(contract);
-      observervable$ = this.contractService.update(contract);
+      observable$ = this.contractService.update(contract);
     }
 
-    //executing observable
-    this.subscriptionsList.push(observervable$.subscribe(contractObserver));
 
-    this.destroy();
+    observable$.pipe(
+    tap(() => console.log("A lista de itens possui " + this.deletedSavedItensIdList.length + " itens para deletar")),
+    mergeMap(() => this.deletedSavedItensIdList.length > 0 ? this.contractService.deleteItensFromContract(this.deletedSavedItensIdList): of(null)),
+    takeUntil(this.destroy$),
+    finalize(() => {
+      this.dialogService.closeProgressSpinnerDialog();
+      
+    }))
+    .subscribe(this.saveObserver());
+  
   }
 
 
@@ -166,68 +161,29 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
 
 
 
-  /**
-   * if some itens are deleted from the contract frontend list, it will be deleted from backend list
-   */
-  deleteItemsFromApi(){
-
-      this.subscriptionsList.push(this.contractService.deleteItensFromContract(this.deletedSavedItensIdList)
-      .subscribe(this.deleteItemFromContractObserver()));
-  }
-
-  //navigates to another page
-  destroy(): void {
-    this.unsubscribeToObservables();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
 
   }
 
   //observer to manipulate observable subscription
   //creates contract
-  contractCreateObserver():any{
+  saveObserver():any{
     return{
       next:(response) =>{
-        //colse progress dialog
-        this.dialogService.closeProgressSpinnerDialog();
-        //show success message
         this.dialogService.openSucessDialog('Contrato salvo com sucesso !','/clientes');
-        //update contract list
         this.contractService.getAll();
+        this.destroy();
 
       },
+      
       error:(error)=>{
-        //close progress dialog
-        this.dialogService.closeProgressSpinnerDialog();
-        //show error message
         this.dialogService.openErrorDialog(error.message);
         console.log(error);
       }
     }
   }
-
-  contractUpdateObserver():any{
-    return{
-      next:(response) =>{
-
-        if(this.deletedSavedItensIdList.length > 0){
-          this.deleteItemsFromApi();
-        }else{
-
-          this.dialogService.closeProgressSpinnerDialog();
-          this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
-          this.contractService.getAll();
-        }
-
-      },
-      error:(error)=>{
-        //close progress dialog
-        this.dialogService.closeProgressSpinnerDialog();
-        //show error message
-        this.dialogService.openErrorDialog(error.message);
-      }
-    }
-  }
-
 
   //deletes contract
   deletesContractObserver():any{
@@ -247,25 +203,6 @@ export class CustomerContractsDetailComponent extends FormDetail implements OnIn
     }
   }
 
-  //observer to do after eliminates a itemContract from databse;
-  deleteItemFromContractObserver():any{
-    return{
-      next:(response) =>{
-
-        //show success message
-        this.dialogService.closeProgressSpinnerDialog();
-        this.dialogService.openSucessDialog('Contrato atualizado com sucesso !','/clientes');
-        this.contractService.getAll();
-
-      },
-      error:(error)=>{
-        this.dialogService.closeProgressSpinnerDialog();
-        console.log(error);
-        this.dialogService.openErrorDialog(error);
-      }
-    }
-  }
-  //====================
 
   //override
   canDeactivate(){
