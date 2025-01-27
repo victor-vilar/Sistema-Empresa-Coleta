@@ -21,6 +21,11 @@
               <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.name}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="Função/Cargo">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Função/Cargo </th>
+              <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.role}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="Telefone">
               <th mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{textAlign:'center'}"> Telefone </th>
               <td mat-cell *matCellDef="let supervisor" [ngStyle]="{textAlign:'center'}"> {{supervisor.phoneNumber | phone}}  </td>

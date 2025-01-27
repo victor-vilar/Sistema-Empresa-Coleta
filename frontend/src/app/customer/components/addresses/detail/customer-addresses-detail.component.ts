@@ -7,6 +7,7 @@ import { Address } from 'src/app/shared/entities/Address';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CustomerAddressesDetailErrorsHelperService } from '../services/customer-addresses-detail-errors-helper.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { finalize, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-customer-addresses-detail',
@@ -87,19 +88,24 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
       observable$ = this.addressService.update(address);
     }
 
-    observable$.subscribe(this.saveAddressObserver());
-    this.destroy();
+    observable$.pipe(
+    takeUntil(this.destroy$),
+    finalize(() => {
+      this.dialogService.closeProgressSpinnerDialog();
+      
+    }))
+    .subscribe(this.saveObserver());    
+    
   }
 
-  saveAddressObserver(){
+  saveObserver(){
     return {
       next:(response) =>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Endereço salvo com sucesso !','/clientes');
         this.addressService.getAll();
+        this.destroy();
       },
       error:(response) =>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }
@@ -107,8 +113,8 @@ export class CustomerAddressesDetailComponent extends FormDetail implements OnIn
   }
 
 
-  destroy(): void {
-    this.unsubscribeToObservables();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
   }
 

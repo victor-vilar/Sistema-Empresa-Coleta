@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EquipmentDetailErrorsHelperService } from '../../services/equipment-detail-errors-helper.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
+import { finalize, takeUntil } from 'rxjs';
 
 
 
@@ -83,7 +84,6 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
     this.dialogService.openProgressDialog();
     let observable$;
     let object = this.createObject();
-    console.log(object)
     //se null object it is a new object
     //else it is a already exist one and it is a update
     if(object.id === undefined){
@@ -92,13 +92,17 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
       observable$ = this.service.update(object);
     }
 
-    observable$.subscribe(this.saveObjectObserver());
+    observable$.pipe(takeUntil(this.destroy$),
+    finalize(() =>{
+      this.dialogService.closeProgressSpinnerDialog();
+    }))
+    .subscribe(this.saveObserver());
 
   }
 
-  destroy(){
+  override destroy(){
     this.objectToEdit = null
-    this.unsubscribeToObservables();
+    super.destroy();
     this.dialogRef.close();
 
   }
@@ -107,16 +111,14 @@ export class EquipmentDetailComponent extends FormDetail implements OnInit, Afte
     this.form.reset();
   }
 
-  saveObjectObserver(){
+  saveObserver(){
     return{
       next:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Equipamento salvo com sucesso !','equipamentos');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }

@@ -5,6 +5,7 @@ import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { Customer } from 'src/app/shared/entities/Customer';
 import { ResidueDetailComponent } from '../../../residue/components/detail/residue-detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { takeUntil, finalize } from 'rxjs';
 
 
 
@@ -78,21 +79,27 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
 
     this.dialogService.openProgressDialog();
     let customer = this.createObject();
-    let obervable$;
+    let observable$;
 
     if(this.idOfEditedItem === undefined){
-      obervable$ =this.service.save(customer);
+      observable$ =this.service.save(customer);
     }else{
-      obervable$ =this.service.update(customer)
+      observable$ =this.service.update(customer)
     }
 
-    obervable$.subscribe(this.customerObserver());
+    observable$.pipe(
+    takeUntil(this.destroy$),
+    finalize(() => {
+      this.dialogService.closeProgressSpinnerDialog();
+      
+    }))
+    .subscribe(this.saveObserver());
 
   }
 
 
-  destroy(): void {
-    this.unsubscribeToObservables();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
   }
 
@@ -100,17 +107,15 @@ export class CustomerDetailComponent extends FormDetail implements OnInit, After
     this.form.reset();
   }
 
-  private customerObserver(){
+  private saveObserver(){
 
     return{
       next:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Cliente salvo com sucesso !','/clientes');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
 
         if(response.error.message === "This CPF or CNPJ is Invalid"){
           this.invalidCpfCnpj = true;

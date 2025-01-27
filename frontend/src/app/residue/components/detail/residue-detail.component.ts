@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 import { ResidueDetailErrosHelperService } from '../../services/residue-detail-erros-helper.service';
+import { finalize, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -72,7 +73,12 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
     }else{
         observable$ = this.service.update(residue);
     }
-      observable$.subscribe(this.saveObjectObserver());
+    
+    observable$.pipe(takeUntil(this.destroy$),
+    finalize(() =>{
+      this.dialogService.closeProgressSpinnerDialog();
+    }))
+    .subscribe(this.saveObserver());
 
   }
 
@@ -83,9 +89,8 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
   }
 
 
-  destroy(): void {
-    this.objectToEdit =null
-    this.unsubscribeToObservables();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
   }
 
@@ -94,16 +99,14 @@ export class ResidueDetailComponent extends FormDetail implements OnInit,AfterVi
     this.resetInvalidProperties();
   }
 
-  saveObjectObserver(){
+  saveObserver(){
     return{
       next:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSucessDialog('Resíduo salvo com sucesso !','residuos');
         this.service.getAll();
         this.destroy();
       },
       error:(response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
         console.log(response);
       }

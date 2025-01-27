@@ -70,7 +70,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
     takeUntil(this.destroy$),
     finalize(() => {
       this.dialogService.closeProgressSpinnerDialog();
-      this.destroy();
+      
     }))
     .subscribe(this.saveObserver());
 
@@ -84,6 +84,7 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
       next:(response) =>{
         this.dialogService.openSucessDialog('Fiscal salvo com sucesso !','/clientes');
         this.supervisorService.getAll();
+        this.destroy();
       },
       error:(response) =>{
         this.dialogService.openErrorDialog('Ocorreu algum erro !');
@@ -93,10 +94,8 @@ export class CustomerSupervisorsDetailComponent extends FormDetail implements On
   }
 
 
-  destroy(): void {
-
-    this.destroy$.next();
-    this.destroy$.complete();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
 
   }

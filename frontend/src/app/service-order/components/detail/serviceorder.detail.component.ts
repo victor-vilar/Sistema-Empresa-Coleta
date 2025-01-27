@@ -13,6 +13,7 @@ import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.servic
 import { ServiceorderDetailComponentErrorsHelperService } from '../../services/serviceorder-detail-component-errors-helper.service';
 import { FormDetail } from 'src/app/shared/entities/FormDetail';
 import { ServiceOrder } from 'src/app/shared/entities/ServiceOrder';
+import { finalize, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -78,19 +79,24 @@ export class ServiceorderDetailComponent extends FormDetail implements OnInit {
     //this.errorsHelper.checkErrors(this.form);
     this.dialogService.openProgressDialog()
     let serviceOrder = this.createObject();
+    let observable$;
 
     if(this.selectedServiceOrder !== undefined){
       serviceOrder.id = this.selectedServiceOrder.id;
     }
 
-    console.log(serviceOrder);
     if(serviceOrder.id === undefined){
-      this.subscriptionsList.push(this.serviceOrderService.save(serviceOrder)
-      .subscribe(this.serviceOrderSaveObserver()));
+      observable$ = this.serviceOrderService.save(serviceOrder)
     }else{
-      this.subscriptionsList.push(this.serviceOrderService.update(serviceOrder)
-      .subscribe(this.serviceOrderSaveObserver()));
+      observable$ = this.serviceOrderService.update(serviceOrder)
+      
     }
+
+    observable$.pipe(takeUntil(this.destroy$),
+    finalize(() =>{
+      this.dialogService.closeProgressSpinnerDialog();
+    }))
+    .subscribe(this.saveObserver());
 
   }
 
@@ -131,20 +137,18 @@ export class ServiceorderDetailComponent extends FormDetail implements OnInit {
     this.fillOptionsAfterCustomerUpdate(searchedCustomer);
   }
 
-  destroy(): void {
-    this.unsubscribeToObservables();
+  override destroy(): void {
+    super.destroy();
     this.dialogRef.close();
   }
 
-  serviceOrderSaveObserver(){
+  saveObserver(){
     return{
       next: (response)=>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openSuccessDialogWithoutRedirect('Ordem salva com sucesso');
         this.serviceOrderService.getAll();
       },
       error: (error) =>{
-        this.dialogService.closeProgressSpinnerDialog();
         this.dialogService.openErrorDialog(error.message);
         console.log(error);
       }

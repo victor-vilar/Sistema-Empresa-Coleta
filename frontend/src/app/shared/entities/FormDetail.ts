@@ -34,7 +34,10 @@ export abstract class FormDetail{
   abstract save(object:any):void;
 
   //close detail component
-  abstract destroy():void;
+   destroy():void{
+    this.destroy$.next();
+    this.destroy$.complete();
+   };
 
 
 
