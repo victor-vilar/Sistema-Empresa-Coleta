@@ -14,6 +14,7 @@ import com.victorvilar.projetoempresa.mappers.CustomerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.victorvilar.projetoempresa.exceptions.InvalidCpfOrCnpjException;
@@ -60,7 +61,7 @@ public class CustomerService {
 	@Transactional
 	@Caching(evict= { 
 	 @CacheEvict(value = "contracts", allEntries = true),
-	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "customers", allEntries = true),
 	 @CacheEvict(value = "supervisors", allEntries = true),
 	 @CacheEvict(value = "addresses", allEntries = true),
 	 })
@@ -72,9 +73,9 @@ public class CustomerService {
 	}
 
 	@Transactional
-	@Caching(evict= { 
+	@Caching(evict= {
 	 @CacheEvict(value = "contracts", allEntries = true),
-	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "customers", allEntries = true),
 	 @CacheEvict(value = "supervisors", allEntries = true),
 	 @CacheEvict(value = "addresses", allEntries = true),
 	 })
@@ -88,7 +89,7 @@ public class CustomerService {
 	@Transactional
 	@Caching(evict= { 
 	 @CacheEvict(value = "contracts", allEntries = true),
-	 @CacheEvict(value = "customers", allEntries = true)
+	 @CacheEvict(value = "customers", allEntries = true),
 	 @CacheEvict(value = "supervisors", allEntries = true),
 	 @CacheEvict(value = "addresses", allEntries = true),
 	 })
