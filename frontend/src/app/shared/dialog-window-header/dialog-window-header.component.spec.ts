@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogWindowHeaderComponent } from './dialog-window-header.component';
+import { By } from '@angular/platform-browser';
 
 describe('DialogWindowHeaderComponent', () => {
   let component: DialogWindowHeaderComponent;
@@ -20,4 +21,12 @@ describe('DialogWindowHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  fit('should emit the output component signal',() => {
+
+    const bt = fixture.debugElement.query(By.css('a')).nativeElement;
+    spyOn(component.closeDialogEmitter,'emit');
+    bt.click();
+    expect(component.closeDialogEmitter.emit).toHaveBeenCalled();
+  })
 });
