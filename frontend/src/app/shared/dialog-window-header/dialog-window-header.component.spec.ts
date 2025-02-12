@@ -22,7 +22,7 @@ describe('DialogWindowHeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should emit the output component signal',() => {
+  it('should emit the output component signal',() => {
 
     const bt = fixture.debugElement.query(By.css('a')).nativeElement;
     spyOn(component.closeDialogEmitter,'emit');
