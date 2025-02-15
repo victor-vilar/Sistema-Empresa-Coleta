@@ -84,7 +84,7 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
     //if the event object cpfCnpj is undefined it means it is not a 'Customer' object
     //the customer object cpfCnpj it is its id;
-    if (event.cpfCnpj !== undefined){
+    if (event.cpfCnpj !== undefined && event.cpfCnpj !== null){
       observable$ = this.service.delete(event.cpfCnpj);
     }else{
       observable$ = this.service.delete(event.id)
@@ -138,7 +138,7 @@ export class ItensTableComponent implements OnInit, OnDestroy{
 
         //if the list of iten has the need to be mapped, the father will pass the Map service
         //and will use its method 'mapItens' to transform the list
-        if(this.mapper != undefined){
+        if(this.mapper !== undefined){
           this.tableData = this.mapper.mapItens(response);
 
         //if there is no need to transform it will only set the variable
@@ -153,6 +153,7 @@ export class ItensTableComponent implements OnInit, OnDestroy{
       },
       error:(error) =>{
         console.log(error);
+        this.dialogService.openErrorDialog(error.message);
       }
     }
   }

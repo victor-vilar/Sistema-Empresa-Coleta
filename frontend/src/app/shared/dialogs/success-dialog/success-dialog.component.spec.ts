@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedModule } from '../../shared.module';
 import { By } from '@angular/platform-browser';
 
-fdescribe('SuccessDialogComponent', () => {
+describe('SuccessDialogComponent', () => {
   let component: SuccessDialogComponent;
   let fixture: ComponentFixture<SuccessDialogComponent>;
   let data = {message:'this is a successfull message'}
