@@ -9,7 +9,7 @@ import { HttpResponse } from "@angular/common/http";
 
 
 
-fdescribe('ItensTableComponent', () => {
+describe('ItensTableComponent', () => {
 
       let component: ItensTableComponent;
       let fixture: ComponentFixture<ItensTableComponent>;
