@@ -110,7 +110,8 @@ export class DialogServiceService {
    */
   private afterCloseDialog(dialogRef:MatDialogRef<any>, rota:string){
 
-    if(rota != null){
+
+    if((dialogRef instanceof MatDialogRef) && (rota != null)){
       dialogRef.afterClosed().subscribe(result => {
         this.router.navigate([rota], { queryParams: {  }});
       });

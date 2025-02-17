@@ -2,7 +2,7 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { CommunicationService } from './communication.service';
 
-fdescribe('CommunicationService', () => {
+describe('CommunicationService', () => {
   let service: CommunicationService;
 
   beforeEach(() => {

@@ -14,6 +14,7 @@ describe('ItensTableComponent', () => {
       let component: ItensTableComponent;
       let fixture: ComponentFixture<ItensTableComponent>;
       let service:any;
+      let dialogService:DialogServiceService;
 
 
       beforeEach(async() => {
@@ -35,10 +36,9 @@ describe('ItensTableComponent', () => {
 
         fixture = TestBed.createComponent(ItensTableComponent);
         component = fixture.componentInstance;
+        dialogService = TestBed.inject(DialogServiceService);
         
-
         service  = jasmine.createSpyObj('service',['getAll','refreshAllData','delete','getAllByCustomerId']);
-        
         service.refreshAllData.and.returnValue(of([]));
         service.delete.and.returnValue(of(['true']));
         service.getAllByCustomerId.and.returnValue(of([{id:1,nome:'cliente1'}]));
