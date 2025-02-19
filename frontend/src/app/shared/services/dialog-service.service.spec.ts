@@ -17,6 +17,7 @@ fdescribe('DialogServiceService',() => {
     let router:Router;
     let activeRoute:ActivatedRoute;
     let snackBar:MatSnackBar;
+    let afterCloseSpy:any;
 
     beforeEach(async() =>{
 
@@ -28,7 +29,7 @@ fdescribe('DialogServiceService',() => {
                 
                 {
                     provide:MatDialog,
-                    useValue: jasmine.createSpyObj('MatDialog',{'open':MatDialogRef<any>})
+                    useValue: jasmine.createSpyObj('MatDialog',{'open':{afterClosed: () => of(true)}})
                 },
                 {
                     provide:Router,
@@ -52,13 +53,14 @@ fdescribe('DialogServiceService',() => {
         activeRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>
         snackBar = TestBed.inject(MatSnackBar) as jasmine.SpyObj<MatSnackBar>
         
-        
+        afterCloseSpy = spyOn<any>(service,'afterCloseDialog');
     });
 
     it('Should test method to create a snack bar from angular NOT passing snackbar position',() => {
         
         service.openSnackBar('this is a test','test');
         expect(snackBar.open).toHaveBeenCalled();
+        
 
     });
 
@@ -66,13 +68,14 @@ fdescribe('DialogServiceService',() => {
         
         service.openSnackBar('this is a test','test','center','bottom');
         expect(snackBar.open).toHaveBeenCalled();
-    
+        
     });
 
     it('Should test the open dialog method successfully', () => {
         
         service.openDialog(ConfirmationDialogComponent,{},'/')
         expect(dialog.open).toHaveBeenCalled();
+        expect(afterCloseSpy).toHaveBeenCalled();
 
     })
 
@@ -80,18 +83,66 @@ fdescribe('DialogServiceService',() => {
         
         service.openDialogPassingCustomerId(ConfirmationDialogComponent,{},'1','/');
         expect(dialog.open).toHaveBeenCalled();
+        expect(afterCloseSpy).toHaveBeenCalled();
 
     })
 
     it('Should test the open dialog passing customer id return afterClose observable method successfully', () => {
         
-
+        
          let obs = service.openDialogPassingCustomerIdAndReturnCloseObservable(ConfirmationDialogComponent,{},'1');
          expect(dialog.open).toHaveBeenCalled();
          expect(obs).not.toBeNull();
 
     })
 
+    it('should test the openErrorDialog method', () => {
+
+        service.openErrorDialog('this is a test');
+        expect(dialog.open).toHaveBeenCalled();
+
+    })
+
+    it('should test the openConfirmationDialog dialog method', () => {
+
+        let $obs = service.openConfirmationDialog();
+        expect(dialog.open).toHaveBeenCalled();
+        expect($obs).not.toBeNull();
+
+    })
+
+    it('should test the openConfirmCloseDialog  method', () => {
+
+        let $obs = service.openConfirmCloseDialog('this is an test');
+        expect(dialog.open).toHaveBeenCalled();
+        expect($obs).not.toBeNull();
+
+    })
+
+    it('should test the openSuccessDialog  method', () => {
+
+        
+        service.openSucessDialog('this is an test','/');
+        expect(dialog.open).toHaveBeenCalled();
+        expect(afterCloseSpy).toHaveBeenCalled();
+
+    })
+
+
+    it('should test the openSuccessDialogWithoutRedirect  method', () => {
+
+        
+        service.openSuccessDialogWithoutRedirect('this is an test');
+        expect(dialog.open).toHaveBeenCalled();
+        
+    })
+
+    it('should test method open ProgressDialog', () => {
+
+        service.openProgressDialog();
+        expect(dialog.open).toHaveBeenCalled();
+
+    })
 
 
 
