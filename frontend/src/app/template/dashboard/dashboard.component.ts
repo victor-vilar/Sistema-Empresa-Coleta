@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
   $equipmentTotalCount: Observable<number>;
   $residueTotalCount: Observable<number>;
   $serviceOrderTotalCount: Observable<number>;
-  totalValue = 0;
+  totalValue = 10;
   subscriptions:Subscription = new Subscription();
   chart: any = [];
   days:any = [];
