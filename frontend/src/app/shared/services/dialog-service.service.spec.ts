@@ -10,14 +10,14 @@ import { of } from "rxjs";
 
 
 
-fdescribe('DialogServiceService',() => {
+describe('DialogServiceService',() => {
 
     let service: DialogServiceService;
-    let dialog:MatDialog;
-    let router:Router;
-    let activeRoute:ActivatedRoute;
-    let snackBar:MatSnackBar;
-    let afterCloseSpy:any;
+    let dialog:jasmine.SpyObj<MatDialog>;
+    let router:jasmine.SpyObj<Router>;
+    let activeRoute:jasmine.SpyObj<ActivatedRoute>;
+    let snackBar:jasmine.SpyObj<MatSnackBar>;
+    let afterCloseSpy:jasmine.SpyObj<any>;
 
     beforeEach(async() =>{
 
@@ -48,7 +48,7 @@ fdescribe('DialogServiceService',() => {
         });
 
         service = TestBed.inject(DialogServiceService);
-        dialog = TestBed.inject(MatDialog);
+        dialog = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
         router = TestBed.inject(Router) as jasmine.SpyObj<Router>
         activeRoute = TestBed.inject(ActivatedRoute) as jasmine.SpyObj<ActivatedRoute>
         snackBar = TestBed.inject(MatSnackBar) as jasmine.SpyObj<MatSnackBar>

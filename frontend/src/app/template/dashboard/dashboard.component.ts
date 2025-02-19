@@ -56,18 +56,6 @@ export class DashboardComponent implements OnInit, OnDestroy, AfterContentInit {
   this.$residueTotalCount = this.residueService.getCount();
   this.$serviceOrderTotalCount = this.serviceOrderService.getCountOfNotExecuted();
 
-  // this.subscriptionList
-  // .push(
-  //   this.contractService.refreshAllData().subscribe(response =>{
-  //       this.contractRegisteredLength = response.length
-
-  //       //return a list of lists of itens
-  //       let listOfItens = response.map(e => e.itens);
-  //       listOfItens.forEach(e =>
-  //         //loop trough each item to sum all contracts
-  //         e.forEach(c => this.totalValue += c.itemValue * c.qtdOfResidue));
-  // }));
-
   }
 
   ngAfterContentInit(): void {
