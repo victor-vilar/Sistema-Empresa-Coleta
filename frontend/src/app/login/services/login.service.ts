@@ -3,7 +3,7 @@ import { DialogServiceService } from './../../shared/services/dialog-service.ser
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApplicationUser } from './../../shared/entities/ApplicationUser';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { getCookie } from 'typescript-cookie';
 
@@ -18,16 +18,17 @@ export class LoginService {
   private BASE_LOGOUT = "http://localhost:8080/logout";
   private APPLICATION_USER_NOT_FOUND_ERROR = "Application User not found !";
 
-  constructor(
-     private http:HttpClient,
-     private router:Router,
-     private dialogService:DialogServiceService ) { }
+  private http:HttpClient = inject(HttpClient);
+  private router:Router = inject(Router);
+  private dialogService:DialogServiceService = inject(DialogServiceService);
+  
+  constructor() { }
 
 
-     private logginObserver:Subject<boolean> = new Subject<boolean>;
+  private logginObserver:Subject<boolean> = new Subject<boolean>;
      subscribeToLoginUser(){
       return this.logginObserver.asObservable();
-     }
+  }
 
 
 /**
