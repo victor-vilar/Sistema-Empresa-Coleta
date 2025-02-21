@@ -1,7 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({name: 'pipename'})
-export class MockPipe implements PipeTransform {
+@Pipe({name: 'currency'})
+export class MockCurrencyPipe implements PipeTransform {
     transform(value: any): number {
         
         return value;

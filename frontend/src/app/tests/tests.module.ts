@@ -1,15 +1,15 @@
 import { NgModule } from "@angular/core";
 import { MockTestComponent } from "./mock-test.component";
-import { MockPipe } from "./mock-pipe.pipe";
+import { MockCurrencyPipe } from "./mock-currency-pipe.pipe";
 
 @NgModule({
     declarations: [
         MockTestComponent,
-        MockPipe,
+        MockCurrencyPipe,
     ],
     exports:[
         MockTestComponent,
-        MockPipe
+        MockCurrencyPipe
     ]
 })
 export class TestModule{}

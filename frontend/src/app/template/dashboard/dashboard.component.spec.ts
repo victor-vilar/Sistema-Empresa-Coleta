@@ -11,7 +11,7 @@ import { ServiceorderService } from 'src/app/service-order/services/serviceorder
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
-import { MockPipe } from 'src/app/tests/mock-pipe.pipe';
+import { MockPipe } from 'src/app/tests/mock-currency-pipe.pipe';
 import { TestModule } from 'src/app/tests/tests.module';
 
 fdescribe('DashboardComponent', () => {
@@ -78,7 +78,7 @@ fdescribe('DashboardComponent', () => {
 
   });
 
-  
+   
 
   it('should update the itens count in the view',(fakeAsync(() =>{
     
