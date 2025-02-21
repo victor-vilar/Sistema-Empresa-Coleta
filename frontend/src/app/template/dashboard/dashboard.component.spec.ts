@@ -24,10 +24,11 @@ fdescribe('DashboardComponent', () => {
   let serviceOrderService:jasmine.SpyObj<ServiceorderService>;
   let router:jasmine.SpyObj<Router>;
   let loginService:jasmine.SpyObj<LoginService>;
+  
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [ DashboardComponent, MockPipe ],
       providers:[
         {provide:CustomerService,useValue:jasmine.createSpyObj('CustomerService',['getCount'])},
         {provide:CustomerContractsService,useValue:jasmine.createSpyObj('CustomerContractsService',['getCount'])},
@@ -36,7 +37,7 @@ fdescribe('DashboardComponent', () => {
         {provide:ServiceorderService,useValue:jasmine.createSpyObj('ServiceorderService',['getCountOfNotExecuted'])},
         {provide:LoginService,useValue:jasmine.createSpyObj('LoginService',[''])},
         {provide:Router,useValue:jasmine.createSpyObj('Router',['navigate'])},
-        {provide:CurrencyPipe, useValue:MockPipe}
+        //{provide:CurrencyPipe, useValue:MockPipe}
       ]
     })
     .compileComponents();
@@ -63,7 +64,7 @@ fdescribe('DashboardComponent', () => {
     loginService = TestBed.inject(LoginService) as jasmine.SpyObj<LoginService>;
     loginService.applicationUser = 'fakeUser';
 
-    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;;
   });
 
   it('should create', () => {
@@ -77,9 +78,12 @@ fdescribe('DashboardComponent', () => {
 
   });
 
+  
+
   it('should update the itens count in the view',(fakeAsync(() =>{
+    
     component.ngOnInit();
-    tick(100);
+    tick(1000);
     
     fixture.detectChanges();
     
