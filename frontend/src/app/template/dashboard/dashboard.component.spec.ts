@@ -11,10 +11,10 @@ import { ServiceorderService } from 'src/app/service-order/services/serviceorder
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
-import { MockPipe } from 'src/app/tests/mock-currency-pipe.pipe';
+import { MockCurrencyPipe } from 'src/app/tests/mock-currency-pipe.pipe';
 import { TestModule } from 'src/app/tests/tests.module';
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let customerService:jasmine.SpyObj<CustomerService>;
@@ -28,7 +28,7 @@ fdescribe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, MockPipe ],
+      declarations: [ DashboardComponent, MockCurrencyPipe ],
       providers:[
         {provide:CustomerService,useValue:jasmine.createSpyObj('CustomerService',['getCount'])},
         {provide:CustomerContractsService,useValue:jasmine.createSpyObj('CustomerContractsService',['getCount'])},
