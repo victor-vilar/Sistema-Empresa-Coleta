@@ -6,6 +6,7 @@ import { ApplicationUser } from './../../shared/entities/ApplicationUser';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { getCookie } from 'typescript-cookie';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ import { getCookie } from 'typescript-cookie';
 export class LoginService {
 
   applicationUser = null;
-  private BASE_URL = "http://localhost:8080/v1/login";
-  private BASE_LOGOUT = "http://localhost:8080/logout";
+  private BASE_URL = environment.API_URL + environment.API_VERSION + 'login';
+  private BASE_LOGOUT = environment.API_URL + '/logout';
   private APPLICATION_USER_NOT_FOUND_ERROR = "Application User not found !";
 
   private http:HttpClient = inject(HttpClient);
@@ -136,7 +137,7 @@ export class LoginService {
       error:(error) => {
         //closing progress sprinner
         this.dialogService.closeProgressSpinnerDialog();
-
+        console.log(error);
 
         //if the username or password its wrong will.
         if(error.error.message === this.APPLICATION_USER_NOT_FOUND_ERROR){
