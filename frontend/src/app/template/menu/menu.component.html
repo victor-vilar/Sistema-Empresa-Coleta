@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="logged-user">
+  <div class="logged-user" *ngIf="applicationUser != undefined">
     <img [src]="this.applicationUser.profilePhotoUrl">
     <h3>{{this.applicationUser.username}}</h3>
     <h5>{{this.applicationUser.roles}}</h5>
