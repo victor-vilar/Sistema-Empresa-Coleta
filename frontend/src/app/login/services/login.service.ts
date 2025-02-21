@@ -26,7 +26,8 @@ export class LoginService {
 
 
   private logginObserver:Subject<boolean> = new Subject<boolean>;
-     subscribeToLoginUser(){
+  
+  subscribeToLoginUser(){
       return this.logginObserver.asObservable();
   }
 
