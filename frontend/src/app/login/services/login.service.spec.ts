@@ -69,9 +69,24 @@ fdescribe('LoginService',() => {
         expect(getSpy).toHaveBeenCalled();
         expect(dialogService.openProgressDialog).toHaveBeenCalled();
         expect(createHeadersSpy).toHaveBeenCalled();
-
-
-
     })
 
+
+    it('should test the logout method successfully',(done:DoneFn) => {
+
+        let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
+        let windowSpy = spyOn(window.sessionStorage,'clear')
+
+        let ob$ = loginService.subscribeToLoginUser()
+        .subscribe(response => {
+            expect(response).toBeTrue
+            done();
+        })
+
+        loginService.logout();
+        expect(getSpy).toHaveBeenCalled();
+        //expect(windowSpy).toHaveBeenCalled();
+        expect(loginService.applicationUser).toBeNull()
+        expect(router.navigate).toHaveBeenCalled();
+    })
 })
