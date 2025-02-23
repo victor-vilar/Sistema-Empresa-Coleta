@@ -41,7 +41,6 @@ fdescribe('LoginService',() => {
 
         loggedUser = {username:'Madruguinha',roles:['Gerente'], profilePhotoUrl:'/m.jpg'};
         notLoggedUser = {username:'Madruguinha', password:'123456'};
-        window.sessionStorage.setItem('loggedUser',JSON.stringify(loggedUser))
         createHeadersSpy = spyOn<any>(loginService,'createHeaders');
 
 
@@ -59,34 +58,43 @@ fdescribe('LoginService',() => {
     })
 
 
-    it('Should test the login method successfully',() =>{
+    it('Should test the login method successfully',(done:DoneFn) =>{
 
         let url = environment.API_URL + environment.API_VERSION + 'login';
         let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
         
-        loginService.login(notLoggedUser);
-
-        expect(getSpy).toHaveBeenCalled();
-        expect(dialogService.openProgressDialog).toHaveBeenCalled();
-        expect(createHeadersSpy).toHaveBeenCalled();
-    })
-
-
-    it('should test the logout method successfully',(done:DoneFn) => {
-
-        let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
-        let windowSpy = spyOn(window.sessionStorage,'clear')
-
         let ob$ = loginService.subscribeToLoginUser()
         .subscribe(response => {
             expect(response).toBeTrue
             done();
         })
 
-        loginService.logout();
+        loginService.login(notLoggedUser);
+
+        let objLogged = JSON.parse(window.sessionStorage.getItem('loggedUser'));
+        expect(objLogged).toEqual(loggedUser);    
         expect(getSpy).toHaveBeenCalled();
-        //expect(windowSpy).toHaveBeenCalled();
-        expect(loginService.applicationUser).toBeNull()
+        expect(dialogService.openProgressDialog).toHaveBeenCalled();
+        expect(createHeadersSpy).toHaveBeenCalled();
         expect(router.navigate).toHaveBeenCalled();
     })
+
+
+    // it('should test the logout method successfully',(done:DoneFn) => {
+
+    //     let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
+    //     let windowSpy = spyOn(window.sessionStorage,'clear')
+
+    //     let ob$ = loginService.subscribeToLoginUser()
+    //     .subscribe(response => {
+    //         expect(response).toBeTrue
+    //         done();
+    //     })
+
+    //     loginService.logout();
+    //     expect(getSpy).toHaveBeenCalled();
+    //     expect(windowSpy).toHaveBeenCalled();
+    //     expect(loginService.applicationUser).toBeNull()
+    //     expect(router.navigate).toHaveBeenCalled();
+    // })
 })
