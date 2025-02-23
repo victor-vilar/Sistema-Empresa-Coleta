@@ -80,21 +80,21 @@ fdescribe('LoginService',() => {
     })
 
 
-    // it('should test the logout method successfully',(done:DoneFn) => {
+    it('should test the logout method successfully',(done:DoneFn) => {
 
-    //     let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
-    //     let windowSpy = spyOn(window.sessionStorage,'clear')
+        let getSpy = spyOn(http,'get').and.returnValue(of(mockHttpResponse));
+        window.sessionStorage.setItem('loggedUser',JSON.stringify(loggedUser));
 
-    //     let ob$ = loginService.subscribeToLoginUser()
-    //     .subscribe(response => {
-    //         expect(response).toBeTrue
-    //         done();
-    //     })
+        let ob$ = loginService.subscribeToLoginUser()
+        .subscribe(response => {
+            expect(response).toBeFalse
+            done();
+        })
 
-    //     loginService.logout();
-    //     expect(getSpy).toHaveBeenCalled();
-    //     expect(windowSpy).toHaveBeenCalled();
-    //     expect(loginService.applicationUser).toBeNull()
-    //     expect(router.navigate).toHaveBeenCalled();
-    // })
+        loginService.logout();
+        expect(getSpy).toHaveBeenCalled();
+        expect(window.sessionStorage.getItem('loggedUser')).toBeNull();
+        expect(loginService.applicationUser).toBeNull()
+        expect(router.navigate).toHaveBeenCalledWith(['/login']);
+    })
 })
