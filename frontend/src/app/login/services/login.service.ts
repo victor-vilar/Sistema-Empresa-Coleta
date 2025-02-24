@@ -107,7 +107,7 @@ export class LoginService {
    * @returns this applicationUser instance or undefined ;
    */
   public getUserFromBrownser():ApplicationUser{
-    this.applicationUser = window.sessionStorage.getItem('loggedUser');
+    this.applicationUser = JSON.parse(window.sessionStorage.getItem('loggedUser'));
     return this.applicationUser;
   }
 
