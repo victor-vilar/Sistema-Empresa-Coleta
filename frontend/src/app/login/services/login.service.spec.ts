@@ -96,5 +96,18 @@ fdescribe('LoginService',() => {
         expect(window.sessionStorage.getItem('loggedUser')).toBeNull();
         expect(loginService.applicationUser).toBeNull()
         expect(router.navigate).toHaveBeenCalledWith(['/login']);
-    })
+    });
+
+
+    it('should test getJwtToken method', () => {
+        window.sessionStorage.setItem('jwtToken','myToken');
+        const jwt = loginService.getJwtToken();
+        expect(jwt).toBe('myToken');
+    });
+
+    it('should test getCsrfToken method',() => {
+        window.sessionStorage.setItem('XSRF','xsrfToken');
+        const xsrf = loginService.getCsrfToken();
+        expect(xsrf).toBe('xsrfToken');
+    });
 })
