@@ -42,7 +42,7 @@ fdescribe('LoginService',() => {
         loggedUser = {username:'Madruguinha',roles:['Gerente'], profilePhotoUrl:'/m.jpg'};
         notLoggedUser = {username:'Madruguinha', password:'123456'};
         createHeadersSpy = spyOn<any>(loginService,'createHeaders');
-
+        window.sessionStorage.clear();
 
         mockHttpHeader = {
             Authorization:'this is a mock token',
@@ -112,5 +112,19 @@ fdescribe('LoginService',() => {
         const xsrf = loginService.getCsrfToken();
         expect(xsrf).toBe('xsrfToken');
     });
+
+    it('should get the applicationUser from sessionStorage and add to loginService applicationUser variable', () =>{
+        loginService.applicationUser = null;
+        window.sessionStorage.setItem('loggedUser',JSON.stringify(loggedUser));
+        loginService.getUserFromBrownser();
+        expect(loginService.applicationUser).not.toBeNull();
+    })
+
+    it('should return the applicationUser from LoginService from getUserFromBrownser method', () =>{
+        loginService.applicationUser = null;
+        window.sessionStorage.setItem('loggedUser',JSON.stringify(loggedUser));
+        let user = loginService.getUserFromBrownser();
+        expect(user).toEqual(loggedUser);
+    })
 
 })
