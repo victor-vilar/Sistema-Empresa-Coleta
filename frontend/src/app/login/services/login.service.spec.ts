@@ -58,6 +58,8 @@ fdescribe('LoginService',() => {
     })
 
 
+
+
     it('Should test the login method successfully',(done:DoneFn) =>{
 
         let url = environment.API_URL + environment.API_VERSION + 'login';
@@ -65,7 +67,7 @@ fdescribe('LoginService',() => {
         
         let ob$ = loginService.subscribeToLoginUser()
         .subscribe(response => {
-            expect(response).toBeTrue
+            expect(response).toBeTrue()
             done();
         })
 
@@ -87,7 +89,7 @@ fdescribe('LoginService',() => {
 
         let ob$ = loginService.subscribeToLoginUser()
         .subscribe(response => {
-            expect(response).toBeFalse
+            expect(response).toBeFalse()
             done();
         })
 
@@ -110,4 +112,5 @@ fdescribe('LoginService',() => {
         const xsrf = loginService.getCsrfToken();
         expect(xsrf).toBe('xsrfToken');
     });
+
 })
