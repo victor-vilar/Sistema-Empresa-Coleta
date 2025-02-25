@@ -23,7 +23,7 @@ export class LoginMainComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(window.sessionStorage.getItem("loggedUser")){
+    if(this.loginService.getUserFromBrownser()){
       this.router.navigate(["/dashboard"]);
     }
   }
