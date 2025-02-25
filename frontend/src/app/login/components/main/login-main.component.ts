@@ -1,5 +1,5 @@
 import { DialogServiceService } from '../../../shared/services/dialog-service.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../../shared/entities/ApplicationUser';
@@ -15,11 +15,11 @@ export class LoginMainComponent implements OnInit {
 
   @ViewChild('meuForm') formulario:NgForm;
 
-
-  constructor(
-     private loginService:LoginService,
-     private router:Router,
-     private dialogService:DialogServiceService) { }
+  private loginService:LoginService = inject(LoginService);
+  private router:Router = inject(Router);
+  private dialogService:DialogServiceService = inject(DialogServiceService);
+  
+  constructor() { }
 
 
   ngOnInit(): void {
