@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { By } from '@angular/platform-browser';
 
-fdescribe('LoginMainComponent', () => {
+describe('LoginMainComponent', () => {
   
   let component: LoginMainComponent;
   let loginService:jasmine.SpyObj<LoginService>
@@ -66,10 +66,20 @@ fdescribe('LoginMainComponent', () => {
   });
 
   it('should active the login method after click in the view button',() =>{
-    spyOn(component,'logar');
+    
+    component.formulario.setValue({
+      username:'Mock',
+      password:'password'
+    });
+    fixture.detectChanges();
+    
+    spyOn(component,'logar').and.callThrough();
+    spyOn(component,'createsApplicationUser').and.callThrough();
     const button = fixture.debugElement.query(By.css('button'))
+
     button.nativeElement.click();
     expect(component.logar).toHaveBeenCalled();
+    expect(loginService.login).toHaveBeenCalled();
   });
 
   it('should create an applicationUser with the values of the view fields', () => {
@@ -130,6 +140,7 @@ fdescribe('LoginMainComponent', () => {
     expect(() => component.createsApplicationUser()).toThrow(new Error(msg));
     
   });
+
 
 
 
