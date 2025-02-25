@@ -18,6 +18,7 @@ export class LoginMainComponent implements OnInit {
   private loginService:LoginService = inject(LoginService);
   private router:Router = inject(Router);
   private dialogService:DialogServiceService = inject(DialogServiceService);
+  private readonly LOGIN_ERROR = 'Os campos de usuario e senha não podem estar vazios !'
   
   constructor() { }
 
@@ -36,8 +37,8 @@ export class LoginMainComponent implements OnInit {
 
 
     if(this.formulario.value.username === "" || this.formulario.value.password === ""){
-      this.dialogService.openErrorDialog('Os campos de usuario e senha não podem estar vazios !');
-      throw Error("username and password fields can't be null")
+      this.dialogService.openErrorDialog(this.LOGIN_ERROR);
+      throw Error(this.LOGIN_ERROR);
     }
 
     return {
