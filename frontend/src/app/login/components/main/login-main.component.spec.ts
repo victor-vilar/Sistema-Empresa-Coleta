@@ -7,6 +7,7 @@ import { ApplicationUser } from 'src/app/shared/entities/ApplicationUser';
 import { LoginService } from '../../services/login.service';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { By } from '@angular/platform-browser';
 
 fdescribe('LoginMainComponent', () => {
   
@@ -21,9 +22,9 @@ fdescribe('LoginMainComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginMainComponent ],
       providers:[
-        {provide:LoginService,useValue:jasmine.createSpyObj('LoginService',['getUserFromBrownser'])},
+        {provide:LoginService,useValue:jasmine.createSpyObj('LoginService',['getUserFromBrownser','login'])},
         {provide:Router,useValue:jasmine.createSpyObj('Router',['navigate'])},
-        {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openProgressDialog', 'closeProgressSpinnerDialog'])}
+        {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openProgressDialog', 'openErrorDialog'])}
       ],
       imports:[FormsModule,SharedModule]
     })
@@ -62,5 +63,74 @@ fdescribe('LoginMainComponent', () => {
     loginService.getUserFromBrownser.and.returnValue(undefined);
     component.ngOnInit();
     expect(router.navigate).not.toHaveBeenCalled();
-  })
+  });
+
+  it('should active the login method after click in the view button',() =>{
+    spyOn(component,'logar');
+    const button = fixture.debugElement.query(By.css('button'))
+    button.nativeElement.click();
+    expect(component.logar).toHaveBeenCalled();
+  });
+
+  it('should create an applicationUser with the values of the view fields', () => {
+    
+    component.formulario.setValue({
+      username:'Mock',
+      password:'password'
+    });
+
+    fixture.detectChanges();
+    let appUser = component.createsApplicationUser();
+    expect(appUser.username).toBe('Mock');
+    expect(appUser.password).toBe('password');
+
+  });
+
+  it('should throw an Error when the username field in the view it is empty',() =>{
+    
+    const msg = 'Os campos de usuario e senha não podem estar vazios !'
+    component.formulario.setValue({
+      username:'',
+      password:'password'
+    });
+
+    fixture.detectChanges();
+    
+    //O codigo abaixo serve para eu conseguir testar se o dialogService.openError Dialog foi ativado
+    try{
+        component.createsApplicationUser();
+    }catch(err){
+        expect(dialogService.openErrorDialog).toHaveBeenCalledWith(msg);
+    }
+
+    //O código abaixo serve para testar o throws
+    expect(() => component.createsApplicationUser()).toThrow(new Error(msg));
+    
+  });
+
+  it('should throw an Error when the password field in the view it is empty',() =>{
+    
+    const msg = 'Os campos de usuario e senha não podem estar vazios !'
+    component.formulario.setValue({
+      username:'Mock',
+      password:''
+    });
+
+    fixture.detectChanges();
+
+    
+    //O codigo abaixo serve para eu conseguir testar se o dialogService.openError Dialog foi ativado sem o throws atrapalhar
+    try{
+        component.createsApplicationUser();
+    }catch(err){
+        expect(dialogService.openErrorDialog).toHaveBeenCalledWith(msg);
+    }
+        
+    //O código abaixo serve para testar o throws
+    expect(() => component.createsApplicationUser()).toThrow(new Error(msg));
+    
+  });
+
+
+
 });
