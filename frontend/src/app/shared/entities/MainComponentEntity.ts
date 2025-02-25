@@ -3,12 +3,21 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Mapper } from "../interfaces/mapper.mapper";
 import { DialogServiceService } from "../services/dialog-service.service";
 import { Subscription } from "rxjs";
+import { ResidueMainComponent } from "src/app/residue/components/main/residue-main.component";
+import { ResidueListTableComponent } from "src/app/residue/components/list/residue-list-table.component";
 
 /**
- * Componente abstrato que sera herdado por todos os componentes que forem as paginas principais
- * dos componentes da aplicação.
- * Esses componente possuem um filho que é a tabela que mostra os itens salvos e possuem os formulario
- * de cadastro.
+ * Componente abstrato que sera herdado por todos os componentes que
+ * forem as 'páginas' principais dos componentes da aplicação.
+ * 
+ * Todo componente principal é somente uma página que contem outros
+ * componentes para executar tarefas em uma entidade específica.
+ * 
+ * Por exemplo: o {@link ResidueMainComponent} que extende dessa classe,
+ * possui um lista{@link ResidueListTableComponent} de resíduos cadastrados
+ * e tambem possue outro componente que é um botão que chama o formulário
+ * de cadastro de resíduos.
+ * 
  */
 @Component({
   template:''
