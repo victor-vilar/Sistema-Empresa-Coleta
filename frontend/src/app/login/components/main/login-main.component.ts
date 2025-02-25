@@ -23,7 +23,7 @@ export class LoginMainComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if(this.loginService.getUserFromBrownser()){
+    if(this.loginService.getUserFromBrownser() !== null && this.loginService.getUserFromBrownser() !== undefined){
       this.router.navigate(["/dashboard"]);
     }
   }
