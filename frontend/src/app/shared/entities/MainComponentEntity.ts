@@ -34,7 +34,7 @@ export abstract class MainComponentEntity implements OnInit, OnDestroy{
   protected mapper:Mapper;
   protected dialogService:DialogServiceService = inject(DialogServiceService);
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
-  protected router:Router = inject(Router);
+  //protected router:Router = inject(Router);
 
 
   ngOnInit(): void {
