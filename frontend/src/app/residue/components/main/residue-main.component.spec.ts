@@ -47,12 +47,19 @@ fdescribe('ResidueMainComponent', () => {
   });
 
   it('should call the super.onInit and subscribe to queryParams',() => {
-    
     spyOn(component,'openDialog');
     component.ngOnInit();
     activatedRoute.testParams = {dialog:true}
     expect(component.openDialog).toHaveBeenCalled();
   });
+
+  it('should set the path, the title and pathToOperations properties',() => {
+    component.ngOnInit();
+    expect(component['title']).toBe('Residuos');
+    expect(component['path']).toBe('residuo');
+    expect(component['pathToOperations'][0].name).toBe('Cadastrar novo Resíduo');
+    expect(component['pathToOperations'][0].path).toBe(component['path'] + '/novo');
+  })
 
 
 });
