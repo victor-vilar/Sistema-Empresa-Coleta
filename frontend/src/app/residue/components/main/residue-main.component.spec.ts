@@ -67,6 +67,19 @@ fdescribe('ResidueMainComponent', () => {
     expect(component['objectToEdit'].name).toBe(obj.name);
     expect(component['objectToEdit'].id).toBe(obj.id);
     expect(component['objectToEdit']).toEqual(obj);
+  });
+
+  it('should the ngOnDestroy method call the each subscription and unsubscribe',() => {
+    
+    component['subscriptions'].push(of(true).subscribe(r =>{}));
+    component['subscriptions'].push(of(true).subscribe(r =>{}));
+    spyOn(component['subscriptions'][0],'unsubscribe');
+    spyOn(component['subscriptions'][1],'unsubscribe');
+    
+    component.ngOnDestroy();
+    expect(component['subscriptions'][0].unsubscribe).toHaveBeenCalled();
+    expect(component['subscriptions'][1].unsubscribe).toHaveBeenCalled();
+    
   })
 
 
