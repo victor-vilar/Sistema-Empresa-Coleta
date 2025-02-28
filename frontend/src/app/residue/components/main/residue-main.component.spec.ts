@@ -75,11 +75,23 @@ fdescribe('ResidueMainComponent', () => {
     component['subscriptions'].push(of(true).subscribe(r =>{}));
     spyOn(component['subscriptions'][0],'unsubscribe');
     spyOn(component['subscriptions'][1],'unsubscribe');
-    
+
     component.ngOnDestroy();
     expect(component['subscriptions'][0].unsubscribe).toHaveBeenCalled();
     expect(component['subscriptions'][1].unsubscribe).toHaveBeenCalled();
     
+  });
+
+  it('should the open dialog method call the openDialog from dialogService', () => {
+    component.ngOnInit();
+    activatedRoute.testParams = {dialog:true}
+    expect(dialogService.openDialog).toHaveBeenCalled();
+  })
+
+  it('should the open dialog method set the editObject property to null', () => {
+    component.ngOnInit();
+    activatedRoute.testParams = {dialog:true}
+    expect(component['objectToEdit']).toBeNull();
   })
 
 
