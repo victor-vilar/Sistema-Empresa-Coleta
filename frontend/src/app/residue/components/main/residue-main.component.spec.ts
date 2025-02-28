@@ -61,5 +61,13 @@ fdescribe('ResidueMainComponent', () => {
     expect(component['pathToOperations'][0].path).toBe(component['path'] + '/novo');
   })
 
+  it('should add the variable to the objectToEdit propertie', () => {
+    let obj = {name:'teste',id:'123456'}
+    component.editObject(obj);
+    expect(component['objectToEdit'].name).toBe(obj.name);
+    expect(component['objectToEdit'].id).toBe(obj.id);
+    expect(component['objectToEdit']).toEqual(obj);
+  })
+
 
 });
