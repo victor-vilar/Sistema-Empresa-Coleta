@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { ActivatedRouteMock } from 'src/app/tests/activated-route-mock';
 
-fdescribe('ResidueMainComponent', () => {
+describe('ResidueMainComponent', () => {
   let component: ResidueMainComponent;
   let fixture: ComponentFixture<ResidueMainComponent>;
   let residueService:jasmine.SpyObj<ResiduesService>;
@@ -24,7 +24,7 @@ fdescribe('ResidueMainComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ResidueMainComponent ],
       providers:[
-        {provide:ActivatedRoute,useValue:activatedRoute},//{queryParams:of(convertToParamMap({'dialog':true}))}},
+        {provide:ActivatedRoute,useValue:activatedRoute},
         {provide:ResiduesService,userValue:jasmine.createSpyObj('ResiduesService',['getAll'])},
         {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openDialog', 'openErrorDialog'])},
         
