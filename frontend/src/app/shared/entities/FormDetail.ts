@@ -15,7 +15,7 @@ export abstract class FormDetail{
   protected activatedRoute:ActivatedRoute = inject(ActivatedRoute);
   protected router:Router = inject(Router);
   protected dialogService = inject(DialogServiceService);
-  protected formDetailHelper = inject(FormDetailHelperService);
+  //protected formDetailHelper = inject(FormDetailHelperService);
   protected clientCpfCnpj:string;
   protected objectToEdit:any;
   protected idOfEditedItem:number | string;
