@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 
 import { ResidueDetailComponent } from './residue-detail.component';
 import { Residue } from 'src/app/shared/entities/Residue';
@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ResiduesService } from '../../services/residues.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { By } from '@angular/platform-browser';
 
 fdescribe('ResidueDetailComponent', () => {
     let component: ResidueDetailComponent;
@@ -108,7 +109,23 @@ fdescribe('ResidueDetailComponent', () => {
       component.data = {objectToEdit:{id:111,name:'object'}};
       component.ngOnInit();
       expect(component['idOfEditedItem']).toBe(111);
-    })
+    });
+
+    it('should fill the form fields if there is an object to edit after the view update',(done:DoneFn) =>{
+      component['objectToEdit']={type:'Infectante',description:'Resíduo Infectante'};
+      component.ngAfterViewInit();
+      fixture.detectChanges();
+      
+      setTimeout(() => {
+        let inputs = fixture.debugElement.queryAll(By.css('input'));
+        expect(inputs[0].nativeElement.value).toBe(component['objectToEdit'].type);
+        expect(inputs[1].nativeElement.value).toBe(component['objectToEdit'].description);
+        expect(component.form.value.type).toBe(component['objectToEdit'].type);
+        expect(component.form.value.description).toBe(component['objectToEdit'].description);
+        done();
+      },200);
+
+    });
 
 
 
