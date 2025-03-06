@@ -66,6 +66,17 @@ fdescribe('ResidueDetailComponent', () => {
         expect(residue.id).toBe(undefined);
         expect(residue.type).toBe('infectante');
         expect(residue.description).toBe('descricao');
+    });
+
+    it('should set clietCpfCnpj variable when MAT_DIALOG_DATA has has clientCpfCnpj',() =>{
+      component.data = {clientCpfCnpj:'1'};
+      component.ngOnInit();
+      expect(component['clientCpfCnpj']).toBe('1');
+    })
+
+    it('should set clientCpfCnpj variable to undefined when MAT_DIALOG_DATA has no clientCpfCnpj',() =>{
+      component.ngOnInit();
+      expect(component['clientCpfCnpj']).toBeUndefined();
     })
 
 
