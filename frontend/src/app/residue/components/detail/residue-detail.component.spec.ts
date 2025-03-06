@@ -68,16 +68,50 @@ fdescribe('ResidueDetailComponent', () => {
         expect(residue.description).toBe('descricao');
     });
 
-    it('should set clietCpfCnpj variable when MAT_DIALOG_DATA has has clientCpfCnpj',() =>{
+    it('should set clientCpfCnpj variable to undefined when MAT_DIALOG_DATA has no clientCpfCnpj on OnLoad Method',() =>{
+      component.ngOnInit();
+      expect(component['clientCpfCnpj']).toBeUndefined();
+    })
+
+    it('should set clietCpfCnpj variable when MAT_DIALOG_DATA has has clientCpfCnpj on OnLoad Method',() =>{
       component.data = {clientCpfCnpj:'1'};
       component.ngOnInit();
       expect(component['clientCpfCnpj']).toBe('1');
     })
 
-    it('should set clientCpfCnpj variable to undefined when MAT_DIALOG_DATA has no clientCpfCnpj',() =>{
+    it('should set objectToEdit to undefined when MAT_DIALOG_ATA has no objectToEdit on OnLoad Method',() => {
       component.ngOnInit();
-      expect(component['clientCpfCnpj']).toBeUndefined();
+      expect(component['objectToEdit']).toBeUndefined();  
+    });
+
+    it('should set objectToEdit to undefined when MAT_DIALOG_ATA has objectToEdit on OnLoad Method',() => {
+      component.data = {objectToEdit:{id:1,name:'object'}};
+      component.ngOnInit();
+      expect(component['objectToEdit']).not.toBeUndefined();
+      expect(component['objectToEdit'].id).toBe(1);
+      expect(component['objectToEdit'].name).toBe('object');
+    });
+
+    it('should set crudToOperation to "Atualização" when MAT_DIALOG_ATA has  objectToEdit on OnLoad Method',() => {
+      component.data = {objectToEdit:{id:1,name:'object'}};
+      component.ngOnInit();
+      expect(component['crudOperation']).toBe('Atualização');
+    });
+
+    it('should get the cpfCnpj when an object to edit it is a Customer type and add to idOfEditedItem on OnLoad Method', () => {
+      component.data = {objectToEdit:{cpfCnpj:111,name:'object'}};
+      component.ngOnInit();
+      expect(component['idOfEditedItem']).toBe(111);
     })
+
+    it('should get the id when an object to edit it is not of a Customer type and add the id to idOfEditedItem on OnLoad Method', () => {
+      component.data = {objectToEdit:{id:111,name:'object'}};
+      component.ngOnInit();
+      expect(component['idOfEditedItem']).toBe(111);
+    })
+
+
+
 
 
   });
