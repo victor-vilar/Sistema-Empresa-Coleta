@@ -79,6 +79,16 @@ fdescribe('ResidueDetailComponent', () => {
         expect(residue.description).toBe('descricao');
     });
 
+    fit('should create add the id of a residue when idOfEditedItem is not undefined', () => {
+      component['idOfEditedItem'] = 1;
+      component.form.value.type='infectante';
+      component.form.value.description='descricao';
+      let residue:Residue = component.createObject();
+      expect(residue.id).toBe(1);
+      expect(residue.type).toBe('infectante');
+      expect(residue.description).toBe('descricao');
+  });
+
     it('should set clientCpfCnpj variable to undefined when MAT_DIALOG_DATA has no clientCpfCnpj on OnLoad Method',() =>{
       component.ngOnInit();
       expect(component['clientCpfCnpj']).toBeUndefined();
