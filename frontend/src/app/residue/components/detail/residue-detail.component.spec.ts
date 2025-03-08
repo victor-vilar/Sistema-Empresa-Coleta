@@ -79,7 +79,7 @@ fdescribe('ResidueDetailComponent', () => {
         expect(residue.description).toBe('descricao');
     });
 
-    fit('should create add the id of a residue when idOfEditedItem is not undefined', () => {
+    it('should create add the id of a residue when idOfEditedItem is not undefined', () => {
       component['idOfEditedItem'] = 1;
       component.form.value.type='infectante';
       component.form.value.description='descricao';
@@ -87,7 +87,7 @@ fdescribe('ResidueDetailComponent', () => {
       expect(residue.id).toBe(1);
       expect(residue.type).toBe('infectante');
       expect(residue.description).toBe('descricao');
-  });
+    });
 
     it('should set clientCpfCnpj variable to undefined when MAT_DIALOG_DATA has no clientCpfCnpj on OnLoad Method',() =>{
       component.ngOnInit();
@@ -105,7 +105,7 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component['objectToEdit']).toBeUndefined();  
     });
 
-    it('should set objectToEdit to undefined when MAT_DIALOG_ATA has objectToEdit on OnLoad Method',() => {
+    it('should set objectToEdit to undefined when MAT_DIALOG_ATA has an objectToEdit on OnLoad Method',() => {
       component.data = {objectToEdit:{id:1,name:'object'}};
       component.ngOnInit();
       expect(component['objectToEdit']).not.toBeUndefined();
@@ -113,7 +113,7 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component['objectToEdit'].name).toBe('object');
     });
 
-    it('should set crudToOperation to "Atualização" when MAT_DIALOG_ATA has  objectToEdit on OnLoad Method',() => {
+    it('should set crudToOperation to "Atualização" when MAT_DIALOG_ATA has an objectToEdit on OnLoad Method',() => {
       component.data = {objectToEdit:{id:1,name:'object'}};
       component.ngOnInit();
       expect(component['crudOperation']).toBe('Atualização');
@@ -169,7 +169,7 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component.isInvalidDescription).toBeFalse();
     })
 
-    fit('save method should call resetProperties, checkErrors from ErrorHelper and openProgressSpinner from DialogService and createObject',() => {
+    it('save method should call resetProperties, checkErrors from ErrorHelper and openProgressSpinner from DialogService and createObject',() => {
       spyOn(component,'resetInvalidProperties');
       spyOn(component['errorHelper'],'checkErrors');
       spyOn(component,'createObject').and.callThrough();
@@ -182,7 +182,21 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component['errorHelper'].checkErrors).toHaveBeenCalled();
       expect(dialogService.openProgressDialog).toHaveBeenCalled();
       expect(component.createObject).toHaveBeenCalled();
-    })
+    });
+
+    it('should save and new Residue succesfully',(fakeAsync(() =>{
+      spyOn(component,'destroy');
+      component.form.value.type='infectante';
+      component.form.value.description='descricao';
+      component.save();
+      tick(1000);
+      expect(residueService.save).toHaveBeenCalledTimes(1);
+      expect(dialogService.openSucessDialog).toHaveBeenCalled();
+      expect(residueService.getAll).toHaveBeenCalledTimes(1);
+      expect(component['destroy']).toHaveBeenCalled();
+      expect(dialogService.closeProgressSpinnerDialog).toHaveBeenCalled();
+    })));
+
 
     
 
