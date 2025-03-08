@@ -111,7 +111,7 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component['idOfEditedItem']).toBe(111);
     });
 
-    it('should fill the form fields if there is an object to edit after the view update',(done:DoneFn) =>{
+    it('should fill the form fields if there is an object to edit after the view init',(done:DoneFn) =>{
       component['objectToEdit']={type:'Infectante',description:'Resíduo Infectante'};
       component.ngAfterViewInit();
       fixture.detectChanges();
@@ -126,6 +126,34 @@ fdescribe('ResidueDetailComponent', () => {
       },200);
 
     });
+
+    fit('should call save method when submit form button',() =>{
+      spyOn(component,'save');
+      let buttons = fixture.debugElement.queryAll(By.css('button'));
+      buttons[0].nativeElement.click();
+      expect(component.save).toHaveBeenCalled();
+    });
+
+    fit('should call cleanForm method when click in the view',() =>{
+      spyOn(component,'cleanForm');
+      let buttons = fixture.debugElement.queryAll(By.css('button'));
+      buttons[1].nativeElement.click();
+      expect(component.cleanForm).toHaveBeenCalled();
+    });
+
+    it('should call save method from service properly',() => {
+      spyOn(component,'resetInvalidProperties');
+      spyOn(component['errorHelper'],'checkErrors');
+      component.form.value.type='infectante';
+      component.form.value.description='descricao';
+
+
+
+      expect(component.resetInvalidProperties).toHaveBeenCalled();
+      expect(component['errorHelper'].checkErrors).toHaveBeenCalled();
+      expect(dialogService.openProgressDialog).toHaveBeenCalled();
+      expect(component.createObject).toHaveBeenCalled();
+    })
 
 
 
