@@ -12,6 +12,7 @@ import { ResiduesService } from '../../services/residues.service';
 import { ErrorsHelperService } from 'src/app/shared/services/erros-helper.service';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 
 fdescribe('ResidueDetailComponent', () => {
     let component: ResidueDetailComponent;
@@ -23,6 +24,9 @@ fdescribe('ResidueDetailComponent', () => {
     let dialogService:jasmine.SpyObj<DialogServiceService>;
     let residueService:jasmine.SpyObj<ResiduesService>;
     let errorHelper:jasmine.SpyObj<ErrorsHelperService>;
+
+    //test
+    let mockResidue:Residue;
   
     beforeEach(() => {
       
@@ -35,10 +39,10 @@ fdescribe('ResidueDetailComponent', () => {
             providers:[
               {provide:ActivatedRoute,useValue:activatedRoute},       
               {provide:Router,useValue:jasmine.createSpyObj('Router',[''])},
-              {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openDialog', 'openErrorDialog'])},
-              {provide:ResiduesService,userValue:jasmine.createSpyObj('ResiduesService',['getAll'])},
+              {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openProgressDialog', 'closeProgressSpinnerDialog','openErrorDialog','openSucessDialog'])},
+              {provide:ResiduesService,useValue:jasmine.createSpyObj('ResiduesService',['getAll','save','update'])},
               {provide:ErrorsHelperService,useValue:jasmine.createSpyObj('ErrosHelperService',[''])},
-              {provide: MatDialogRef,useValue: jasmine.createSpy('close')},
+              {provide: MatDialogRef,useValue: jasmine.createSpyObj('dialogRef',['close'])},
               {provide: MAT_DIALOG_DATA,useValue: {}}
             ]
         }
@@ -53,7 +57,13 @@ fdescribe('ResidueDetailComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
+    //test
+    mockResidue = {id:1,type:'teste',description:'teste'}
       
+    //mock method
+    residueService.save.and.returnValue(of(mockResidue));
+    residueService.update.and.returnValue(of(mockResidue));
+
     });
   
     it('should be created', () => {
@@ -127,33 +137,44 @@ fdescribe('ResidueDetailComponent', () => {
 
     });
 
-    fit('should call save method when submit form button',() =>{
+    it('should call save method when submit form button',() =>{
       spyOn(component,'save');
       let buttons = fixture.debugElement.queryAll(By.css('button'));
       buttons[0].nativeElement.click();
       expect(component.save).toHaveBeenCalled();
     });
 
-    fit('should call cleanForm method when click in the view',() =>{
+    it('should call cleanForm method when click in the view',() =>{
       spyOn(component,'cleanForm');
       let buttons = fixture.debugElement.queryAll(By.css('button'));
       buttons[1].nativeElement.click();
       expect(component.cleanForm).toHaveBeenCalled();
     });
 
-    it('should call save method from service properly',() => {
+    it('should test resetInvalidProperties correctly',() => {
+      component.isInvalidType = true;
+      component.isInvalidDescription = true;
+      component.resetInvalidProperties();
+      expect(component.isInvalidType).toBeFalse();
+      expect(component.isInvalidDescription).toBeFalse();
+    })
+
+    fit('save method should call resetProperties, checkErrors from ErrorHelper and openProgressSpinner from DialogService and createObject',() => {
       spyOn(component,'resetInvalidProperties');
       spyOn(component['errorHelper'],'checkErrors');
+      spyOn(component,'createObject').and.callThrough();
       component.form.value.type='infectante';
       component.form.value.description='descricao';
 
-
+      component.save();
 
       expect(component.resetInvalidProperties).toHaveBeenCalled();
       expect(component['errorHelper'].checkErrors).toHaveBeenCalled();
       expect(dialogService.openProgressDialog).toHaveBeenCalled();
       expect(component.createObject).toHaveBeenCalled();
     })
+
+    
 
 
 
