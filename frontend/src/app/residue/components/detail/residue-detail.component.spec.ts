@@ -197,6 +197,20 @@ fdescribe('ResidueDetailComponent', () => {
       expect(dialogService.closeProgressSpinnerDialog).toHaveBeenCalled();
     })));
 
+    it('should call service update method when there is an idOfEditedItem',(fakeAsync(() =>{
+      spyOn(component,'destroy');
+      component['idOfEditedItem'] = 1;
+      component.form.value.type='infectante';
+      component.form.value.description='descricao';
+      component.save();
+      tick(1000);
+      expect(residueService.update).toHaveBeenCalledTimes(1);
+      expect(dialogService.openSucessDialog).toHaveBeenCalled();
+      expect(residueService.getAll).toHaveBeenCalledTimes(1);
+      expect(component['destroy']).toHaveBeenCalled();
+      expect(dialogService.closeProgressSpinnerDialog).toHaveBeenCalled();
+    })));
+
 
     
 
