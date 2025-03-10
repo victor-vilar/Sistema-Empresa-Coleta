@@ -226,7 +226,23 @@ fdescribe('ResidueDetailComponent', () => {
       expect(component['destroy$'].next).toHaveBeenCalled();
       expect(component['destroy$'].complete).toHaveBeenCalled();
       expect(component.dialogRef.close).toHaveBeenCalled();
+    });
+
+    it('should return an observer and execute its next method successfully',() => {
+      let testObserver = component.saveObserver();
+      spyOn(component,'destroy');
+      testObserver.next('this is the response');
+      expect(dialogService.openSucessDialog).toHaveBeenCalled();
+      expect(residueService.getAll).toHaveBeenCalled();
+      expect(component.destroy).toHaveBeenCalled();
     })
+
+    it('should return an observer and execute its error method successfully',() => {
+      let testObserver = component.saveObserver();
+      testObserver.error('this is the response');
+      expect(dialogService.openErrorDialog).toHaveBeenCalled();
+    })
+
 
 
 
