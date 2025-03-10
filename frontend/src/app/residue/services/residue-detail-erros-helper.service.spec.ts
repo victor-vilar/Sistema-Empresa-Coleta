@@ -4,19 +4,25 @@ import { ResidueDetailErrosHelperService } from './residue-detail-erros-helper.s
 import { DialogServiceService } from 'src/app/shared/services/dialog-service.service';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
+class mockComponent {
+  isInvalidType:boolean = false;
+  isInvalidDescription:boolean = false;
+
+}
+
 fdescribe('ResidueDetailErrosHelperService', () => {
   let service: ResidueDetailErrosHelperService;
   let dialogService:jasmine.SpyObj<DialogServiceService>;
-  let invalidType = false;
-  let inavlidDescription = false;
   let form;
+  let INVALID_RESIDUE_TYPE_MESSAGE = "O tipo do residuo não pode ser vazio!";
+  let INVALID_CLASS_TYPE_MESSAGE = "A classe do residuo não pode ser vazio!";
   
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers:[
         ResidueDetailErrosHelperService,
-        {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openProgressDialog', 'closeProgressSpinnerDialog','openErrorDialog','openSucessDialog'])},
+        {provide:DialogServiceService,useValue:jasmine.createSpyObj('DialogService',['openErrorDialog'])},
       ]
     });
     service = TestBed.inject(ResidueDetailErrosHelperService);
@@ -34,11 +40,44 @@ fdescribe('ResidueDetailErrosHelperService', () => {
   });
 
   it('should call the checkIfInputFieldsAreFilled',() => {
+    let component = new mockComponent();
     spyOn(service,'checkIfInputFieldsAreFilled');
-    service.checkErrors(form,invalidType,inavlidDescription);
+    service.checkErrors(form,component.isInvalidType,component.isInvalidDescription);
     expect(service.checkIfInputFieldsAreFilled).toHaveBeenCalled();
   })
-  
+
+  fit('should set invalidType to true, call dialogService and throw error if the form field type it is null', () => {
+    form.value.type = '';
+    form.value.description ='fake description';
+    let component = new mockComponent();
+    
+    try{
+      service.checkErrors(form,component.isInvalidType,component.isInvalidDescription);
+    }catch(err){
+      expect(dialogService.openErrorDialog).toHaveBeenCalled();
+    }
+
+    expect(() => service.checkErrors(form,component.isInvalidType,component.isInvalidDescription)).toThrow(new Error(INVALID_RESIDUE_TYPE_MESSAGE));
+    
+
+  })
+
+  fit('should set invalidDescription to true, call dialogService and throw error if the form field type it is null', () => {
+    form.value.type = 'fake type';
+    form.value.description ='';
+    let component = new mockComponent();
+    
+    try{
+      service.checkErrors(form,component.isInvalidType,component.isInvalidDescription);
+    }catch(err){
+      expect(dialogService.openErrorDialog).toHaveBeenCalled();
+    }
+
+    expect(() => service.checkErrors(form,component.isInvalidType,component.isInvalidDescription)).toThrow(new Error(INVALID_CLASS_TYPE_MESSAGE));
+    
+
+  })
+
 
 
 });
