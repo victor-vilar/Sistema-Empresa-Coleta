@@ -14,7 +14,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-fdescribe('ResidueDetailComponent', () => {
+describe('ResidueDetailComponent', () => {
     let component: ResidueDetailComponent;
     let fixture: ComponentFixture<ResidueDetailComponent>;
     
