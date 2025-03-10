@@ -211,6 +211,14 @@ fdescribe('ResidueDetailComponent', () => {
       expect(dialogService.closeProgressSpinnerDialog).toHaveBeenCalled();
     })));
 
+    fit('should test cleanForm successfully',() => {
+      spyOn(component.form,'reset');
+      spyOn(component,'resetInvalidProperties');
+      component.cleanForm();
+      expect(component.form.reset).toHaveBeenCalled();
+      expect(component.resetInvalidProperties).toHaveBeenCalled();
+    })
+
 
     
 
