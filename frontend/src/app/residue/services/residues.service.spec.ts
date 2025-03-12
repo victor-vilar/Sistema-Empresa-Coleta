@@ -1,24 +1,32 @@
 
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ResiduesService } from './residues.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-describe('ResidueServiceTest', () => {
+// Other imports
+import { TestBed } from '@angular/core/testing';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ResiduesService } from './residues.service';
+
+fdescribe('ResidueService', () => {
   let service: ResiduesService;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+
 
   beforeEach(() => {
-    const setup = (httClient:unknown) => {
-      TestBed.configureTestingModule({providers:[
-        {
-          provide:HttpClient,
-          useValue:httClient
-        }
-      ]}).inject(ResiduesService)
-    }
     
+    TestBed.configureTestingModule({
+        providers:[
+          ResiduesService,
+        ],
+        imports:[
+          HttpClientTestingModule
+        ]
+    })
 
+    
     service = TestBed.inject(ResiduesService);
+    httpClient = TestBed.inject(HttpClient);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
