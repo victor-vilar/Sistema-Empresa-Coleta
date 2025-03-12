@@ -32,4 +32,17 @@ fdescribe('ResidueService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should get refreshRequired as observable', () => {
+    spyOn(service['refreshRequired'],'asObservable');
+    service.refreshAllData();
+    expect(service['refreshRequired'].asObservable).toHaveBeenCalled();
+  });
+
+  it('should the refreshRequired subjet to send the data', () =>{
+    let obj = {id:'teste'}
+    spyOn(service['refreshRequired'],'next');
+    service.send(obj);
+    expect(service['refreshRequired'].next).toHaveBeenCalledWith(obj);
+  })
 });
