@@ -13,19 +13,6 @@ import { finalize, takeUntil } from 'rxjs';
 
 
 
-
-// //myerror class to volumeSize input display error messages
-// export class volumeErrorMatcher implements ErrorStateMatcher {
-//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-//     const isSubmitted = form && form.submitted;
-//     if((isNaN(control.value) || control.value <= 0 || control.value === '') && (control.dirty || control.touched || isSubmitted) ){
-//       return true;
-//     }
-//     return false;
-//   }
-// }
-
-
 @Component({
   selector: 'app-equipament-new',
   templateUrl: './equipament-detail.component.html',

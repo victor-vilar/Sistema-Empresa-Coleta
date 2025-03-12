@@ -10,7 +10,7 @@ class mockComponent {
 
 }
 
-fdescribe('ResidueDetailErrosHelperService', () => {
+describe('ResidueDetailErrosHelperService', () => {
   let service: ResidueDetailErrosHelperService;
   let dialogService:jasmine.SpyObj<DialogServiceService>;
   let form;
@@ -46,7 +46,7 @@ fdescribe('ResidueDetailErrosHelperService', () => {
     expect(service.checkIfInputFieldsAreFilled).toHaveBeenCalled();
   })
 
-  fit('should set invalidType to true, call dialogService and throw error if the form field type it is null', () => {
+  it('should set invalidType to true, call dialogService and throw error if the form field type it is null', () => {
     form.value.type = '';
     form.value.description ='fake description';
     let component = new mockComponent();
@@ -62,7 +62,7 @@ fdescribe('ResidueDetailErrosHelperService', () => {
 
   })
 
-  fit('should set invalidDescription to true, call dialogService and throw error if the form field type it is null', () => {
+  it('should set invalidDescription to true, call dialogService and throw error if the form field type it is null', () => {
     form.value.type = 'fake type';
     form.value.description ='';
     let component = new mockComponent();
