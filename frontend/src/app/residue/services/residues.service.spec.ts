@@ -71,4 +71,27 @@ fdescribe('ResidueService', () => {
     expect(req.request.method).toEqual('POST');
     req.flush(savedResidue);
   })
+
+  it('shouled test the getAll method successfully',() => {
+    
+    let savedResidueList:Residue[] =[
+       {id:1, type:'teste1',description:'teste1'},
+       {id:2, type:'teste2',description:'teste2'},
+       {id:3, type:'teste3',description:'teste3'}
+    ];
+
+    let obs$ = service.refreshAllData();
+    service.getAll();
+
+    obs$.subscribe(response =>{
+      expect(response).toHaveSize(3);
+      expect(service.list).not.toHaveSize(0);
+      expect(service.list).toHaveSize(3);
+    })
+
+    const req = httpTestingController.expectOne(environment.LOCAL_API_URL + 'residues');
+    expect(req.request.method).toEqual('GET');
+    req.flush(savedResidueList);
+
+  });
 });
