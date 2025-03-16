@@ -81,17 +81,41 @@ fdescribe('ResidueService', () => {
     ];
 
     let obs$ = service.refreshAllData();
-    service.getAll();
-
     obs$.subscribe(response =>{
       expect(response).toHaveSize(3);
       expect(service.list).not.toHaveSize(0);
       expect(service.list).toHaveSize(3);
     })
+    service.getAll();
+
+
 
     const req = httpTestingController.expectOne(environment.LOCAL_API_URL + 'residues');
     expect(req.request.method).toEqual('GET');
     req.flush(savedResidueList);
 
   });
+
+  it('should test the getById method successfully when passing a number id',() => {
+    let savedResidue:Residue = {id:1, type:'teste',description:'teste'};
+    service.getById(1).subscribe(response => {
+      expect(response).toEqual(savedResidue);
+    })
+
+    const req = httpTestingController.expectOne(environment.LOCAL_API_URL + 'residues/' + savedResidue.id);
+    expect(req.request.method).toEqual('GET');
+    req.flush(savedResidue);
+  });
+
+  it('should test the update method successfully',() => {
+    let updatedResidue:Residue = {id:1, type:'teste11',description:'teste11'};
+    service.update(updatedResidue).subscribe(response => {
+      expect(response).toEqual(updatedResidue);
+    })
+
+    const req = httpTestingController.expectOne(environment.LOCAL_API_URL + 'residues');
+    expect(req.request.method).toEqual('PUT');
+    req.flush(updatedResidue);
+  })
+
 });
